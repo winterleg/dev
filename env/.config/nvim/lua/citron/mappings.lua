@@ -103,15 +103,6 @@ local mappings = {
   { "n",               "ç",          "<CMD>Oil<CR>",                           { desc = "Open root directory" } },
   { "n",               "<leader>ç",  "<CMD>Oil .<CR>",                         { desc = "Open root directory" } },
   { "n",               "<ESC>",      "<CMD>noh<CR>" },
-  { { "n", "v" },      "-",          "0" },
-  { { "n", "v", "x" }, ";",          ":" },
-  { { "n", "v", "x" }, ":",          ";" },
-  { { "n", "v" },      "!",          ":!" },
-  { { 'n', 'v', 'x' }, 'j',          'gj' },
-  { { 'n', 'v', 'x' }, 'k',          'gk' },
-  -- { { 'n', 'v', 'x' }, 'v',          '<C-v>' },
-  -- { { 'n', 'v', 'x' }, '<C-v>',      'v' },
-  { { "n", "v" },      "<leader>w",  "<CMD>write<CR>" },
   { "n",               "<leader>pf", ":FilesNoPDF<CR>",                        { desc = "Open fzf (no PDFs)" } },
   { "n",               "<leader>pr", files_no_pdf_query,                       { desc = "Open fzf (no PDFs) with query" } },
   { "n",               "<leader>pk", fzf_firefox,                              { desc = "Open file in Firefox with telescope" } },
@@ -119,14 +110,19 @@ local mappings = {
   { "n",               "<leader>k",  ":!make<CR>",                             { desc = "Call make" } },
   { "n",               "<leader>sk", "<CMD>T make<CR>",                        { desc = "Call make" } },
   { "n",               "<leader>sa", function() vim.cmd([[normal! ggVG]]) end, { desc = "Select the entire file" } },
-  { { "n", "v" },      "<leader>3",  "/" },
   { "n",               "<leader>tw", toggleWhiteSpace },
   { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                   { silent = true } },
-  { "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" }
+  { "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" },
+  { { "n", "v" },      "!",          ":!" },
+  { { "n", "v" },      "<leader>w",  "<CMD>write<CR>" },
+  { { "n", "v" },      "<leader>3",  "/" },
+  { { "n", "v", "x" }, "-",          "0" },
+  { { "n", "v", "x" }, ";",          ":" },
+  { { "n", "v", "x" }, ":",          ";" },
+  { { 'n', 'v', 'x' }, 'j',          'gj' },
+  { { 'n', 'v', 'x' }, 'k',          'gk' },
 }
 
 for _, value in ipairs(mappings) do
-  local mode, keybind, command, options = value[1], value[2], value[3], value[4]
-
-  vim.keymap.set(mode, keybind, command, options)
+  vim.keymap.set(value[1], value[2], value[3], value[4])
 end

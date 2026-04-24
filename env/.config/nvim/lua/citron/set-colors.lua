@@ -7,7 +7,26 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
+local function unset_curls()
+  local groups = {
+    -- "SpellBad", "SpellCap", "SpellLocal", "SpellRare",
+    "DiagnosticUnderlineError", "DiagnosticUnderlineWarn",
+    "DiagnosticUnderlineInfo", "DiagnosticUnderlineHint",
+    "LspReferenceText", "LspReferenceRead", "LspReferenceWrite",
+    "Type", "StorageClass", "Structure", "Typedef",
+    "@lsp.type.type", "@lsp.type.class", "@lsp.type.enum",
+    "@lsp.type.interface", "@lsp.type.struct", "@lsp.type.typeParameter",
+    "@lsp.type.parameter", "@lsp.type.variable", "@lsp.type.property",
+    "@lsp.type.enumMember", "@lsp.type.macro", "@lsp.type.method",
+    "@lsp.type.function", "@lsp.type.namespace", "@lsp.type.decorator"
+  }
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, { undercurl = false, underline = false })
+  end
+end
+
 local function save_theme(name)
+  unset_curls()
   current_name = name
   vim.fn.writefile({ name }, state_file)
 end
@@ -27,7 +46,6 @@ local function load_theme()
   end
 end
 
-
 ---@class ColorEntry
 ---@field name string
 ---@field enabled boolean
@@ -35,16 +53,6 @@ end
 
 ---@type ColorEntry[]
 local colorsList = {
-  {
-    name = "KanagawaBones",
-    enabled = false,
-    callback = function()
-      vim.opt.background = DARK
-      vim.cmd [[colorscheme kanagawabones]]
-
-      save_theme "KanagawaBones"
-    end,
-  },
   {
     name = "Dawn",
     enabled = true,
@@ -66,37 +74,11 @@ local colorsList = {
     end,
   },
   {
-    name = "ZenBonesDark",
-    enabled = false,
-    callback = function()
-      vim.opt.background = "dark"
-      vim.cmd [[colorscheme zenbones]]
-      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2B2725" })
-      vim.api.nvim_set_hl(0, "SpellBad", { fg = "#B3BCC2", undercurl = true })
-      vim.api.nvim_set_hl(0, "Visual", { fg = "#000000", bg = "#E1DCDA" })
-
-      save_theme "ZenBonesDark"
-    end,
-  },
-  {
-    name     = "ZenBonesPaper",
-    enabled  = false,
-    callback = function()
-      vim.opt.background = "light"
-      vim.cmd [[colorscheme zenbones]]
-      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#E1DCDA" })
-      vim.api.nvim_set_hl(0, "SpellBad", { fg = "#2C363C", undercurl = true })
-      vim.api.nvim_set_hl(0, "Visual", { fg = "#FFFFFF", bg = "#2C363C" })
-
-      save_theme "ZenBonesPaper"
-    end,
-  },
-  {
     name = "Gruv Dark",
     enabled = true,
     callback = function()
       require("gruvbox").setup({
-        transparent_mode = false,
+        transparent_mode = true,
       })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]
@@ -123,7 +105,7 @@ local colorsList = {
   },
   {
     name = "Vague",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme vague]]
@@ -141,22 +123,6 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#4a2008" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#1a0a02", bg = "#ee8822" })
 
-      local groups = {
-        "SpellBad", "SpellCap", "SpellLocal", "SpellRare",
-        "DiagnosticUnderlineError", "DiagnosticUnderlineWarn",
-        "DiagnosticUnderlineInfo", "DiagnosticUnderlineHint",
-        "LspReferenceText", "LspReferenceRead", "LspReferenceWrite",
-        "Type", "StorageClass", "Structure", "Typedef",
-        "@lsp.type.type", "@lsp.type.class", "@lsp.type.enum",
-        "@lsp.type.interface", "@lsp.type.struct", "@lsp.type.typeParameter",
-        "@lsp.type.parameter", "@lsp.type.variable", "@lsp.type.property",
-        "@lsp.type.enumMember", "@lsp.type.macro", "@lsp.type.method",
-        "@lsp.type.function", "@lsp.type.namespace", "@lsp.type.decorator"
-      }
-      for _, group in ipairs(groups) do
-        vim.api.nvim_set_hl(0, group, { undercurl = false, underline = false })
-      end
-
       save_theme "NERV"
     end,
   },
@@ -170,22 +136,6 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "Visual", { fg = "#bbc5b7", bg = "#002611" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#44693f" })
 
-      local groups = {
-        "SpellBad", "SpellCap", "SpellLocal", "SpellRare",
-        "DiagnosticUnderlineError", "DiagnosticUnderlineWarn",
-        "DiagnosticUnderlineInfo", "DiagnosticUnderlineHint",
-        "LspReferenceText", "LspReferenceRead", "LspReferenceWrite",
-        "Type", "StorageClass", "Structure", "Typedef",
-        "@lsp.type.type", "@lsp.type.class", "@lsp.type.enum",
-        "@lsp.type.interface", "@lsp.type.struct", "@lsp.type.typeParameter",
-        "@lsp.type.parameter", "@lsp.type.variable", "@lsp.type.property",
-        "@lsp.type.enumMember", "@lsp.type.macro", "@lsp.type.method",
-        "@lsp.type.function", "@lsp.type.namespace", "@lsp.type.decorator"
-      }
-      for _, group in ipairs(groups) do
-        vim.api.nvim_set_hl(0, group, { undercurl = false, underline = false })
-      end
-
       save_theme "Paper"
     end
   },
@@ -198,22 +148,6 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1a2a18" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#060c06", bg = "#55bb55" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#366632" })
-
-      local groups = {
-        "SpellBad", "SpellCap", "SpellLocal", "SpellRare",
-        "DiagnosticUnderlineError", "DiagnosticUnderlineWarn",
-        "DiagnosticUnderlineInfo", "DiagnosticUnderlineHint",
-        "LspReferenceText", "LspReferenceRead", "LspReferenceWrite",
-        "Type", "StorageClass", "Structure", "Typedef",
-        "@lsp.type.type", "@lsp.type.class", "@lsp.type.enum",
-        "@lsp.type.interface", "@lsp.type.struct", "@lsp.type.typeParameter",
-        "@lsp.type.parameter", "@lsp.type.variable", "@lsp.type.property",
-        "@lsp.type.enumMember", "@lsp.type.macro", "@lsp.type.method",
-        "@lsp.type.function", "@lsp.type.namespace", "@lsp.type.decorator"
-      }
-      for _, group in ipairs(groups) do
-        vim.api.nvim_set_hl(0, group, { undercurl = false, underline = false })
-      end
 
       save_theme "MATRIX"
     end,
@@ -244,6 +178,7 @@ local colorsList = {
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme github_dark]]
+      vim.api.nvim_set_hl(0, 'Visual', { fg = "#30363d", bg = "#e4ebf1" })
 
       save_theme "Github Dark"
     end,
@@ -252,8 +187,9 @@ local colorsList = {
     name = "cat latte",
     enabled = true,
     callback = function()
-      vim.opt.background = "dark"
+      vim.opt.background = "light"
       vim.cmd [[colorscheme catppuccin-latte]]
+      vim.api.nvim_set_hl(0, 'Visual', { fg = "#eff1f5", bg = "#4c4f69" })
 
       save_theme "cat latte"
     end,

@@ -1,12 +1,12 @@
-# background = #000000
+background = #000000
 # foreground = #FFFFFF
 
 cursor-color = EC5D2A
 cursor-text  = 000000
 
-background-opacity = 1
+background-opacity = 0.86
 #0.86
-background-blur    = true
+background-blur    = false
 
 confirm-close-surface = false
 

@@ -6,13 +6,13 @@
 #let vec(body) = $arrow(body)$
 #let dream(body) = block(width: 100%, body)
 #let tens(body, exp) = $body times 10^(exp)$
-#let qed = align(right, $square.filled$)
+#let qed = align(right, $square$)
 
 #let tens(body, exp) = $body#strong(scale(x: 75%, y: 75%, "E"))^exp$
 
 #let para = $\/\/$
 #let slash = [/]
-#let paragraph(body) = {
+#let graph(body) = {
   strong(body)
   h(1em)
 }
