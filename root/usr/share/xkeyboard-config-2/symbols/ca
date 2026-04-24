@@ -1,0 +1,90 @@
+// Keyboard layouts for Canada.
+
+
+// Disposition de touches basée sur Colemak,
+//
+// Changements principaux:
+// - présences des touches utiles en programmation tel que (, [, {, }, ] et )
+//   sur la ligne des chiffres;
+// - adapté à l'écriture française (œ, è, é, ê, à, «, », etc.)
+//
+// By Winter L. <winter.leg.147@gmail.com>
+//
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+// │ |   │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ _   │ +   ┃ ⌫ Retour┃
+// │ #   │ /   │ (   │ [   │ {   │ '   │ $   │ !   │ }   │ ]   │ )   │ -   │ =   ┃  arrière┃
+// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┯━━━━━━━┫
+// ┃       ┃ Q Æ │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ ◌̈   │ Ç   │  >    ┃
+// ┃Tab ↹  ┃ q æ │ w \ │ f @ │ p ~ │ g – │ j ¥ │ l   │ u   │ y § │ ; ¶ │ ◌̂   │ ç   │  <    ┃
+// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┲━━━━┷━━━━━━━┫
+// ┃        ┃ A   │ R   │ S   │ T   │ D   │ H   │ N   │ E Œ │ I   │ O   │ ?   ┃            ┃
+// ┃Échappe ┃ a · │ r % │ s * │ t ^ │ d   │ h   │ n   │ e œ │ i   │ o   │ ◌̀   ┃ Entrée ⏎   ┃
+// ┣━━━━━━━━┻━━━━┱┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┻━━━━━━━━━━━━┫
+// ┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ "   │ &   │ É   ┃             ┃
+// ┃ Majuscule ⇧ ┃ z « │ x » │ c ° │ v   │ b[1]│ k   │ m µ │ , ◌̄ │ .   │ é ◌́ ┃ Majuscule ⇧ ┃
+// ┣━━━━━━━┳━━━━━┻━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
+// ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
+// ┃ Ctrl  ┃ Super ┃ Alt   ┃ ␣ Espace                        ␣ ┃AltGr ⇮┃ Menu  ┃ Ctrl  ┃
+// ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹───────────────────────────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┛
+// [1]: espace insécable
+
+default partial
+xkb_symbols "basic" {
+    name[Group1] = "French (Canada)";
+
+    key <TLDE>  {[  numbersign,         bar                                 ]};
+    key <AE01>  {[  slash,              1                                   ]};
+    key <AE02>  {[  parenleft,          2                                   ]};
+    key <AE03>  {[  bracketleft,        3                                   ]};
+    key <AE04>  {[  braceleft,          4                                   ]};
+    key <AE05>  {[  apostrophe,         5                                   ]};
+    key <AE06>  {[  dollar,             6                                   ]};
+    key <AE07>  {[  exclam,             7                                   ]};
+    key <AE08>  {[  braceright,         8                                   ]};
+    key <AE09>  {[  bracketright,       9                                   ]};
+    key <AE10>  {[  parenright,         0                                   ]};
+    key <AE11>  {[  minus,              underscore                          ]};
+    key <AE12>  {[  equal,              plus                                ]};
+
+    key <AD01>  {[  q,                  Q,                  ae, AE          ]};
+    key <AD02>  {[  w,                  W,                  backslash       ]};
+    key <AD03>  {[  f,                  F,                  at              ]};
+    key <AD04>  {[  p,                  P,                  asciitilde      ]};
+    key <AD05>  {[  g,                  G,                  endash          ]};
+    key <AD06>  {[  j,                  J,                  yen             ]};
+    key <AD07>  {[  l,                  L                                   ]};
+    key <AD08>  {[  u,                  U                                   ]};
+    key <AD09>  {[  y,                  Y,                  section         ]};
+    key <AD10>  {[  semicolon,          colon,              paragraph       ]};
+    key <AD11>  {[  dead_circumflex,    dead_diaeresis                      ]};
+    key <AD12>  {[  ccedilla,           Ccedilla                            ]};
+    key <BKSL>  {[  less,               greater                             ]};
+
+    key <AC01>  {[  a,                  A,                  periodcentered  ]};
+    key <AC02>  {[  r,                  R,                  percent         ]};
+    key <AC03>  {[  s,                  S,                  asterisk        ]};
+    key <AC04>  {[  t,                  T,                  asciicircum     ]};
+    key <AC05>  {[  d,                  D                                   ]};
+    key <AC06>  {[  h,                  H                                   ]};
+    key <AC07>  {[  n,                  N                                   ]};
+    key <AC08>  {[  e,                  E,                  oe, OE          ]};
+    key <AC09>  {[  i,                  I                                   ]};
+    key <AC10>  {[  o,                  O                                   ]};
+    key <AC11>  {[  dead_grave,         question                            ]};
+
+    key <AB01>  {[  z,                  Z,                  guillemotleft   ]};
+    key <AB02>  {[  x,                  X,                  guillemotright  ]};
+    key <AB03>  {[  c,                  C,                  degree          ]};
+    key <AB04>  {[  v,                  V,                  dead_tilde      ]};
+    key <AB05>  {[  b,                  B,                  nobreakspace    ]};
+    key <AB06>  {[  k,                  K                                   ]};
+    key <AB07>  {[  m,                  M,                  mu              ]};
+    key <AB08>  {[  comma,              quotedbl,           dead_macron     ]};
+    key <AB09>  {[  period,             ampersand                           ]};
+    key <AB10>  {[  eacute,             Eacute,             dead_acute      ]};
+
+    key <SPCE>  {[  space,              space                               ]};
+    key <CAPS>  {[  Escape,             Escape                              ]};
+
+    include "level3(ralt_switch)"
+};

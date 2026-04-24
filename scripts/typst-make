@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+MAIN_FILE="$1"
+FILES=$(find . -name "*.typ")
+
+echo "Compiling $MAIN_FILE"
+typst c "$MAIN_FILE"
+
+echo "Checking wordcount"
+wc $FILES -lw

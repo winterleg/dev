@@ -1,0 +1,14 @@
+[config]
+
+[templates.waybar]
+input_path = '~/.config/matugen/colors.css'
+output_path = '~/.colors.css'
+
+[templates.rofi]
+input_path = '~/.config/matugen/colors-rofi.rasi'
+output_path = '~/.config/rofi/colors-rofi.rasi'
+post_hook = "sed -i 's/_/-/g' ~/.config/rofi/colors-rofi.rasi"
+
+[templates.nvim]
+input_path = "~/.config/matugen/colors-nvim.lua"
+output_path = "~/.config/nvim/lua/kate/configs/colors-nvim.lua"

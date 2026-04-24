@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+stty -ixon
+trap 'stty ixon' EXIT
+
+while true; do
+  make "$1"
+  printf '%*s\n' "$COLUMNS" '' | tr ' ' - # print a line the width of the terminal
+  echo
+  read -p "Waiting on input..."
+done

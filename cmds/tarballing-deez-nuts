@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+DRIVE_PATH="$1"
+if [[ -z $DRIVE_PATH ]]; then
+    echo "Drive not found, set it with $0 <drive_path>"
+    exit 1
+fi
+
+today_drive_path="/run/media/kate/Estrogen/$(date +"%Y-%m-%d")"
+zen_profile="$HOME/.zen/crjkc5yv.Default (release)"
+firefox_profile="$HOME/.mozilla/firefox/k8lmbtna.default-release/"
+
+if mkdir "$today_drive_path" && cd "$today_drive_path"; then
+    echo "Compressiong .minecraft"
+    tar -czvf minecraft.tar.gz ~/.minecraft
+
+    echo "Compressiong zen profile"
+    tar -czvf zen-profile.tar.gz "$zen_profile"
+
+    echo "Compressiong firefox profile"
+    tar -czvf firefox-profile.tar.gz "$firefox_profile"
+
+    echo "Compressiong documents"
+    XZ_OPT="-T2" tar -cJvf documents.tar.xz ~/Documents/
+
+    echo "Compressiong personal"
+    XZ_OPT="-T2" tar -cJvf personal.tar.xz ~/personal/
+fi

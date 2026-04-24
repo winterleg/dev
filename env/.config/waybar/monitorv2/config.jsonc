@@ -1,0 +1,81 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "exclusive": true,
+    "modules-left": [
+        "hyprland/workspaces",
+        // "custom/sep",
+        // "hyprland/window",
+        "custom/sep",
+        "mpd"
+    ],
+    "modules-center": [
+        "mpris"
+    ],
+    "modules-right": [
+        "tray",
+        "custom/sep",
+        // "cpu",
+        // "custom/sep",
+        // "memory",
+        // "custom/sep",
+        // "disk",
+        // "custom/sep",
+        "clock",
+        "custom/sep"
+    ],
+    "hyprland/workspaces": {
+        "format": "[{name}]",
+        "all-outputs": false
+    },
+    "hyprland/window": {
+        "format": "[{class}]",
+        "max-length": 50,
+    },
+    "hyprland/language": {
+        "format": "[{}]"
+    },
+    "mpris": {
+        "ignored-players": ["firefox"],
+        "interval": 1,
+        "format": "[{artist} - {title} - {position}/{length}]",
+        "format-paused": "[<i>{artist} - {title}</i>]",
+        "status-icons": {
+            "default": "🎵",
+            "paused": "⏸"
+        }
+    },
+    "mpd": {
+        "format": "[{title} - {artist} - {elapsedTime:%H:%M:%S}/{totalTime:%H:%M:%S} - {volume}%]",
+        "format-stopped": ""
+    },
+    "custom/sep": {
+        "format": "   "
+    },
+    "tray": {
+        "icon-size": 12,
+        "show-passive-items": "true"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "TIME [{:%y:%m:%d - %H%M}]"
+    },
+    "cpu": {
+        "format": "CPU [{}%]",
+        "tooltip": true,
+        "tooltip-format": "CPU {}%",
+        "interval": 5
+    },
+    "memory": {
+        "format": "RAM [{}%]",
+        "tooltip": true,
+        "tooltip-format": "RAM {}%",
+        "interval": 5
+    },
+    "disk": {
+        "format": "DISK [{percentage_used}%]",
+        "interval": 360,
+        "path": "/"
+    }
+}

@@ -1,0 +1,44 @@
+@import "../../../.colors.css";
+
+* {
+    border: none;
+    /* font-family: "Miracode", "IosevkaTerm NFM", "Courier Prime Code", "Noto Sans CJK JP"; */
+    font-family: "Courier Prime Code", "Zen Maru Gothic";
+    font-size: 16pt;
+    background: transparent;
+}
+
+window#waybar {
+    color: @outline;
+    background: transparent;
+}
+
+.modules-right {
+    background: @surface;
+    padding-left: 10pt;
+    padding-right: 10pt;
+}
+
+tooltip {
+    color: @on_surface;
+    background-color: @surface;
+    text-shadow: none;
+}
+
+tooltip * {
+    color: @on_surface;
+    text-shadow: none;
+}
+
+#custom-sep {
+    color: @outline_variant;
+    margin: 0;
+}
+
+#battery {
+    color: @primary;
+}
+
+#tray menu {
+    background-color: @surface;
+}

@@ -1,0 +1,35 @@
+# background = #000000
+# foreground = #FFFFFF
+
+cursor-color = EC5D2A
+cursor-text  = 000000
+
+background-opacity = 1
+#0.86
+background-blur    = true
+
+confirm-close-surface = false
+
+font-family  = "ocr a std"
+# font-family  = "miracode"
+font-family  = "zen maru gothic"
+font-size    = 22
+font-feature = -calt, -liga, -dlig
+
+gtk-single-instance = true
+
+gtk-tabs-location = bottom
+gtk-wide-tabs     = false
+
+shell-integration-features = no-cursor
+
+bell-features = no-title
+
+config-file = ?auto/theme.ghostty
+
+window-inherit-working-directory = false
+window-padding-balance           = true
+window-padding-y                 = 0
+window-decoration                = server
+
+keybind = ctrl+)=reset_font_size

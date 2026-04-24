@@ -1,0 +1,24 @@
+[general]
+working_directory = "~"
+import = [
+  "~/.config/alacritty/rosé-pine.toml"
+]
+
+[window]
+opacity = 0.85
+# blur = true
+dynamic_padding = true
+
+
+[colors.cursor]
+text = "#e0def4"
+cursor = "#EC5D2A"
+
+[font]
+normal = { family = "Monaspace Krypton NF Medium" }
+size = 20
+
+[keyboard]
+bindings = [
+    { key = ")", mods = "Control", mode = "AppCursor", action = "ResetFontSize" },
+]

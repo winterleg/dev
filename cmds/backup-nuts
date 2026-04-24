@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+drive_path="/run/media/fuyu147/Nouveau vol"
+mkdir "$drive_path/backup"
+backup_path="$drive_path/backup"
+
+cp "$HOME/art/" "$backup_path" -rv
+cp "$HOME/notes/" "$backup_path" -rv
+cp "$HOME/book/" "$backup_path" -rv
+cp "$HOME/repos/" "$backup_path" -rv
+cp "$HOME/cours/" "$backup_path" -rv
+cp "$HOME/dotfiles/" "$backup_path" -rv
+cp "$HOME/wallpapers/" "$backup_path" -rv
+cp "$HOME/Documents/" "$backup_path" -rv

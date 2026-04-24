@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Use yazi to select a directory
+tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+yazi --cwd-file="$tmp"
+
+# Check if yazi actually wrote a file and has content
+if [ ! -s "$tmp" ]; then
+  # User likely quit yazi without selecting anything (e.g., with 'q')
+  rm -f -- "$tmp"
+  exit 1
+fi
+
+IFS= read -r -d '' selected <"$tmp"
+rm -f -- "$tmp"
+
+if [ -n "$selected" ]; then
+  code "$selected"
+fi

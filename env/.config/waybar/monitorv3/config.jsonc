@@ -1,0 +1,30 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "exclusive": true,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": false
+    },
+    "custom/sep": {
+        "format": "   "
+    },
+    "tray": {
+        // "icon-size": 12,
+        "show-passive-items": "true"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "{:%H:%M}"
+    }
+}

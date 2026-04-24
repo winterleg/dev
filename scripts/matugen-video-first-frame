@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+tmpfile=$(mktemp --suffix=.jpg)
+
+ffmpeg -y -i "$1" -vf "select=eq(n\,0)" -q:v 3 "$tmpfile"
+
+matugen image "$tmpfile"

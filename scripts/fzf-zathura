@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+tmp="$(mktemp)"
+
+if [[ -t 1 ]]; then
+  cd ~
+  fd -e pdf | sort -r | fzf --no-sort -m >"$tmp"
+else
+  alacritty -e bash -lc "fd -e pdf | sort -r | fzf --no-sort -m >\"$tmp\""
+fi
+
+# If nothing selected, exit
+if [[ ! -s "$tmp" ]]; then
+  rm -f -- "$tmp"
+  exit 1
+fi
+
+mapfile -t selected <"$tmp"
+rm -f -- "$tmp"
+
+((${#selected[@]} == 0)) && exit 1
+
+paths=()
+for f in "${selected[@]}"; do
+  paths+=("$(realpath "$f")")
+done
+
+setsid -f zathura "${paths[@]}" >/dev/null 2>&1

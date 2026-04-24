@@ -1,0 +1,28 @@
+searchpaths = [
+    "~/notes/",
+    "~/repos/",
+    "~/art/",
+    "~/vault/",
+    "~/book/",
+    "~/cours/",
+    "~/cours/H2026-projet-informatique",
+    "~/dotfiles/",
+    "~/wallpapers/",
+    "~/Documents/",
+    # "~/Music/",
+    "~/Downloads/",
+    "/run/media/fuyu147/Estrogen",
+    "/run/media/fuyu147/",
+    "~/.config",
+    "~/torrents",
+    "/home",
+    # "/srv/git",
+]
+# searchpaths    = [ "~" ]
+maxdepth       = 1
+fzfflags       = "--tmux=top,100%,70%"
+verbose        = false
+ignoredotfiles = false
+
+
+

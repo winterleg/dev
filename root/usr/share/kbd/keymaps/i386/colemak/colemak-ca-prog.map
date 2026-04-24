@@ -1,0 +1,77 @@
+# colemak-ca-prog.map for Linux console.
+# 2026 Winter L. <winter.leg.147@gmail.com> (github.com/fuyu147)
+
+alt_is_meta
+charset "iso-8859-15"  # use a ISO-8859-15 font, e.g.: consolechars -f lat9v-14
+keymaps 0-12
+include "qwerty-layout"
+include "linux-with-alt-and-altgr"
+strings as usual
+
+keycode  41 =       numbersign             bar             nul             nul
+keycode   2 =            slash             one             nul             nul
+keycode   3 =        parenleft             two             nul             nul
+keycode   4 =      bracketleft           three             nul             nul
+keycode   5 =        braceleft            four             nul             nul
+keycode   6 =       apostrophe            five             nul             nul
+keycode   7 =           dollar             six             nul             nul
+keycode   8 =           exclam           seven             nul             nul
+keycode   9 =       braceright           eight             nul             nul
+keycode  10 =     bracketright            nine             nul             nul
+keycode  11 =       parenright            zero             nul             nul
+keycode  12 =            minus      underscore             nul             nul
+keycode  13 =            equal            plus             nul             nul
+
+keycode  16 =                q               Q              oe              OE    Control_q
+keycode  17 =                w               W       backslash       backslash    Control_w
+keycode  18 =                f               F              at              at    Control_f
+keycode  19 =                p               P      asciitilde      asciitilde    Control_p
+keycode  20 =                g               G          emdash          emdash    Control_g
+keycode  21 =                j               J             yen             yen    Control_j
+keycode  22 =                l               L             nul             nul    Control_l
+keycode  23 =                u               U             nul             nul    Control_u
+keycode  24 =                y               Y         section         section    Control_y
+keycode  25 =        semicolon           colon       paragraph       paragraph
+keycode  26 =  dead_circumflex  dead_diaeresis             nul             nul
+keycode  27 =         ccedilla        Ccedilla             nul             nul    Control_bracketright
+keycode  43 =             less         greater             nul             nul    Control_backslash
+
+keycode  30 =                a               A             nul             nul    Control_a
+keycode  31 =                r               R         percent         percent    Control_r
+keycode  32 =                s               S        asterisk        asterisk    Control_s
+keycode  33 =                t               T     asciicircum     asciicircum    Control_t
+keycode  34 =                d               D             nul             nul    Control_d
+keycode  35 =                h               H             nul             nul    Control_h
+keycode  36 =                n               N             nul             nul    Control_n
+keycode  37 =                e               E             nul             nul    Control_e
+keycode  38 =                i               I             nul             nul    Control_i
+keycode  39 =                o               O             nul             nul    Control_o
+keycode  40 =       dead_grave        question             nul             nul
+
+keycode  44 =                z               Z   guillemotleft   guillemotleft    Control_z
+keycode  45 =                x               X  guillemotright  guillemotright    Control_x
+keycode  46 =                c               C          degree          degree    Control_c
+keycode  47 =                v               V      dead_tilde      dead_tilde    Control_v
+keycode  48 =                b               B    nobreakspace    nobreakspace    Control_b
+keycode  49 =                k               K             nul             nul    Control_k
+keycode  50 =                m               M              mu              mu    Control_m
+keycode  51 =            comma        quotedbl     dead_macron     dead_macron
+keycode  52 =           period       ampersand             nul             nul
+keycode  53 =           eacute          Eacute      dead_acute      dead_acute
+
+keycode  58 =           Escape          Escape          Escape          Escape
+keycode  57 =            space           space           space           space    nul
+
+keycode   1 =           Escape
+
+string Delete = "\177"
+keycode  14 = Delete
+keycode  15 = Tab
+keycode  28 = Return
+        alt     keycode  28 = Meta_Control_m
+keycode  29 = Control
+keycode  42 = Shift
+keycode  54 = Shift
+keycode  56 = Alt
+keycode  97 = Control
+keycode 111 = Delete

@@ -1,0 +1,93 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "keyboard.dispatch": "keyCode",
+    "editor.mouseWheelZoom": true,
+    "editor.fontFamily": "\"Miracode\"",
+    "debug.inlineValues": "off",
+    "editor.inlayHints.enabled": "off",
+    "editor.codeLens": false,
+    "editor.renderWhitespace": "all",
+    "editor.formatOnSave": true,
+    "vim.leader": " ",
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                ":w"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
+                "a"
+            ],
+            "commands": [
+                {
+                    "command": "vim.remap",
+                    "args": {
+                        "after": [
+                            "g",
+                            "g",
+                            "V",
+                            "G"
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "git.openRepositoryInParentFolders": "never",
+    "editor.fontSize": 24,
+    "editor.wordWrap": "off",
+    "window.menuBarVisibility": "toggle",
+    "workbench.layoutControl.enabled": false,
+    "workbench.navigationControl.enabled": false,
+    "window.commandCenter": false,
+    "window.titleBarStyle": "native",
+    "editor.rulers": [
+        80
+    ],
+    "vim.handleKeys": {
+        "<C-b>": false,
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-t>": false,
+        "<C-o>": false,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+    "dotnet.codeLens.enableReferencesCodeLens": false,
+    "explorer.confirmDelete": false,
+    "workbench.secondarySideBar.defaultVisibility": "visible",
+    "FSharp.suggestGitignore": false,
+    "tinymist.exportPdf": "onSave",
+    "chat.agent.enabled": false,
+    "chat.commandCenter.enabled": false,
+    "inlineChat.accessibleDiffView": "off",
+    "inlineChat.enableV2": false,
+    "terminal.integrated.initialHint": false,
+    "redhat.telemetry.enabled": false,
+    "chat.agent.codeBlockProgress": false,
+    "chat.checkpoints.enabled": false,
+    "chat.disableAIFeatures": true,
+    "telemetry.feedback.enabled": false,
+    "geminicodeassist.displayInlineContextHint": false,
+    "workbench.colorTheme": "Dark Modern",
+    "haskell.manageHLS": "GHCup",
+    "C_Cpp.default.cppStandard": "c++26",
+    "extensions.ignoreRecommendations": true,
+    "security.workspace.trust.untrustedFiles": "open"
+}

@@ -1,0 +1,30 @@
+{
+    "layer": "bottom",
+    "exclusive": false,
+    "position": "bottom",
+    "output": "eDP-1",
+    "height": 32,
+    "modules-left": [
+        "mpd",
+    ],
+    "modules-right": [
+        "tray",
+        "custom/sep",
+        "clock",
+        "custom/sep",
+        "battery",
+    ],
+    "custom/sep": {
+        "format": " | "
+    },
+    "mpd": {
+        "format": "{title} - {artist}",
+        "format-stopped": "",
+        "max-length": 100,
+        "on-click": "mpc toggle"
+    },
+    "tray": {
+        "icon-size": 24,
+        "show-passive-items": "true"
+    },
+}

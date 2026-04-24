@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+aur=(
+  awww-git
+  cnijfilter2
+  localsend-bin
+  minecraft-launcher
+  protontricks
+  rose-pine-cursor
+  spicetify-cli
+  thorium-browser-bin
+  ttf-iosevka-term
+  vesktop-bin
+  visual-studio-code-bin
+  wlrobs
+)
+
+pkgs=(
+  alacritty
+  aspnet-runtime
+  base-devel
+  bat
+  breeze
+  breeze5
+  brightnessctl
+  btop
+  bun
+  chafa
+  ckb-next
+  clang
+  cliphist
+  discord
+  dotnet-runtime
+  dotnet-sdk
+  dunst
+  eza
+  fastfetch
+  fd
+  firefox
+  fzf
+  ghostty
+  gimp
+  git
+  github-cli
+  glfw
+  gnome-clocks
+  gnome-keyring
+  gnome-weather
+  go
+  gopls
+  grim
+  gtk-engine-murrine
+  gvfs # dependency for Thunar's volume management
+  gwenview
+  htop
+  hyprland
+  hyprlock
+  hyprpicker
+  hyprpolkitagent
+  hyprshot
+  jdk-openjdk
+  jq
+  keyd
+  kitty
+  komikku
+  lazygit
+  libreoffice-still
+  loupe
+  lua
+  mpd
+  ncdu # WinDirStat like tool
+  neovim
+  networkmanager
+  network-manager-applet
+  node
+  noto-fonts
+  noto-fonts-cjk
+  npm
+  nvtop
+  nwg-look
+  obs-studio
+  openrgb
+  pandoc-cli
+  pavucontrol
+  php
+  power-profiles-daemon
+  prismlauncher
+  qalculate-gtk
+  qbittorrent
+  qt5ct
+  qt5-wayland
+  qt6-wayland
+  ranger
+  raylib
+  realtime-privileges
+  ripgrep
+  rofi-calc
+  rofi-emoji
+  rofi-wayland
+  rsync
+  rustup
+  seahorse
+  shfmt
+  skim
+  spotify-launcher
+  steam
+  steam-native-runtime
+  tesseract
+  tesseract-data-chi_sim
+  tesseract-data-eng
+  tesseract-data-jpn
+  thunar
+  thunar-volman # dependency for Thunar's volume management
+  thunderbird
+  tmux
+  ttf-fira-code
+  ttf-iosevkaterm-nerd
+  ttf-nerd-fonts-symbols-mono
+  tumbler # needed to display thumbnails in Thunar
+  typst
+  udiskie
+  vlc
+  vlc-plugins-all
+  vlc-plugin-x264
+  waybar
+  wev
+  wine
+  wine-mono
+  wl-clipboard
+  wtype
+  xdg-desktop-portal-hyprland
+  xournalpp
+  yarn
+  yazi
+  zathura
+  zathura-pdf-poppler
+  zig
+  zls
+  zsh
+)
+
+case "$1" in
+"v" | "vim")
+  nvim "$0"
+  ;;
+*)
+  yay -Syu
+  yay -S --needed "${pkgs[@]}"
+  yay -S --needed "${aur[@]}"
+  ;;
+esac

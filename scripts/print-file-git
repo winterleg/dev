@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+filepath="$1"
+start="${2:-}"
+end="${3:-}"
+
+if [[ ! -f "$filepath" ]]; then
+  echo "Error: file not found: $filepath" >&2
+  exit 1
+fi
+
+total_lines=$(wc -l <"$filepath")
+
+# If start/end are not provided, print the whole file
+if [[ -z "$start" || -z "$end" ]]; then
+  printf "@@ 1,%d @@\n" "$total_lines"
+  nl -ba "$filepath" | sed 's/^/ /'
+  exit 0
+fi
+
+# Validate numeric input
+if ! [[ "$start" =~ ^[0-9]+$ && "$end" =~ ^[0-9]+$ ]]; then
+  echo "Error: start and end must be positive integers" >&2
+  exit 1
+fi
+
+if ((start < 1)); then
+  echo "Error: start must be >= 1" >&2
+  exit 1
+fi
+
+if ((end < start)); then
+  echo "Error: end must be >= start" >&2
+  exit 1
+fi
+
+if ((start > total_lines)); then
+  echo "Error: start exceeds file length ($total_lines)" >&2
+  exit 1
+fi
+
+if ((end > total_lines)); then
+  end="$total_lines"
+fi
+
+count=$((end - start + 1))
+
+printf "@@ %d,%d @@\n" "$start" "$count"
+nl -ba "$filepath" | sed -n "${start},${end}p" | sed 's/^/ /'

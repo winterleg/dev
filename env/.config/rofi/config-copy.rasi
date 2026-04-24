@@ -1,0 +1,123 @@
+@import "colors-rofi.rasi"
+
+configuration {
+    modi: "drun,run,filebrowser";
+    show-icons: true;
+    display-drun: "▶";
+    display-run: "#";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+}
+
+* {
+    font: "Miracode 18";
+}
+
+element-text, element-icon, mode-switcher {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+window {
+    width: 90%;
+    border: 2px;
+    border-radius: 5px;
+    border-color: @outline;
+    background-color: @surface;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    background-color: @surface;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @surface;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @primary;
+    padding: 6px;
+    text-color: @on-primary;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @on-surface;
+    background-color: @surface;
+}
+
+listview {
+    border: 0px;
+    padding: 6px;
+    margin: 10px;
+    columns: 1;
+    lines: 10;
+    background-color: @surface;
+    scroll-method: 2;
+    scrollbar: false;
+}
+
+element {
+    padding: 5px;
+    background-color: @surface;
+    text-color: @on-surface;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: @surface;
+    text-color: @on-surface;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element selected {
+    background-color: @primary-container;
+    text-color: @on-surface-variant;
+}
+
+mode-switcher {
+    spacing: 0;
+}
+
+button {
+    padding: 10px;
+    background-color: @surface-container-high;
+    text-color: @surface-variant;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+button selected {
+    background-color: @surface;
+    text-color: @primary;
+}
+
+message {
+    background-color: @surface-container-high;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @primary;
+    background-color: @surface-container-high;
+}

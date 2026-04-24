@@ -1,0 +1,86 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "output": "eDP-1",
+    "height": 32,
+    "modules-left": [
+        "hyprland/workspaces",
+        "mpris",
+        "mpd"
+    ],
+    "modules-right": [
+        "tray",
+        "cpu",
+        "memory",
+        "disk",
+        "pulseaudio",
+        "clock",
+        "battery"
+    ],
+    "custom/sep": {
+        "format": "   "
+    },
+    "mpris": {
+        "ignored-players": ["firefox"],
+        "max-length": 90,
+        "interval": 1,
+        "format": "[{artist} - {title} - {position}/{length}]",
+        "format-paused": "[<i>{artist} - {title}</i>]",
+    },
+    "mpd": {
+        "format": "[{title} - {artist} - {elapsedTime:%H:%M:%S}/{totalTime:%H:%M:%S} - {volume}%]",
+        "format-stopped": "",
+        "max-length": 100
+    },
+    "hyprland/workspaces": {
+        "format": "[{name}]",
+        "all-outputs": true
+    },
+    "hyprland/window": {
+        "format": "[{class}]",
+        "max-length": 50,
+        "rewrite": {
+            "[]": ""
+        }
+    },
+    "hyprland/language": {
+        "format": "[{}]"
+    },
+    "tray": {
+        "icon-size": 24,
+        "show-passive-items": "true"
+    },
+    "pulseaudio": {
+        "format": "[V]",
+        "format-bluetooth": "[V(B)]",
+        "format-muted": "[M]",
+        "scroll-step": 2,
+        "on-click": "hyprctl dispatch exec pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "[{:%y:%m:%d - %H%M}]"
+    },
+    "battery": {
+        "format": "[B{capacity}%]",
+        "interval": 120
+    },
+    "cpu": {
+        "format": "[C{}%]",
+        "tooltip": true,
+        "tooltip-format": "CPU {}%",
+        "interval": 5
+    },
+    "memory": {
+        "format": "[R{}%]",
+        "tooltip": true,
+        "tooltip-format": "RAM {}%",
+        "interval": 5
+    },
+    "disk": {
+        "format": "[D{percentage_used}%]",
+        "interval": 360,
+        "path": "/"
+    }
+}

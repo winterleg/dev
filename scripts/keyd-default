@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo cp $WORKSTATION/root/etc/keyd/default.conf /etc/keyd/default.conf
+sudo keyd reload

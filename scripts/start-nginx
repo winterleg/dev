@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+sudo systemctl stop fcgiwrap.socket
+sudo systemctl stop nginx.service
+
+sudo systemctl start fcgiwrap.socket
+sudo systemctl start nginx.service

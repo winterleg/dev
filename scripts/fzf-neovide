@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+tmp="$(mktemp)"
+
+alacritty -e bash -lc "fd -t d | fzf >\"$tmp\""
+
+if [ ! -s "$tmp" ]; then
+  rm -f -- "$tmp"
+  exit 1
+fi
+
+read -r selected <"$tmp"
+rm -f -- "$tmp"
+
+[ -z "$selected" ] && exit 1
+
+realpath "$selected"
+
+(cd "$selected" && nohup neovide "$(realpath "$selected")" >/dev/null 2>&1 &)

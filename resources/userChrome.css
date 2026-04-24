@@ -1,0 +1,17 @@
+* {
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "clig" 0 !important;
+}
+code, pre, textarea {
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "clig" 0 !important;
+}
+#TabsToolbar {
+  visibility: collapse !important;
+}
+#sidebar-box {
+  min-width: 0 !important;
+}
+#sidebar {
+  min-width: 0 !important;
+}

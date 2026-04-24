@@ -1,0 +1,155 @@
+/**
+ * @name vague text
+ * @description a tui-style discord theme. based on vague (https://github.com/vague-theme/vague.nvim) and system24 by refact0r (https://github.com/refact0r/system24/)
+ * @author WinterL
+*/
+
+/* import theme modules */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+
+body {
+    /* font, change to '' for default discord font */
+    --font: 'Courier Prime Code', 'Zen Maru Gothic'; /* change to '' for default discord font */
+    --code-font: 'Courier Prime Code'; /* change to '' for default discord font */
+    font-weight: 500; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
+    letter-spacing: -0.05ch; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
+
+    /* sizes */
+    --gap: 12px; /* spacing between panels */
+    --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 2px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
+
+    /* animation/transition options */
+    --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
+    --list-item-transition: 0.2s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+
+    /* top bar options */
+    --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+    --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+    --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+    --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
+
+    /* window controls */
+    --custom-window-controls: off; /* off: default window controls, on: custom window controls */
+    --window-control-size: 14px; /* size of custom window controls */
+
+    /* dms button options */
+    --custom-dms-icon: hide; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+    --dms-icon-svg-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
+    --dms-icon-color-before: var(--icon-subtle); /* normal icon color */
+    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
+    --custom-dms-background: image; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+    --dms-background-image-url: url('https://raw.githubusercontent.com/rose-pine/rose-pine-theme/main/assets/icon.png'); /* url of the background image */
+    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
+
+    /* background image options */
+    --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
+    --background-image-url: url(''); /* url of the background image */
+
+    /* transparency/blur options */
+    /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+    --transparency-tweaks: on; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: on; /* off: no changes, on: blur the background of panels */
+    --blur-amount: 12px; /* amount of blur */
+    --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+
+    /* other options */
+    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
+
+    /* unrounding options */
+    --unrounding: on; /* off: default, on: remove rounded corners from panels */
+
+    /* styling options */
+    --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
+    --ascii-titles: on; /* off: default, on: use ascii font for titles at the start of a channel */
+    --ascii-loader: system24; /* off: default, system24: use system24 ascii loader, cats: use cats loader */
+
+    /* panel labels */
+    --panel-labels: on; /* off: default, on: add labels to panels */
+    --label-color: var(--text-muted); /* color of labels */
+    --label-font-weight: 500; /* font weight of labels */
+}
+
+/* color options */
+:root {
+    --colors: on;
+
+    /* text colors */
+    --text-0: var(--bg-3);
+    --text-1: #cdcdcd;
+    --text-2: #c3c3d5;
+    --text-3: #aeaed1;
+    --text-4: #606079;
+    --text-5: #606079;
+
+    /* background and dark colors */
+    --bg-1: #1c1c24;
+    --bg-2: #1c1c24;
+    --bg-3: #252530;
+    --bg-4: #14141580;
+    --hover: hsla(250, 20%, 40%, 1);
+    --active: hsla(250, 20%, 40%, 1);
+    --active-2: hsla(250, 20%, 40%, 1);
+    --message-hover: hsla(250, 0%, 0%, 1);
+
+    /* accent colors */
+    --accent-1: #b4d4cf;
+    --accent-2: #7e98e8;
+    --accent-3: #6e94b2;
+    --accent-4: hsl(2, 55%, 78%);
+    --accent-5: hsl(2, 55%, 73%);
+    --accent-new: var(--red-2);
+    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent);
+    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent);
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent);
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent);
+
+    /* status indicator colors */
+    --online: #7fa563;
+    --dnd: #d8647e;
+    --idle: #f3be7c;
+    --streaming: #7e98e8;
+    --offline: #606079;
+
+    /* border colors */
+    --border-light: var(--hover);
+    --border: var(--active);
+    --border-hover: var(--accent-2);
+    --button-border: hsl(250, 0%, 100%, 0.1);
+
+    /* base colors */
+    --red-1: hsl(343, 76%, 73%);
+    --red-2: #d8647e;
+    --red-3: #d8647e;
+    --red-4: hsl(343, 76%, 63%);
+    --red-5: hsl(343, 76%, 58%);
+
+    --green-1: #7fa563;
+    --green-2: #7fa563;
+    --green-3: #7fa563;
+    --green-4: hsl(197, 49%, 34%);
+    --green-5: hsl(197, 49%, 30%);
+
+    --blue-1: #b4d4cf;
+    --blue-2: #7e98e8;
+    --blue-3: #7e98e8;
+    --blue-4: hsl(189, 43%, 68%);
+    --blue-5: hsl(189, 43%, 63%);
+
+    --yellow-1: #f3be7c;
+    --yellow-2: #f3be7c;
+    --yellow-3: #f3be7c;
+    --yellow-4: hsl(35, 88%, 67%);
+    --yellow-5: hsl(35, 88%, 62%);
+
+    --purple-1: #bb9dbd;
+    --purple-2: #7e98e8;
+    --purple-3: #7e98e8;
+    --purple-4: hsl(267, 57%, 73%);
+    --purple-5: hsl(267, 57%, 68%);
+}

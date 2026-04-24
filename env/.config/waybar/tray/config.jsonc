@@ -1,0 +1,13 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "exclusive": true,
+    "modules-center": [
+        "tray"
+    ],
+    "tray": {
+        "icon-size": 32,
+        "show-passive-items": "true"
+    }
+}

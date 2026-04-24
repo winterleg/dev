@@ -1,0 +1,79 @@
+{
+    "keyboard.dispatch": "keyCode",
+    "editor.mouseWheelZoom": true,
+    "editor.fontFamily": "'IosevkaTerm NFM Light', 'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace",
+    "haskell.manageHLS": "GHCup",
+    "debug.inlineValues": "off",
+    "editor.renderWhitespace": "none",
+    "editor.cursorSurroundingLines": 3,
+    "editor.formatOnSave": true,
+    "vim.leader": "space",
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                ":w"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
+                "a"
+            ],
+            "commands": [
+                {
+                    "command": "vim.remap",
+                    "args": {
+                        "after": [
+                            "g",
+                            "g",
+                            "V",
+                            "G"
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "python.analysis.typeCheckingMode": "standard",
+    "git.openRepositoryInParentFolders": "never",
+    "FSharp.codeLenses.signature.enabled": false,
+    "editor.inlayHints.enabled": "off",
+    "explorer.confirmDelete": false,
+    "editor.codeLens": false,
+    "tinymist.exportPdf": "onType",
+    "tinymist.formatterPrintWidth": 70,
+    "tinymist.formatterProseWrap": true,
+    "editor.minimap.enabled": false,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "window.menuBarVisibility": "toggle",
+    "window.customTitleBarVisibility": "never",
+    "window.titleBarStyle": "native",
+    "editor.fontSize": 20,
+    "qt-core.additionalQtPaths": [
+        {
+            "name": "Qt-5.15.17-linux-g++_from_PATH",
+            "path": "/usr/bin/qtpaths"
+        }
+    ],
+    "lean4.alwaysAskBeforeInstallingLeanVersions": false,
+    "workbench.colorTheme": "Rosé Pine",
+    "chat.agent.enabled": false,
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}

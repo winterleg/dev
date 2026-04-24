@@ -1,0 +1,213 @@
+map = zoom in
+map r recolor
+map c toggle_page_mode
+map d scroll half-down
+map u scroll half-up
+
+# c-n to toggle statusbar
+
+set guioptions none
+
+set recolor true
+set recolor-keephue true
+
+# # Vague based on https://github.com/rose-pine/rose-pine-theme
+#
+# set default-bg                  "#000000"
+# set default-fg                  "#cdcdcd"
+#
+# set statusbar-fg                "#e0def4"
+# set statusbar-bg                "#555169"
+#
+# set inputbar-bg                 "#6e6a86"
+# set inputbar-fg                 "#ebbcba"
+#
+# set notification-bg             "#e0def4"
+# set notification-fg             "#555169"
+#
+# set notification-error-bg       "#f6c177"
+# set notification-error-fg       "#555169"
+#
+# set notification-warning-bg     "#ebbcba"
+# set notification-warning-fg     "#555169"
+#
+# set highlight-color             "rgba(0xeb, 0xbc, 0xba, 0.5)"
+# set highlight-active-color      "rgba(0xeb, 0x6f, 0x92, 0.5)"
+#
+# set completion-bg               "#6e6a86"
+# set completion-fg               "#ebbcba"
+#
+# set completion-highlight-fg     "#26233a"
+# set completion-highlight-bg     "#ebbcba"
+#
+# set recolor-lightcolor          "#141415"
+# set recolor-darkcolor           "#cdcdcd"
+
+# # https://github.com/rose-pine/rose-pine-theme
+#
+# set default-bg                  "#191724"
+# set default-fg                  "#e0def4"
+#
+# set statusbar-fg                "#e0def4"
+# set statusbar-bg                "#555169"
+#
+# set inputbar-bg                 "#6e6a86"
+# set inputbar-fg                 "#ebbcba"
+#
+# set notification-bg             "#e0def4"
+# set notification-fg             "#555169"
+#
+# set notification-error-bg       "#f6c177"
+# set notification-error-fg       "#555169"
+#
+# set notification-warning-bg     "#ebbcba"
+# set notification-warning-fg     "#555169"
+#
+# set highlight-color             "rgba(0xeb, 0xbc, 0xba, 0.5)"
+# set highlight-active-color      "rgba(0xeb, 0x6f, 0x92, 0.5)"
+#
+# set completion-bg               "#6e6a86"
+# set completion-fg               "#ebbcba"
+#
+# set completion-highlight-fg     "#26233a"
+# set completion-highlight-bg     "#ebbcba"
+#
+# set recolor-lightcolor          "#191724"
+# set recolor-darkcolor           "#e0def4"
+#
+# set recolor                     "true"
+# set recolor-keephue             "true"
+
+#https://github.com/eastack/zathura-gruvbox/blob/master/zathura-gruvbox-light
+
+set notification-error-bg       "rgba(251,241,199,1)"  # bg
+set notification-error-fg       "rgba(157,0,6,1)"      # bright:red
+set notification-warning-bg     "rgba(251,241,199,1)"  # bg
+set notification-warning-fg     "rgba(181,118,20,1)"   # bright:yellow
+set notification-bg             "rgba(251,241,199,1)"  # bg
+set notification-fg             "rgba(121,116,14,1)"   # bright:green
+
+set completion-bg               "rgba(213,196,161,1)"  # bg2
+set completion-fg               "rgba(60,56,54,1)"     # fg
+set completion-group-bg         "rgba(235,219,178,1)"  # bg1
+set completion-group-fg         "rgba(146,131,116,1)"  # gray
+set completion-highlight-bg     "rgba(7,102,120,1)"    # bright:blue
+set completion-highlight-fg     "rgba(213,196,161,1)"  # bg2
+
+# Define the color in index mode
+set index-bg                    "rgba(213,196,161,1)"  # bg2
+set index-fg                    "rgba(60,56,54,1)"     # fg
+set index-active-bg             "rgba(7,102,120,1)"    # bright:blue
+set index-active-fg             "rgba(213,196,161,1)"  # bg2
+
+set inputbar-bg                 "rgba(251,241,199,1)"  # bg
+set inputbar-fg                 "rgba(60,56,54,1)"     # fg
+
+set statusbar-bg                "rgba(213,196,161,1)"  # bg2
+set statusbar-fg                "rgba(60,56,54,1)"     # fg
+
+set highlight-color             "rgba(181,118,20,0.5)" # bright:yellow
+set highlight-active-color      "rgba(175,58,3,0.5)"   # bright:orange
+
+# set default-bg                  "rgba(251,241,199,1)"  # bg
+set default-fg                  "rgba(60,56,54,1)"     # fg
+set render-loading              true
+set render-loading-bg           "rgba(251,241,199,1)"  # bg
+set render-loading-fg           "rgba(60,56,54,1)"     # fg
+
+# Recolor book content's color
+set recolor-lightcolor          "rgba(251,241,199,1)"  # bg
+set recolor-darkcolor           "rgba(60,56,54,1)"     # fg
+set recolor                     "true"
+set recolor-keephue             "true"                 # keep original color
+
+# # https://github.com/eastack/zathura-gruvbox/blob/master/zathura-gruvbox-light-hard
+# set notification-error-bg       "rgba(249,245,215,1)"  # bg
+# set notification-error-fg       "rgba(157,0,6,1)"      # bright:red
+# set notification-warning-bg     "rgba(249,245,215,1)"  # bg
+# set notification-warning-fg     "rgba(181,118,20,1)"   # bright:yellow
+# set notification-bg             "rgba(249,245,215,1)"  # bg
+# set notification-fg             "rgba(121,116,14,1)"   # bright:green
+#
+# set completion-bg               "rgba(213,196,161,1)"  # bg2
+# set completion-fg               "rgba(60,56,54,1)"     # fg
+# set completion-group-bg         "rgba(235,219,178,1)"  # bg1
+# set completion-group-fg         "rgba(146,131,116,1)"  # gray
+# set completion-highlight-bg     "rgba(7,102,120,1)"    # bright:blue
+# set completion-highlight-fg     "rgba(213,196,161,1)"  # bg2
+#
+# # Define the color in index mode
+# set index-bg                    "rgba(213,196,161,1)"  # bg2
+# set index-fg                    "rgba(60,56,54,1)"     # fg
+# set index-active-bg             "rgba(7,102,120,1)"    # bright:blue
+# set index-active-fg             "rgba(213,196,161,1)"  # bg2
+#
+# set inputbar-bg                 "rgba(249,245,215,1)"  # bg
+# set inputbar-fg                 "rgba(60,56,54,1)"     # fg
+#
+# set statusbar-bg                "rgba(213,196,161,1)"  # bg2
+# set statusbar-fg                "rgba(60,56,54,1)"     # fg
+#
+# set highlight-color             "rgba(181,118,20,0.5)" # bright:yellow
+# set highlight-active-color      "rgba(175,58,3,0.5)"   # bright:orange
+#
+# set default-bg                  "rgba(249,245,215,1)"  # bg
+# set default-fg                  "rgba(60,56,54,1)"     # fg
+# set render-loading              true
+# set render-loading-bg           "rgba(249,245,215,1)"  # bg
+# set render-loading-fg           "rgba(60,56,54,1)"     # fg
+#
+# # Recolor book content's color
+# set recolor-lightcolor          "rgba(249,245,215,1)"  # bg
+# set recolor-darkcolor           "rgba(60,56,54,1)"     # fg
+# set recolor                     "true"
+# set recolor-keephue             "true"                 # keep original color
+
+
+# # Lighthaus Color theme for Zathura
+# # GIT: https://github.com/lighthaus-theme/zathura
+# # Author: Adhiraj Sirohi (https://github.com/brutuski)
+# #         Vasundhara Sharma (https://github.com/vasundhasauras)
+#
+# # Copyright © 2020-Present Lighthaus Theme
+# # Copyright © 2020-Present Adhiraj Sirohi
+# # Copyright © 2020-Present Vasundhara Sharma
+#
+# set notification-error-bg       "#FC2929"
+# set notification-error-fg       "#18191E"
+# set notification-warning-bg     "#E25600"
+# set notification-warning-fg     "#18191E"
+# set notification-bg             "#D68EB2"
+# set notification-fg             "#18191E"
+#
+# set completion-bg               "#18191E"
+# set completion-fg               "#44B273"
+# set completion-group-bg         "#18191E"
+# set completion-group-fg         "#ED722E"
+# set completion-highlight-bg     "#FFFF00"
+# set completion-highlight-fg     "#21252D"
+#
+# set index-bg                    "#18191E"
+# set index-fg                    "#44B273"
+# set index-active-bg             "#21252D"
+# set index-active-fg             "#FFFF00"
+#
+# set inputbar-bg                 "#21252D"
+# set inputbar-fg                 "#FFFADE"
+# set statusbar-bg                "#21252D"
+# set statusbar-fg                "#D68EB2"
+#
+# set highlight-color             "#D68EB2"
+# set highlight-active-color      "#ff79c6"
+#
+# set default-bg                  "#18191E"
+# set default-fg                  "#FFEE79"
+#
+# set render-loading              true
+# set render-loading-fg           "#FFEE79"
+# set render-loading-bg           "#18191E"
+#
+# # Recolor mode settings
+#
+# set recolor-lightcolor          "#21252D"
+# set recolor-darkcolor           "#FFFADE"

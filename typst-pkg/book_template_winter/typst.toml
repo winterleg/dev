@@ -1,0 +1,12 @@
+[package]
+name = "book_template_winter"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Winter"]
+license = "MIT"
+description = "Book template for my books"
+repository = "fuyu147.github.com"
+categories = ["Writing"]
+keywords = ["Book"]
+exclude = ["*.pdf"]
+disciplines = ["Writing"]

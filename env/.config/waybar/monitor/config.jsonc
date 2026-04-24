@@ -1,0 +1,64 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "modules-left": [
+        "custom/sep",
+        "hyprland/workspaces",
+        "custom/sep",
+        "hyprland/window",
+        "custom/sep",
+        "mpris",
+    ],
+    "modules-right": [
+        "tray",
+        "custom/sep",
+        "pulseaudio",
+        "custom/sep",
+        "clock",
+        "custom/sep",
+        "battery",
+        "custom/sep"
+    ],
+    "custom/sep": {
+        "format": "  "
+    },
+    "mpris": {
+        "player": "spotify",
+        "interval": 1,
+        "format": "{status_icon}: {dynamic}",
+        "max-length": 60,
+        "format-paused": "{status_icon}: <i>{dynamic}</i>",
+        "status-icons": {
+            "default": "🎵",
+            "paused": "⏸"
+        }
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": true
+    },
+    "hyprland/window": {
+        "format": "[{class}]",
+        "max-length": 50,
+        "rewrite": {
+            "[]": ""
+        }
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "{:%y/%m/%d :: %H:%M}"
+    },
+    "tray": {
+        "icon-size": 12,
+        "show-passive-items": "true"
+    },
+    "pulseaudio": {
+        "format": "{volume}",
+        "format-bluetooth": " {volume}%",
+        "format-muted": "",
+        "scroll-step": 2,
+        "on-click": "hyprctl dispatch exec pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    }
+}
