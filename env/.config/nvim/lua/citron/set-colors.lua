@@ -342,4 +342,4 @@ local function pick_theme()
   }):find()
 end
 
-vim.keymap.set("n", "<leader>tl", pick_theme, { desc = "Pick theme" })
+vim.keymap.set("n", "<leader>tt", pick_theme, { desc = "Pick theme" })
