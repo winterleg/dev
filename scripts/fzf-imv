@@ -10,7 +10,7 @@ DIRECTORIES=(
 )
 
 alacritty -e bash -lc \
-  "fd -e jpg -e jpeg -e png -e webp -e gif -e bmp -e tif -e tiff -e heic . ${DIRECTORIES[*]} | fzf -m >\"$tmp\""
+  "fd -e svg -e jpg -e jpeg -e png -e webp -e gif -e bmp -e tif -e tiff -e heic . ${DIRECTORIES[*]} | fzf -m >\"$tmp\""
 
 if [ ! -s "$tmp" ]; then
   rm -f -- "$tmp"

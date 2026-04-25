@@ -6,3 +6,8 @@ vim.pack.del(
   :map(function(x) return x.spec.name end)
   :totable()
 )
+
+
+print(# vim.iter(vim.pack.get())
+  :filter(function(x) return x.active end)
+  :totable())

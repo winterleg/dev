@@ -116,3 +116,9 @@ require('vague').setup {
 require("everforest").setup({
   background = "hard",
 })
+
+require('rose-pine').setup({
+  styles = {
+    transparency = true,
+  }
+})

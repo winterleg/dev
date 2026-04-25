@@ -54,21 +54,33 @@ end
 ---@type ColorEntry[]
 local colorsList = {
   {
+    name = "Pine",
+    enabled = true,
+    callback = function()
+      require('rose-pine').setup({
+        styles = {
+          transparency = true,
+        }
+      })
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme rose-pine-main]]
+
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#191724", bg = "#e0def4" })
+
+      save_theme "Pine"
+    end,
+  },
+  {
     name = "Dawn",
     enabled = true,
     callback = function()
       require('rose-pine').setup({
-        disable_background = false,
+        styles = {
+          transparency = false,
+        }
       })
       vim.opt.background = "light"
       vim.cmd [[colorscheme rose-pine-dawn]]
-
-      -- Forcefully disable transparency
-      local p = require('rose-pine.palette')
-      vim.api.nvim_set_hl(0, 'Normal', { fg = p.text, bg = p.base })
-      vim.api.nvim_set_hl(0, 'NormalNC', { fg = p.subtle, bg = p.base })
-      vim.api.nvim_set_hl(0, 'NormalFloat', { fg = p.text, bg = p.overlay })
-      vim.api.nvim_set_hl(0, 'Visual', { fg = "#ffffff", bg = "#464261" })
 
       save_theme "Dawn"
     end,
@@ -173,14 +185,14 @@ local colorsList = {
     end
   },
   {
-    name = "Github Dark",
+    name = "Github",
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme github_dark]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#30363d", bg = "#e4ebf1" })
 
-      save_theme "Github Dark"
+      save_theme "Github"
     end,
   },
   {
