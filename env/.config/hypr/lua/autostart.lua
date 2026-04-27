@@ -5,6 +5,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd "mpd --no-daemon"
   hl.exec_cmd "dunst"
   hl.exec_cmd "fcitx5"
+  hl.exec_cmd "~/.config/waybar/waybar.sh"
   hl.exec_cmd "~/.config/hypr/scripts/background-autostart.sh"
   hl.exec_cmd "udiskie --tray"
   hl.exec_cmd "wl-paste --watch cliphist store --no-persist"

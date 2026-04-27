@@ -9,6 +9,39 @@
 -- bind = $mainMod ALT, m, movegroupwindow, f
 
 
+-- not sure if this works yet
+local function toggle_ghostty()
+  local wins = hl.get_windows { class = "com.mitchell.ghostty" }
+  local active = hl.get_active_window()
+
+  if #wins == 0 then
+    hl.dsp.exec_cmd("ghostty")
+    return
+  end
+
+  local win = wins[1]
+
+  if active ~= nil and active.address == win.address then
+    hl.dsp.window.move {
+      window    = win,
+      workspace = "special:shadowrealm",
+      follow    = false,
+    }
+    return
+  end
+
+  local ws = hl.get_active_workspace()
+  if ws ~= nil then
+    hl.dsp.window.move {
+      window    = win,
+      workspace = ws,
+      follow    = false,
+    }
+  end
+  hl.dsp.focus { window = win }
+end
+
+
 --- @class Key
 local key = {
   a                  = "A",
@@ -60,7 +93,7 @@ local key = {
   f12                = "f12",
   page_up            = "page_up",
   page_down          = "page_down",
-  printscr           = "code:107",
+  printscr           = "Print",
   period             = "PERIOD",
   dead_grave         = "DEAD_GRAVE",
   numbersign         = "numbersign",
@@ -122,8 +155,8 @@ local binds = {
   { keys = { mainMod, key.f8 },                    callback = hl.dsp.exit() },
   { keys = { mainMod, key.escape },                callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/logout.sh" },
   { keys = { mainMod, key.l },                     callback = hl.dsp.exec_cmd "hyprlock" },
-  { keys = { mainMod, key.v },                     callback = hl.dsp.float { action = "toggle" } },
-  { keys = { mainMod, key.j },                     callback = hl.dsp.float { action = "toggle" } },
+  { keys = { mainMod, key.v },                     callback = hl.dsp.window.float { action = "toggle" } },
+  { keys = { mainMod, key.j },                     callback = hl.dsp.window.float { action = "toggle" } },
   { keys = { mainMod, key.f },                     callback = hl.dsp.window.fullscreen { mode = "fullscreen", action = "toggle" } },
   { keys = { mainMod, key.p },                     callback = hl.dsp.window.pin {} },
   { keys = { mainMod, key.shift, key.p },          callback = hl.dsp.workspace.move { monitor = "+1" } },
@@ -138,8 +171,9 @@ local binds = {
   { keys = { mainMod, key.minus },                 callback = hl.dsp.exec_cmd "~/dotfiles/scripts/yazi-neovide" },
   { keys = { mainMod, key.control, key.v },        callback = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { keys = { mainMod, key.q },                     callback = hl.dsp.exec_cmd "helium-browser" },
-  { keys = { mainMod, key.return_ },               callback = hl.dsp.exec_cmd "ghostty" },
-  { keys = { mainMod, key.shift, key.return_ },    callback = hl.dsp.exec_cmd "alacritty" },
+  -- { keys = { mainMod, key.return_ },               callback = hl.dsp.exec_cmd "ghostty" },
+  { keys = { mainMod, key.return_ },               callback = toggle_ghostty },
+  { keys = { mainMod, key.shift, key.return_ },    callback = hl.dsp.exec_cmd "kitty" },
   { keys = { mainMod, key.w },                     callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh firefox" },
   { keys = { mainMod, key.o },                     callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh obsidian" },
   { keys = { mainMod, key.z },                     callback = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
@@ -223,8 +257,6 @@ local binds = {
   { keys = { key.page_up },                        callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/change-sound-output.sh" },
 }
 
-for _, v in ipairs(binds) do
-  local keys, cb, rules = v[1], v[2], v[3]
-
-  hl.bind(joinKey(keys), cb, rules)
+for _, v in pairs(binds) do
+  hl.bind(joinKey(v.keys), v.callback, v.rules)
 end
