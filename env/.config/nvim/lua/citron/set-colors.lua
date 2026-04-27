@@ -8,21 +8,56 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 local current_name = nil
 
 local function unset_curls()
-  local groups = {
-    -- "SpellBad", "SpellCap", "SpellLocal", "SpellRare",
-    "DiagnosticUnderlineError", "DiagnosticUnderlineWarn",
-    "DiagnosticUnderlineInfo", "DiagnosticUnderlineHint",
-    "LspReferenceText", "LspReferenceRead", "LspReferenceWrite",
-    "Type", "StorageClass", "Structure", "Typedef",
-    "@lsp.type.type", "@lsp.type.class", "@lsp.type.enum",
-    "@lsp.type.interface", "@lsp.type.struct", "@lsp.type.typeParameter",
-    "@lsp.type.parameter", "@lsp.type.variable", "@lsp.type.property",
-    "@lsp.type.enumMember", "@lsp.type.macro", "@lsp.type.method",
-    "@lsp.type.function", "@lsp.type.namespace", "@lsp.type.decorator"
-  }
-  for _, group in ipairs(groups) do
-    vim.api.nvim_set_hl(0, group, { undercurl = false, underline = false })
-  end
+  -- local groups = {
+  -- 	-- "SpellBad",                 --
+  -- 	-- "SpellCap",                 --
+  -- 	-- "SpellLocal",               --
+  -- 	-- "SpellRare",                --
+  -- 	--
+  -- 	"DiagnosticUnderlineError", --
+  -- 	"DiagnosticUnderlineWarn", --
+  -- 	"DiagnosticUnderlineInfo", --
+  -- 	"DiagnosticUnderlineHint", --
+  -- 	--
+  -- 	"LspReferenceText", --
+  -- 	"LspReferenceRead", --
+  -- 	"LspReferenceWrite", --
+  -- 	--
+  -- 	"Type",         --
+  -- 	"StorageClass", --
+  -- 	"Structure",    --
+  -- 	"Typedef",      --
+  -- 	--
+  -- 	"@lsp.type.type", --
+  -- 	"@lsp.type.class", --
+  -- 	"@lsp.type.enum", --
+  -- 	"@lsp.type.interface", --
+  -- 	"@lsp.type.struct", --
+  -- 	"@lsp.type.typeParameter", --
+  -- 	"@lsp.type.parameter", --
+  -- 	"@lsp.type.variable", --
+  -- 	"@lsp.type.property", --
+  -- 	"@lsp.type.enumMember", --
+  -- 	"@lsp.type.macro", --
+  -- 	"@lsp.type.method", --
+  -- 	"@lsp.type.function", --
+  -- 	"@lsp.type.namespace", --
+  -- 	"@lsp.type.decorator" --
+  -- }
+  -- for _, group in ipairs(groups) do
+  -- 	local existing = vim.api.nvim_get_hl(0, { name = group, link = false })
+  -- 	existing.undercurl = nil
+  -- 	existing.underline = nil
+  -- 	vim.api.nvim_get_hl(0, existing)
+  -- end
+  -- remove underline + undercurl everywhere
+  -- for _, group in ipairs(vim.fn.getcompletion('', 'highlight')) do
+  --   vim.api.nvim_set_hl(0, group, { underline = false, undercurl = false })
+  -- end
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = false })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = false })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = false })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = false })
 end
 
 local function save_theme(name)
@@ -82,6 +117,8 @@ local colorsList = {
       vim.opt.background = "light"
       vim.cmd [[colorscheme rose-pine-dawn]]
 
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#faf4ed", bg = "#464261" })
+
       save_theme "Dawn"
     end,
   },
@@ -135,6 +172,8 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#4a2008" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#1a0a02", bg = "#ee8822" })
 
+      unset_curls()
+
       save_theme "NERV"
     end,
   },
@@ -148,6 +187,8 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "Visual", { fg = "#bbc5b7", bg = "#002611" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#44693f" })
 
+      unset_curls()
+
       save_theme "Paper"
     end
   },
@@ -160,6 +201,8 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1a2a18" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#060c06", bg = "#55bb55" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#366632" })
+
+      unset_curls()
 
       save_theme "MATRIX"
     end,

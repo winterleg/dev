@@ -2,7 +2,7 @@ background = #000000
 # foreground = #FFFFFF
 
 cursor-color = EC5D2A
-cursor-text  = 000000
+cursor-text  = FFFFFF
 
 background-opacity = 0.86
 #0.86
@@ -11,6 +11,7 @@ background-blur    = false
 confirm-close-surface = false
 
 font-family  = "ocr a std"
+# font-family  = "ocr a std"
 font-family  = "zen maru gothic"
 font-size    = 22
 font-feature = -calt, -liga, -dlig

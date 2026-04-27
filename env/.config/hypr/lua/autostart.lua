@@ -1,0 +1,17 @@
+hl.on("hyprland.start", function()
+  hl.exec_cmd "blueman-applet"
+  hl.exec_cmd "nm-applet"
+  hl.exec_cmd "ckb-next"
+  hl.exec_cmd "mpd --no-daemon"
+  hl.exec_cmd "dunst"
+  hl.exec_cmd "fcitx5"
+  hl.exec_cmd "~/.config/hypr/scripts/background-autostart.sh"
+  hl.exec_cmd "udiskie --tray"
+  hl.exec_cmd "wl-paste --watch cliphist store --no-persist"
+  hl.exec_cmd "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland"
+  hl.exec_cmd "dbus-update-activation-environment --systemd --all"
+  hl.exec_cmd "systemctl --user import-environment QT_QPA_PLATFORMTHEME"
+  hl.exec_cmd "systemctl --user start hyprpolkitagent"
+  hl.exec_cmd "dbus-update-activation-environment --all"
+  hl.exec_cmd "gnome-keyring-daemon --start --components=secrets,ssh"
+end)

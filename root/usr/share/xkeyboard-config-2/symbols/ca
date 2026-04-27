@@ -6,22 +6,28 @@
 // Changements principaux:
 // - présences des touches utiles en programmation tel que (, [, {, }, ] et )
 //   sur la ligne des chiffres;
-// - adapté à l'écriture française (œ, è, é, ê, à, «, », etc.)
+// - adapté à l'écriture française (œ, è, é, ê, à, «, », etc.);
+// - adapté à mon usage personnel.
 //
 // By Winter L. <winter.leg.147@gmail.com>
 //
+// ┌─────┐
+// │ S A │   S = Shift,  A = AltGr + Shift
+// │ s a │   s = normal, a = AltGr
+// └─────┘
+//
 // ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
 // │ |   │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ _   │ +   ┃ ⌫ Retour┃
-// │ #   │ /   │ (   │ [   │ {   │ ◌̂ ◌̈ │ $   │     │ }   │ ]   │ )   │ -   │ =   ┃  arrière┃
+// │ #   │ /   │ (   │ [   │ {   │ ◌̂ ◌̈ │ $   │ `   │ }   │ ]   │ )   │ -   │ =   ┃  arrière┃
 // ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┯━━━━━━━┫
-// ┃       ┃ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ "   │ Ç   │       ┃
-// ┃Tab ↹  ┃ q   │ w \ │ f @ │ p ~ │ g   │ j   │ l   │ u   │ y   │ ;   │ '   │ ç   │       ┃
+// ┃       ┃ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ "   │ Ç   │ >     ┃
+// ┃Tab ↹  ┃ q   │ w \ │ f @ │ p ~ │ g   │ j   │ l   │ u   │ y   │ ;   │ '   │ ç   │ <     ┃
 // ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┲━━━━┷━━━━━━━┫
 // ┃        ┃ A   │ R   │ S   │ T   │ D   │ H   │ N   │ E Œ │ I   │ O   │ ?   ┃            ┃
 // ┃Échappe ┃ a · │ r % │ s * │ t ^ │ d   │ h   │ n   │ e œ │ i   │ o   │ ◌̀   ┃ Entrée ⏎   ┃
 // ┣━━━━━━━━┻━━━━┱┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┻━━━━━━━━━━━━┫
-// ┃             ┃ Z   │ X « │ C » │ V   │ B   │ K   │ M   │ &   │ !   │ É   ┃             ┃
-// ┃ Majuscule ⇧ ┃ z ° │ x < │ c > │ v   │ b[1]│ k   │ m µ │ , ◌̄ │ .   │ é   ┃ Majuscule ⇧ ┃
+// ┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ &   │ !   │ É   ┃             ┃
+// ┃ Majuscule ⇧ ┃ z ° │ x « │ c » │ v   │ b[1]│ k   │ m µ │ , ◌̄ │ .   │ é   ┃ Majuscule ⇧ ┃
 // ┣━━━━━━━┳━━━━━┻━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
 // ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
 // ┃ Ctrl  ┃ Super ┃ Alt   ┃ ␣ Espace                        ␣ ┃AltGr ⇮┃ Menu  ┃ Ctrl  ┃
@@ -73,14 +79,14 @@ xkb_symbols "basic" {
     key <AC11>  {[  dead_grave,         question                            ]};
 
     key <AB01>  {[  z,                  Z,                  degree          ]};
-    key <AB02>  {[  x,                  X,                  less, guillemotright  ]};
-    key <AB03>  {[  c,                  C,                  greater, guillemotleft ]};
+    key <AB02>  {[  x,                  X,                  guillemotleft   ]};
+    key <AB03>  {[  c,                  C,                  guillemotright  ]};
     key <AB04>  {[  v,                  V                                   ]};
     key <AB05>  {[  b,                  B,                  nobreakspace    ]};
     key <AB06>  {[  k,                  K                                   ]};
     key <AB07>  {[  m,                  M,                  mu              ]};
     key <AB08>  {[  comma,              ampersand                           ]};
-    key <AB09>  {[  period,             exclam                         ]};
+    key <AB09>  {[  period,             exclam                              ]};
     key <AB10>  {[  eacute,             Eacute                              ]};
 
     key <SPCE>  {[  space,              space                               ]};

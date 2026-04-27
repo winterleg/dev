@@ -2,7 +2,7 @@
 
 tmp="$(mktemp)"
 
-alacritty -e bash -lc "fd -t d | fzf >\"$tmp\""
+alacritty -e bash -lc "fd -t d --hidden | fzf >\"$tmp\""
 
 if [ ! -s "$tmp" ]; then
   rm -f -- "$tmp"

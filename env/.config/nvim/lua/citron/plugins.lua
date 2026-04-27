@@ -38,6 +38,7 @@ vim.pack.add({
     end
   },
   { src = "https://github.com/ionide/Ionide-vim" },
+  { src = "https://github.com/nvzone/showkeys" },
 })
 
 vim.g["fsharp#lsp_auto_setup"] = 0
