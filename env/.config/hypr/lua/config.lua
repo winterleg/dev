@@ -1,5 +1,24 @@
-hl.config {
-  general = {
+hl.config({
+  input      = {
+    kb_layout     = "ca",
+
+    follow_mouse  = 1,
+
+    sensitivity   = 0,
+    accel_profile = "flat",
+
+    touchpad      = {
+      natural_scroll = true
+    }
+  },
+
+  cursor     = {
+    hide_on_key_press = 1,
+    hide_on_tablet = 0,
+    inactive_timeout = 15,
+  },
+
+  general    = {
     gaps_in       = 5,
     gaps_out      = 5,
     border_size   = 0,
@@ -18,38 +37,38 @@ hl.config {
     }
   },
 
-  dwindle = {
+  dwindle    = {
     preserve_split = true,
     smart_split    = false,
     force_split    = 2
   },
 
-  scrolling = {
+  scrolling  = {
     fullscreen_on_one_column = true,
-    direction = "down",
-    column_width = 0.95,
-    explicit_column_widths = 0.95,
-    focus_fit_method = 0
+    direction                = "down",
+    column_width             = 0.95,
+    explicit_column_widths   = 0.95,
+    focus_fit_method         = 0
   },
 
-  master = {
+  master     = {
     new_status = "master"
   },
 
   decoration = {
-    rounding = 5,
+    rounding         = 5,
 
-    active_opacity = 1.0,
+    active_opacity   = 1.0,
     inactive_opacity = 0.8,
 
-    dim_special = 0.3,
+    dim_special      = 0.3,
 
-    shadow = {
+    shadow           = {
       enabled = false
     },
 
-    blur = {
-      enabled = false,
+    blur             = {
+      enabled       = false,
       input_methods = true
     }
   },
@@ -58,7 +77,7 @@ hl.config {
     enabled = false
   },
 
-  misc = {
+  misc       = {
     font_family               = "Miracode",
     force_default_wallpaper   = 0,
     disable_hyprland_logo     = true,
@@ -69,4 +88,15 @@ hl.config {
     key_press_enables_dpms    = true,
     enable_anr_dialog         = true
   }
+})
+
+hl.device {
+  name    = "wacom-one-by-wacom-m-pen",
+  output  = "HDMI-A-1",
+  enabled = true,
+}
+
+hl.device {
+  name    = "elan06fa:00-04f3:327e-touchpad",
+  enabled = true
 }

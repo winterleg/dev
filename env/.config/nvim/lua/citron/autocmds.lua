@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local kateGroup = augroup("kate", {})
+local citronGroup = augroup("citron", {})
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   callback = function()
@@ -24,7 +24,7 @@ autocmd('TextYankPost', {
 
 -- remove trailing whitespaces at the end of a line
 autocmd({ "BufWritePre" }, {
-  group = kateGroup,
+  group = citronGroup,
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 -- when InsertLeave, record the status of ime and switch to that when InsertEnter
 local last_ime = ""
 autocmd("InsertLeave", {
-  group = kateGroup,
+  group = citronGroup,
   pattern = "*",
   callback = function()
     local ok, result = pcall(function()
@@ -78,7 +78,7 @@ autocmd("InsertLeave", {
 })
 
 autocmd("InsertEnter", {
-  group = kateGroup,
+  group = citronGroup,
   pattern = "*",
   callback = function()
     if last_ime ~= "" then
@@ -88,7 +88,7 @@ autocmd("InsertEnter", {
 })
 
 autocmd('LspAttach', {
-  group = kateGroup,
+  group = citronGroup,
   callback = function(e)
     local opts = { buffer = e.buf }
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)

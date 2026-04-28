@@ -18,15 +18,15 @@
 //
 // ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
 // │ |   │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ _   │ +   ┃ ⌫ Retour┃
-// │ #   │ /   │ (   │ [   │ {   │ ◌̂ ◌̈ │ $   │ `   │ }   │ ]   │ )   │ -   │ =   ┃  arrière┃
+// │ #   │ /   │ (   │ [   │ {   │ '   │ $   │ !   │ }   │ ]   │ )   │ -   │ =   ┃  arrière┃
 // ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┯━━━━━━━┫
-// ┃       ┃ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ "   │ Ç   │ >     ┃
-// ┃Tab ↹  ┃ q   │ w \ │ f @ │ p ~ │ g   │ j   │ l   │ u   │ y   │ ;   │ '   │ ç   │ <     ┃
+// ┃       ┃ Q   │ W   │ F   │ P   │ G   │ J   │ L   │ U   │ Y   │ :   │ ◌̈   │ Ç   │ >     ┃
+// ┃Tab ↹  ┃ q   │ w \ │ f @ │ p ~ │ g   │ j   │ l   │ u   │ y   │ ;   │ ◌̂   │ ç   │ <     ┃
 // ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┲━━━━┷━━━━━━━┫
 // ┃        ┃ A   │ R   │ S   │ T   │ D   │ H   │ N   │ E Œ │ I   │ O   │ ?   ┃            ┃
 // ┃Échappe ┃ a · │ r % │ s * │ t ^ │ d   │ h   │ n   │ e œ │ i   │ o   │ ◌̀   ┃ Entrée ⏎   ┃
 // ┣━━━━━━━━┻━━━━┱┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┻━━━━━━━━━━━━┫
-// ┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ &   │ !   │ É   ┃             ┃
+// ┃             ┃ Z   │ X   │ C   │ V   │ B   │ K   │ M   │ "   │ &   │ É   ┃             ┃
 // ┃ Majuscule ⇧ ┃ z ° │ x « │ c » │ v   │ b[1]│ k   │ m µ │ , ◌̄ │ .   │ é   ┃ Majuscule ⇧ ┃
 // ┣━━━━━━━┳━━━━━┻━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
 // ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
@@ -43,9 +43,9 @@ xkb_symbols "basic" {
     key <AE02>  {[  parenleft,          2                                   ]};
     key <AE03>  {[  bracketleft,        3                                   ]};
     key <AE04>  {[  braceleft,          4                                   ]};
-    key <AE05>  {[  dead_circumflex,    5,                  dead_diaeresis  ]};
+    key <AE05>  {[  apostrophe,         5                                   ]};
     key <AE06>  {[  dollar,             6                                   ]};
-    key <AE07>  {[  grave,              7                                   ]};
+    key <AE07>  {[  exclam,             7                                   ]};
     key <AE08>  {[  braceright,         8                                   ]};
     key <AE09>  {[  bracketright,       9                                   ]};
     key <AE10>  {[  parenright,         0                                   ]};
@@ -62,7 +62,7 @@ xkb_symbols "basic" {
     key <AD08>  {[  u,                  U                                   ]};
     key <AD09>  {[  y,                  Y                                   ]};
     key <AD10>  {[  semicolon,          colon                               ]};
-    key <AD11>  {[  apostrophe,         quotedbl                            ]};
+    key <AD11>  {[  dead_circumflex,    dead_diaresis                       ]};
     key <AD12>  {[  ccedilla,           Ccedilla                            ]};
     key <BKSL>  {[  less,               greater                             ]};
 
@@ -85,8 +85,8 @@ xkb_symbols "basic" {
     key <AB05>  {[  b,                  B,                  nobreakspace    ]};
     key <AB06>  {[  k,                  K                                   ]};
     key <AB07>  {[  m,                  M,                  mu              ]};
-    key <AB08>  {[  comma,              ampersand                           ]};
-    key <AB09>  {[  period,             exclam                              ]};
+    key <AB08>  {[  comma,              quotedbl                            ]};
+    key <AB09>  {[  period,             ampersand                           ]};
     key <AB10>  {[  eacute,             Eacute                              ]};
 
     key <SPCE>  {[  space,              space                               ]};

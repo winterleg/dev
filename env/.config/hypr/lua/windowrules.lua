@@ -1,6 +1,5 @@
 hl.window_rule { match = { float = true }, rounding = 10 }
-hl.window_rule { match = { title = "^Incrustation vidéo$" }, opacity = "1.0" }
-hl.window_rule { match = { title = "^Picture-in-Picture$" }, opacity = "1.0" }
+hl.window_rule { match = { workspace = "10" }, opacity = "1.0 override" }
 
 hl.window_rule { match = { title = "Minecraft.*" }, render_unfocused = true, immediate = true }
 hl.window_rule { match = { class = "overwatch.exe" }, render_unfocused = true, immediate = true }

@@ -214,6 +214,8 @@ local colorsList = {
       vim.opt.background = "light"
       vim.cmd [[colorscheme kanagawa-lotus]]
 
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#f2ecbc", bg = "#634d83" })
+
       save_theme "Lotus"
     end
   },

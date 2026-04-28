@@ -17,7 +17,12 @@ vim.pack.add({
   { src = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim", },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/GustavEikaas/easy-dotnet.nvim" },
-  { src = "https://github.com/neovim-treesitter/nvim-treesitter",            lazy = false,                                                                                                   build = "TSUpdate" },
+  { src = 'https://github.com/neovim-treesitter/treesitter-parser-registry' },
+  {
+    src = "https://github.com/neovim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = "TSUpdate"
+  },
   { src = "https://github.com/c3lang/tree-sitter-c3" },
   {
     src = "https://github.com/lervag/vimtex",
@@ -64,6 +69,9 @@ vim.keymap.set({ "i", "s" }, "<C-x>", function() require("luasnip").jump(1) end,
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
 require("oil").setup({
+  view_options = {
+    show_hidden = true
+  },
   lsp_file_methods = {
     enabled = true,
     timeout_ms = 1000,
