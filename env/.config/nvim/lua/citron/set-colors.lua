@@ -1,63 +1,28 @@
 ---@diagnostic disable: undefined-global
 
-DARK = "dark"
-LIGHT = "light"
-
 local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
 local function unset_curls()
-  -- local groups = {
-  -- 	-- "SpellBad",                 --
-  -- 	-- "SpellCap",                 --
-  -- 	-- "SpellLocal",               --
-  -- 	-- "SpellRare",                --
-  -- 	--
-  -- 	"DiagnosticUnderlineError", --
-  -- 	"DiagnosticUnderlineWarn", --
-  -- 	"DiagnosticUnderlineInfo", --
-  -- 	"DiagnosticUnderlineHint", --
-  -- 	--
-  -- 	"LspReferenceText", --
-  -- 	"LspReferenceRead", --
-  -- 	"LspReferenceWrite", --
-  -- 	--
-  -- 	"Type",         --
-  -- 	"StorageClass", --
-  -- 	"Structure",    --
-  -- 	"Typedef",      --
-  -- 	--
-  -- 	"@lsp.type.type", --
-  -- 	"@lsp.type.class", --
-  -- 	"@lsp.type.enum", --
-  -- 	"@lsp.type.interface", --
-  -- 	"@lsp.type.struct", --
-  -- 	"@lsp.type.typeParameter", --
-  -- 	"@lsp.type.parameter", --
-  -- 	"@lsp.type.variable", --
-  -- 	"@lsp.type.property", --
-  -- 	"@lsp.type.enumMember", --
-  -- 	"@lsp.type.macro", --
-  -- 	"@lsp.type.method", --
-  -- 	"@lsp.type.function", --
-  -- 	"@lsp.type.namespace", --
-  -- 	"@lsp.type.decorator" --
-  -- }
-  -- for _, group in ipairs(groups) do
-  -- 	local existing = vim.api.nvim_get_hl(0, { name = group, link = false })
-  -- 	existing.undercurl = nil
-  -- 	existing.underline = nil
-  -- 	vim.api.nvim_get_hl(0, existing)
-  -- end
-  -- remove underline + undercurl everywhere
-  -- for _, group in ipairs(vim.fn.getcompletion('', 'highlight')) do
-  --   vim.api.nvim_set_hl(0, group, { underline = false, undercurl = false })
-  -- end
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = false })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = false })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = false })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = false })
+  local groups = {
+    "DiagnosticUnderlineError", --
+    "DiagnosticUnderlineWarn",  --
+    "DiagnosticUnderlineInfo",  --
+    "DiagnosticUnderlineHint",  --
+    "Type",                     --
+    "Structure",                --
+    "@lsp",                     --
+    "@lsp.type.class",          --
+    "@lsp.type.struct",          --
+    "Delimiter",                --
+  }
+  for _, group in ipairs(groups) do
+    local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
+    hl.underline = false
+    hl.undercurl = false
+    vim.api.nvim_set_hl(0, group, hl)
+  end
 end
 
 local function save_theme(name)

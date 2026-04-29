@@ -18,21 +18,13 @@ hl.config {
   }
 }
 
+-- how can disable and reenabled...
 hl.on("monitor.added", function(mon)
   if mon.name == "HDMI-A-1" then
     hl.monitor {
-      output   = "eDP-1",
-      disabled = true
-    }
-
-    hl.dsp.force_idle(0.01)
-
-    hl.monitor {
-      output   = "eDP-1",
-      mode     = "2560x1600@60",
-      position = "0x0",
-      scale    = "2",
-      disabled = false
+      output = "eDP-1",
+      mode   = "2560x1600@60",
+      scale  = "2",
     }
   end
 end)
@@ -40,11 +32,9 @@ end)
 hl.on("monitor.removed", function(mon)
   if mon.name == "HDMI-A-1" then
     hl.monitor {
-      output   = "eDP-1",
-      mode     = "2560x1600@60",
-      position = "0x0",
-      scale    = "1",
-      disabled = false
+      output = "eDP-1",
+      mode   = "2560x1600@165",
+      scale  = "1",
     }
   end
 end)

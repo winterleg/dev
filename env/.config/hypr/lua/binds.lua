@@ -7,15 +7,53 @@
 -- bind = $mainMod ALT, l, changegroupactive, b
 -- bind = $mainMod ALT, k, movegroupwindow, b
 -- bind = $mainMod ALT, m, movegroupwindow, f
+--
 
 
+-- local should_not_close = {
+--   "steam",
+--   "ghostty",
+--   "firefox",
+-- }
+--
+-- local function close_unless()
+--   local active_window = hl.get_active_window()
+--
+--   local shouldNotClose = false
+--   for _, value in ipairs(should_not_close) do
+--     if string.find(active_window.class, value) ~= nil then
+--       shouldNotClose = true
+--     end
+--   end
+--
+--   if shouldNotClose then
+--     hl.dispatch(hl.dsp.window.move {
+--       window    = active_window,
+--       workspace = "special:shadowrealm",
+--       follow    = false,
+--     })
+--     return
+--   else
+--     hl.dsp.window.close()
+--   end
+-- end
 
-local function toggle_or_bring_window(window_class, window_exe)
+
+--- @param cmd string
+--- @param ws integer
+local function exec_on_ws(cmd, ws)
+  hl.dispatch(hl.dsp.focus { workspace = ws })
+  hl.dispatch(hl.dsp.exec_cmd(cmd))
+end
+
+--- @param window_class string
+--- @param window_exe string
+--- @param default_ws integer?
+local function toggle_or_focus_window(window_class, window_exe, default_ws)
   local wins = hl.get_windows { class = window_class }
   local active = hl.get_active_window()
 
   if #wins == 0 then
-    -- hl.notification.create({ text = "len is 0", timeout = 5000 })
     hl.dispatch(hl.dsp.exec_cmd(window_exe))
     return
   end
@@ -31,14 +69,16 @@ local function toggle_or_bring_window(window_class, window_exe)
     return
   end
 
-  local ws = hl.get_active_workspace()
-  if ws ~= nil then
-    hl.dispatch(hl.dsp.window.move {
-      window    = win,
-      workspace = ws,
-      follow    = false,
-    })
+  if win.workspace.special then
+    if default_ws ~= nil then
+      hl.dispatch(hl.dsp.window.move {
+        window    = win,
+        workspace = default_ws,
+        follow    = false,
+      })
+    end
   end
+
   hl.dispatch(hl.dsp.focus { window = win })
 end
 
@@ -111,6 +151,8 @@ local key = {
   parenright         = "parenright",
   mouse_left         = "mouse:272",
   mouse_right        = "mouse:273",
+  mouse_up           = "mouse_up",
+  mouse_down         = "mouse_down",
   brightness_up      = "XF86MonBrightnessUp",
   brightness_down    = "XF86MonBrightnessDown",
   audio_raise_volume = "XF86AudioRaiseVolume",
@@ -120,6 +162,14 @@ local key = {
   audio_play         = "XF86AudioPlay",
   audio_prev         = "XF86AudioPrev",
   audio_mute         = "XF86AudioMute",
+}
+
+--- @class key
+local mouse = {
+  click_left  = key.mouse_left,
+  click_right = key.mouse_right,
+  wheel_up    = key.mouse_up,
+  wheel_down  = key.mouse_down,
 }
 
 --- @class Key
@@ -138,13 +188,6 @@ local workspaceKeys = {
 
 local mainMod = key.super
 
-local function joinKey(keys)
-  return table.concat(keys, " + ")
-end
-
--- print(joinKey({mainMod, key.x}))
-
-
 ---@class Bind
 ---@field keys table
 ---@field callback fun()
@@ -153,7 +196,7 @@ end
 ---@type Bind[]
 local binds = {
   -- WM
-  { keys = { mainMod, key.c },              callback = hl.dsp.window.close() },
+  { keys = { mainMod, key.c },              callback = hl.dsp.window.close {} },
   { keys = { mainMod, key.f8 },             callback = hl.dsp.exit() },
   { keys = { mainMod, key.escape },         callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/logout.sh" },
   { keys = { mainMod, key.l },              callback = hl.dsp.exec_cmd "hyprlock" },
@@ -176,11 +219,16 @@ local binds = {
   {
     keys = { mainMod, key.return_ },
     callback = function()
-      toggle_or_bring_window("com.mitchellh.ghostty",
-        "ghostty")
+      toggle_or_focus_window("com.mitchellh.ghostty",
+        "ghostty", 2)
     end
   }, { keys = { mainMod, key.shift, key.return_ },      callback = hl.dsp.exec_cmd "alacritty" },
-  { keys = { mainMod, key.w },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh firefox" },
+  {
+    keys = { mainMod, key.w },
+    callback = function()
+      toggle_or_focus_window("firefox", "firefox", 1)
+    end
+  },
   { keys = { mainMod, key.o },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh obsidian" },
   { keys = { mainMod, key.z },                            callback = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
   { keys = { mainMod, key.x },                            callback = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
@@ -208,10 +256,10 @@ local binds = {
   { keys = { mainMod, workspaceKeys.third },              callback = hl.dsp.focus { workspace = "3" } },
   { keys = { mainMod, workspaceKeys.fourth },             callback = hl.dsp.focus { workspace = "4" } },
   { keys = { mainMod, workspaceKeys.fifth },              callback = hl.dsp.focus { workspace = "5" } },
-  { keys = { mainMod, workspaceKeys.sixth },              callback = hl.dsp.focus { workspace = "6" } },
+  { keys = { mainMod, workspaceKeys.sixth },              callback = function() exec_on_ws("thunderbird", 6) end },
   { keys = { mainMod, workspaceKeys.seventh },            callback = hl.dsp.focus { workspace = "7" } },
   { keys = { mainMod, workspaceKeys.eigtht },             callback = hl.dsp.focus { workspace = "8" } },
-  { keys = { mainMod, workspaceKeys.ninth },              callback = hl.dsp.focus { workspace = "9" } },
+  { keys = { mainMod, workspaceKeys.ninth },              callback = function() exec_on_ws("vesktop", 9) end },
   { keys = { mainMod, workspaceKeys.tenth },              callback = hl.dsp.focus { workspace = "10" } },
 
   { keys = { mainMod, key.f1 },                           callback = hl.dsp.focus { workspace = "6" } },
@@ -245,8 +293,11 @@ local binds = {
   { keys = { mainMod, key.shift, key.e },                 callback = hl.dsp.window.move { direction = "u" } },
   { keys = { mainMod, key.shift, key.n },                 callback = hl.dsp.window.move { direction = "d" } },
 
-  { keys = { mainMod, key.mouse_left },                   callback = hl.dsp.window.drag(),                                                                                                rules = { mouse = true } },
-  { keys = { mainMod, key.mouse_right },                  callback = hl.dsp.window.resize(),                                                                                              rules = { mouse = true } },
+  { keys = { mainMod, mouse.click_left },                 callback = hl.dsp.window.drag(),                                                                                                rules = { mouse = true } },
+  { keys = { mainMod, mouse.click_right },                callback = hl.dsp.window.resize(),                                                                                              rules = { mouse = true } },
+
+  { keys = { mainMod, mouse.wheel_up },                   callback = hl.dsp.focus { workspace = "e+1" },                                                                                  rules = { mouse = true, repeating = true } },
+  { keys = { mainMod, mouse.wheel_down },                 callback = hl.dsp.focus { workspace = "e-1" },                                                                                  rules = { mouse = true, repeating = true } },
 
   { keys = { key.audio_raise_volume },                    callback = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
   { keys = { key.audio_lower_volume },                    callback = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },
@@ -264,5 +315,5 @@ local binds = {
 }
 
 for _, v in pairs(binds) do
-  hl.bind(joinKey(v.keys), v.callback, v.rules)
+  hl.bind(table.concat(v.keys, " + "), v.callback, v.rules)
 end

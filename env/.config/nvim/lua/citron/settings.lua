@@ -73,6 +73,25 @@ vim.opt.smartcase = true
 vim.opt.spell = false
 vim.opt.spelllang = nil
 
+_G.isWriteCommit = false
+
+vim.api.nvim_create_user_command("ToggleWriteCommit", function()
+  if isWriteCommit then
+    isWriteCommit = false
+  else
+    isWriteCommit = true
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      pattern = "*",
+      callback = function()
+        if isWriteCommit then
+          vim.cmd [[silent !git add .]]
+          vim.cmd [[silent !git commit -m nvim-commit]]
+        end
+      end
+    })
+  end
+end, {})
+
 vim.api.nvim_create_user_command("OpenFirefox", function()
   vim.cmd [[!firefox %]]
 end, {})
