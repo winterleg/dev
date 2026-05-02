@@ -21,6 +21,66 @@ vim.cmd([[
     \ )
 ]])
 
+---@return table<string, function>
+local function get_sessions()
+  local sessions = {}
+  local handle = io.popen("tmux list-sessions -F '#{session_name}' 2>/dev/null")
+  if handle then
+    for line in handle:lines() do
+      sessions[line] = function()
+        vim.fn.system("tmux switch-client -t " .. line)
+      end
+    end
+    handle:close()
+  end
+  return sessions
+end
+
+---@return string?
+local function get_active_session()
+  local handle = io.popen("tmux display-message -p '#S' 2>/dev/null")
+  if handle then
+    local session = handle:read("*a"):gsub("%s+", "")
+    handle:close()
+    return session ~= "" and session or nil
+  end
+  return nil
+end
+
+local function tmux_telescope()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  local sessions = get_sessions()
+  local keys = vim.tbl_keys(sessions)
+  table.sort(keys)
+
+  local active = get_active_session()
+
+  pickers.new({}, {
+    prompt_title = active and "TMUX sessions - Current: " .. active or "TMUX sessions",
+    finder = finders.new_table {
+      results = keys,
+    },
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      local function run_selection()
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        if entry then
+          sessions[entry[1]]()
+        end
+      end
+      map("i", "<CR>", run_selection)
+      map("n", "<CR>", run_selection)
+      return true
+    end,
+  }):find()
+end
+
 local function files_no_pdf_query()
   local query = vim.fn.input('Search: ')
   if query and query ~= '' then
@@ -113,6 +173,7 @@ local mappings = {
   { "n",               "<leader>tw", toggleWhiteSpace },
   { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                   { silent = true } },
   { "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" },
+  { "n",               "<leader>q",  tmux_telescope },
   { { "n", "v" },      "!",          ":!" },
   { { "n", "v" },      "<leader>w",  "<CMD>write<CR>" },
   { { "n", "v" },      "<leader>3",  "/" },

@@ -1,21 +1,20 @@
 [general]
 working_directory = "~"
 import = [
-  "~/.config/alacritty/rosé-pine.toml"
+  "~/.config/alacritty/gruvbox.toml"
 ]
 
 [window]
 opacity = 0.85
-# blur = true
 dynamic_padding = true
 
 
 [colors.cursor]
-text = "#e0def4"
+# text = "#e0def4"
 cursor = "#EC5D2A"
 
 [font]
-normal = { family = "Monaspace Krypton NF Medium" }
+normal = { family = "ocr a std" }
 size = 20
 
 [keyboard]

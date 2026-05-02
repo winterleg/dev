@@ -10,7 +10,7 @@ configuration {
 }
 
 * {
-    font: "MiraCode 18";
+    font: "ocr a std 20";
 }
 
 element-text, element-icon, mode-switcher {
@@ -19,7 +19,7 @@ element-text, element-icon, mode-switcher {
 }
 
 window {
-    width: 30%;
+    width: 40%;
     border: 2px;
     border-radius: 5px;
     border-color: @outline;

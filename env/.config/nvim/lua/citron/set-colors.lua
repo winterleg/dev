@@ -14,7 +14,7 @@ local function unset_curls()
     "Structure",                --
     "@lsp",                     --
     "@lsp.type.class",          --
-    "@lsp.type.struct",          --
+    "@lsp.type.struct",         --
     "Delimiter",                --
   }
   for _, group in ipairs(groups) do
@@ -55,7 +55,7 @@ end
 local colorsList = {
   {
     name = "Pine",
-    enabled = true,
+    enabled = false,
     callback = function()
       require('rose-pine').setup({
         styles = {
@@ -104,7 +104,7 @@ local colorsList = {
   },
   {
     name = "Gruv Light",
-    enabled = true,
+    enabled = false,
     callback = function()
       require("gruvbox").setup({
         transparent_mode = false,
@@ -137,8 +137,6 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#4a2008" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#1a0a02", bg = "#ee8822" })
 
-      unset_curls()
-
       save_theme "NERV"
     end,
   },
@@ -150,31 +148,62 @@ local colorsList = {
       vim.cmd [[colorscheme mfd-paper]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#a5b2a2" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#bbc5b7", bg = "#002611" })
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#44693f" })
-
-      unset_curls()
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#002611" })
 
       save_theme "Paper"
     end
+  },
+  {
+    name = "SCARLET",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme mfd-scarlet]]
+      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a100a" })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#0c0404", bg = "#cc5545" })
+
+      save_theme "SCARLET"
+    end,
+  },
+  {
+    name = "GRAPHITE",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme mfd-flir]]
+      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#181818", bg = "#909090" })
+
+      save_theme "GRAPHITE"
+    end,
+  },
+  {
+    name = "BLACK OUT",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme mfd-blackout]]
+      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#181c20" })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#000000", bg = "#24282c" })
+
+      save_theme "BLACK OUT"
+    end,
   },
   {
     name = "MATRIX",
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
-      vim.cmd [[colorscheme mfd-hud]]
-      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1a2a18" })
-      vim.api.nvim_set_hl(0, "Visual", { fg = "#060c06", bg = "#55bb55" })
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#366632" })
-
-      unset_curls()
+      vim.cmd [[colorscheme mfd-stealth]]
+      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a3a2a" })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#0d1410", bg = "#7a9a7a" })
 
       save_theme "MATRIX"
     end,
   },
   {
     name = "Lotus",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme kanagawa-lotus]]
@@ -186,10 +215,12 @@ local colorsList = {
   },
   {
     name = "Rusty",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme rusticated]]
+
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#d3d2ce", bg = "#444136" })
 
       save_theme "Rusty"
     end

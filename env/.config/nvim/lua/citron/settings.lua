@@ -47,7 +47,7 @@ vim.opt.undofile = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 20
 vim.opt.sidescrolloff = 10
 vim.opt.isfname:append("@-@")
 

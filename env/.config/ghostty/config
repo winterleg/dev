@@ -2,7 +2,7 @@ background = #000000
 # foreground = #FFFFFF
 
 cursor-color = EC5D2A
-cursor-text  = FFFFFF
+# cursor-text  = FFFFFF
 
 background-opacity = 0.86
 #0.86

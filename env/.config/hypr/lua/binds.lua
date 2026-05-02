@@ -1,47 +1,18 @@
+require "lua.keys"
+
 -- Binds i haven't found the equivalent to or have not done yet:
 --
--- bind = $mainMod, J,           layoutmsg, togglesplit
--- bind = $mainMod, G, togglegroup
+-- bind = $MainMod, J,           layoutmsg, togglesplit
+-- bind = $MainMod, G, togglegroup
 -- bind = ALT, G, moveoutofgroup
--- bind = $mainMod ALT, u, changegroupactive, f
--- bind = $mainMod ALT, l, changegroupactive, b
--- bind = $mainMod ALT, k, movegroupwindow, b
--- bind = $mainMod ALT, m, movegroupwindow, f
---
-
-
--- local should_not_close = {
---   "steam",
---   "ghostty",
---   "firefox",
--- }
---
--- local function close_unless()
---   local active_window = hl.get_active_window()
---
---   local shouldNotClose = false
---   for _, value in ipairs(should_not_close) do
---     if string.find(active_window.class, value) ~= nil then
---       shouldNotClose = true
---     end
---   end
---
---   if shouldNotClose then
---     hl.dispatch(hl.dsp.window.move {
---       window    = active_window,
---       workspace = "special:shadowrealm",
---       follow    = false,
---     })
---     return
---   else
---     hl.dsp.window.close()
---   end
--- end
-
+-- bind = $MainMod ALT, u, changegroupactive, f
+-- bind = $MainMod ALT, l, changegroupactive, b
+-- bind = $MainMod ALT, k, movegroupwindow, b
+-- bind = $MainMod ALT, m, movegroupwindow, f
 
 --- @param cmd string
 --- @param ws integer
-local function exec_on_ws(cmd, ws)
+local function ws_exec(cmd, ws)
   hl.dispatch(hl.dsp.focus { workspace = ws })
   hl.dispatch(hl.dsp.exec_cmd(cmd))
 end
@@ -83,237 +54,122 @@ local function toggle_or_focus_window(window_class, window_exe, default_ws)
 end
 
 
---- @class Key
-local key = {
-  a                  = "A",
-  b                  = "B",
-  c                  = "C",
-  d                  = "D",
-  e                  = "E",
-  f                  = "F",
-  g                  = "G",
-  h                  = "H",
-  i                  = "I",
-  j                  = "J",
-  k                  = "K",
-  l                  = "L",
-  m                  = "M",
-  n                  = "N",
-  o                  = "O",
-  p                  = "P",
-  q                  = "Q",
-  r                  = "R",
-  s                  = "S",
-  t                  = "T",
-  u                  = "U",
-  v                  = "V",
-  w                  = "W",
-  x                  = "X",
-  y                  = "Y",
-  z                  = "Z",
-  minus              = "MINUS",
-  super              = "SUPER",
-  return_            = "RETURN",
-  shift              = "SHIFT",
-  control            = "CONTROL",
-  alt                = "ALT",
-  tab                = "TAB",
-  escape             = "ESCAPE",
-  delete             = "DELETE",
-  f1                 = "f1",
-  f2                 = "f2",
-  f3                 = "f3",
-  f4                 = "f4",
-  f5                 = "f5",
-  f6                 = "f6",
-  f7                 = "f7",
-  f8                 = "f8",
-  f9                 = "f9",
-  f10                = "f10",
-  f11                = "f11",
-  f12                = "f12",
-  page_up            = "page_up",
-  page_down          = "page_down",
-  printscr           = "Print",
-  period             = "PERIOD",
-  dead_grave         = "DEAD_GRAVE",
-  apostrophe         = "apostrophe",
-  numbersign         = "numbersign",
-  slash              = "slash",
-  parenleft          = "parenleft",
-  bracketleft        = "bracketleft",
-  braceleft          = "braceleft",
-  dead_circum        = "dead_circumflex",
-  dollar             = "dollar",
-  exclam             = "exclam",
-  braceright         = "braceright",
-  bracketright       = "bracketright",
-  parenright         = "parenright",
-  mouse_left         = "mouse:272",
-  mouse_right        = "mouse:273",
-  mouse_up           = "mouse_up",
-  mouse_down         = "mouse_down",
-  brightness_up      = "XF86MonBrightnessUp",
-  brightness_down    = "XF86MonBrightnessDown",
-  audio_raise_volume = "XF86AudioRaiseVolume",
-  audio_lower_volume = "XF86AudioLowerVolume",
-  audio_next         = "XF86AudioNext",
-  audio_pause        = "XF86AudioPause",
-  audio_play         = "XF86AudioPlay",
-  audio_prev         = "XF86AudioPrev",
-  audio_mute         = "XF86AudioMute",
-}
-
---- @class key
-local mouse = {
-  click_left  = key.mouse_left,
-  click_right = key.mouse_right,
-  wheel_up    = key.mouse_up,
-  wheel_down  = key.mouse_down,
-}
-
---- @class Key
-local workspaceKeys = {
-  first   = key.slash,
-  second  = key.parenleft,
-  third   = key.bracketleft,
-  fourth  = key.braceleft,
-  fifth   = key.apostrophe,
-  sixth   = key.dollar,
-  seventh = key.exclam,
-  eigtht  = key.braceright,
-  ninth   = key.bracketright,
-  tenth   = key.parenright,
-}
-
-local mainMod = key.super
-
 ---@class Bind
----@field keys table
----@field callback fun()
----@field rules? table
+---@field k table
+---@field c fun()
+---@field r? table
 
 ---@type Bind[]
 local binds = {
   -- WM
-  { keys = { mainMod, key.c },              callback = hl.dsp.window.close {} },
-  { keys = { mainMod, key.f8 },             callback = hl.dsp.exit() },
-  { keys = { mainMod, key.escape },         callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/logout.sh" },
-  { keys = { mainMod, key.l },              callback = hl.dsp.exec_cmd "hyprlock" },
-  { keys = { mainMod, key.v },              callback = hl.dsp.window.float { action = "toggle" } },
-  { keys = { mainMod, key.f },              callback = hl.dsp.window.fullscreen { mode = "fullscreen", action = "toggle" } },
-  { keys = { mainMod, key.p },              callback = hl.dsp.window.pin {} },
-  { keys = { mainMod, key.shift, key.p },   callback = hl.dsp.workspace.move { monitor = "+1" } },
-  { keys = { key.alt, key.tab },            callback = hl.dsp.window.cycle_next {} },
-  { keys = { key.alt, key.tab },            callback = hl.dsp.window.alter_zorder { mode = "top" } },
-  { keys = { mainMod, key.tab },            callback = hl.dsp.focus { workspace = "previous" } },
-  { keys = { mainMod, key.b },              callback = hl.dsp.exec_cmd "~/.config/waybar/waybar.sh" },
-  { keys = { mainMod, key.f11 },            callback = hl.dsp.exec_cmd "pkill hyprsunset || hyprsunset -t 4000" },
-  { keys = { mainMod, key.f12 },            callback = hl.dsp.exec_cmd "dunstctl history-pop" },
+  { k = { MainMod, Key.c },                     c = hl.dsp.window.close {} },
+  { k = { MainMod, Key.f8 },                    c = hl.dsp.exit() },
+  { k = { MainMod, Key.escape },                c = hl.dsp.exec_cmd "~/.config/hypr/scripts/logout.sh" },
+  { k = { MainMod, Key.l },                     c = hl.dsp.exec_cmd "hyprlock" },
+  { k = { MainMod, Key.v },                     c = hl.dsp.window.float { action = "toggle" } },
+  { k = { MainMod, Key.f },                     c = hl.dsp.window.fullscreen { mode = "fullscreen", action = "toggle" } },
+  { k = { MainMod, Key.p },                     c = hl.dsp.window.pin {} },
+  { k = { MainMod, Key.j },                     c = hl.dsp.layout("togglesplit") },
+  { k = { MainMod, Key.shift, Key.p },          c = hl.dsp.workspace.move { monitor = "+1" } },
+  { k = { Key.alt, Key.tab },                   c = hl.dsp.window.cycle_next {} },
+  { k = { Key.alt, Key.tab },                   c = hl.dsp.window.alter_zorder { mode = "top" } },
+  { k = { MainMod, Key.tab },                   c = hl.dsp.focus { workspace = "previous" } },
+  { k = { MainMod, Key.b },                     c = hl.dsp.exec_cmd "~/.config/waybar/waybar.sh" },
+  { k = { MainMod, Key.f11 },                   c = hl.dsp.exec_cmd "pkill hyprsunset || hyprsunset -t 4000" },
+  { k = { MainMod, Key.f12 },                   c = hl.dsp.exec_cmd "dunstctl history-pop" },
 
   -- app / scripts
-  { keys = { mainMod, key.minus },          callback = hl.dsp.exec_cmd "~/dotfiles/scripts/yazi-neovide" },
-  { keys = { mainMod, key.control, key.v }, callback = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
-  { keys = { mainMod, key.q },              callback = hl.dsp.exec_cmd "helium-browser" },
-  -- { keys = { mainMod, key.return_ },                      callback = hl.dsp.exec_cmd "ghostty" },
-  {
-    keys = { mainMod, key.return_ },
-    callback = function()
-      toggle_or_focus_window("com.mitchellh.ghostty",
-        "ghostty", 2)
-    end
-  }, { keys = { mainMod, key.shift, key.return_ },      callback = hl.dsp.exec_cmd "alacritty" },
-  {
-    keys = { mainMod, key.w },
-    callback = function()
-      toggle_or_focus_window("firefox", "firefox", 1)
-    end
-  },
-  { keys = { mainMod, key.o },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh obsidian" },
-  { keys = { mainMod, key.z },                            callback = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
-  { keys = { mainMod, key.x },                            callback = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
-  { keys = { mainMod, key.page_down },                    callback = hl.dsp.exec_cmd "kitty --class=calc tmux new-session qalc" },
-  { keys = { mainMod, key.r },                            callback = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
-  { keys = { mainMod, key.delete },                       callback = hl.dsp.exec_cmd "rofi -show run -no-fixed-num-lines" },
-  { keys = { mainMod, key.y },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
-  { keys = { mainMod, key.t },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/status.sh" },
-  { keys = { mainMod, key.shift, key.f },                 callback = hl.dsp.exec_cmd "pcmanfm" },
-  { keys = { mainMod, key.s },                            callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh simple" },
-  { keys = { key.printscr },                              callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh screen" },
-  { keys = { mainMod, key.shift, key.s },                 callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh" },
-  { keys = { mainMod, key.shift, key.t },                 callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/get-text.sh" },
-  { keys = { mainMod, key.shift, key.c },                 callback = hl.dsp.exec_cmd "hyprpicker -a" },
-  { keys = { mainMod, key.period },                       callback = hl.dsp.exec_cmd "rofi -config ~/.config/rofi/config-copy.rasi -modi emoji -show emoji -no-fixed-num-lines -lines 20" },
-  { keys = { mainMod, key.dead_grave },                   callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
-  { keys = { mainMod, key.f10 },                          callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
-  { keys = { key.control, key.shift, key.o },             callback = hl.dsp.exec_cmd "wtype -M shift ] -m shift" },
+  { k = { MainMod, Key.minus },                 c = hl.dsp.exec_cmd "~/dotfiles/scripts/yazi-neovide" },
+  { k = { MainMod, Key.control, Key.v },        c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
+  { k = { MainMod, Key.q },                     c = hl.dsp.exec_cmd "helium-browser" },
+  { k = { MainMod, Key.return_ },               c = hl.dsp.exec_cmd "ghostty" },
+  { k = { MainMod, Key.shift, Key.return_ },    c = hl.dsp.exec_cmd "alacritty" },
+  { k = { MainMod, Key.w },                     c = hl.dsp.exec_cmd "firefox" },
+  { k = { MainMod, Key.o },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/open-if-not.sh obsidian" },
+  { k = { MainMod, Key.z },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
+  { k = { MainMod, Key.x },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
+  { k = { MainMod, Key.page_down },             c = hl.dsp.exec_cmd "kitty --class=calc tmux new-session qalc" },
+  { k = { MainMod, Key.r },                     c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
+  { k = { MainMod, Key.delete },                c = hl.dsp.exec_cmd "rofi -show run -no-fixed-num-lines" },
+  { k = { MainMod, Key.y },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
+  { k = { MainMod, Key.t },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/status.sh" },
+  { k = { MainMod, Key.shift, Key.f },          c = hl.dsp.exec_cmd "thunar" },
+  { k = { MainMod, Key.s },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh simple" },
+  { k = { Key.printscr },                       c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh screen" },
+  { k = { MainMod, Key.shift, Key.s },          c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh" },
+  { k = { MainMod, Key.shift, Key.t },          c = hl.dsp.exec_cmd "~/.config/hypr/scripts/get-text.sh" },
+  { k = { MainMod, Key.shift, Key.c },          c = hl.dsp.exec_cmd "hyprpicker -a" },
+  { k = { MainMod, Key.period },                c = hl.dsp.exec_cmd "rofi -config ~/.config/rofi/config-copy.rasi -modi emoji -show emoji -no-fixed-num-lines -lines 20" },
+  { k = { MainMod, Key.dead_grave },            c = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
+  { k = { MainMod, Key.f10 },                   c = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
+  { k = { Key.control, Key.shift, Key.o },      c = hl.dsp.exec_cmd "wtype -M shift ] -m shift" },
 
-  { keys = { mainMod, key.numbersign },                   callback = hl.dsp.workspace.toggle_special("specialwork") },
-  { keys = { mainMod, key.shift, key.numbersign },        callback = hl.dsp.window.move { workspace = "special:specialwork", follow = true } },
+  { k = { MainMod, Key.numbersign },            c = hl.dsp.workspace.toggle_special("specialwork") },
+  { k = { MainMod, Key.shift, Key.numbersign }, c = hl.dsp.window.move { workspace = "special:specialwork", follow = true } },
 
-  { keys = { mainMod, workspaceKeys.first },              callback = hl.dsp.focus { workspace = "1" } },
-  { keys = { mainMod, workspaceKeys.second },             callback = hl.dsp.focus { workspace = "2" } },
-  { keys = { mainMod, workspaceKeys.third },              callback = hl.dsp.focus { workspace = "3" } },
-  { keys = { mainMod, workspaceKeys.fourth },             callback = hl.dsp.focus { workspace = "4" } },
-  { keys = { mainMod, workspaceKeys.fifth },              callback = hl.dsp.focus { workspace = "5" } },
-  { keys = { mainMod, workspaceKeys.sixth },              callback = function() exec_on_ws("thunderbird", 6) end },
-  { keys = { mainMod, workspaceKeys.seventh },            callback = hl.dsp.focus { workspace = "7" } },
-  { keys = { mainMod, workspaceKeys.eigtht },             callback = hl.dsp.focus { workspace = "8" } },
-  { keys = { mainMod, workspaceKeys.ninth },              callback = function() exec_on_ws("vesktop", 9) end },
-  { keys = { mainMod, workspaceKeys.tenth },              callback = hl.dsp.focus { workspace = "10" } },
+  { k = { MainMod, WSKey.first },               c = hl.dsp.focus { workspace = "1" } },
+  { k = { MainMod, WSKey.second },              c = hl.dsp.focus { workspace = "2" } },
+  { k = { MainMod, WSKey.third },               c = hl.dsp.focus { workspace = "3" } },
+  { k = { MainMod, WSKey.fourth },              c = hl.dsp.focus { workspace = "4" } },
+  { k = { MainMod, WSKey.fifth },               c = hl.dsp.focus { workspace = "5" } },
+  { k = { MainMod, WSKey.sixth },               c = function() ws_exec("thunderbird", 6) end },
+  { k = { MainMod, WSKey.seventh },             c = hl.dsp.focus { workspace = "7" } },
+  { k = { MainMod, WSKey.eigtht },              c = hl.dsp.focus { workspace = "8" } },
+  { k = { MainMod, WSKey.ninth },               c = function() ws_exec("vesktop", 9) end },
+  { k = { MainMod, WSKey.tenth },               c = hl.dsp.focus { workspace = "10" } },
 
-  { keys = { mainMod, key.f1 },                           callback = hl.dsp.focus { workspace = "6" } },
-  { keys = { mainMod, key.f2 },                           callback = hl.dsp.focus { workspace = "7" } },
-  { keys = { mainMod, key.f3 },                           callback = hl.dsp.focus { workspace = "8" } },
-  { keys = { mainMod, key.f4 },                           callback = hl.dsp.focus { workspace = "9" } },
+  { k = { MainMod, Key.f1 },                    c = hl.dsp.focus { workspace = "6" } },
+  { k = { MainMod, Key.f2 },                    c = hl.dsp.focus { workspace = "7" } },
+  { k = { MainMod, Key.f3 },                    c = hl.dsp.focus { workspace = "8" } },
+  { k = { MainMod, Key.f4 },                    c = hl.dsp.focus { workspace = "9" } },
 
-  { keys = { mainMod, key.shift, workspaceKeys.first },   callback = hl.dsp.window.move { workspace = "1", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.second },  callback = hl.dsp.window.move { workspace = "2", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.third },   callback = hl.dsp.window.move { workspace = "3", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.fourth },  callback = hl.dsp.window.move { workspace = "4", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.fifth },   callback = hl.dsp.window.move { workspace = "5", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.sixth },   callback = hl.dsp.window.move { workspace = "6", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.seventh }, callback = hl.dsp.window.move { workspace = "7", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.eigtht },  callback = hl.dsp.window.move { workspace = "8", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.ninth },   callback = hl.dsp.window.move { workspace = "9", follow = true } },
-  { keys = { mainMod, key.shift, workspaceKeys.tenth },   callback = hl.dsp.window.move { workspace = "10", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.first },    c = hl.dsp.window.move { workspace = "1", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.second },   c = hl.dsp.window.move { workspace = "2", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.third },    c = hl.dsp.window.move { workspace = "3", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.fourth },   c = hl.dsp.window.move { workspace = "4", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.fifth },    c = hl.dsp.window.move { workspace = "5", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.sixth },    c = hl.dsp.window.move { workspace = "6", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.seventh },  c = hl.dsp.window.move { workspace = "7", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.eigtht },   c = hl.dsp.window.move { workspace = "8", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.ninth },    c = hl.dsp.window.move { workspace = "9", follow = true } },
+  { k = { MainMod, Key.shift, WSKey.tenth },    c = hl.dsp.window.move { workspace = "10", follow = true } },
 
-  { keys = { mainMod, key.shift, key.f1 },                callback = hl.dsp.window.move { workspace = "6", follow = true } },
-  { keys = { mainMod, key.shift, key.f2 },                callback = hl.dsp.window.move { workspace = "7", follow = true } },
-  { keys = { mainMod, key.shift, key.f3 },                callback = hl.dsp.window.move { workspace = "8", follow = true } },
-  { keys = { mainMod, key.shift, key.f4 },                callback = hl.dsp.window.move { workspace = "9", follow = true } },
+  { k = { MainMod, Key.shift, Key.f1 },         c = hl.dsp.window.move { workspace = "6", follow = true } },
+  { k = { MainMod, Key.shift, Key.f2 },         c = hl.dsp.window.move { workspace = "7", follow = true } },
+  { k = { MainMod, Key.shift, Key.f3 },         c = hl.dsp.window.move { workspace = "8", follow = true } },
+  { k = { MainMod, Key.shift, Key.f4 },         c = hl.dsp.window.move { workspace = "9", follow = true } },
 
-  { keys = { mainMod, key.h },                            callback = hl.dsp.focus { direction = "l" } },
-  { keys = { mainMod, key.i },                            callback = hl.dsp.focus { direction = "r" } },
-  { keys = { mainMod, key.e },                            callback = hl.dsp.focus { direction = "u" } },
-  { keys = { mainMod, key.n },                            callback = hl.dsp.focus { direction = "d" } },
+  { k = { MainMod, Key.h },                     c = hl.dsp.focus { direction = "l" } },
+  { k = { MainMod, Key.i },                     c = hl.dsp.focus { direction = "r" } },
+  { k = { MainMod, Key.e },                     c = hl.dsp.focus { direction = "u" } },
+  { k = { MainMod, Key.n },                     c = hl.dsp.focus { direction = "d" } },
 
-  { keys = { mainMod, key.shift, key.h },                 callback = hl.dsp.window.move { direction = "l" } },
-  { keys = { mainMod, key.shift, key.i },                 callback = hl.dsp.window.move { direction = "r" } },
-  { keys = { mainMod, key.shift, key.e },                 callback = hl.dsp.window.move { direction = "u" } },
-  { keys = { mainMod, key.shift, key.n },                 callback = hl.dsp.window.move { direction = "d" } },
+  { k = { MainMod, Key.shift, Key.h },          c = hl.dsp.window.move { direction = "l" } },
+  { k = { MainMod, Key.shift, Key.i },          c = hl.dsp.window.move { direction = "r" } },
+  { k = { MainMod, Key.shift, Key.e },          c = hl.dsp.window.move { direction = "u" } },
+  { k = { MainMod, Key.shift, Key.n },          c = hl.dsp.window.move { direction = "d" } },
 
-  { keys = { mainMod, mouse.click_left },                 callback = hl.dsp.window.drag(),                                                                                                rules = { mouse = true } },
-  { keys = { mainMod, mouse.click_right },                callback = hl.dsp.window.resize(),                                                                                              rules = { mouse = true } },
+  { k = { MainMod, Mouse.click_left },          c = hl.dsp.window.drag(),                                                                                                              r = { mouse = true } },
+  { k = { MainMod, Mouse.click_right },         c = hl.dsp.window.resize(),                                                                                                            r = { mouse = true } },
 
-  { keys = { mainMod, mouse.wheel_up },                   callback = hl.dsp.focus { workspace = "e+1" },                                                                                  rules = { mouse = true, repeating = true } },
-  { keys = { mainMod, mouse.wheel_down },                 callback = hl.dsp.focus { workspace = "e-1" },                                                                                  rules = { mouse = true, repeating = true } },
+  { k = { MainMod, Mouse.wheel_up },            c = hl.dsp.focus { workspace = "e+1" },                                                                                                r = { mouse = true, repeating = true } },
+  { k = { MainMod, Mouse.wheel_down },          c = hl.dsp.focus { workspace = "e-1" },                                                                                                r = { mouse = true, repeating = true } },
 
-  { keys = { key.audio_raise_volume },                    callback = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
-  { keys = { key.audio_lower_volume },                    callback = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },
-  { keys = { mainMod, key.m },                            callback = hl.dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/volume-dunst.sh" },
+  { k = { Key.audio_raise_volume },             c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
+  { k = { Key.audio_lower_volume },             c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },
+  { k = { MainMod, Key.m },                     c = hl.dsp.exec_cmd "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/volume-dunst.sh" },
 
-  { keys = { key.brightness_up },                         callback = hl.dsp.exec_cmd "brightnessctl -e s 2%+" },
-  { keys = { key.brightness_down },                       callback = hl.dsp.exec_cmd "brightnessctl -e s 2%-" },
+  { k = { Key.brightness_up },                  c = hl.dsp.exec_cmd "brightnessctl -e s 2%+" },
+  { k = { Key.brightness_down },                c = hl.dsp.exec_cmd "brightnessctl -e s 2%-" },
 
-  { keys = { key.audio_next },                            callback = hl.dsp.exec_cmd "playerctl next" },
-  { keys = { key.audio_pause },                           callback = hl.dsp.exec_cmd "playerctl play-pause" },
-  { keys = { key.audio_play },                            callback = hl.dsp.exec_cmd "playerctl play-pause" },
-  { keys = { key.audio_prev },                            callback = hl.dsp.exec_cmd "playerctl previous" },
-  { keys = { key.audio_mute },                            callback = hl.dsp.exec_cmd "playerctl play-pause" },
-  { keys = { key.page_up },                               callback = hl.dsp.exec_cmd "~/.config/hypr/scripts/change-sound-output.sh" },
+  { k = { Key.audio_next },                     c = hl.dsp.exec_cmd "playerctl next" },
+  { k = { Key.audio_pause },                    c = hl.dsp.exec_cmd "playerctl play-pause" },
+  { k = { Key.audio_play },                     c = hl.dsp.exec_cmd "playerctl play-pause" },
+  { k = { Key.audio_prev },                     c = hl.dsp.exec_cmd "playerctl previous" },
+  { k = { Key.audio_mute },                     c = hl.dsp.exec_cmd "playerctl play-pause" },
+  { k = { Key.page_up },                        c = hl.dsp.exec_cmd "~/.config/hypr/scripts/change-sound-output.sh" },
 }
 
 for _, v in pairs(binds) do
-  hl.bind(table.concat(v.keys, " + "), v.callback, v.rules)
+  hl.bind(table.concat(v.k, " + "), v.c, v.r)
 end
