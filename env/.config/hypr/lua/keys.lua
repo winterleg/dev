@@ -95,10 +95,10 @@ WSKey = {
   fourth  = Key.braceleft,
   fifth   = Key.apostrophe,
   sixth   = Key.dollar,
-  seventh = Key.braceright,
-  eigtht  = Key.bracketright,
-  ninth   = Key.parenright,
-  tenth   = Key.exclam,
+  seventh = Key.exclam,
+  eigtht  = Key.braceright,
+  ninth   = Key.bracketright,
+  tenth   = Key.parenright,
 }
 
 MainMod = Key.super

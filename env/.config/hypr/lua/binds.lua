@@ -139,10 +139,15 @@ local binds = {
   { k = { MainMod, Key.shift, Key.f3 },         c = hl.dsp.window.move { workspace = "8", follow = true } },
   { k = { MainMod, Key.shift, Key.f4 },         c = hl.dsp.window.move { workspace = "9", follow = true } },
 
-  { k = { MainMod, Key.h },                     c = hl.dsp.focus { direction = "l" } },
-  { k = { MainMod, Key.i },                     c = hl.dsp.focus { direction = "r" } },
-  { k = { MainMod, Key.e },                     c = hl.dsp.focus { direction = "u" } },
-  { k = { MainMod, Key.n },                     c = hl.dsp.focus { direction = "d" } },
+  -- { k = { MainMod, Key.h },                     c = hl.dsp.focus { direction = "l" } },
+  -- { k = { MainMod, Key.i },                     c = hl.dsp.focus { direction = "r" } },
+  -- { k = { MainMod, Key.e },                     c = hl.dsp.focus { direction = "u" } },
+  -- { k = { MainMod, Key.n },                     c = hl.dsp.focus { direction = "d" } },
+
+  { k = { MainMod, Key.h },                     c = hl.dsp.layout "focus l" },
+  { k = { MainMod, Key.i },                     c = hl.dsp.layout "focus r" },
+  { k = { MainMod, Key.e },                     c = hl.dsp.layout "focus u" },
+  { k = { MainMod, Key.n },                     c = hl.dsp.layout "focus d" },
 
   { k = { MainMod, Key.shift, Key.h },          c = hl.dsp.window.move { direction = "l" } },
   { k = { MainMod, Key.shift, Key.i },          c = hl.dsp.window.move { direction = "r" } },
