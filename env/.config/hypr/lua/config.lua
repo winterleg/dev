@@ -7,9 +7,12 @@ hl.config({
     sensitivity   = 0,
     accel_profile = "flat",
 
+    repeat_delay  = 250,
+
     touchpad      = {
-      natural_scroll = true
-    }
+      natural_scroll = true,
+      disable_while_typing = true
+    },
   },
 
   cursor     = {
@@ -23,8 +26,8 @@ hl.config({
     gaps_out      = 5,
     border_size   = 0,
     col           = {
-      active_border   = 0xFFC4A7E7,
-      inactive_border = 0xFF1F1F28,
+      active_border   = 0xFFb8bb26,
+      inactive_border = 0xFF83a598,
     },
     layout        = "scrolling",
     allow_tearing = true,
@@ -56,7 +59,7 @@ hl.config({
   },
 
   decoration = {
-    rounding         = 5,
+    rounding         = 0,
 
     active_opacity   = 1.0,
     inactive_opacity = 0.8,

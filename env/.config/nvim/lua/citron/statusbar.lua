@@ -66,6 +66,17 @@ function _G.git_status()
   return "[Git:" .. branch .. "]"
 end
 
+function _G.tmux_status()
+  if os.getenv("TMUX") == nil then
+    return ""
+  end
+
+  local session = vim.fn.system("tmux display-message -p '#S'"):gsub("\n", "")
+  local window = vim.fn.system("tmux display-message -p '#I'"):gsub("\n", "")
+
+  return "[" .. session .. ":" .. window .. "]"
+end
+
 function _G.nvimcommit_status()
   if _G.isWriteCommit then
     return "nvim-commit"
@@ -86,6 +97,7 @@ local function status_line()
   local line_no = "%10([%l/%L%)]"
   local search = "%{v:hlsearch ? v:lua.search_status() : ''}"
   local commit = "%{v:lua.nvimcommit_status()}"
+  local tmux = "%{v:lua.tmux_status()}"
 
   return table.concat({
     mode,
@@ -96,6 +108,7 @@ local function status_line()
     diagnostics,
     gits,
     lsp,
+    tmux,
     commit,
     line_no
   })

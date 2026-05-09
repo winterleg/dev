@@ -75,10 +75,11 @@ vim.pack.add {
     src = "https://github.com/rebelot/kanagawa.nvim",
     config = function()
       require('kanagawa').setup({
-        transparent = true, -- do not set background color
-        theme = "wave",     -- Load "wave" theme when 'background' option is not set
-        background = {      -- map the value of 'background' option to a theme
-          dark = "wave",    -- try "dragon" !
+        transparent = true,
+        theme = "dragon",
+        keywordStyle = { italic = false },
+        background = {
+          dark = "dragon",
           light = "lotus"
         },
       })
@@ -100,6 +101,7 @@ vim.pack.add {
   { src = "https://github.com/kungfusheep/mfd.nvim" },
   { src = "https://github.com/projekt0n/github-nvim-theme" },
   { src = "https://github.com/d00h/nvim-rusticated" },
+  { src = "https://github.com/f4z3r/gruvbox-material.nvim" },
 }
 
 -- Default options
@@ -121,4 +123,30 @@ require('rose-pine').setup({
   styles = {
     transparency = true,
   }
+})
+
+-- values shown are defaults and will be used if not provided
+require('gruvbox-material').setup({
+  italics = true,    -- enable italics in general
+  contrast = "hard", -- set contrast, can be any of "hard", "medium", "soft"
+  comments = {
+    italics = true,  -- enable italic comments
+  },
+  background = {
+    transparent = false, -- set the background to be opaque
+  },
+  float = {
+    force_background = false, -- set to true to force backgrounds on floats even when
+    -- background.transparent is set
+    background_color = nil,   -- set color for float backgrounds. If nil, uses the default color set
+    -- by the color scheme
+  },
+  signs = {
+    force_background = false, -- set to true to force backgrounds on signs even when
+    -- background.transparent is set
+    background_color = nil,   -- set color for sign backgrounds. If nil, uses the default color set
+    -- by the color scheme
+  },
+  customize = nil, -- customize the theme in any way you desire, see below what this
+  -- configuration accepts
 })

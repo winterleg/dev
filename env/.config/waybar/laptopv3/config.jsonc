@@ -14,7 +14,7 @@
     ],
     "hyprland/workspaces": {
         "format": "{name}",
-        "all-outputs": false
+        "all-outputs": true
     },
     "custom/sep": {
         "format": "   "

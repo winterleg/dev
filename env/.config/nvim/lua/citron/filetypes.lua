@@ -3,6 +3,11 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "fs", "fsharp" },
   callback = function()
+    local width = 4
+    vim.opt_local.shiftwidth = width
+    vim.opt_local.tabstop = width
+    vim.opt_local.softtabstop = width
+    vim.opt_local.expandtab = true
     vim.opt_local.textwidth = 120
   end
 })

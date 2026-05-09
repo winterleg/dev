@@ -17,40 +17,49 @@ local function ws_exec(cmd, ws)
   hl.dispatch(hl.dsp.exec_cmd(cmd))
 end
 
---- @param window_class string
---- @param window_exe string
---- @param default_ws integer?
-local function toggle_or_focus_window(window_class, window_exe, default_ws)
-  local wins = hl.get_windows { class = window_class }
+-- --- @param window_class string
+-- --- @param window_exe string
+-- --- @param default_ws integer?
+-- local function toggle_or_focus_window(window_class, window_exe, default_ws)
+--   local wins = hl.get_windows { class = window_class }
+--   local active = hl.get_active_window()
+--
+--   if #wins == 0 then
+--     hl.dispatch(hl.dsp.exec_cmd(window_exe))
+--     return
+--   end
+--
+--   local win = wins[1]
+--
+--   if active ~= nil and active.address == win.address then
+--     hl.dispatch(hl.dsp.window.move {
+--       window    = win,
+--       workspace = "special:shadowrealm",
+--       follow    = false,
+--     })
+--     return
+--   end
+--
+--   if win.workspace.special then
+--     if default_ws ~= nil then
+--       hl.dispatch(hl.dsp.window.move {
+--         window    = win,
+--         workspace = default_ws,
+--         follow    = false,
+--       })
+--     end
+--   end
+--
+--   hl.dispatch(hl.dsp.focus { window = win })
+-- end
+
+local function focus_fs(direction)
   local active = hl.get_active_window()
 
-  if #wins == 0 then
-    hl.dispatch(hl.dsp.exec_cmd(window_exe))
-    return
+  if active ~= nil and active.fullscreen ~= 0 then
+    hl.dispatch(hl.dsp.layout("focus " .. direction))
   end
-
-  local win = wins[1]
-
-  if active ~= nil and active.address == win.address then
-    hl.dispatch(hl.dsp.window.move {
-      window    = win,
-      workspace = "special:shadowrealm",
-      follow    = false,
-    })
-    return
-  end
-
-  if win.workspace.special then
-    if default_ws ~= nil then
-      hl.dispatch(hl.dsp.window.move {
-        window    = win,
-        workspace = default_ws,
-        follow    = false,
-      })
-    end
-  end
-
-  hl.dispatch(hl.dsp.focus { window = win })
+  hl.dispatch(hl.dsp.focus { direction = direction })
 end
 
 
@@ -94,6 +103,7 @@ local binds = {
   { k = { MainMod, Key.y },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
   { k = { MainMod, Key.t },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/status.sh" },
   { k = { MainMod, Key.shift, Key.f },          c = hl.dsp.exec_cmd "thunar" },
+  { k = { MainMod, Key.k },                     c = hl.dsp.exec_cmd "alacritty -e rmpc" },
   { k = { MainMod, Key.s },                     c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh simple" },
   { k = { Key.printscr },                       c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh screen" },
   { k = { MainMod, Key.shift, Key.s },          c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh" },
@@ -101,7 +111,6 @@ local binds = {
   { k = { MainMod, Key.shift, Key.c },          c = hl.dsp.exec_cmd "hyprpicker -a" },
   { k = { MainMod, Key.period },                c = hl.dsp.exec_cmd "rofi -config ~/.config/rofi/config-copy.rasi -modi emoji -show emoji -no-fixed-num-lines -lines 20" },
   { k = { MainMod, Key.dead_grave },            c = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
-  { k = { MainMod, Key.f10 },                   c = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
   { k = { Key.control, Key.shift, Key.o },      c = hl.dsp.exec_cmd "wtype -M shift ] -m shift" },
 
   { k = { MainMod, Key.numbersign },            c = hl.dsp.workspace.toggle_special("specialwork") },
@@ -112,16 +121,16 @@ local binds = {
   { k = { MainMod, WSKey.third },               c = hl.dsp.focus { workspace = "3" } },
   { k = { MainMod, WSKey.fourth },              c = hl.dsp.focus { workspace = "4" } },
   { k = { MainMod, WSKey.fifth },               c = hl.dsp.focus { workspace = "5" } },
-  { k = { MainMod, WSKey.sixth },               c = function() ws_exec("thunderbird", 6) end },
-  { k = { MainMod, WSKey.seventh },             c = hl.dsp.focus { workspace = "7" } },
+  { k = { MainMod, WSKey.sixth },               c = hl.dsp.focus { workspace = "6" } },
+  { k = { MainMod, WSKey.seventh },             c = function() ws_exec("thunderbird", 7) end },
   { k = { MainMod, WSKey.eigtht },              c = hl.dsp.focus { workspace = "8" } },
   { k = { MainMod, WSKey.ninth },               c = function() ws_exec("vesktop", 9) end },
   { k = { MainMod, WSKey.tenth },               c = hl.dsp.focus { workspace = "10" } },
 
   { k = { MainMod, Key.f1 },                    c = hl.dsp.focus { workspace = "6" } },
-  { k = { MainMod, Key.f2 },                    c = hl.dsp.focus { workspace = "7" } },
+  { k = { MainMod, Key.f2 },                    c = function() ws_exec("thunderbird", 7) end },
   { k = { MainMod, Key.f3 },                    c = hl.dsp.focus { workspace = "8" } },
-  { k = { MainMod, Key.f4 },                    c = hl.dsp.focus { workspace = "9" } },
+  { k = { MainMod, Key.f4 },                    c = function() ws_exec("vesktop", 9) end },
 
   { k = { MainMod, Key.shift, WSKey.first },    c = hl.dsp.window.move { workspace = "1", follow = true } },
   { k = { MainMod, Key.shift, WSKey.second },   c = hl.dsp.window.move { workspace = "2", follow = true } },
@@ -139,15 +148,10 @@ local binds = {
   { k = { MainMod, Key.shift, Key.f3 },         c = hl.dsp.window.move { workspace = "8", follow = true } },
   { k = { MainMod, Key.shift, Key.f4 },         c = hl.dsp.window.move { workspace = "9", follow = true } },
 
-  -- { k = { MainMod, Key.h },                     c = hl.dsp.focus { direction = "l" } },
-  -- { k = { MainMod, Key.i },                     c = hl.dsp.focus { direction = "r" } },
-  -- { k = { MainMod, Key.e },                     c = hl.dsp.focus { direction = "u" } },
-  -- { k = { MainMod, Key.n },                     c = hl.dsp.focus { direction = "d" } },
-
-  { k = { MainMod, Key.h },                     c = hl.dsp.layout "focus l" },
-  { k = { MainMod, Key.i },                     c = hl.dsp.layout "focus r" },
-  { k = { MainMod, Key.e },                     c = hl.dsp.layout "focus u" },
-  { k = { MainMod, Key.n },                     c = hl.dsp.layout "focus d" },
+  { k = { MainMod, Key.h },                     c = function() focus_fs("l") end },
+  { k = { MainMod, Key.i },                     c = function() focus_fs("r") end },
+  { k = { MainMod, Key.e },                     c = function() focus_fs("u") end },
+  { k = { MainMod, Key.n },                     c = function() focus_fs("d") end },
 
   { k = { MainMod, Key.shift, Key.h },          c = hl.dsp.window.move { direction = "l" } },
   { k = { MainMod, Key.shift, Key.i },          c = hl.dsp.window.move { direction = "r" } },
@@ -157,8 +161,8 @@ local binds = {
   { k = { MainMod, Mouse.click_left },          c = hl.dsp.window.drag(),                                                                                                              r = { mouse = true } },
   { k = { MainMod, Mouse.click_right },         c = hl.dsp.window.resize(),                                                                                                            r = { mouse = true } },
 
-  { k = { MainMod, Mouse.wheel_up },            c = hl.dsp.focus { workspace = "e+1" },                                                                                                r = { mouse = true, repeating = true } },
-  { k = { MainMod, Mouse.wheel_down },          c = hl.dsp.focus { workspace = "e-1" },                                                                                                r = { mouse = true, repeating = true } },
+  { k = { MainMod, Mouse.wheel_up },            c = hl.dsp.focus { workspace = "e+1" },                                                                                                r = { mouse = true } },
+  { k = { MainMod, Mouse.wheel_down },          c = hl.dsp.focus { workspace = "e-1" },                                                                                                r = { mouse = true } },
 
   { k = { Key.audio_raise_volume },             c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
   { k = { Key.audio_lower_volume },             c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },
@@ -172,7 +176,7 @@ local binds = {
   { k = { Key.audio_play },                     c = hl.dsp.exec_cmd "playerctl play-pause" },
   { k = { Key.audio_prev },                     c = hl.dsp.exec_cmd "playerctl previous" },
   { k = { Key.audio_mute },                     c = hl.dsp.exec_cmd "playerctl play-pause" },
-  { k = { Key.page_up },                        c = hl.dsp.exec_cmd "~/.config/hypr/scripts/change-sound-output.sh" },
+  { k = { MainMod, Key.page_up },               c = hl.dsp.exec_cmd "~/.config/hypr/scripts/change-sound-output.sh" },
 }
 
 for _, v in pairs(binds) do

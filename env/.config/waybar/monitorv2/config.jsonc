@@ -5,8 +5,6 @@
     "exclusive": true,
     "modules-left": [
         "hyprland/workspaces",
-        // "custom/sep",
-        // "hyprland/window",
         "custom/sep",
         "mpd"
     ],
@@ -16,12 +14,6 @@
     "modules-right": [
         "tray",
         "custom/sep",
-        // "cpu",
-        // "custom/sep",
-        // "memory",
-        // "custom/sep",
-        // "disk",
-        // "custom/sep",
         "clock",
         "custom/sep"
     ],

@@ -6,16 +6,21 @@ local current_name = nil
 
 local function unset_curls()
   local groups = {
+    "Delimiter",                --
     "DiagnosticUnderlineError", --
-    "DiagnosticUnderlineWarn",  --
-    "DiagnosticUnderlineInfo",  --
     "DiagnosticUnderlineHint",  --
-    "Type",                     --
+    "DiagnosticUnderlineInfo",  --
+    "DiagnosticUnderlineWarn",  --
     "Structure",                --
+    "Type",                     --
+    "TypeDef",                  --
     "@lsp",                     --
+    "@lsp.type.type",           --
     "@lsp.type.class",          --
     "@lsp.type.struct",         --
-    "Delimiter",                --
+    "@type",                    --
+    "DiagnosticUnderlineInfo",  --
+    "GruvboxBlueUnderline",     --
   }
   for _, group in ipairs(groups) do
     local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
@@ -88,11 +93,23 @@ local colorsList = {
     end,
   },
   {
+    name = "Faded Dawn",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "light"
+      vim.cmd [[colorscheme rosebones]]
+
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#fbf6f0", bg = "#724341" })
+
+      save_theme "Faded Dawn"
+    end,
+  },
+  {
     name = "Gruv Dark",
     enabled = true,
     callback = function()
       require("gruvbox").setup({
-        transparent_mode = true,
+        transparent_mode = false,
       })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]
@@ -103,30 +120,16 @@ local colorsList = {
     end,
   },
   {
-    name = "Gruv Light",
-    enabled = false,
-    callback = function()
-      require("gruvbox").setup({
-        transparent_mode = false,
-      })
-      vim.opt.background = "light"
-      vim.cmd [[colorscheme gruvbox]]
-      vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
-      vim.api.nvim_set_hl(0, "Visual", { bg = "#3c3836", fg = "#ebdbb2" })
-
-      save_theme "Gruv Light"
-    end
-  },
-  {
-    name = "Vague",
-    enabled = false,
+    name = "KAWA",
+    enabled = true,
     callback = function()
       vim.opt.background = "dark"
-      vim.cmd [[colorscheme vague]]
-      vim.api.nvim_set_hl(0, "SpellBad", { italic = false, undercurl = true })
+      vim.cmd [[colorscheme kanagawa-dragon]]
+      vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#c5c9c5", fg = "#181616" })
 
-      save_theme "Vague"
-    end,
+      save_theme "KAWA"
+    end
   },
   {
     name = "NERV",
@@ -203,7 +206,7 @@ local colorsList = {
   },
   {
     name = "Lotus",
-    enabled = false,
+    enabled = true,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme kanagawa-lotus]]

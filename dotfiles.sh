@@ -21,8 +21,10 @@ confs=(
 
 envs=(
   .aliases.sh
+  .ghci
   .tmux.conf
-  .vague-theme.tmux.conf
-  .custom-theme.tmux.conf
+  .tmux.custom-theme.conf
+  .tmux.gruvbox-theme.conf
+  .tmux.vague-theme.conf
   .zshrc
 )

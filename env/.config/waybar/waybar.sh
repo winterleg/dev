@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 FORCE_DISABLE_LAPTOP=false
-FORCE_DISABLE_MONITOR=false
+FORCE_DISABLE_MONITOR=true
 
 LAPTOP_CONFIG="laptopv3"
 MONITOR_CONFIG="monitorv3"

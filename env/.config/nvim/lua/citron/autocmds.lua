@@ -98,8 +98,15 @@ autocmd('LspAttach', {
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lz", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end, { desc = "Format the file" })
-    vim.keymap.set("n", "<leader>lv", "<CMD>LspRestart<CR>", opts)
+    vim.keymap.set("n", "<leader>f", function()
+      local clients = vim.lsp.get_clients({ bufnr = 0 })
+      for _, client in ipairs(clients) do
+        if client:supports_method("textDocument/formatting") then
+          vim.lsp.buf.format()
+          return
+        end
+      end
+    end, { desc = "Format the file" })
     vim.keymap.set("n", "<leader>h", "<CMD>Gitsigns preview_hunk<CR>", {})
     vim.keymap.set("n", "<leader>i", "<CMD>Gitsigns preview_hunk_inline<CR>", {})
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)

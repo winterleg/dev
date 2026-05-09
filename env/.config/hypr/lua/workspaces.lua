@@ -21,12 +21,12 @@ hl.window_rule { match = { class = "discovery.exe" }, workspace = "4" }
 hl.window_rule { match = { class = "ADanceOfFireAndIce" }, workspace = "4" }
 hl.window_rule { match = { class = "steam_app.*" }, workspace = "4" }
 
-hl.window_rule { match = { class = "steam" }, workspace = "5" }
+hl.window_rule { match = { class = "steam" }, workspace = "5 silent" }
 
-hl.window_rule { match = { class = "org.mozilla.Thunderbird" }, workspace = "6" }
+hl.window_rule { match = { class = "org.mozilla.Thunderbird" }, workspace = "7" }
 
 hl.window_rule { match = { class = "vesktop" }, workspace = "9" }
 hl.window_rule { match = { class = "Element" }, workspace = "9" }
 
-hl.window_rule { match = { title = "^Incrustation vidéo$" }, workspace = "10" }
-hl.window_rule { match = { title = "^Picture-in-Picture$" }, workspace = "10" }
+hl.window_rule { match = { title = "^Incrustation vidéo$" }, workspace = "10 silent" }
+hl.window_rule { match = { title = "^Picture-in-Picture$" }, workspace = "10 silent" }

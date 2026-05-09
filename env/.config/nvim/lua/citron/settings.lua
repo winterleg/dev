@@ -73,6 +73,8 @@ vim.opt.smartcase = true
 vim.opt.spell = false
 vim.opt.spelllang = nil
 
+-- vim.o.iskeyword = "a-z,A-Z,48-57,_,.,->"
+
 _G.isWriteCommit = false
 
 vim.api.nvim_create_user_command("ToggleWriteCommit", function()

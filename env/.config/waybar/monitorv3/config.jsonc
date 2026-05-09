@@ -20,7 +20,6 @@
         "format": "   "
     },
     "tray": {
-        // "icon-size": 12,
         "show-passive-items": "true"
     },
     "clock": {
