@@ -44,6 +44,10 @@
       "rev": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
       "src": "https://github.com/saadparwaiz1/cmp_luasnip"
     },
+    "e-ink.nvim": {
+      "rev": "a0f003a0c6e2952abd9b73ef89d56c65e6c46f00",
+      "src": "https://github.com/e-ink-colorscheme/e-ink.nvim"
+    },
     "easy-dotnet.nvim": {
       "rev": "cccd08c1e86f4952cbab1e27a2bd54c7251b28de",
       "src": "https://github.com/GustavEikaas/easy-dotnet.nvim"
@@ -152,6 +156,10 @@
     "oil.nvim": {
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "parchment.nvim": {
+      "rev": "ee521c7b24d6ba526787ced5927675b652f852a0",
+      "src": "https://github.com/saeeedhany/parchment.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",

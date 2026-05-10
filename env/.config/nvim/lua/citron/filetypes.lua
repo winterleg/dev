@@ -109,11 +109,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "txt" },
-  callback = function()
+  callback = function(args)
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "fr", "cjk" }
-
-    -- vim.opt_local.colorcolumn = "80"
 
     vim.opt_local.sidescrolloff = 0
 
@@ -125,13 +123,20 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.textwidth = 80
 
+    local name = vim.api.nvim_buf_get_name(args.buf)
+
+    if name:match("%.72%.txt$") then
+      vim.opt_local.textwidth = 72
+      vim.opt_local.colorcolumn = { 72, 80, 120, 180 }
+    end
+
     vim.opt_local.autoindent = false
     vim.opt_local.smartindent = false
     vim.opt_local.cindent = false
     vim.opt_local.indentexpr = ""
     vim.opt_local.indentkeys = ""
     vim.opt_local.formatoptions = "t"
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {

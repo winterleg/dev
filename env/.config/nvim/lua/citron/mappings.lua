@@ -157,6 +157,7 @@ local function fzf_pdf()
 end
 
 local mappings = {
+  { "n",               "<Enter>",      "<nop>" },
   { "t",               "<C-q>",      [[<C-\><C-n>]] },
   { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
   { "n",               "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
@@ -182,7 +183,20 @@ local mappings = {
   { { "n", "v", "x" }, ":",          ";" },
   { { 'n', 'v', 'x' }, 'j',          'gj' },
   { { 'n', 'v', 'x' }, 'k',          'gk' },
+
+  { 'n', '<leader>de', function()
+    local word = vim.fn.expand('<cword>')
+    vim.cmd('botright split | enew | set buftype=nofile | 0r !dict ' .. word)
+    vim.bo.filetype = 'dict'
+  end, { desc = 'English dictionary lookup' } },
+
+  { "n", "<leader>df", function()
+    local w = vim.fn.expand("<cword>")
+    vim.cmd("botright split | enew | set buftype=nofile | 0r !sdcv " .. w .. " | pandoc -f html -t plain")
+  end },
 }
+
+
 
 for _, value in ipairs(mappings) do
   vim.keymap.set(value[1], value[2], value[3], value[4])

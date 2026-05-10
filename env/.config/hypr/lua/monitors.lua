@@ -17,24 +17,3 @@ hl.config {
     force_zero_scaling = true
   }
 }
-
--- how can disable and reenabled...
--- hl.on("monitor.added", function(mon)
---   if mon.name == "HDMI-A-1" then
---     hl.monitor {
---       output = "eDP-1",
---       mode   = "2560x1600@60",
---       scale  = "2",
---     }
---   end
--- end)
---
--- hl.on("monitor.removed", function(mon)
---   if mon.name == "HDMI-A-1" then
---     hl.monitor {
---       output = "eDP-1",
---       mode   = "2560x1600@165",
---       scale  = "1.25",
---     }
---   end
--- end)

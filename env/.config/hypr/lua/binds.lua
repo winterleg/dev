@@ -9,49 +9,14 @@ require "lua.keys"
 -- bind = $MainMod ALT, l, changegroupactive, b
 -- bind = $MainMod ALT, k, movegroupwindow, b
 -- bind = $MainMod ALT, m, movegroupwindow, f
+--
+-- don't think i'll use groups again since i prefer using scrolling with
+-- 'direction = down' anyway
 
---- @param cmd string
---- @param ws integer
 local function ws_exec(cmd, ws)
   hl.dispatch(hl.dsp.focus { workspace = ws })
   hl.dispatch(hl.dsp.exec_cmd(cmd))
 end
-
--- --- @param window_class string
--- --- @param window_exe string
--- --- @param default_ws integer?
--- local function toggle_or_focus_window(window_class, window_exe, default_ws)
---   local wins = hl.get_windows { class = window_class }
---   local active = hl.get_active_window()
---
---   if #wins == 0 then
---     hl.dispatch(hl.dsp.exec_cmd(window_exe))
---     return
---   end
---
---   local win = wins[1]
---
---   if active ~= nil and active.address == win.address then
---     hl.dispatch(hl.dsp.window.move {
---       window    = win,
---       workspace = "special:shadowrealm",
---       follow    = false,
---     })
---     return
---   end
---
---   if win.workspace.special then
---     if default_ws ~= nil then
---       hl.dispatch(hl.dsp.window.move {
---         window    = win,
---         workspace = default_ws,
---         follow    = false,
---       })
---     end
---   end
---
---   hl.dispatch(hl.dsp.focus { window = win })
--- end
 
 local function focus_fs(direction)
   local active = hl.get_active_window()
@@ -65,7 +30,7 @@ end
 
 ---@class Bind
 ---@field k table
----@field c fun()
+---@field c function|HL.Dispatcher
 ---@field r? table
 
 ---@type Bind[]

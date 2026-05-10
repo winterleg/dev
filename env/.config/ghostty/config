@@ -10,7 +10,7 @@ background-blur    = false
 
 confirm-close-surface = false
 
-font-family  = "comic code"
+font-family  = "JMH Typewriter Mono"
 # font-family  = "ocr a std"
 font-family  = "zen maru gothic"
 font-size    = 22

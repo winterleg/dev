@@ -99,6 +99,7 @@ hl.device {
   enabled = true,
 }
 
+-- how can i toggle the touchpad... 'enabled'
 hl.device {
   name    = "elan06fa:00-04f3:327e-touchpad",
   enabled = true

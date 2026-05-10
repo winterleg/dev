@@ -181,6 +181,40 @@ local colorsList = {
     end,
   },
   {
+    name = "EINK",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "light"
+      vim.cmd [[colorscheme e-ink]]
+      -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#cccccc", bg = "#5e5e5e" })
+
+      save_theme "EINK"
+    end,
+  },
+  {
+    name = "PARCHMENT",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "light"
+      vim.cmd [[colorscheme parchment-manuscript]]
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#ede4cc", bg = "#2a2018" })
+
+      save_theme "PARCHMENT"
+    end,
+  },
+  {
+    name = "PARCHMENT PSYOP",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme parchment]]
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#141312", bg = "#d4c9a8" })
+
+      save_theme "PARCHMENT PSYOP"
+    end,
+  },
+  {
     name = "BLACK OUT",
     enabled = true,
     callback = function()

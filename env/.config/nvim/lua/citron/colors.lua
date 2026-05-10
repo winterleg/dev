@@ -102,6 +102,8 @@ vim.pack.add {
   { src = "https://github.com/projekt0n/github-nvim-theme" },
   { src = "https://github.com/d00h/nvim-rusticated" },
   { src = "https://github.com/f4z3r/gruvbox-material.nvim" },
+  { src = "https://github.com/e-ink-colorscheme/e-ink.nvim" },
+  { src = "https://github.com/saeeedhany/parchment.nvim" },
 }
 
 -- Default options
@@ -150,3 +152,7 @@ require('gruvbox-material').setup({
   customize = nil, -- customize the theme in any way you desire, see below what this
   -- configuration accepts
 })
+
+require("e-ink").setup()
+
+require("parchment").setup({})

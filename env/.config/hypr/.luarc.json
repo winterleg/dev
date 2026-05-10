@@ -1,7 +1,8 @@
 {
   "workspace": {
     "library": [
-      "~/repos/Hyprland/meta/"
+      "~/repos/Hyprland/meta/",
+"/usr/share/hypr/stubs"
     ]
   },
   "diagnostics": {
