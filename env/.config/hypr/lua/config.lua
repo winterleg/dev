@@ -96,10 +96,9 @@ hl.config({
 hl.device {
   name    = "wacom-one-by-wacom-m-pen",
   output  = "HDMI-A-1",
-  enabled = true,
 }
 
-hl.device {
-  name    = "elan06fa:00-04f3:327e-touchpad",
-  enabled = true
-}
+-- hl.device {
+--   name    = "elan06fa:00-04f3:327e-touchpad",
+--   enabled = true
+-- }
