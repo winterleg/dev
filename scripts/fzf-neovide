@@ -2,7 +2,7 @@
 
 tmp="$(mktemp)"
 
-alacritty -e bash -lc "fd -t d --hidden | fzf >\"$tmp\""
+kitty -e bash -lc "fd . ~ -t d --hidden --max-depth 2 | fzf >\"$tmp\""
 
 if [ ! -s "$tmp" ]; then
   rm -f -- "$tmp"
@@ -14,6 +14,4 @@ rm -f -- "$tmp"
 
 [ -z "$selected" ] && exit 1
 
-realpath "$selected"
-
-(cd "$selected" && nohup neovide "$(realpath "$selected")" >/dev/null 2>&1 &)
+(cd "$selected" && nohup neovide "$(realpath $selected)" >/dev/null 2>&1 &)

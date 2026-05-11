@@ -14,7 +14,7 @@ dynamic_padding = true
 cursor = "#EC5D2A"
 
 [font]
-normal = { family = "ocr a std" }
+normal = { family = "JMH Typewriter Mono" }
 size = 20
 
 [keyboard]

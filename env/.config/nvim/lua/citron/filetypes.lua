@@ -100,10 +100,10 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.system({ "typst", "c", file })
     end, { buffer = true, desc = "Compile Typst file" })
 
-    vim.keymap.set("n", "<leader>y", function()
-      local pdf = vim.fn.expand("%:p:r") .. ".pdf"
-      vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
-    end, { buffer = true, desc = "Open PDF" })
+    -- vim.keymap.set("n", "<leader>y", function()
+    --   local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+    --   vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
+    -- end, { buffer = true, desc = "Open PDF" })
   end
 })
 

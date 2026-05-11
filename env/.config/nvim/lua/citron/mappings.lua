@@ -157,7 +157,7 @@ local function fzf_pdf()
 end
 
 local mappings = {
-  { "n",               "<Enter>",      "<nop>" },
+  { "n",               "<Enter>",    "<nop>" },
   { "t",               "<C-q>",      [[<C-\><C-n>]] },
   { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
   { "n",               "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
@@ -194,6 +194,12 @@ local mappings = {
     local w = vim.fn.expand("<cword>")
     vim.cmd("botright split | enew | set buftype=nofile | 0r !sdcv " .. w .. " | pandoc -f html -t plain")
   end },
+
+
+  { "n", "<leader>y", function()
+    local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+    vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
+  end, { desc = "Open PDF" } }
 }
 
 

@@ -1,18 +1,5 @@
 require "lua.keys"
 
--- Binds i haven't found the equivalent to or have not done yet:
---
--- bind = $MainMod, J,           layoutmsg, togglesplit
--- bind = $MainMod, G, togglegroup
--- bind = ALT, G, moveoutofgroup
--- bind = $MainMod ALT, u, changegroupactive, f
--- bind = $MainMod ALT, l, changegroupactive, b
--- bind = $MainMod ALT, k, movegroupwindow, b
--- bind = $MainMod ALT, m, movegroupwindow, f
---
--- don't think i'll use groups again since i prefer using scrolling with
--- 'direction = down' anyway
-
 local function ws_exec(cmd, ws)
   hl.dispatch(hl.dsp.focus { workspace = ws })
   hl.dispatch(hl.dsp.exec_cmd(cmd))

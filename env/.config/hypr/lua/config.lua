@@ -10,20 +10,20 @@ hl.config({
     repeat_delay  = 250,
 
     touchpad      = {
-      natural_scroll = true,
+      natural_scroll       = true,
       disable_while_typing = true
     },
   },
 
   cursor     = {
     hide_on_key_press = 1,
-    hide_on_tablet = 0,
-    inactive_timeout = 15,
+    hide_on_tablet    = 0,
+    inactive_timeout  = 15,
   },
 
   general    = {
-    gaps_in       = 5,
-    gaps_out      = 5,
+    gaps_in       = 0,
+    gaps_out      = 0,
     border_size   = 0,
     col           = {
       active_border   = 0xFFb8bb26,
@@ -49,8 +49,8 @@ hl.config({
   scrolling  = {
     fullscreen_on_one_column = true,
     direction                = "down",
-    column_width             = 0.95,
-    explicit_column_widths   = 0.95,
+    column_width             = 1,
+    explicit_column_widths   = 1,
     focus_fit_method         = 0
   },
 
@@ -99,7 +99,6 @@ hl.device {
   enabled = true,
 }
 
--- how can i toggle the touchpad... 'enabled'
 hl.device {
   name    = "elan06fa:00-04f3:327e-touchpad",
   enabled = true

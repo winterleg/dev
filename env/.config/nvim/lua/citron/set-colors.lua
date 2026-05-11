@@ -109,7 +109,7 @@ local colorsList = {
     enabled = true,
     callback = function()
       require("gruvbox").setup({
-        transparent_mode = false,
+        transparent_mode = true,
       })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]
