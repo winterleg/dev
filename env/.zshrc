@@ -14,8 +14,6 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 
 export WORKSTATION="$HOME/dotfiles"
 
-export LESS="-N"
-
 ZSH_THEME="robbyrussell"
 
 plugins=(
