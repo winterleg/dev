@@ -168,7 +168,7 @@ local mappings = {
   { "n",               "<leader>pr", files_no_pdf_query,                       { desc = "Open fzf (no PDFs) with query" } },
   { "n",               "<leader>pk", fzf_firefox,                              { desc = "Open file in Firefox with telescope" } },
   { "n",               "<leader>py", fzf_pdf },
-  { "n",               "<leader>k",  ":!make<CR>",                             { desc = "Call make", silent = true } },
+  { "n",               "<leader>k",  ":silent !make<CR>",                      { desc = "Call make" } },
   { "n",               "<leader>sk", "<CMD>T make<CR>",                        { desc = "Call make" } },
   { "n",               "<leader>sa", function() vim.cmd([[normal! ggVG]]) end, { desc = "Select the entire file" } },
   { "n",               "<leader>tw", toggleWhiteSpace },
@@ -195,6 +195,10 @@ local mappings = {
     vim.cmd("botright split | enew | set buftype=nofile | 0r !sdcv " .. w .. " | pandoc -f html -t plain")
   end },
 
+  { "n", "<leader>u", function()
+    vim.cmd("terminal less -N " .. vim.fn.expand("%"))
+    vim.cmd "startinsert"
+  end, { desc = "Open In Less" } },
 
   { "n", "<leader>y", function()
     local pdf = vim.fn.expand("%:p:r") .. ".pdf"
