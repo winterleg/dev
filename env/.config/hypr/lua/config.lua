@@ -1,6 +1,6 @@
 hl.config({
   input      = {
-    kb_layout     = "ca",
+    kb_layout     = "ca, us",
 
     follow_mouse  = 1,
 

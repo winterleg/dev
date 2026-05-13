@@ -10,8 +10,7 @@ background-blur    = false
 
 confirm-close-surface = false
 
-font-family  = "JMH Typewriter Mono"
-# font-family  = "ocr a std"
+font-family  = "Courier Prime"
 font-family  = "zen maru gothic"
 font-size    = 22
 font-feature = -calt, -liga, -dlig
