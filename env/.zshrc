@@ -30,14 +30,15 @@ source $ZSH/oh-my-zsh.sh
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' formats '-%F{cyan}[%f%F{red}%b%f%F{cyan}]%f'
+zstyle ':vcs_info:git:*' formats '%F{cyan}[%f%F{red}%b%f%F{cyan}]%f'
 
 setopt PROMPT_SUBST
 # %F{yellow};%f
 # PROMPT='%(?.%F{green}>.%F{red}>)%f %F{cyan}[%f%F{blue}%~%f%F{cyan}]%f${vcs_info_msg_0_}
 # %F{yellow}%%%f '
-PROMPT='%(?.%F{green}::.%F{red}::)%f %F{cyan}[%f%F{blue}%~%f%F{cyan}]%f${vcs_info_msg_0_}
- %F{yellow}>%f '
+# PROMPT='%(?.%F{green}::.%F{red}::)%f %F{cyan}[%f%F{blue}%~%f%F{cyan}]%f${vcs_info_msg_0_}
+#  %F{yellow}>%f '
+PROMPT='${vcs_info_msg_0_} %(?.%F{green}::.%F{red}::)%f '
 
 bindkey -s ^t "^utmux-goway\n"
 bindkey -s ^y "^uyazi-tmux\n"
