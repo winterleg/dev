@@ -7,7 +7,6 @@ require "lua.windowrules"
 require "lua.workspaces"
 
 
-
 -- things to change:
 --
 --     only make use of like 5 workspaces:

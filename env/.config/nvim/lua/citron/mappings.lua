@@ -5,6 +5,43 @@ vim.g.mapleader = " "
 vim.g.fzf_layout = { window = { width = 1, height = 0.7, yoffset = 1 } }
 vim.g.fzf_preview_window = { 'right:50%' }
 
+vim.api.nvim_create_user_command("UpdateWordCount", function()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+  -- exclude existing word count line
+  local filtered = {}
+
+  for _, line in ipairs(lines) do
+    if not line:match("^Words:%s*%d+$") then
+      table.insert(filtered, line)
+    end
+  end
+
+  local text = table.concat(filtered, "\n")
+
+  local count = 0
+  for _ in text:gmatch("%S+") do
+    count = count + 1
+  end
+
+  local found = false
+
+  for i, line in ipairs(lines) do
+    if line:match("^Words:%s*%d+$") then
+      lines[i] = "Words: " .. count
+      found = true
+      break
+    end
+  end
+
+  if not found then
+    table.insert(lines, "")
+    table.insert(lines, "Words: " .. count)
+  end
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+end, {})
+
 vim.cmd([[
   command! -bang FilesNoPDF
     \ call fzf#vim#files(
@@ -217,12 +254,14 @@ local mappings = {
     vim.cmd "startinsert"
   end, { desc = "Open In Less" } },
 
-  { "n", "<leader>cd", fzf_chdir, { desc = "Change directory with skim" } },
+  { "n", "<leader>cd", fzf_chdir,              { desc = "Change directory with skim" } },
 
   { "n", "<leader>y", function()
     local pdf = vim.fn.expand("%:p:r") .. ".pdf"
     vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
-  end, { desc = "Open PDF" } }
+  end, { desc = "Open PDF" } },
+
+  { "n", "<leader>cw", ":UpdateWordCount<CR>", {} }
 }
 
 

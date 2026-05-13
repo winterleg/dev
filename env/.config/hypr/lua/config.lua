@@ -94,8 +94,8 @@ hl.config({
 })
 
 hl.device {
-  name    = "wacom-one-by-wacom-m-pen",
-  output  = "HDMI-A-1",
+  name   = "wacom-one-by-wacom-m-pen",
+  output = "HDMI-A-1",
 }
 
 -- hl.device {

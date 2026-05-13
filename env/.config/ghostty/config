@@ -1,22 +1,18 @@
 background = #000000
-# foreground = #FFFFFF
 
 cursor-color = EC5D2A
-# cursor-text  = FFFFFF
 
 background-opacity = 0.86
-#0.86
 background-blur    = false
 
 confirm-close-surface = false
 
-font-family  = "Courier Prime"
+font-family  = "JMH Typewriter mono "
 font-family  = "zen maru gothic"
 font-size    = 22
 font-feature = -calt, -liga, -dlig
 
 gtk-single-instance = true
-
 gtk-tabs-location = bottom
 gtk-wide-tabs     = false
 
