@@ -1,5 +1,4 @@
-alias vim="nvim"
-alias vi="nvim"
+alias vim="/usr/bin/vim"
 alias rs="nvim"
 
 alias ff="fastfetch"

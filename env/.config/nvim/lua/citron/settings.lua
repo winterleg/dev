@@ -133,6 +133,7 @@ end, {
 })
 
 if vim.g.neovide then
+  vim.opt.nu = false
   vim.o.guifont = "jmh typewriter mono:h18"
   vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)

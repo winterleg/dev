@@ -156,6 +156,23 @@ local function fzf_pdf()
   })
 end
 
+local function fzf_chdir()
+  vim.fn['fzf#run']({
+    source = "fd . ~ --type d --hidden --follow --exclude .git --max-depth 2",
+    sink = function(selected)
+      if selected and selected ~= "" then
+        vim.fn.chdir(selected)
+      end
+    end,
+    options = {
+      "--prompt", "Change Dir > ",
+      "--preview", "ls -a {}",
+      '--preview-window', 'right:20%',
+    },
+    window = vim.g.fzf_layout.window
+  })
+end
+
 local mappings = {
   { "n",               "<Enter>",    "<nop>" },
   { "t",               "<C-q>",      [[<C-\><C-n>]] },
@@ -166,7 +183,7 @@ local mappings = {
   { "n",               "<ESC>",      "<CMD>noh<CR>" },
   { "n",               "<leader>pf", ":FilesNoPDF<CR>",                        { desc = "Open fzf (no PDFs)" } },
   { "n",               "<leader>pr", files_no_pdf_query,                       { desc = "Open fzf (no PDFs) with query" } },
-  { "n",               "<leader>pk", fzf_firefox,                              { desc = "Open file in Firefox with telescope" } },
+  { "n",               "<leader>pk", fzf_firefox,                              { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py", fzf_pdf },
   { "n",               "<leader>k",  ":silent !make<CR>",                      { desc = "Call make" } },
   { "n",               "<leader>sk", "<CMD>T make<CR>",                        { desc = "Call make" } },
@@ -199,6 +216,8 @@ local mappings = {
     vim.cmd("terminal less -N " .. vim.fn.expand("%"))
     vim.cmd "startinsert"
   end, { desc = "Open In Less" } },
+
+  { "n", "<leader>cd", fzf_chdir, { desc = "Change directory with skim" } },
 
   { "n", "<leader>y", function()
     local pdf = vim.fn.expand("%:p:r") .. ".pdf"

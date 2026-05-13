@@ -12,7 +12,7 @@ hl.workspace_rule { workspace = "10", monitor = "eDP-1", default = true }
 hl.workspace_rule { workspace = "s[1]", gaps_out = 50, gaps_in = 0, border_size = 5 }
 hl.workspace_rule { workspace = "4", gaps_out = 25, gaps_in = 0, border_size = 5 }
 
-hl.workspace_rule { workspace = "w[tv2-20]", border_size = 2 }
+hl.workspace_rule { workspace = "w[tv2-20]", border_size = 3 }
 
 hl.window_rule { match = { title = "Minecraft.*" }, workspace = "4" }
 hl.window_rule { match = { class = "cs2" }, workspace = "4" }

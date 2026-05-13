@@ -110,24 +110,30 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "txt" },
   callback = function(args)
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "fr", "cjk" }
+    vim.opt_local.spell         = true
+    vim.opt_local.spelllang     = { "en", "fr", "cjk" }
 
     vim.opt_local.sidescrolloff = 0
 
-    local width = 2
-    vim.opt_local.shiftwidth = width
-    vim.opt_local.tabstop = width
-    vim.opt_local.softtabstop = width
-    vim.opt_local.expandtab = true
+    local width                 = 2
+    vim.opt_local.shiftwidth    = width
+    vim.opt_local.tabstop       = width
+    vim.opt_local.softtabstop   = width
+    vim.opt_local.expandtab     = true
 
-    vim.opt_local.textwidth = 80
+    vim.opt_local.textwidth     = 80
 
-    local name = vim.api.nvim_buf_get_name(args.buf)
+    local name                  = vim.api.nvim_buf_get_name(args.buf)
+    local tw                    = name:match("%.(%d+)%.txt$")
 
-    if name:match("%.72%.txt$") then
-      vim.opt_local.textwidth = 72
-      vim.opt_local.colorcolumn = { 72, 80, 120, 180 }
+    local cc                    = { 80, 120, 180 }
+
+    if tw then
+      tw = tonumber(tw)
+      -- vim.opt_local.nu = false
+      vim.opt_local.textwidth = tw
+      table.insert(cc, tw)
+      vim.opt_local.colorcolumn = cc
     end
 
     vim.opt_local.autoindent = false
