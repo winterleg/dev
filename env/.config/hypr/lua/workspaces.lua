@@ -10,7 +10,7 @@ hl.workspace_rule { workspace = "9", monitor = "HDMI-A-1" }
 hl.workspace_rule { workspace = "10", monitor = "eDP-1", default = true }
 
 hl.workspace_rule { workspace = "s[1]", gaps_out = 50, gaps_in = 0, border_size = 5 }
-hl.workspace_rule { workspace = "4", gaps_out = 25, gaps_in = 0, border_size = 5 }
+-- hl.workspace_rule { workspace = "4", gaps_out = 25, gaps_in = 0, border_size = 5 }
 
 hl.workspace_rule { workspace = "w[tv2-20]", border_size = 3 }
 

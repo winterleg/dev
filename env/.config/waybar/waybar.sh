@@ -9,11 +9,33 @@ MONITOR_CONFIG="monitorv3"
 LAPTOPNAME="eDP-1"
 MONITORNAME="HDMI-A-1"
 
-has_monitor() {
-  hyprctl monitors -j >/dev/null 2>&1 &&
-    hyprctl monitors -j | jq -e --arg name "$1" \
-      '.[] | select(.name == $name)' >/dev/null
+detect_compositor() {
+  if command -v hyprctl &>/dev/null && hyprctl monitors -j &>/dev/null; then
+    COMPOSITOR="hyprland"
+  elif command -v labwc &>/dev/null && pgrep -x labwc &>/dev/null; then
+    COMPOSITOR="labwc"
+  elif command -v wlr-randr &>/dev/null; then
+    COMPOSITOR="labwc"
+  fi
 }
+
+has_monitor() {
+  local name="$1"
+  case "$COMPOSITOR" in
+    hyprland)
+      hyprctl monitors -j 2>/dev/null | jq -e --arg name "$name" \
+        '.[] | select(.name == $name)' >/dev/null 2>&1
+      ;;
+    labwc)
+      wlr-randr 2>/dev/null | grep -q "^$name "
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+detect_compositor
 
 LAPTOP=$(has_monitor "$LAPTOPNAME" && echo true || echo false)
 MONITOR=$(has_monitor "$MONITORNAME" && echo true || echo false)

@@ -11,3 +11,7 @@ sudo cp -v \
 sudo cp -v \
   /home/fuyu147/dotfiles/root/usr/share/xkeyboard-config-2/symbols/us \
   /usr/share/xkeyboard-config-2/symbols/us
+
+sudo cp -v \
+  /home/fuyu147/dotfiles/root/usr/share/xkeyboard-config-2/symbols/ru \
+  /usr/share/xkeyboard-config-2/symbols/ru

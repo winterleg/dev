@@ -237,6 +237,8 @@ local mappings = {
   { { "n", "v", "x" }, ":",          ";" },
   { { 'n', 'v', 'x' }, 'j',          'gj' },
   { { 'n', 'v', 'x' }, 'k',          'gk' },
+  { { 'n', 'v', 'x' }, 'R',          'gR' },
+  { { 'n', 'v', 'x' }, '<leader>cz',          ':center<CR>' },
 
   { 'n', '<leader>de', function()
     local word = vim.fn.expand('<cword>')

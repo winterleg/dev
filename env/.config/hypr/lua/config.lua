@@ -1,6 +1,8 @@
 hl.config({
   input      = {
-    kb_layout     = "ca",
+    kb_layout     = "ca, ru",
+    kb_variant    = ",typewriter",
+    kb_options    = "grp:alt_space_toggle",
 
     follow_mouse  = 1,
 

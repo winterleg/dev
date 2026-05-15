@@ -11,8 +11,24 @@ if vim.fn.filereadable(file) == 1 then
 end
 
 return {
-  s("date", t(os.date("%Y/%m/%d"))),
-  s("time", t(os.date("%H:%M"))),
-  s("mailp", t(EmailPersonnal)),
-  s("mailu", t(EmailUniversity)),
+  s({ trig = ";t", snippetType = "autosnippet" },
+    t(os.date("%Y/%m/%d"))
+  ),
+  s({ trig = ";h", snippetType = "autosnippet" },
+    t(os.date("%H:%M"))
+  ),
+  s({ trig = ";mp", snippetType = "autosnippet" },
+    t(EmailPersonnal)
+  ),
+  s({ trig = ";mu", snippetType = "autosnippet" },
+    t(EmailUniversity)
+  ),
+  s({ trig = ";mt", snippetType = "autosnippet" },
+    fmta("$<>$", { i(1) })
+  ),
+  s({ trig = ";[", snippetType = "autosnippet" },
+    fmta("\"<>\"", {
+      i(1)
+    })
+  ),
 }
