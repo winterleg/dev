@@ -47,7 +47,7 @@
 
 <theme>
   <name>gruvbox-material-dark</name>
-  <titleLayout></titleLayout>
+  <titleLayout>NDLIMC</titleLayout>
   <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -62,7 +62,7 @@
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
     <name>comic code</name>
-    <size>1</size>
+    <size>5</size>
     <!-- font size in points -->
     <weight>bold</weight>
     <!-- 'bold' or 'normal' -->
@@ -71,7 +71,7 @@
   </font>
   <font place="InactiveWindow">
     <name>comic code</name>
-    <size>1</size>
+    <size>5</size>
     <!-- font size in points -->
     <weight>bold</weight>
     <!-- 'bold' or 'normal' -->
@@ -254,6 +254,11 @@
   <keybind key="W-Return">
     <action name="Execute">
       <command>st</command>
+    </action>
+  </keybind>
+  <keybind key="W-S-Return">
+    <action name="Execute">
+      <command>~/dotfiles/scripts/fzf-neovide</command>
     </action>
   </keybind>
 
