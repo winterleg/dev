@@ -23,6 +23,7 @@ confs=(
 )
 
 envs=(
+  repos/st/config.h
   .aliases.sh
   .ghci
   .tmux.conf

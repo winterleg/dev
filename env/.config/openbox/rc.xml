@@ -251,6 +251,12 @@
     <action name="ToggleMaximize"/>
   </keybind>
 
+  <keybind key="W-Return">
+    <action name="Execute">
+      <command>st</command>
+    </action>
+  </keybind>
+
 
   <!-- Keybindings for window switching -->
   <keybind key="A-Tab">
