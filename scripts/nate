@@ -67,6 +67,9 @@ sync_files() {
   cp $CP_FLAGS ~/.config/rmpc/config.ron $WORKSTATION/resources/rmpc/
   cp $CP_FLAGS ~/.config/rmpc/themes/winlog.ron $WORKSTATION/resources/rmpc/themes/
 
+  echo "Copying ST config"
+  cp $CP_FLAGS ~/repos/st/config.h $WORKSTATION/resources/st/
+
   echo "Copying Katypst"
   cp $CP_FLAGS -r ~/art/katypst/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/katypst/.git
