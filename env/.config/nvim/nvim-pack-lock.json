@@ -121,6 +121,10 @@
       "rev": "2de78d9688ea4a177bcd9be554ab9192337d35ff",
       "src": "https://github.com/kdheepak/monochrome.nvim"
     },
+    "multiple-cursors.nvim": {
+      "rev": "eae76d4c5f7ede2d45746dc2affb5e7a139e4aa8",
+      "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
+    },
     "nightfox.nvim": {
       "rev": "26b61b1f856ec37cae3cb64f5690adb955f246a1",
       "src": "https://github.com/EdenEast/nightfox.nvim"
@@ -172,6 +176,10 @@
     "showkeys": {
       "rev": "cb0a50296f11f1e585acffba8c253b9e8afc1f84",
       "src": "https://github.com/nvzone/showkeys"
+    },
+    "slimv": {
+      "rev": "3ae4748296b2a0d852e396add5d88c91e2207f81",
+      "src": "https://github.com/kovisoft/slimv"
     },
     "spring-boot.nvim": {
       "rev": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",

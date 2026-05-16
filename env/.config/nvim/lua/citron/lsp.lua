@@ -15,6 +15,7 @@ vim.lsp.enable({
   "rust-analyzer",
   "pyright",
   "ocamllsp",
+  "clojure-lsp",
 })
 
 vim.pack.add {
@@ -26,7 +27,7 @@ vim.pack.add {
   { src = "https://github.com/mason-org/mason.nvim" },
   { src = "https://github.com/hrsh7th/cmp-cmdline", },
   { src = "https://github.com/hrsh7th/nvim-cmp", },
-  { src = 'https://github.com/mrcjkb/haskell-tools.nvim',         version = vim.version.range('^9') }
+  { src = 'https://github.com/mrcjkb/haskell-tools.nvim',         version = vim.version.range('^9') },
 }
 
 local cmp = require "cmp"

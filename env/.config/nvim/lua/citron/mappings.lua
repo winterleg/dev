@@ -222,7 +222,7 @@ local mappings = {
   { "n",               "<leader>pr", files_no_pdf_query,                       { desc = "Open fzf (no PDFs) with query" } },
   { "n",               "<leader>pk", fzf_firefox,                              { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py", fzf_pdf },
-  { "n",               "<leader>k",  ":silent !make<CR>",                      { desc = "Call make" } },
+  { "n",               "<leader>k",  ":!make<CR>",                             { desc = "Call make" } },
   { "n",               "<leader>sk", "<CMD>T make<CR>",                        { desc = "Call make" } },
   { "n",               "<leader>sa", function() vim.cmd([[normal! ggVG]]) end, { desc = "Select the entire file" } },
   { "n",               "<leader>tw", toggleWhiteSpace },
@@ -238,7 +238,7 @@ local mappings = {
   { { 'n', 'v', 'x' }, 'j',          'gj' },
   { { 'n', 'v', 'x' }, 'k',          'gk' },
   { { 'n', 'v', 'x' }, 'R',          'gR' },
-  { { 'n', 'v', 'x' }, '<leader>cz',          ':center<CR>' },
+  { { 'n', 'v', 'x' }, '<leader>cz', ':center<CR>' },
 
   { 'n', '<leader>de', function()
     local word = vim.fn.expand('<cword>')

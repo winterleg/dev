@@ -44,6 +44,7 @@ vim.pack.add({
   },
   { src = "https://github.com/ionide/Ionide-vim" },
   { src = "https://github.com/nvzone/showkeys" },
+  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim", },
 })
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -203,8 +204,22 @@ require("zen-mode").setup {
   },
 }
 
-require('mini.files').setup({
+require "mini.files".setup {
   windows = {
     preview = true,
   },
-})
+}
+
+require "multiple-cursors".setup {}
+vim.keymap.set({ "n", "i", "x" }, "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>")
+vim.keymap.set({ "n", "i", "x" }, "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>")
+vim.keymap.set({ "n", "i", "x" }, "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>")
+vim.keymap.set({ "n", "i", "x" }, "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>")
+vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
+vim.keymap.set({ "n" }, "<C-Return>", "<Cmd>MultipleCursorsAddDelete<CR>")
+vim.keymap.set({ "x" }, "<Leader>m", "<Cmd>MultipleCursorsAddVisualArea<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")

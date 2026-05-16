@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Autostart (sourced from hyprland's hyprland.start hook)
+blueman-applet &
+nm-applet &
+ckb-next &
+mpd --no-daemon &
+dunst &
+~/.config/waybar/waybar.sh &
+~/.config/hypr/scripts/background-autostart.sh &
+udiskie --tray &
+wl-paste --watch cliphist store --no-persist &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=labwc &
+dbus-update-activation-environment --systemd --all &
+systemctl --user import-environment QT_QPA_PLATFORMTHEME &
+gnome-keyring-daemon --start --components=secrets,ssh &
+wlr-randr --output eDP-1 --mode 2560x1600@60 --scale 2 --pos 0,0 --output HDMI-A-1 --mode 1920x1080@119.878998 --scale 1 --pos 1280,0 &

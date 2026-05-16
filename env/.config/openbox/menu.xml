@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+<menu id="root-menu" label="Openbox 3">
+  <separator label="APPS" />
+  <item label="FIREFOX">
+    <action name="Execute">
+      <command>firefox</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+        <wmclass>Firefox</wmclass>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="GHOSTTY">
+    <action name="Execute">
+      <command>ghostty</command>
+    </action>
+  </item>
+  <separator label="SYSTEM" />
+  <item label="RECONFIGURE">
+    <action name="Reconfigure" />
+  </item>
+  <separator />
+  <item label="EXIT">
+    <action name="Exit">
+      <prompt>yes</prompt>
+    </action>
+  </item>
+</menu>
+
+</openbox_menu>

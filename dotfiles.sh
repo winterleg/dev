@@ -8,8 +8,11 @@ confs=(
   ghostty
   hypr
   kitty
+  labwc
   matugen
   nvim
+  openbox
+  polybar
   qutebrowser
   rofi
   sioyek
