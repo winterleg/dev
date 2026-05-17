@@ -1,0 +1,101 @@
+@import "../../../.colors.css";
+
+* {
+    border: none;
+    font-family: "Courier Prime Code", "Noto Sans CJK JP";
+    font-size: 16pt;
+    background: @surface;
+}
+
+window#waybar {
+    color: @outline;
+    background: transparent;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: @surface;
+    padding-top: 2px;
+}
+
+.modules-left {
+    border-radius: 0px 5px 0px 0px;
+    padding-right: 3px;
+}
+.modules-center {
+    border-radius: 5px 5px 0px 0px;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+.modules-right {
+    border-radius: 5px 0px 0px 0px;
+    padding-left: 3px;
+}
+
+tooltip {
+    color: @on_surface;
+    background-color: @surface;
+    text-shadow: none;
+}
+
+tooltip * {
+    color: @on_surface;
+    text-shadow: none;
+}
+
+#custom-sep {
+    color: @outline_variant;
+    margin: 0;
+}
+
+#workspaces button {
+    color: @outline;
+    background: none;
+    padding: 0;
+}
+
+#workspaces button:hover {
+    color: @secondary;
+}
+
+#workspaces button.active {
+    color: @tertiary;
+}
+
+#temperature {
+    color: @tertiary;
+}
+
+#battery {
+    color: @primary;
+}
+
+#clock {
+    font-weight: 600;
+    color: @primary;
+}
+
+#custom-bluetooth_devices {
+    color: @primary;
+}
+
+#pulseaudio {
+    color: @secondary;
+}
+
+#pulseaudio.muted {
+    color: @error;
+}
+
+#tray menu {
+    background-color: @surface;
+}
+
+#taskbar button.active {
+    background-color: @tertiary;
+}
+
+#taskbar button.minimized {
+    background-color: @primary;
+}

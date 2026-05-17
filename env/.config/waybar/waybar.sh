@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 FORCE_DISABLE_LAPTOP=false
-FORCE_DISABLE_MONITOR=true
+FORCE_DISABLE_MONITOR=false
 
-LAPTOP_CONFIG="laptopv3"
-MONITOR_CONFIG="monitorv3"
+LAPTOP_CONFIG="laptopv4-taskbar"
+MONITOR_CONFIG="monitorv4-taskbar"
 
 LAPTOPNAME="eDP-1"
 MONITORNAME="HDMI-A-1"

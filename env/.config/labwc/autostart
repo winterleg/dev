@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Autostart (sourced from hyprland's hyprland.start hook)
+# wlsunset -S 5:00 -s 8:30 &
 blueman-applet &
 nm-applet &
 ckb-next &

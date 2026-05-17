@@ -1,0 +1,29 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "output": "eDP-1",
+    "exclusive": true,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": true
+    },
+    "custom/sep": {
+        "format": "   "
+    },
+    "tray": {
+        "show-passive-items": "true"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "{:%H:%M}"
+    }
+}
