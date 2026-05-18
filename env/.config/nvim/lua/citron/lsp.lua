@@ -8,6 +8,7 @@ vim.lsp.enable({
   "tinymist",
   "vimtex",
   "c3_lsp",
+  "ts_ls",
   "zls",
   "ionide",
   "gopls",

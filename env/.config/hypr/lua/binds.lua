@@ -52,7 +52,6 @@ local binds = {
   { k = { MainMod, Key.shift, Key.c },              c = hl.dsp.exec_cmd "hyprpicker -a" },
   { k = { MainMod, Key.period },                    c = hl.dsp.exec_cmd "rofi -config ~/.config/rofi/config-copy.rasi -modi emoji -show emoji -no-fixed-num-lines -lines 20" },
   { k = { MainMod, Key.dead_grave },                c = hl.dsp.exec_cmd "~/.config/hypr/scripts/vim-scratch.sh zxcv" },
-  { k = { Key.control, Key.shift, Key.o },          c = hl.dsp.exec_cmd "wtype -M shift ] -m shift" },
 
   { k = { MainMod, Key.numbersign },                c = hl.dsp.workspace.toggle_special("specialwork") },
   { k = { MainMod, Key.shift, Key.numbersign },     c = hl.dsp.window.move { workspace = "special:specialwork", follow = true } },
