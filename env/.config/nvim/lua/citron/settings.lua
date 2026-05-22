@@ -7,7 +7,7 @@ vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
 vim.opt.winborder = "single"
-vim.opt.guicursor = ""
+vim.opt.guicursor = { "a:block", "r-cr:hor20" }
 
 vim.opt.wildignorecase = true
 

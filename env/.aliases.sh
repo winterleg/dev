@@ -5,8 +5,6 @@ alias ff="fastfetch"
 
 alias calendar="cal -n 3"
 
-alias p="python"
-
 alias ls="eza --no-quotes -s type -a"
 
 alias t="tmux-goway"

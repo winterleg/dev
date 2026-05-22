@@ -17,13 +17,6 @@ vim.pack.add({
   { src = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim", },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/GustavEikaas/easy-dotnet.nvim" },
-  { src = 'https://github.com/neovim-treesitter/treesitter-parser-registry' },
-  {
-    src = "https://github.com/neovim-treesitter/nvim-treesitter",
-    lazy = false,
-    build = "TSUpdate"
-  },
-  { src = "https://github.com/c3lang/tree-sitter-c3" },
   {
     src = "https://github.com/lervag/vimtex",
     lazy = false,
@@ -44,7 +37,8 @@ vim.pack.add({
   },
   { src = "https://github.com/ionide/Ionide-vim" },
   { src = "https://github.com/nvzone/showkeys" },
-  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim", },
+  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
+  -- { src = "https://github.com/romus204/tree-sitter-manager.nvim" }
 })
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -62,7 +56,6 @@ vim.lsp.config("ionide", {
   },
 })
 
-require("nvim-treesitter").setup({})
 require("mason").setup({})
 
 require("luasnip").setup({ enable_autosnippets = true })
@@ -103,7 +96,7 @@ require("easy-dotnet").setup({
 local telescope = require("telescope")
 telescope.setup({
   defaults = {
-    preview = { treesitter = true },
+    preview = { treesitter = false },
     color_devicons = true,
     sorting_strategy = "descending",
     borderchars = {
@@ -223,3 +216,12 @@ vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
 vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
 vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
 vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
+
+-- require("tree-sitter-manager").setup({
+--   -- Default Options
+--   -- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
+--   -- border = nil, -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
+--   -- auto_install = false, -- if enabled, install missing parsers when editing a new file
+--   -- highlight = true, -- treesitter highlighting is enabled by default
+--   -- languages = {}, -- override or add new parser sources
+-- })

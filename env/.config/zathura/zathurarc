@@ -11,4 +11,4 @@ set guioptions none
 set recolor                     "true"
 set recolor-keephue             "false"
 
-include t-gruvbox
+include t-rosepine

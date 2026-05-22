@@ -4,6 +4,9 @@ return {
   s({ trig = "=-", snippetType = "autosnippet" },
     fmta("plus.minus <>", { i(1) })
   ),
+  s({ trig = "mt", snippetType = "autosnippet" },
+    fmta("$<>$", { i(1) })
+  ),
   s({ trig = ";d", snippetType = "autosnippet" },
     fmta("(<>)/(<>) <>", {
       i(1),

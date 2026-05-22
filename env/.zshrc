@@ -39,7 +39,8 @@ setopt PROMPT_SUBST
 # PROMPT='%(?.%F{green}::.%F{red}::)%f %F{cyan}[%f%F{blue}%~%f%F{cyan}]%f${vcs_info_msg_0_}
 #  %F{yellow}>%f '
 # PROMPT='${vcs_info_msg_0_} %(?.%F{green}::.%F{red}::)%f '
-PROMPT='%(?.%F{green}λ.%F{red}λ)%f '
+# PROMPT='%(?.%F{green}λ.%F{red}λ)%f '
+PROMPT='%F{green}ζ%f '
 
 bindkey -s ^t "^utmux-goway\n"
 bindkey -s ^y "^uyazi-tmux\n"

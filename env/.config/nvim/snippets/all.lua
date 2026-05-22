@@ -23,9 +23,6 @@ return {
   s({ trig = ";mu", snippetType = "autosnippet" },
     t(EmailUniversity)
   ),
-  s({ trig = ";mt", snippetType = "autosnippet" },
-    fmta("$<>$", { i(1) })
-  ),
   s({ trig = ";[", snippetType = "autosnippet" },
     fmta("\"<>\"", {
       i(1)

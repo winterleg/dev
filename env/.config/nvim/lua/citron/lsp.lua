@@ -9,6 +9,7 @@ vim.lsp.enable({
   "vimtex",
   "c3_lsp",
   "ts_ls",
+  "cssls",
   "zls",
   "ionide",
   "gopls",

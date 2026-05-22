@@ -60,7 +60,7 @@ end
 local colorsList = {
   {
     name = "Pine",
-    enabled = false,
+    enabled = true,
     callback = function()
       require('rose-pine').setup({
         styles = {
@@ -105,18 +105,33 @@ local colorsList = {
     end,
   },
   {
-    name = "Gruv Dark",
+    name = "Gruvvy",
     enabled = true,
     callback = function()
       require("gruvbox").setup({
-        transparent_mode = true,
+        transparent_mode = false,
       })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]
       vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#3c3836", bg = "#ebdbb2" })
 
-      save_theme "Gruv Dark"
+      save_theme "Gruvvy"
+    end,
+  },
+  {
+    name = "Gruvvier",
+    enabled = true,
+    callback = function()
+      require("gruvbox").setup({
+        transparent_mode = false,
+      })
+      vim.opt.background = "light"
+      vim.cmd [[colorscheme gruvbox]]
+      vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
+      vim.api.nvim_set_hl(0, "Visual", { fg = "#3c3836", bg = "#ebdbb2" })
+
+      save_theme "Gruvvier"
     end,
   },
   {
