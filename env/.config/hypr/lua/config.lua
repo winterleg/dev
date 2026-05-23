@@ -18,9 +18,11 @@ hl.config({
   },
 
   cursor     = {
-    hide_on_key_press = 1,
-    hide_on_tablet    = 0,
-    inactive_timeout  = 15,
+    hide_on_key_press    = 1,
+    hide_on_tablet       = 0,
+    inactive_timeout     = 15,
+    zoom_rigid           = true,
+    zoom_detached_camera = false
   },
 
   general    = {

@@ -64,7 +64,7 @@ local colorsList = {
     callback = function()
       require('rose-pine').setup({
         styles = {
-          transparency = true,
+          transparency = false,
         }
       })
       vim.opt.background = "dark"
@@ -282,7 +282,7 @@ local colorsList = {
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
-      vim.cmd [[colorscheme github_dark]]
+      vim.cmd [[colorscheme github_dark_high_contrast]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#30363d", bg = "#e4ebf1" })
 
       save_theme "Github"

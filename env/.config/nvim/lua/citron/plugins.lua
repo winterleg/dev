@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global
 
-vim.pack.add({
+vim.pack.add {
+  { src = "https://github.com/neovim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/neovim-treesitter/treesitter-parser-registry" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/nvim-mini/mini.nvim" },
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
@@ -38,8 +40,8 @@ vim.pack.add({
   { src = "https://github.com/ionide/Ionide-vim" },
   { src = "https://github.com/nvzone/showkeys" },
   { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
-  -- { src = "https://github.com/romus204/tree-sitter-manager.nvim" }
-})
+  { src = "https://github.com/vimwiki/vimwiki" },
+}
 
 vim.g["fsharp#lsp_auto_setup"] = 0
 vim.g["fsharp#lsp_codelens"] = 0
@@ -225,3 +227,15 @@ vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
 --   -- highlight = true, -- treesitter highlighting is enabled by default
 --   -- languages = {}, -- override or add new parser sources
 -- })
+--
+
+vim.g.vimwiki_path = '~/vimwiki/'
+vim.g.vimwiki_key_mappings = {
+  all_maps = 0,
+}
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "vimwiki" },
+  callback = function()
+    vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>")
+  end
+})

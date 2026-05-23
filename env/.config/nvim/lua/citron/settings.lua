@@ -61,7 +61,7 @@ vim.opt.updatetime = 50
 
 vim.opt.cursorline = true
 
-vim.opt.colorcolumn = { 80, 120, 180 }
+vim.opt.colorcolumn = { 72, 80, 120, 180 }
 vim.opt.textwidth = 80
 
 vim.opt.list = false
@@ -78,14 +78,14 @@ vim.opt.spelllang = nil
 _G.isWriteCommit = false
 
 vim.api.nvim_create_user_command("ToggleWriteCommit", function()
-  if isWriteCommit then
-    isWriteCommit = false
+  if _G.isWriteCommit then
+    _G.isWriteCommit = false
   else
-    isWriteCommit = true
+    _G.isWriteCommit = true
     vim.api.nvim_create_autocmd("BufWritePost", {
       pattern = "*",
       callback = function()
-        if isWriteCommit then
+        if _G.isWriteCommit then
           vim.cmd [[silent !git add .]]
           vim.cmd [[silent !git commit -m nvim-commit]]
         end

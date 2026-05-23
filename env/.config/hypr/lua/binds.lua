@@ -4,6 +4,13 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
+local _zoom = 1.0
+local function set_zoom(delta)
+  return function()
+    _zoom = math.max(1.0, _zoom + delta)
+    hl.config({ cursor = { zoom_factor = _zoom } })
+  end
+end
 
 ---@class Bind
 ---@field k table
@@ -105,6 +112,9 @@ local binds = {
 
   { k = { MainMod, Mouse.wheel_up },                c = hl.dsp.focus { workspace = "e+1" },                                                                                                r = { mouse = true } },
   { k = { MainMod, Mouse.wheel_down },              c = hl.dsp.focus { workspace = "e-1" },                                                                                                r = { mouse = true } },
+
+  { k = { MainMod, Key.shift, Key.i },              c = set_zoom(0.5),                                                                                                                     r = { repeating = true } },
+  { k = { MainMod, Key.shift, Key.o },              c = set_zoom(-0.5),                                                                                                                    r = { repeating = true } },
 
   { k = { Key.audio_raise_volume },                 c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
   { k = { Key.audio_lower_volume },                 c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },

@@ -12,7 +12,7 @@ end
 
 return {
   s({ trig = ";t", snippetType = "autosnippet" },
-    t(os.date("%Y/%m/%d"))
+    t(os.date("%Y.%m.%d"))
   ),
   s({ trig = ";h", snippetType = "autosnippet" },
     t(os.date("%H:%M"))
