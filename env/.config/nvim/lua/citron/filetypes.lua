@@ -112,6 +112,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.sidescrolloff = 0
 
+    vim.opt.wrap = false
+
     local width                 = 2
     vim.opt_local.shiftwidth    = width
     vim.opt_local.tabstop       = width

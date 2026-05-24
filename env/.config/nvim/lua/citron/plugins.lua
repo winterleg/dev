@@ -219,16 +219,6 @@ vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<
 vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
 vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
 
--- require("tree-sitter-manager").setup({
---   -- Default Options
---   -- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
---   -- border = nil, -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
---   -- auto_install = false, -- if enabled, install missing parsers when editing a new file
---   -- highlight = true, -- treesitter highlighting is enabled by default
---   -- languages = {}, -- override or add new parser sources
--- })
---
-
 vim.g.vimwiki_path = '~/vimwiki/'
 vim.g.vimwiki_key_mappings = {
   all_maps = 0,
@@ -237,5 +227,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "vimwiki" },
   callback = function()
     vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>")
+    vim.keymap.set("n", "<leader>vz", ":silent | VimwikiBacklinks<CR>")
   end
 })

@@ -299,6 +299,17 @@ local colorsList = {
       save_theme "cat latte"
     end,
   },
+  {
+    name = "cat mocha",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme catppuccin-mocha]]
+      vim.api.nvim_set_hl(0, 'Visual', { fg = "#1e1e2e", bg = "#cdd6f4" })
+
+      save_theme "cat mocha"
+    end,
+  },
 }
 
 local themes = {}
