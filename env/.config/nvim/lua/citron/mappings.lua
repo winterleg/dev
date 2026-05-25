@@ -47,7 +47,7 @@ vim.cmd([[
     \ call fzf#vim#files(
     \   '',
     \   {
-    \     'source': 'rg --files --hidden --no-ignore-vcs --glob "!*.pdf"',
+    \     'source': 'rg --files --hidden --no-ignore-vcs --glob "!.git" --glob "!*.pdf"',
     \     'options': [
     \       '--preview',
     \       'bat --style=numbers --color=always --line-range :500 {}',

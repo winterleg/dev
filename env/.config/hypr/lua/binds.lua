@@ -38,7 +38,7 @@ local binds = {
   { k = { MainMod, Key.g },                         c = function() ToggleLayout() end },
 
   -- app / scripts
-  { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/yazi-neovide" },
+  { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/vim-scratchpad" },
   { k = { MainMod, Key.control, Key.v },            c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
   { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd "foot" },
