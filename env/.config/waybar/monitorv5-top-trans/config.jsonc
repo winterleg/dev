@@ -1,0 +1,33 @@
+{
+    "layer": "top",
+    "position": "top",
+    "output": "HDMI-A-1",
+    "exclusive": true,
+    "modules-left": [
+        "ext/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray"
+    ],
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-right": "minimize"
+    },
+    "custom/sep": {
+        "format": "   "
+    },
+    "tray": {
+        "show-passive-items": "true"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "{:%H:%M}"
+    }
+}

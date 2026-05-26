@@ -228,5 +228,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>")
     vim.keymap.set("n", "<leader>vz", ":silent | VimwikiBacklinks<CR>")
+    vim.keymap.set("n", "<leader>vi", ":silent | VimwikiIndex<CR>")
   end
 })

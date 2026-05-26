@@ -8,6 +8,7 @@ hl.config({
     accel_profile = "flat",
 
     repeat_delay  = 250,
+    repeat_rate   = 50,
 
     touchpad      = {
       natural_scroll       = true,
@@ -51,8 +52,8 @@ hl.config({
   scrolling  = {
     fullscreen_on_one_column = true,
     direction                = "down",
-    column_width             = 1,
-    explicit_column_widths   = 1,
+    column_width             = 0.95,
+    explicit_column_widths   = 0.95,
     focus_fit_method         = 0
   },
 

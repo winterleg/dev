@@ -2,7 +2,7 @@
 
 tmp="$(mktemp)"
 
-kitty -e bash -lc "fd . ~ -t d --hidden --max-depth 2 | fzf >\"$tmp\""
+kitty -e bash -lc "fd . ~ -t d --hidden --max-depth 2 | fzf --preview 'tree -L 1 {}'  >\"$tmp\""
 
 if [ ! -s "$tmp" ]; then
   rm -f -- "$tmp"

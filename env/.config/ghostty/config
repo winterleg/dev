@@ -16,7 +16,7 @@ gtk-single-instance = true
 gtk-tabs-location = bottom
 gtk-wide-tabs     = false
 
-shell-integration-features = no-cursor
+# shell-integration-features = no-cursor
 
 bell-features = no-title
 

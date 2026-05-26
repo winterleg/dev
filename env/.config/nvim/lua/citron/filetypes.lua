@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "h", "cpp", "cc", "c3" },
   callback = function()
-    local width = 2
+    local width = 8
     vim.opt_local.shiftwidth = width
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width

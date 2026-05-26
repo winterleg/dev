@@ -7,7 +7,11 @@ vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
 vim.opt.winborder = "single"
--- vim.opt.guicursor = { "a:block", "r-cr:hor20" }
+vim.opt.guicursor = {
+  "a:block-Cursor",
+  "i:ver30-iCursor",
+  "r-cr:hor20-Cursor"
+}
 
 vim.opt.wildignorecase = true
 
@@ -20,7 +24,7 @@ vim.opt.switchbuf = 'usetab'
 vim.opt.nu = true
 
 _G.pdfReader = "zathura"
-_G.webBrowser = "helium-browser"
+_G.webBrowser = "firefox"
 
 local spaceNumber = 2
 vim.opt.tabstop = spaceNumber
@@ -133,12 +137,26 @@ end, {
 })
 
 if vim.g.neovide then
-  vim.opt.nu = false
-  vim.o.guifont = "Comic Code:h18"
+  -- vim.opt.nu = false
+  vim.o.guifont = "Comic Code:h20"
+
+  vim.g.neovide_refresh_rate = 144
+  vim.g.neovide_refresh_rate_idle = 10
+
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_cursor_short_animation_length = 0
+  vim.g.neovide_cursor_animate_in_insert_mode = false
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.g.neovide_cursor_vfx_mode = ""
+
+  vim.g.neovide_opacity = 0.9
+  vim.g.neovide_normal_opacity = 1
+
   vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
   end
+
   vim.keymap.set("n", "<C-=>", function()
     change_scale_factor(1.05)
   end)

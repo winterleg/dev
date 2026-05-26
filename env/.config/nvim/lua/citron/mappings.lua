@@ -203,8 +203,8 @@ local function fzf_chdir()
     end,
     options = {
       "--prompt", "Change Dir > ",
-      "--preview", "ls -a {}",
-      '--preview-window', 'right:20%',
+      "--preview", "tree -L 2 {}",
+      -- '--preview-window', 'right:40%',
     },
     window = vim.g.fzf_layout.window
   })
@@ -274,7 +274,12 @@ local mappings = {
 }
 
 
-
 for _, value in ipairs(mappings) do
   vim.keymap.set(value[1], value[2], value[3], value[4])
 end
+
+if vim.g.neovide then
+  vim.keymap.set("n", "<C-t>", fzf_chdir)
+end
+
+

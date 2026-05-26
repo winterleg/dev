@@ -28,4 +28,9 @@ return {
       i(1)
     })
   ),
+  s({ trig = ";x", snippetType = "autosnippet" },
+    fmta("« <> »", {
+      i(1)
+    })
+  ),
 }

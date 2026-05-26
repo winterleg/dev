@@ -32,6 +32,10 @@ end
 
 local function save_theme(name)
   unset_curls()
+
+  vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#EC5D2A" })
+  vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = "#EC5D2A" })
+
   current_name = name
   vim.fn.writefile({ name }, state_file)
 end
