@@ -125,6 +125,10 @@
       "rev": "eae76d4c5f7ede2d45746dc2affb5e7a139e4aa8",
       "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
     },
+    "neov-ime.nvim": {
+      "rev": "dbfb6d8cd8da0fa74ecf8ef8984f793910b7f874",
+      "src": "https://github.com/sevenc-nanashi/neov-ime.nvim"
+    },
     "nightfox.nvim": {
       "rev": "26b61b1f856ec37cae3cb64f5690adb955f246a1",
       "src": "https://github.com/EdenEast/nightfox.nvim"

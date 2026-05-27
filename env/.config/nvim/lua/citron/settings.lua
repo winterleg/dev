@@ -137,6 +137,7 @@ end, {
 })
 
 if vim.g.neovide then
+  require('neov-ime').setup()
   -- vim.opt.nu = false
   vim.o.guifont = "Comic Code:h20"
 

@@ -39,8 +39,9 @@ vim.pack.add {
   },
   { src = "https://github.com/ionide/Ionide-vim" },
   { src = "https://github.com/nvzone/showkeys" },
-  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
+  -- { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
   { src = "https://github.com/vimwiki/vimwiki" },
+  { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
 }
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -199,25 +200,69 @@ require("zen-mode").setup {
   },
 }
 
-require "mini.files".setup {
-  windows = {
-    preview = true,
-  },
-}
+MiniFiles = require("mini.files")
 
-require "multiple-cursors".setup {}
-vim.keymap.set({ "n", "i", "x" }, "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>")
-vim.keymap.set({ "n", "i", "x" }, "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>")
-vim.keymap.set({ "n", "i", "x" }, "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>")
-vim.keymap.set({ "n", "i", "x" }, "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>")
-vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
-vim.keymap.set({ "n" }, "<C-Return>", "<Cmd>MultipleCursorsAddDelete<CR>")
-vim.keymap.set({ "x" }, "<Leader>m", "<Cmd>MultipleCursorsAddVisualArea<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
+local function open_external_or_fallback()
+  local entry = MiniFiles.get_fs_entry()
+  if not entry then return false end
+
+  local path = entry.path
+  local ext = vim.fn.fnamemodify(path, ":e")
+
+  local external = {
+    mp3 = { "mpv", path },
+    mp4 = { "mpv", path },
+    jpg = { "imv", path },
+    jpeg = { "imv", path },
+    png = { "imv", path },
+    webp = { "imv", path },
+    pdf = { pdfReader, path },
+  }
+
+  local cmd = external[ext]
+  if cmd then
+    vim.fn.jobstart(cmd, { detach = true })
+    return true
+  end
+
+  MiniFiles.go_in()
+  return false
+end
+
+local function open_stay()
+  open_external_or_fallback()
+end
+
+local function open_and_close()
+  local handled_external = open_external_or_fallback()
+  MiniFiles.close()
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesBufferCreate",
+  callback = function(args)
+    local buf = args.data.buf_id
+
+    vim.keymap.set("n", "<CR>", open_stay, { buffer = buf, nowait = true })
+    vim.keymap.set("n", "l", open_stay, { buffer = buf, nowait = true })
+    vim.keymap.set("n", "L", open_and_close, { buffer = buf, nowait = true })
+  end,
+})
+
+
+-- require "multiple-cursors".setup {}
+-- vim.keymap.set({ "n", "i", "x" }, "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>")
+-- vim.keymap.set({ "n", "i", "x" }, "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>")
+-- vim.keymap.set({ "n", "i", "x" }, "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>")
+-- vim.keymap.set({ "n", "i", "x" }, "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>")
+-- vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
+-- vim.keymap.set({ "n" }, "<C-Return>", "<Cmd>MultipleCursorsAddDelete<CR>")
+-- vim.keymap.set({ "x" }, "<Leader>m", "<Cmd>MultipleCursorsAddVisualArea<CR>")
+-- vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
+-- vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
+-- vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
+-- vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
+-- vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
 
 vim.g.vimwiki_path = '~/vimwiki/'
 vim.g.vimwiki_key_mappings = {

@@ -8,6 +8,8 @@ hl.window_rule { match = { class = "forzahorizon.exe" }, render_unfocused = true
 hl.window_rule { match = { class = "steam_app_1551360" }, float = true, persistent_size = true }
 hl.window_rule { match = { class = "xdg-desktop-portal-gtk" }, float = true, persistent_size = true }
 
+hl.window_rule { match = { class = "tts-neovide" }, float = true }
+
 -- hl.window_rule { match = { title = "Save.*" }, float = true, size = "1000 700", center = true }
 
 hl.window_rule { match = { pin = true }, border_size = 5, border_color = "rgb(FF0000) rgb(880808)" }

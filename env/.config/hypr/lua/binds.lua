@@ -4,14 +4,6 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
-local _zoom = 1.0
-local function set_zoom(delta)
-  return function()
-    _zoom = math.max(1.0, _zoom + delta)
-    hl.config({ cursor = { zoom_factor = _zoom } })
-  end
-end
-
 ---@class Bind
 ---@field k table
 ---@field c function|HL.Dispatcher
@@ -38,7 +30,7 @@ local binds = {
   { k = { MainMod, Key.g },                         c = function() ToggleLayout() end },
 
   -- app / scripts
-  { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/vim-scratchpad" },
+  { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/tts-neovide" },
   { k = { MainMod, Key.control, Key.v },            c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
   { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd "neovide" },
@@ -70,32 +62,22 @@ local binds = {
   { k = { MainMod, WSKey.third },                   c = hl.dsp.focus { workspace = "3" } },
   { k = { MainMod, WSKey.fourth },                  c = hl.dsp.focus { workspace = "4" } },
   { k = { MainMod, WSKey.fifth },                   c = hl.dsp.focus { workspace = "5" } },
-  { k = { MainMod, WSKey.sixth },                   c = hl.dsp.focus { workspace = "6" } },
-  { k = { MainMod, WSKey.seventh },                 c = function() Ws_exec("thunderbird", 7) end },
-  { k = { MainMod, WSKey.eigtht },                  c = hl.dsp.focus { workspace = "8" } },
-  { k = { MainMod, WSKey.ninth },                   c = function() Ws_exec("vesktop", 9) end },
+  -- { k = { MainMod, WSKey.sixth },                   c = hl.dsp.focus { workspace = "6" } },
+  -- { k = { MainMod, WSKey.seventh },                 c = hl.dsp.focus { workspace = "7" } },
+  -- { k = { MainMod, WSKey.eigtht },                  c = hl.dsp.focus { workspace = "8" } },
+  -- { k = { MainMod, WSKey.ninth },                   c = hl.dsp.focus { workspace = "9" } },
   { k = { MainMod, WSKey.tenth },                   c = hl.dsp.focus { workspace = "10" } },
-
-  { k = { MainMod, Key.f1 },                        c = hl.dsp.focus { workspace = "6" } },
-  { k = { MainMod, Key.f2 },                        c = function() Ws_exec("thunderbird", 7) end },
-  { k = { MainMod, Key.f3 },                        c = hl.dsp.focus { workspace = "8" } },
-  { k = { MainMod, Key.f4 },                        c = function() Ws_exec("vesktop", 9) end },
 
   { k = { MainMod, Key.shift, WSKey.first },        c = hl.dsp.window.move { workspace = "1", follow = true } },
   { k = { MainMod, Key.shift, WSKey.second },       c = hl.dsp.window.move { workspace = "2", follow = true } },
   { k = { MainMod, Key.shift, WSKey.third },        c = hl.dsp.window.move { workspace = "3", follow = true } },
   { k = { MainMod, Key.shift, WSKey.fourth },       c = hl.dsp.window.move { workspace = "4", follow = true } },
   { k = { MainMod, Key.shift, WSKey.fifth },        c = hl.dsp.window.move { workspace = "5", follow = true } },
-  { k = { MainMod, Key.shift, WSKey.sixth },        c = hl.dsp.window.move { workspace = "6", follow = true } },
-  { k = { MainMod, Key.shift, WSKey.seventh },      c = hl.dsp.window.move { workspace = "7", follow = true } },
-  { k = { MainMod, Key.shift, WSKey.eigtht },       c = hl.dsp.window.move { workspace = "8", follow = true } },
-  { k = { MainMod, Key.shift, WSKey.ninth },        c = hl.dsp.window.move { workspace = "9", follow = true } },
+  -- { k = { MainMod, Key.shift, WSKey.sixth },        c = hl.dsp.window.move { workspace = "6", follow = true } },
+  -- { k = { MainMod, Key.shift, WSKey.seventh },      c = hl.dsp.window.move { workspace = "7", follow = true } },
+  -- { k = { MainMod, Key.shift, WSKey.eigtht },       c = hl.dsp.window.move { workspace = "8", follow = true } },
+  -- { k = { MainMod, Key.shift, WSKey.ninth },        c = hl.dsp.window.move { workspace = "9", follow = true } },
   { k = { MainMod, Key.shift, WSKey.tenth },        c = hl.dsp.window.move { workspace = "10", follow = true } },
-
-  { k = { MainMod, Key.shift, Key.f1 },             c = hl.dsp.window.move { workspace = "6", follow = true } },
-  { k = { MainMod, Key.shift, Key.f2 },             c = hl.dsp.window.move { workspace = "7", follow = true } },
-  { k = { MainMod, Key.shift, Key.f3 },             c = hl.dsp.window.move { workspace = "8", follow = true } },
-  { k = { MainMod, Key.shift, Key.f4 },             c = hl.dsp.window.move { workspace = "9", follow = true } },
 
   { k = { MainMod, Key.h },                         c = function() Focus_fs("l") end },
   { k = { MainMod, Key.i },                         c = function() Focus_fs("r") end },
@@ -112,9 +94,6 @@ local binds = {
 
   { k = { MainMod, Mouse.wheel_up },                c = hl.dsp.focus { workspace = "e+1" },                                                                                                r = { mouse = true } },
   { k = { MainMod, Mouse.wheel_down },              c = hl.dsp.focus { workspace = "e-1" },                                                                                                r = { mouse = true } },
-
-  { k = { MainMod, Key.shift, Key.i },              c = set_zoom(0.5),                                                                                                                     r = { repeating = true } },
-  { k = { MainMod, Key.shift, Key.o },              c = set_zoom(-0.5),                                                                                                                    r = { repeating = true } },
 
   { k = { Key.audio_raise_volume },                 c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh" },
   { k = { Key.audio_lower_volume },                 c = hl.dsp.exec_cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh" },

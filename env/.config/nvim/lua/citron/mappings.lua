@@ -194,17 +194,20 @@ local function fzf_pdf()
 end
 
 local function fzf_chdir()
+  local currentDir = vim.fn.getcwd()
   vim.fn['fzf#run']({
-    source = "fd . ~ --type d --hidden --follow --exclude .git --max-depth 2",
+    source = table.concat({
+      "fd . ~ --type d --follow --exclude '.*' --max-depth 2",
+      "fd . ~/.config --type d --follow --max-depth 2",
+    }, " ; "),
     sink = function(selected)
       if selected and selected ~= "" then
         vim.fn.chdir(selected)
       end
     end,
     options = {
-      "--prompt", "Change Dir > ",
+      "--prompt", currentDir .. " > ",
       "--preview", "tree -L 2 {}",
-      -- '--preview-window', 'right:40%',
     },
     window = vim.g.fzf_layout.window
   })
@@ -281,5 +284,3 @@ end
 if vim.g.neovide then
   vim.keymap.set("n", "<C-t>", fzf_chdir)
 end
-
-

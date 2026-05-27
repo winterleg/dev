@@ -4,6 +4,8 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
+UseTransparency = true
+
 local function unset_curls()
   local groups = {
     "Delimiter",                --
@@ -66,11 +68,11 @@ local colorsList = {
     name = "Pine",
     enabled = true,
     callback = function()
-      require('rose-pine').setup({
+      require "rose-pine".setup {
         styles = {
-          transparency = false,
+          transparency = UseTransparency,
         }
-      })
+      }
       vim.opt.background = "dark"
       vim.cmd [[colorscheme rose-pine-main]]
 
@@ -85,7 +87,7 @@ local colorsList = {
     callback = function()
       require('rose-pine').setup({
         styles = {
-          transparency = false,
+          transparency = UseTransparency,
         }
       })
       vim.opt.background = "light"
@@ -113,7 +115,7 @@ local colorsList = {
     enabled = true,
     callback = function()
       require("gruvbox").setup({
-        transparent_mode = false,
+        transparent_mode = UseTransparency,
       })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]

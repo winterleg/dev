@@ -30,29 +30,11 @@
 // ┃Échappe ┃ a   │ r % │ s * │ t ~ │ d   │       │ h   │ n   │ e   │ i   │ o   │ ◌̀   ┃ Entrée ⏎   ┃
 // ┣━━━━━━━━┻━━━━┱┴────┬┴────┬┴────┬┴────┬┴────┐  └────┬┴────┬┴────┬┴────┬┴────┬┴────┲┻━━━━━━━━━━━━┫
 // ┃             ┃ Z   │ X   │ C   │ V   │ B   │       │ K   │ M   │ "   │ &   │ É   ┃             ┃
-// ┃ Majuscule ⇧ ┃ z ° │ x « │ c » │ v   │ b[1]│       │ k   │ m µ │ , ◌̄ │ .   │ é   ┃ Majuscule ⇧ ┃
+// ┃ Majuscule ⇧ ┃ z ° │ x « │ c » │ v   │ b   │       │ k   │ m µ │ , ◌̄ │ .   │ é   ┃ Majuscule ⇧ ┃
 // ┣━━━━━━━┳━━━━━┻━┳━━━┷━━━┱─┴─────┴─────┴─────┤       ├─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
 // ┃       ┃       ┃       ┃                   │       │               ┃       ┃       ┃       ┃
 // ┃ Ctrl  ┃ Super ┃ Alt   ┃ ␣ Espace          │       │             ␣ ┃AltGr ⇮┃ Menu  ┃ Ctrl  ┃
 // ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹───────────────────┘       └───────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┛
-// [1]: espace insécable
-//
-// ┌─────┬─────┬─────┬─────┬─────┬─────┐  ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-// │ |   │ 1   │ 2   │ 3   │ 4   │ 5   │  │ 6   │ 7   │ 8   │ 9   │ 0   │ _   │ +   │ ⌫   │
-// │ #   │ /   │ (   │ [   │ {   │ '   │  │ $   │ !   │ }   │ ]   │ )   │ -   │ =   │     │
-// ├─────┼─────┼─────┼─────┼─────┼─────┤  ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │ Q   │ W   │ F   │ P   │ G   │  │ J   │ L   │ U   │ Y   │ :   │ ◌̈   │ Ç   │ >   │
-// │Tab  │ q   │ w \ │ f @ │ p ^ │ g   │  │ j   │ l   │ u   │ y   │ ;   │ ◌̂   │ ç   │ <   │
-// ├─────┼─────┼─────┼─────┼─────┼─────┤  ├─────┼─────┼─────┼─────┼─────┼─────┼─────┴─────┤
-// │     │ A   │ R   │ S   │ T   │ D   │  │ H   │ N   │ E   │ I   │ O   │ ?   │           │
-// │Esc  │ a   │ r % │ s * │ t ~ │ d   │  │ h   │ n   │ e   │ i   │ o   │ ◌̀   │ Entrée ⏎  │
-// ├─────┼─────┼─────┼─────┼─────┼─────┤  ├─────┼─────┼─────┼─────┼─────┼─────┼───────────┘
-// │     │ Z   │ X   │ C   │ V   │ B   │  │ K   │ M   │ "   │ &   │ É   │     │
-// │Maj  │ z ° │ x « │ c » │ v   │ b[1]│  │ k   │ m µ │ , ◌̄ │ .   │ é   │Maj  │
-// ├─────┼─────┼─────┼─────┴─────┴─────┤  ├─────┴─────┴─────┼─────┼─────┼─────┼
-// │     │     │     │                 │  │                 │     │     │     │
-// │Ctrl │Sup  │Alt  │ ␣ Espace        │  │               ␣ │AltGr│Fn   │Ctrl │
-// └─────┴─────┴─────┴─────────────────┘  └─────────────────┴─────┴─────┴─────┘
 
 default partial
 xkb_symbols "basic" {
@@ -102,7 +84,7 @@ xkb_symbols "basic" {
     key <AB02>  {[  x,                  X,                  guillemotleft   ]};
     key <AB03>  {[  c,                  C,                  guillemotright  ]};
     key <AB04>  {[  v,                  V                                   ]};
-    key <AB05>  {[  b,                  B,                  nobreakspace    ]};
+    key <AB05>  {[  b,                  B                                   ]};
     key <AB06>  {[  k,                  K                                   ]};
     key <AB07>  {[  m,                  M,                  mu              ]};
     key <AB08>  {[  comma,              quotedbl                            ]};
@@ -113,4 +95,102 @@ xkb_symbols "basic" {
     # key <CAPS>  {[  Escape,             Escape                              ]};
 
     include "level3(ralt_switch)"
+};
+
+// Bépo : Improved ergonomic french keymap using Dvorak method.
+// Built by community on 'Dvorak Fr / Bépo' :
+// see http://www.clavier-dvorak.org/wiki/ to join and help.
+// XOrg integration (1.0rc2 version) in 2008
+// by Frédéric Boiteux <fboiteux at free dot fr>
+//
+// Bépo layout (1.0rc2 version) for a pc105 keyboard (french) :
+// ┌─────┐
+// │ S A │   S = Shift,  A = AltGr + Shift
+// │ s a │   s = normal, a = AltGr
+// └─────┘
+//
+// Modifié par Winter L. (codeberg.org/winterl) pour placer les symboles un peu
+// plus comme ils le sont sur ma version de Colemak
+//
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐     ┌─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━━━┓
+// │ |   │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │     │ 7   │ 8   │ 9   │ 0   │ _   │ +   ┃ ⌫ Retour  ┃
+// │ #   │ /   │ (   │ [   │ { ° │ &   │ $ ^ │     │ "   │ }   │ ]   │ )   │ -   │ =   ┃  arrière  ┃
+// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┘   ┌─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┺━━━┯━━━━━━━┫
+// ┃       ┃ B   │ É   │ P   │ O Œ │ È ` │       │ !   │ V   │ D   │ L   │ J   │ Z   │ W   │ Ç     ┃
+// ┃Tab ↹  ┃ b   │ é ◌́ │ p   │ o œ │ è ◌̀ │       │ ◌̂   │ v   │ d   │ l   │ j   │ z   │ w   │ ç     ┃
+// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┐      └┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┲━━━━┷━━━━━━━┫
+// ┃        ┃ A   │ U Ù │ I   │ E   │ , > │       │ C   │ T   │ S   │ R   │ N   │ M   ┃            ┃
+// ┃Échappe ┃ a @ │ u ù │ i ◌̈ │ e * │ . < │       │ c   │ t   │ s   │ r   │ n   │ m   ┃ Entrée ⏎   ┃
+// ┣━━━━━━━━┻━━━━┱┴────┬┴────┬┴────┬┴────┬┴────┐  └────┬┴────┬┴────┬┴────┬┴────┬┴────┲┻━━━━━━━━━━━━┫
+// ┃             ┃ À   │ Y   │ X   │ :   │ K   │       │ ?   │ Q   │ G   │ H   │ F   ┃             ┃
+// ┃ Majuscule ⇧ ┃ à \ │ y « │ x » │ ;   │ k ~ │       │ '   │ q   │ g   │ h   │ f   ┃ Majuscule ⇧ ┃
+// ┣━━━━━━━┳━━━━━┻━┳━━━┷━━━┱─┴─────┴─────┴─────┤       ├─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
+// ┃       ┃       ┃       ┃                   │       │               ┃       ┃       ┃       ┃
+// ┃ Ctrl  ┃ Super ┃ Alt   ┃ ␣ Espace          │       │             ␣ ┃AltGr ⇮┃ Menu  ┃ Ctrl  ┃
+// ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹───────────────────┘       └───────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┛
+//
+partial alphanumeric_keys
+xkb_symbols "bepo" {
+
+    include "level3(ralt_switch)"
+    include "keypad(oss)"
+
+    name[Group1]= "French (BEPO)";
+
+    // First row
+    key <TLDE> { [  numbersign,   bar                                 ] };
+    key <AE01> { [  slash,        1                                   ] };
+    key <AE02> { [  parenleft,    2                                   ] };
+    key <AE03> { [  bracketleft,  3                                   ] };
+    key <AE04> { [  braceleft,    4,              degree              ] };
+    key <AE05> { [  ampersand,    5                                   ] };
+    key <AE06> { [  dollar,       6,              asciicircum         ] };
+    key <AE07> { [  quotedbl,     7                                   ] };
+    key <AE08> { [  braceright,   8                                   ] };
+    key <AE09> { [  bracketright, 9                                   ] };
+    key <AE10> { [  parenright,   0                                   ] };
+    key <AE11> { [  minus,        underscore                          ] };
+    key <AE12> { [  equal,        plus                                ] };
+
+    // Second row
+    key <AD01> { [  b,                b                               ] };
+    key <AD02> { [  eacute,           eacute,     dead_acute          ] };
+    key <AD03> { [  p,                p                               ] };
+    key <AD04> { [  o,                O,          oe, OE              ] };
+    key <AD05> { [  egrave,           Egrave,     dead_grave, grave   ] };
+    key <AD06> { [  dead_circumflex,  exclam                          ] };
+    key <AD07> { [  v,                v                               ] };
+    key <AD08> { [  d,                d                               ] };
+    key <AD09> { [  l,                L                               ] };
+    key <AD10> { [  j,                J                               ] };
+    key <AD11> { [  z,                Z                               ] };
+    key <AD12> { [  w,                W                               ] };
+
+    // Third row
+    key <AC01> { [  a,                A,          at                  ] };
+    key <AC02> { [  u,                U,          ugrave, Ugrave      ] };
+    key <AC03> { [  i,                I,          dead_diaresis       ] };
+    key <AC04> { [  e,                E,          asterisk            ] };
+    key <AC05> { [  period,           comma,      less, greater       ] };
+    key <AC06> { [  c,                C                               ] };
+    key <AC07> { [  t,                T                               ] };
+    key <AC08> { [  s,                S                               ] };
+    key <AC09> { [  r,                R                               ] };
+    key <AC10> { [  n,                N                               ] };
+    key <AC11> { [  m,                M                               ] };
+    key <BKSL> { [  ccedilla,         Ccedilla                        ] };
+
+    // Fourth row
+    key <AB01> { [  agrave,           Agrave,     backslash           ] };
+    key <AB02> { [  y,                Y,          guillemotleft       ] };
+    key <AB03> { [  x,                X,          guillemotright      ] };
+    key <AB04> { [  semicolon,        colon                           ] };
+    key <AB05> { [  k,                K,          asciitilde          ] };
+    key <AB06> { [  apostrophe,       question                        ] };
+    key <AB07> { [  q,                Q                               ] };
+    key <AB08> { [  g,                G                               ] };
+    key <AB09> { [  h,                H                               ] };
+    key <AB10> { [  f,                F                               ] };
+
+    key <SPCE> { [  space                                             ] };
 };
