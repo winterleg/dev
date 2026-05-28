@@ -21,7 +21,7 @@ element-text, element-icon, mode-switcher {
 window {
     width: 40%;
     border: 2px;
-    border-radius: 5px;
+    border-radius: 0px;
     border-color: @outline;
     background-color: @surface;
 }

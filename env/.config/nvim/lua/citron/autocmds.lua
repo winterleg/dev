@@ -113,3 +113,15 @@ autocmd('LspAttach', {
     vim.keymap.set("n", "<leader>e", function() vim.diagnostic.goto_prev() end, opts)
   end
 })
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+  callback = function()
+    local mode = vim.fn.mode()
+
+    if mode:match("[vV\22]") then
+      vim.opt.list = true
+    else
+      vim.opt.list = false
+    end
+  end,
+})

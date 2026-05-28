@@ -1,4 +1,4 @@
-// Keyboard layouts for Canada.
+// Keyboard layouts for French (Canada).
 
 
 // Disposition de touches basée sur Colemak,
@@ -9,7 +9,7 @@
 // - adapté à l'écriture française (œ, è, é, ê, à, «, », etc.);
 // - adapté à mon usage personnel.
 //
-// By Winter L. <codeberg.org/winterl>
+// modifié par <codeberg.org/winterl>
 //
 // ┌─────┐
 // │ S A │   S = Shift,  A = AltGr + Shift
@@ -109,7 +109,7 @@ xkb_symbols "basic" {
 // │ s a │   s = normal, a = AltGr
 // └─────┘
 //
-// Modifié par Winter L. (codeberg.org/winterl) pour placer les symboles un peu
+// Modifié par <codeberg.org/winterl> pour placer les symboles un peu
 // plus comme ils le sont sur ma version de Colemak
 //
 // ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐     ┌─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━━━┓
@@ -194,3 +194,4 @@ xkb_symbols "bepo" {
 
     key <SPCE> { [  space                                             ] };
 };
+

@@ -18,7 +18,7 @@ function UpdateMonitors()
 
     hl.monitor {
       output   = "eDP-1",
-      mode     = "2560x1600@60",
+      mode     = "2560x1600@165",
       position = "auto-left",
       scale    = "2",
     }

@@ -69,7 +69,11 @@ vim.opt.colorcolumn = { 72, 80, 120, 180 }
 vim.opt.textwidth = 80
 
 vim.opt.list = false
-vim.opt.listchars:append("space:·")
+vim.opt.listchars = {
+  tab = "> ",
+  trail = "*",
+  space = "·",
+}
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
