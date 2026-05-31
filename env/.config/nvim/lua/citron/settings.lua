@@ -142,7 +142,6 @@ end, {
 
 if vim.g.neovide then
   require('neov-ime').setup()
-  -- vim.opt.nu = false
   vim.o.guifont = "Comic Code:h20"
 
   vim.g.neovide_refresh_rate = 144
@@ -162,6 +161,9 @@ if vim.g.neovide then
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
   end
 
+  vim.keymap.set("n", "<C-)>", function()
+    vim.g.neovide_scale_factor = 1.0
+  end)
   vim.keymap.set("n", "<C-=>", function()
     change_scale_factor(1.05)
   end)

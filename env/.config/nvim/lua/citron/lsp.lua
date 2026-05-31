@@ -18,6 +18,7 @@ vim.lsp.enable({
   "pyright",
   "ocamllsp",
   "clojure-lsp",
+  "csharp_ls",
 })
 
 vim.pack.add {

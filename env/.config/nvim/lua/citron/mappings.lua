@@ -214,39 +214,20 @@ local function fzf_chdir()
 end
 
 local mappings = {
-  { "n", "<Enter>",    "<nop>" },
-  { "t", "<C-q>",      [[<C-\><C-n>]] },
-  { "n", "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
-  { "n", "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
-  { "n", "ç",          "<CMD>Oil<CR>",                        { desc = "Open root directory" } },
-  { "n", "<leader>ç",  "<CMD>Oil .<CR>",                      { desc = "Open root directory" } },
-  { "n", "<ESC>",      "<CMD>noh<CR>" },
-  { "n", "<leader>pf", ":FilesNoPDF<CR>",                     { desc = "Open fzf (no PDFs)" } },
-  { "n", "<leader>pr", files_no_pdf_query,                    { desc = "Open fzf (no PDFs) with query" } },
-  { "n", "<leader>pk", fzf_firefox,                           { desc = "Open file in Firefox with skim" } },
-  { "n", "<leader>py", fzf_pdf },
-  { "n", "<leader>k",  ":!make<CR>",                          { desc = "Call make" } },
-  { "n", "<leader>sk", "<CMD>T make<CR>",                     { desc = "Call make" } },
-  {
-    "n",
-    "<leader>sa",
-    function()
-      local pos = vim.api.nvim_win_get_cursor(0)
-
-      vim.cmd("normal! ggVG")
-
-      local group = vim.api.nvim_create_augroup("RestoreCursorOnce", { clear = true })
-
-      vim.api.nvim_create_autocmd("ModeChanged", {
-        group = group,
-        once = true,
-        pattern = "[vV\22]*:n",
-        callback = function()
-          vim.api.nvim_win_set_cursor(0, pos)
-        end,
-      })
-    end,
-  },
+  { "n",               "<Enter>",    "<nop>" },
+  { "t",               "<C-q>",      [[<C-\><C-n>]] },
+  { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
+  { "n",               "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
+  { "n",               "ç",          "<CMD>Oil<CR>",                         { desc = "Open root directory" } },
+  { "n",               "<leader>ç",  "<CMD>Oil .<CR>",                       { desc = "Open root directory" } },
+  { "n",               "<ESC>",      "<CMD>noh<CR>" },
+  { "n",               "<leader>pf", ":FilesNoPDF<CR>",                      { desc = "Open fzf (no PDFs)" } },
+  { "n",               "<leader>pr", files_no_pdf_query,                     { desc = "Open fzf (no PDFs) with query" } },
+  { "n",               "<leader>pk", fzf_firefox,                            { desc = "Open file in Firefox with skim" } },
+  { "n",               "<leader>py", fzf_pdf },
+  { "n",               "<leader>k",  ":!make<CR>",                           { desc = "Call make" } },
+  { "n",               "<leader>sk", "<CMD>T make<CR>",                      { desc = "Call make" } },
+  { "n",               "<leader>sa", "ggVG" },
   { "n",               "<leader>tw", toggleWhiteSpace },
   { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                 { silent = true } },
   { "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" },
@@ -268,6 +249,7 @@ local mappings = {
   { { 'n', 'v', 'x' }, 'k',          'gk' },
   { { 'n', 'v', 'x' }, 'R',          'gR' },
   { { 'n', 'v', 'x' }, '<leader>cz', ':center<CR>' },
+  { 'n', '<leader>a', function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
 
   { 'n', '<leader>de', function()
     local word = vim.fn.expand('<cword>')

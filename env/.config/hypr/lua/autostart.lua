@@ -1,11 +1,11 @@
 local autostarts = {
   "blueman-applet",
   "nm-applet",
-  "ckb-next",
+  "ckb-next -b",
   "mpd --no-daemon",
   "dunst",
   "fcitx5",
-  "~/.config/waybar/waybar.sh",
+  -- "~/.config/waybar/waybar.sh",
   "~/.config/hypr/scripts/background-autostart.sh",
   "udiskie --tray",
   "wl-paste --watch cliphist store --no-persist",

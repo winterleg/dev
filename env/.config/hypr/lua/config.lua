@@ -34,7 +34,7 @@ hl.config({
       active_border   = 0xFFb8bb26,
       inactive_border = 0xFF83a598,
     },
-    layout        = "scrolling",
+    layout        = "dwindle",
     allow_tearing = true,
 
     snap          = {
@@ -55,7 +55,7 @@ hl.config({
     fullscreen_on_one_column = true,
     direction                = "down",
     column_width             = 0.95,
-    explicit_column_widths   = 0.95,
+    explicit_column_widths   = "0.95, 1",
     focus_fit_method         = 0
   },
 
@@ -102,8 +102,3 @@ hl.device {
   name   = "wacom-one-by-wacom-m-pen",
   output = "HDMI-A-1",
 }
-
--- hl.device {
---   name    = "elan06fa:00-04f3:327e-touchpad",
---   enabled = true
--- }

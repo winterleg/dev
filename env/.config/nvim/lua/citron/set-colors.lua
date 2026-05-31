@@ -4,7 +4,7 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
-UseTransparency = true
+UseTransparency = false
 
 local function unset_curls()
   local groups = {
@@ -127,7 +127,7 @@ local colorsList = {
   },
   {
     name = "Gruvvier",
-    enabled = true,
+    enabled = false,
     callback = function()
       require("gruvbox").setup({
         transparent_mode = false,
@@ -154,7 +154,7 @@ local colorsList = {
   },
   {
     name = "NERV",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme mfd-nerv]]
@@ -166,7 +166,7 @@ local colorsList = {
   },
   {
     name = "Paper",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme mfd-paper]]
@@ -179,7 +179,7 @@ local colorsList = {
   },
   {
     name = "SCARLET",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme mfd-scarlet]]
@@ -199,18 +199,6 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "Visual", { fg = "#181818", bg = "#909090" })
 
       save_theme "GRAPHITE"
-    end,
-  },
-  {
-    name = "EINK",
-    enabled = true,
-    callback = function()
-      vim.opt.background = "light"
-      vim.cmd [[colorscheme e-ink]]
-      -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
-      vim.api.nvim_set_hl(0, "Visual", { fg = "#cccccc", bg = "#5e5e5e" })
-
-      save_theme "EINK"
     end,
   },
   {
@@ -261,7 +249,7 @@ local colorsList = {
   },
   {
     name = "Lotus",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme kanagawa-lotus]]
@@ -296,7 +284,7 @@ local colorsList = {
   },
   {
     name = "cat latte",
-    enabled = true,
+    enabled = false,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme catppuccin-latte]]
@@ -310,6 +298,9 @@ local colorsList = {
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
+      require "catppuccin".setup {
+        transparent_background = UseTransparency,
+      }
       vim.cmd [[colorscheme catppuccin-mocha]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#1e1e2e", bg = "#cdd6f4" })
 

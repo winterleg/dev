@@ -8,6 +8,7 @@ mkdir -p "$backup_path"
 
 tar -czvf "$backup_path/$date_str.tar.gz" \
   -C "$HOME" \
+  .config \
   art \
   book \
   cours \

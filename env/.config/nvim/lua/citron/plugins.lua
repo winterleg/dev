@@ -18,7 +18,7 @@ vim.pack.add {
   { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
   { src = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim", },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
-  { src = "https://github.com/GustavEikaas/easy-dotnet.nvim" },
+  -- { src = "https://github.com/GustavEikaas/easy-dotnet.nvim" },
   {
     src = "https://github.com/lervag/vimtex",
     lazy = false,
@@ -43,6 +43,8 @@ vim.pack.add {
   { src = "https://github.com/vimwiki/vimwiki" },
   { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
   { src = "https://github.com/andweeb/presence.nvim" },
+  { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+  { src = "https://github.com/MunifTanjim/nui.nvim" },
 }
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -85,17 +87,17 @@ require("oil").setup({
   },
 })
 
-require("easy-dotnet").setup({
-  lsp = {
-    enabled = true,                       -- Enable builtin roslyn lsp
-    preload_roslyn = true,                -- Start loading roslyn before any buffer is opened
-    roslynator_enabled = true,            -- Automatically enable roslynator analyzer
-    easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
-    auto_refresh_codelens = true,
-    analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
-    config = {},
-  },
-})
+-- require("easy-dotnet").setup({
+--   lsp = {
+--     enabled = true,                       -- Enable builtin roslyn lsp
+--     preload_roslyn = true,                -- Start loading roslyn before any buffer is opened
+--     roslynator_enabled = true,            -- Automatically enable roslynator analyzer
+--     easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
+--     auto_refresh_codelens = true,
+--     analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+--     config = {},
+--   },
+-- })
 
 local telescope = require("telescope")
 telescope.setup({
@@ -235,7 +237,7 @@ local function open_stay()
 end
 
 local function open_and_close()
-  local handled_external = open_external_or_fallback()
+  open_external_or_fallback()
   MiniFiles.close()
 end
 
@@ -282,26 +284,62 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- The setup config table shows all available config options with their default values:
-require("presence").setup({
-    -- General options
-    auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
-    neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
-    main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
-    client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
-    log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
-    debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
-    enable_line_number  = false,                      -- Displays the current line number instead of the current project
-    blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-    buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
-    file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
-    show_time           = true,                       -- Show the timer
+require("presence").setup {
+  -- General options
+  auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+  neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+  main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+  client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
+  log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+  debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+  enable_line_number  = false,                      -- Displays the current line number instead of the current project
+  blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+  buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+  file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
+  show_time           = true,                       -- Show the timer
 
-    -- Rich Presence text options
-    editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
-    git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
-    plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
-    reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
-    workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
-    line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
-})
+  -- Rich Presence text options
+  editing_text        = "Editing %s",         -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+  file_explorer_text  = "Browsing %s",        -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+  git_commit_text     = "Committing changes", -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+  plugin_manager_text = "Managing plugins",   -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+  reading_text        = "Reading %s",         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+  workspace_text      = "Working on %s",      -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+  line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+}
+
+require('neo-tree').setup {
+  window     = {
+    position          = "float",
+    width             = 40,
+    auto_expand_width = false,
+
+    mappings          = {
+      ["w"] = "noop"
+    }
+  },
+  filesystem = {
+    window = {
+      mappings = {
+        ["b"] = "noop",
+        ["/"] = { "fuzzy_finder", config = { keep_filter_on_submit = true } }
+      }
+    }
+  }
+}
+
+-- vim.api.nvim_create_autocmd("WinEnter", {
+--   callback = function()
+--     local buf = vim.api.nvim_get_current_buf()
+--     if vim.bo[buf].filetype == "neo-tree" then
+--       vim.api.nvim_win_set_width(0, 30)
+--     else
+--       for _, win in ipairs(vim.api.nvim_list_wins()) do
+--         local win_buf = vim.api.nvim_win_get_buf(win)
+--         if vim.bo[win_buf].filetype == "neo-tree" then
+--           pcall(vim.api.nvim_win_set_width, win, 10)
+--         end
+--       end
+--     end
+--   end,
+-- })

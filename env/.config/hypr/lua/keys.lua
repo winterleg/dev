@@ -27,6 +27,7 @@ Key = {
   y                  = "Y",
   z                  = "Z",
   minus              = "MINUS",
+  equal              = "EQUAL",
   super              = "SUPER",
   return_            = "RETURN",
   shift              = "SHIFT",

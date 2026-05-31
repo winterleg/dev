@@ -22,23 +22,23 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true
     vim.opt_local.textwidth = 80
 
-    local dotnet = require("easy-dotnet")
-    dotnet.setup({
-      lsp = {
-        enabled = true,                       -- Enable builtin roslyn lsp
-        set_fold_expr = false,
-        preload_roslyn = false,               -- Start loading roslyn before any buffer is opened
-        roslynator_enabled = false,           -- Automatically enable roslynator analyzer
-        easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
-        auto_refresh_codelens = false,
-        analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
-        config = {},
-      },
-      csproj_mappings = true,
-      fsproj_mappings = true,
-      picker = "telescope",
-      background_scanning = true,
-    })
+    -- local dotnet = require("easy-dotnet")
+    -- dotnet.setup({
+    --   lsp = {
+    --     enabled = true,                       -- Enable builtin roslyn lsp
+    --     set_fold_expr = false,
+    --     preload_roslyn = false,               -- Start loading roslyn before any buffer is opened
+    --     roslynator_enabled = false,           -- Automatically enable roslynator analyzer
+    --     easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
+    --     auto_refresh_codelens = false,
+    --     analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+    --     config = {},
+    --   },
+    --   csproj_mappings = true,
+    --   fsproj_mappings = true,
+    --   picker = "telescope",
+    --   background_scanning = true,
+    -- })
   end,
 })
 
@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "h", "cpp", "cc", "c3" },
   callback = function()
-    local width = 8
+    local width = 2
     vim.opt_local.shiftwidth = width
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width
@@ -96,11 +96,6 @@ vim.api.nvim_create_autocmd("FileType", {
       local file = vim.fn.expand("%:p")
       vim.system({ "typst", "c", file })
     end, { buffer = true, desc = "Compile Typst file" })
-
-    -- vim.keymap.set("n", "<leader>y", function()
-    --   local pdf = vim.fn.expand("%:p:r") .. ".pdf"
-    --   vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
-    -- end, { buffer = true, desc = "Open PDF" })
   end
 })
 
@@ -112,7 +107,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.sidescrolloff = 0
 
-    vim.opt.wrap = false
+    vim.opt.wrap                = false
 
     local width                 = 2
     vim.opt_local.shiftwidth    = width
@@ -139,9 +134,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell         = true
     vim.opt_local.spelllang     = { "en", "fr" }
 
+    vim.opt_local.nu            = false
+
     vim.opt_local.sidescrolloff = 0
 
-    vim.opt.wrap = false
+    vim.opt_local.wrap          = false
 
     local width                 = 2
     vim.opt_local.shiftwidth    = width
@@ -156,6 +153,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.cindent       = false
     vim.opt_local.indentexpr    = ""
     vim.opt_local.indentkeys    = ""
+
     vim.opt_local.formatoptions = "t"
   end,
 })
@@ -165,8 +163,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "fr", "cjk" }
-
-    vim.opt_local.colorcolumn = { 72, 80, 120, 180 }
 
     vim.opt_local.sidescrolloff = 0
 
@@ -193,7 +189,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "fr", "cjk" }
 
-    -- vim.opt_local.colorcolumn = "80"
     vim.opt_local.textwidth = 80
 
     vim.opt_local.sidescrolloff = 0
@@ -207,10 +202,10 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.cmd("write")
 
       local file = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
-      vim.cmd("silent !bunx prettier " .. file .. " --write")
+      vim.cmd("silent !npx prettier " .. file .. " --write")
 
-      vim.cmd("edit!") -- reload file after formatting
-    end, { buffer = true, desc = "Format with Prettier (bunx)" })
+      vim.cmd("edit!")
+    end, { buffer = true, desc = "Format with Prettier" })
   end
 })
 

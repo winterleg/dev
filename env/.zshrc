@@ -14,6 +14,11 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 
 export WORKSTATION="$HOME/dotfiles"
 
+
+# if [[ "$TERM" == "kmscon" ]]; then
+#   nvim ~
+# fi
+
 ZSH_THEME="robbyrussell"
 
 plugins=(

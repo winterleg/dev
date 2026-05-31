@@ -41,7 +41,7 @@ local binds = {
   { k = { MainMod, Key.x },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
   { k = { MainMod, Key.page_down },                 c = hl.dsp.exec_cmd "kitty --class=calc tmux new-session qalc" },
   { k = { MainMod, Key.r },                         c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
-  { k = { MainMod, Key.shift, Key.r },              c = hl.dsp.exec_cmd "~/dotfiles/scripts/wmenu-run-dot" },
+  { k = { MainMod, Key.shift, Key.r },              c = hl.dsp.exec_cmd "rofi -show run" },
   { k = { MainMod, Key.y },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
   { k = { MainMod, Key.t },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/status.sh" },
   { k = { MainMod, Key.shift, Key.f },              c = hl.dsp.exec_cmd "thunar" },
