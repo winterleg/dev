@@ -76,13 +76,43 @@ hl.config({
     },
 
     blur             = {
-      enabled       = false,
-      input_methods = true
-    }
+      enabled       = true,
+      size          = 0,
+      noise         = 0,
+      brightness    = 1,
+      input_methods = true,
+      xray          = true
+    },
   },
 
   animations = {
     enabled = false
+  },
+
+  group      = {
+    auto_group           = true,
+    insert_after_current = true,
+    drag_into_group      = 2,
+
+    groupbar             = {
+      font_family         = "Comic Code",
+      font_size           = 16,
+      gradients           = true,
+      height              = 18,
+      indicator_height    = 0,
+      stacked             = false,
+      render_titles       = true,
+      rounding            = 0,
+      gradient_rounding   = 0,
+      text_color          = 0xff000000,
+      text_color_inactive = 0xffffffff,
+      col                 = {
+        active   = 0xff62949d,
+        inactive = 0xff0d0c13,
+      },
+      gaps_in             = 0,
+      gaps_out            = 0,
+    }
   },
 
   misc       = {

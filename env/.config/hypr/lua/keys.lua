@@ -89,7 +89,7 @@ Mouse = {
 }
 
 --- @class Key
-WSKey = {
+NumberLayer = {
   first   = Key.slash,
   second  = Key.parenleft,
   third   = Key.bracketleft,

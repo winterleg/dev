@@ -134,7 +134,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell         = true
     vim.opt_local.spelllang     = { "en", "fr" }
 
-    vim.opt_local.nu            = false
+    -- vim.opt_local.nu            = false
 
     vim.opt_local.sidescrolloff = 0
 

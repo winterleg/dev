@@ -4,7 +4,16 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
-UseTransparency = false
+_G.UseTransparency = vim.g.neovide
+-- background = #000000
+local kitty_bg_file = vim.fn.expand("~/.config/ghostty/nvim-generated")
+
+local function write_kitty_bg(color)
+  if color == nil then return end
+  local hex = string.format("#%06x", color)
+  vim.fn.writefile({ "background = " .. hex }, kitty_bg_file)
+  vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
+end
 
 local function unset_curls()
   local groups = {
@@ -68,15 +77,17 @@ local colorsList = {
     name = "Pine",
     enabled = true,
     callback = function()
-      require "rose-pine".setup {
-        styles = {
-          transparency = UseTransparency,
-        }
-      }
       vim.opt.background = "dark"
       vim.cmd [[colorscheme rose-pine-main]]
 
       vim.api.nvim_set_hl(0, "Visual", { fg = "#191724", bg = "#e0def4" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "Pine"
     end,
@@ -85,15 +96,17 @@ local colorsList = {
     name = "Dawn",
     enabled = true,
     callback = function()
-      require('rose-pine').setup({
-        styles = {
-          transparency = UseTransparency,
-        }
-      })
       vim.opt.background = "light"
       vim.cmd [[colorscheme rose-pine-dawn]]
 
       vim.api.nvim_set_hl(0, "Visual", { fg = "#faf4ed", bg = "#464261" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "Dawn"
     end,
@@ -107,6 +120,13 @@ local colorsList = {
 
       vim.api.nvim_set_hl(0, "Visual", { fg = "#fbf6f0", bg = "#724341" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "Faded Dawn"
     end,
   },
@@ -114,30 +134,19 @@ local colorsList = {
     name = "Gruvvy",
     enabled = true,
     callback = function()
-      require("gruvbox").setup({
-        transparent_mode = UseTransparency,
-      })
       vim.opt.background = "dark"
       vim.cmd [[colorscheme gruvbox]]
       vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#3c3836", bg = "#ebdbb2" })
 
-      save_theme "Gruvvy"
-    end,
-  },
-  {
-    name = "Gruvvier",
-    enabled = false,
-    callback = function()
-      require("gruvbox").setup({
-        transparent_mode = false,
-      })
-      vim.opt.background = "light"
-      vim.cmd [[colorscheme gruvbox]]
-      vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
-      vim.api.nvim_set_hl(0, "Visual", { fg = "#3c3836", bg = "#ebdbb2" })
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
-      save_theme "Gruvvier"
+      save_theme "Gruvvy"
     end,
   },
   {
@@ -148,6 +157,13 @@ local colorsList = {
       vim.cmd [[colorscheme kanagawa-dragon]]
       vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true })
       vim.api.nvim_set_hl(0, "Visual", { bg = "#c5c9c5", fg = "#181616" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "KAWA"
     end
@@ -160,6 +176,13 @@ local colorsList = {
       vim.cmd [[colorscheme mfd-nerv]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#4a2008" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#1a0a02", bg = "#ee8822" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "NERV"
     end,
@@ -174,6 +197,13 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "Visual", { fg = "#bbc5b7", bg = "#002611" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#002611" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "Paper"
     end
   },
@@ -185,6 +215,13 @@ local colorsList = {
       vim.cmd [[colorscheme mfd-scarlet]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a100a" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#0c0404", bg = "#cc5545" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "SCARLET"
     end,
@@ -198,6 +235,13 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#181818", bg = "#909090" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "GRAPHITE"
     end,
   },
@@ -209,6 +253,13 @@ local colorsList = {
       vim.cmd [[colorscheme parchment-manuscript]]
       vim.api.nvim_set_hl(0, "Visual", { fg = "#ede4cc", bg = "#2a2018" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "PARCHMENT"
     end,
   },
@@ -219,6 +270,13 @@ local colorsList = {
       vim.opt.background = "dark"
       vim.cmd [[colorscheme parchment]]
       vim.api.nvim_set_hl(0, "Visual", { fg = "#141312", bg = "#d4c9a8" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "PARCHMENT PSYOP"
     end,
@@ -232,6 +290,13 @@ local colorsList = {
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#181c20" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#000000", bg = "#24282c" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "BLACK OUT"
     end,
   },
@@ -243,6 +308,13 @@ local colorsList = {
       vim.cmd [[colorscheme mfd-stealth]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a3a2a" })
       vim.api.nvim_set_hl(0, "Visual", { fg = "#0d1410", bg = "#7a9a7a" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "MATRIX"
     end,
@@ -256,6 +328,13 @@ local colorsList = {
 
       vim.api.nvim_set_hl(0, "Visual", { fg = "#f2ecbc", bg = "#634d83" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "Lotus"
     end
   },
@@ -268,6 +347,13 @@ local colorsList = {
 
       vim.api.nvim_set_hl(0, "Visual", { fg = "#d3d2ce", bg = "#444136" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "Rusty"
     end
   },
@@ -276,8 +362,15 @@ local colorsList = {
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
-      vim.cmd [[colorscheme github_dark_high_contrast]]
+      vim.cmd [[colorscheme github_dark_dimmed]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#30363d", bg = "#e4ebf1" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "Github"
     end,
@@ -290,6 +383,13 @@ local colorsList = {
       vim.cmd [[colorscheme catppuccin-latte]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#eff1f5", bg = "#4c4f69" })
 
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
+
       save_theme "cat latte"
     end,
   },
@@ -298,11 +398,15 @@ local colorsList = {
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
-      require "catppuccin".setup {
-        transparent_background = UseTransparency,
-      }
       vim.cmd [[colorscheme catppuccin-mocha]]
       vim.api.nvim_set_hl(0, 'Visual', { fg = "#1e1e2e", bg = "#cdd6f4" })
+
+      if not UseTransparency then
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        write_kitty_bg(normal.bg)
+        normal.bg = "NONE"
+        vim.api.nvim_set_hl(0, "Normal", normal)
+      end
 
       save_theme "cat mocha"
     end,

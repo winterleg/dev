@@ -2,29 +2,35 @@ background = #000000
 
 cursor-color = EC5D2A
 
-background-opacity = 0.86
+background-opacity = 0.92
 background-blur    = false
 
 confirm-close-surface = false
 
-font-family  = "OCR-BK"
-font-family  = "zen maru gothic"
-font-size    = 22
+font-family  = "Comic Code"
+font-family  = "Zen Maru Gothic"
+font-size    = 20
 font-feature = -calt, -liga, -dlig
 
 gtk-single-instance = true
-gtk-tabs-location = bottom
-gtk-wide-tabs     = false
+gtk-tabs-location   = bottom
+gtk-wide-tabs       = false
+gtk-toolbar-style   = raised
 
 # shell-integration-features = no-cursor
 
 bell-features = no-title
 
 config-file = ?auto/theme.ghostty
+config-file = nvim-generated
 
-window-inherit-working-directory = false
+window-inherit-working-directory = true
 window-padding-balance           = true
 window-padding-y                 = 0
 window-decoration                = server
 
+adjust-cursor-thickness = 3
+
 keybind = ctrl+)=reset_font_size
+
+app-notifications = no-config-reload

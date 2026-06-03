@@ -81,8 +81,6 @@ vim.opt.smartcase = true
 vim.opt.spell = false
 vim.opt.spelllang = nil
 
--- vim.o.iskeyword = "a-z,A-Z,48-57,_,.,->"
-
 _G.isWriteCommit = false
 
 vim.api.nvim_create_user_command("ToggleWriteCommit", function()
@@ -95,7 +93,7 @@ vim.api.nvim_create_user_command("ToggleWriteCommit", function()
       callback = function()
         if _G.isWriteCommit then
           vim.cmd [[silent !git add .]]
-          vim.cmd [[silent !git commit -m nvim-commit]]
+          vim.cmd [[silent !git commit -m '...']]
         end
       end
     })
@@ -105,6 +103,29 @@ end, {})
 vim.api.nvim_create_user_command("OpenFirefox", function()
   vim.cmd [[!firefox %]]
 end, {})
+
+vim.api.nvim_create_user_command("UWU", function(opts)
+  local start_row = opts.line1 - 1
+  local end_row = opts.line2
+
+  local lines = vim.api.nvim_buf_get_lines(0, start_row, end_row, false)
+
+  for i, line in ipairs(lines) do
+    lines[i] = line
+        :gsub("th", "d")
+        :gsub("Th", "D")
+        :gsub("TH", "D")
+        :gsub("ove", "uv")
+        :gsub("OVE", "UV")
+        :gsub("Ove", "Uv")
+        :gsub("n([aeiou])", "ny%1")
+        :gsub("N([aeiouAEIOU])", "Ny%1")
+        :gsub("[rl]", "w")
+        :gsub("[RL]", "W")
+  end
+
+  vim.api.nvim_buf_set_lines(0, start_row, end_row, false, lines)
+end, { range = true })
 
 vim.api.nvim_create_user_command("T", function(opts)
   local cmd = opts.args
@@ -142,6 +163,9 @@ end, {
 
 if vim.g.neovide then
   require('neov-ime').setup()
+  -- hesitating between this and comic code
+  -- vim.o.guifont = "OCR A Std:h20"
+  -- hesitating between this and comic code
   vim.o.guifont = "Comic Code:h20"
 
   vim.g.neovide_refresh_rate = 144

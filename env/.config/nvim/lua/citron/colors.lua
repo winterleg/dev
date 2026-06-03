@@ -67,7 +67,7 @@ vim.pack.add {
         palette_overrides = {},
         overrides = {},
         dim_inactive = false,
-        transparent_mode = true,
+        transparent_mode = false,
       })
     end,
   },
@@ -75,7 +75,7 @@ vim.pack.add {
     src = "https://github.com/rebelot/kanagawa.nvim",
     config = function()
       require('kanagawa').setup({
-        transparent = true,
+        transparent = false,
         theme = "dragon",
         keywordStyle = { italic = false },
         background = {
@@ -123,7 +123,7 @@ require("everforest").setup({
 
 require('rose-pine').setup({
   styles = {
-    transparency = true,
+    transparency = false,
   }
 })
 
