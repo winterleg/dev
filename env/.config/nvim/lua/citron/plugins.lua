@@ -346,12 +346,25 @@ require('neo-tree').setup {
 --   end,
 -- })
 
-require "lsp_signature".setup {
+local sigConfig = {
   bind = true,
   handler_opts = {
     border = "rounded"
   }
 }
+local sig = require("lsp_signature")
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+
+    if ft == "fsharp" then
+      return
+    end
+
+    sig.on_attach(sigConfig, args.buf)
+  end,
+})
 
 require 'marks'.setup {
   -- whether to map keybinds or not. default true

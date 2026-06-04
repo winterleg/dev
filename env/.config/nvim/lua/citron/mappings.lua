@@ -253,6 +253,7 @@ local mappings = {
   { 'n',               '<leader><C-h>', ':split | term<CR>' },
   { 'n',               '<leader><C-t>', ':term<CR>' },
   { 'n',               '<leader>a',     function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
+  { 'v',               'Q',     ":'<,'>UWU<CR>" },
 
   { 'n', '<leader>de', function()
     local word = vim.fn.expand('<cword>')

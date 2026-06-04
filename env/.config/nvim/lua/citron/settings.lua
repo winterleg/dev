@@ -112,9 +112,12 @@ vim.api.nvim_create_user_command("UWU", function(opts)
 
   for i, line in ipairs(lines) do
     lines[i] = line
-        :gsub("th", "d")
-        :gsub("Th", "D")
-        :gsub("TH", "D")
+        :gsub("%f[%a]th", "d")
+        :gsub("%f[%a]Th", "D")
+        :gsub("%f[%a]TH", "D")
+        :gsub("th%f[%A]", "f")
+        :gsub("Th%f[%A]", "F")
+        :gsub("TH%f[%A]", "F")
         :gsub("ove", "uv")
         :gsub("OVE", "UV")
         :gsub("Ove", "Uv")
