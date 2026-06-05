@@ -48,10 +48,6 @@
       "rev": "a0f003a0c6e2952abd9b73ef89d56c65e6c46f00",
       "src": "https://github.com/e-ink-colorscheme/e-ink.nvim"
     },
-    "easy-dotnet.nvim": {
-      "rev": "9549333f231ec918500cd5033c646e390c932e9c",
-      "src": "https://github.com/GustavEikaas/easy-dotnet.nvim"
-    },
     "everforest-nvim": {
       "rev": "d235ca0aa6a29546e661a020e2618612acbbffbe",
       "src": "https://github.com/neanias/everforest-nvim"
@@ -129,10 +125,6 @@
       "rev": "2de78d9688ea4a177bcd9be554ab9192337d35ff",
       "src": "https://github.com/kdheepak/monochrome.nvim"
     },
-    "multiple-cursors.nvim": {
-      "rev": "eae76d4c5f7ede2d45746dc2affb5e7a139e4aa8",
-      "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
-    },
     "neo-tree.nvim": {
       "rev": "bb46bc65e93cc43fd4009691bba8df98abfee9ef",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
@@ -168,10 +160,6 @@
     "nvim-rusticated": {
       "rev": "93e35f67b11857736c9af8b353867daf7e4a3abc",
       "src": "https://github.com/d00h/nvim-rusticated"
-    },
-    "nvim-tree.lua": {
-      "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
-      "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
       "rev": "df7489eeea351bece7fd0f9c825be5cb6a1438f0",
@@ -225,10 +213,6 @@
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
       "src": "https://github.com/folke/tokyonight.nvim"
-    },
-    "tree-sitter-manager.nvim": {
-      "rev": "f18e545c6ccbbae9875e63a2a7b8e8a9678a242e",
-      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "treesitter-parser-registry": {
       "rev": "6eb15358bb9fc88f0d3401d8538d56652e9bdf3c",

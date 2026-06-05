@@ -36,6 +36,8 @@ local binds = {
   { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/tts-neovide" },
   { k = { MainMod, Key.control, Key.v },            c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
+  -- { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd "neovide" },
+  -- { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd "foot" },
   { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd "ghostty +new-window -e nvim" },
   { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd "ghostty +new-window" },
   { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "firefox" },

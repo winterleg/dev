@@ -19,6 +19,7 @@ vim.lsp.enable({
   "ocamllsp",
   "clojure-lsp",
   "csharp_ls",
+  "julials",
 })
 
 vim.pack.add {

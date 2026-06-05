@@ -21,24 +21,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = width
     vim.opt_local.expandtab = true
     vim.opt_local.textwidth = 80
-
-    -- local dotnet = require("easy-dotnet")
-    -- dotnet.setup({
-    --   lsp = {
-    --     enabled = true,                       -- Enable builtin roslyn lsp
-    --     set_fold_expr = false,
-    --     preload_roslyn = false,               -- Start loading roslyn before any buffer is opened
-    --     roslynator_enabled = false,           -- Automatically enable roslynator analyzer
-    --     easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
-    --     auto_refresh_codelens = false,
-    --     analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
-    --     config = {},
-    --   },
-    --   csproj_mappings = true,
-    --   fsproj_mappings = true,
-    --   picker = "telescope",
-    --   background_scanning = true,
-    -- })
   end,
 })
 
@@ -133,8 +115,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.spell         = true
     vim.opt_local.spelllang     = { "en", "fr" }
-
-    -- vim.opt_local.nu            = false
 
     vim.opt_local.sidescrolloff = 0
 

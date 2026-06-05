@@ -8,7 +8,6 @@ vim.g.fzf_preview_window = { 'right:50%' }
 vim.api.nvim_create_user_command("UpdateWordCount", function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 
-  -- exclude existing word count line
   local filtered = {}
 
   for _, line in ipairs(lines) do

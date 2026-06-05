@@ -29,14 +29,13 @@ hl.config({
   general    = {
     gaps_in       = 0,
     gaps_out      = 0,
-    border_size   = 0,
+    border_size   = 1,
     col           = {
-      active_border   = 0xFFb8bb26,
-      inactive_border = 0xFF83a598,
+      active_border   = "#62949d",
+      inactive_border = "#0d0c13",
     },
     layout        = "dwindle",
     allow_tearing = true,
-
     snap          = {
       enabled      = true,
       window_gap   = 10,
@@ -94,6 +93,11 @@ hl.config({
     insert_after_current = true,
     drag_into_group      = 2,
 
+    col                  = {
+      border_active   = "#62949d",
+      border_inactive = "#0d0c13",
+    },
+
     groupbar             = {
       font_family         = "Comic Code",
       font_size           = 16,
@@ -107,8 +111,8 @@ hl.config({
       text_color          = 0xff000000,
       text_color_inactive = 0xffffffff,
       col                 = {
-        active   = 0xff62949d,
-        inactive = 0xff0d0c13,
+        active   = "#62949d",
+        inactive = "#0d0c13",
       },
       gaps_in             = 0,
       gaps_out            = 0,
