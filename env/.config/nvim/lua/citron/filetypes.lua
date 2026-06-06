@@ -210,13 +210,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<leader>h", ":w<CR>:!python3 %<CR>", { buffer = true, desc = "Run Python file" })
   end
 })
-
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    local file_name = vim.fn.expand("%:t") -- just the filename
-    if file_name == "Makefile" then
-      vim.bo.ft = "make"
-    end
-  end,
-})

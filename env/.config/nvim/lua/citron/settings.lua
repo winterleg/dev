@@ -6,6 +6,8 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
+vim.cmd("cabbrev new enew")
+
 vim.opt.winborder = "single"
 vim.opt.guicursor = {
   "a:block-Cursor",

@@ -12,10 +12,10 @@ end
 
 return {
   s({ trig = ";t", snippetType = "autosnippet" },
-    t(os.date("%Y.%m.%d"))
+    f(function() return os.date("%Y.%m.%d") end, {})
   ),
   s({ trig = ";h", snippetType = "autosnippet" },
-    t(os.date("%H:%M"))
+    f(function() return os.date("%H:%M") end, {})
   ),
   s({ trig = ";mp", snippetType = "autosnippet" },
     t(EmailPersonnal)

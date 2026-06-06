@@ -39,7 +39,7 @@ vim.pack.add {
   },
   { src = "https://github.com/ionide/Ionide-vim" },
   { src = "https://github.com/nvzone/showkeys" },
-  -- { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
+  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
   { src = "https://github.com/vimwiki/vimwiki" },
   { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
   { src = "https://github.com/andweeb/presence.nvim" },
@@ -88,18 +88,6 @@ require("oil").setup({
     border = "rounded",
   },
 })
-
--- require("easy-dotnet").setup({
---   lsp = {
---     enabled = true,                       -- Enable builtin roslyn lsp
---     preload_roslyn = true,                -- Start loading roslyn before any buffer is opened
---     roslynator_enabled = true,            -- Automatically enable roslynator analyzer
---     easy_dotnet_analyzer_enabled = false, -- Enable roslyn analyzer from easy-dotnet-server
---     auto_refresh_codelens = true,
---     analyzer_assemblies = {},             -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
---     config = {},
---   },
--- })
 
 local telescope = require("telescope")
 telescope.setup({
@@ -255,33 +243,25 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 
--- require "multiple-cursors".setup {}
--- vim.keymap.set({ "n", "i", "x" }, "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>")
--- vim.keymap.set({ "n", "i", "x" }, "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>")
--- vim.keymap.set({ "n", "i", "x" }, "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>")
--- vim.keymap.set({ "n", "i", "x" }, "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>")
--- vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
--- vim.keymap.set({ "n" }, "<C-Return>", "<Cmd>MultipleCursorsAddDelete<CR>")
--- vim.keymap.set({ "x" }, "<Leader>m", "<Cmd>MultipleCursorsAddVisualArea<CR>")
--- vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
--- vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
--- vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
--- vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
--- vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
+require "multiple-cursors".setup {}
+vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
+vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
 
 vim.g.vimwiki_path = '~/vimwiki/'
 vim.g.vimwiki_key_mappings = {
   all_maps = 0,
 }
--- vim.cmd[[let g:vimwiki_list = [{'path': '~/vimwiki/',
---                       \ 'syntax': 'markdown', 'ext': 'wiki'}]
---                       ]]
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "vimwiki" },
   callback = function()
-    vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>")
-    vim.keymap.set("n", "<leader>vz", ":silent | VimwikiBacklinks<CR>")
-    vim.keymap.set("n", "<leader>vi", ":silent | VimwikiIndex<CR>")
+    vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>", {})
+    vim.keymap.set("n", "<leader>vz", ":silent | VimwikiBacklinks<CR>", {})
+    vim.keymap.set("n", "<leader>vi", ":silent | VimwikiIndex<CR>", {})
   end
 })
 

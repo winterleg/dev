@@ -125,6 +125,10 @@
       "rev": "2de78d9688ea4a177bcd9be554ab9192337d35ff",
       "src": "https://github.com/kdheepak/monochrome.nvim"
     },
+    "multiple-cursors.nvim": {
+      "rev": "eae76d4c5f7ede2d45746dc2affb5e7a139e4aa8",
+      "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
+    },
     "neo-tree.nvim": {
       "rev": "bb46bc65e93cc43fd4009691bba8df98abfee9ef",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"

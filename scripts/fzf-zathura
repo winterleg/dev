@@ -6,7 +6,7 @@ if [[ -t 1 ]]; then
   cd ~
   fd -e pdf | sort -r | fzf --no-sort -m >"$tmp"
 else
-  alacritty -e bash -lc "fd -e pdf | sort -r | fzf --no-sort -m >\"$tmp\""
+  foot -e bash -lc "fd -e pdf | sort -r | fzf --no-sort -m >\"$tmp\""
 fi
 
 # If nothing selected, exit

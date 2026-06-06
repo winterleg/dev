@@ -123,6 +123,8 @@ require("everforest").setup({
 
 require('rose-pine').setup({
   styles = {
+    bold = true,
+    italic = true,
     transparency = false,
   }
 })
