@@ -6,8 +6,6 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
-vim.cmd("cabbrev new enew")
-
 vim.opt.winborder = "single"
 vim.opt.guicursor = {
   "a:block-Cursor",
@@ -134,7 +132,11 @@ end, { range = true })
 
 vim.api.nvim_create_user_command("T", function(opts)
   local cmd = opts.args
-  if cmd == "" then cmd = vim.o.shell end
+  if cmd == "" then
+    cmd = _G.last_t_command or vim.o.shell
+  else
+    _G.last_t_command = cmd
+  end
 
   if opts.range > 0 then
     local content
@@ -167,10 +169,7 @@ end, {
 })
 
 if vim.g.neovide then
-  require('neov-ime').setup()
-  -- hesitating between this and comic code
-  -- vim.o.guifont = "OCR A Std:h20"
-  -- hesitating between this and comic code
+  -- require('neov-ime').setup()
   vim.o.guifont = "Comic Code:h20"
 
   vim.g.neovide_refresh_rate = 144

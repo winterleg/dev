@@ -13,9 +13,19 @@
       </startupnotify>
     </action>
   </item>
+  <item label="NVIM">
+    <action name="Execute">
+      <command>ghostty +new-window -e nvim</command>
+    </action>
+  </item>
   <item label="GHOSTTY">
     <action name="Execute">
-      <command>ghostty</command>
+      <command>ghostty +new-window</command>
+    </action>
+  </item>
+  <item label="STEAM">
+    <action name="Execute">
+      <command>steam-native</command>
     </action>
   </item>
   <separator label="SYSTEM" />

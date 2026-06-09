@@ -56,7 +56,7 @@
       <action name="Execute" command="helium-browser" />
     </keybind>
     <keybind key="W-Return">
-      <action name="Execute" command="foot" />
+      <action name="Execute" command="ghostty" />
     </keybind>
     <keybind key="W-S-Return">
       <action name="Execute" command="~/dotfiles/scripts/fzf-neovide" />

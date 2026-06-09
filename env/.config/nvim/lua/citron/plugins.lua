@@ -7,7 +7,6 @@ vim.pack.add {
   { src = "https://github.com/nvim-mini/mini.nvim" },
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
   { src = "https://github.com/folke/which-key.nvim" },
-  { src = "https://github.com/folke/zen-mode.nvim" },
   { src = "https://github.com/tpope/vim-fugitive" },
   { src = "https://github.com/junegunn/fzf",                                 lazy = false, },
   { src = "https://github.com/junegunn/fzf.vim",                             lazy = false },
@@ -18,32 +17,12 @@ vim.pack.add {
   { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
   { src = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim", },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
-  -- { src = "https://github.com/GustavEikaas/easy-dotnet.nvim" },
-  {
-    src = "https://github.com/lervag/vimtex",
-    lazy = false,
-    init = function()
-      -- VimTeX configuration goes here, e.g.
-      vim.g.vimtex_view_method = pdfReader
-
-      vim.g.vimtex_compiler_latexmk = {
-        executable = 'latexmk',
-        options = {
-          '-latex=lualatex',
-          '-interaction=nonstopmode',
-          '-shell-escape',
-          '-pdf',
-        }
-      }
-    end
-  },
   { src = "https://github.com/ionide/Ionide-vim" },
-  { src = "https://github.com/nvzone/showkeys" },
-  { src = "https://github.com/brenton-leighton/multiple-cursors.nvim" },
+  -- { src = "https://github.com/nvzone/showkeys" },
   { src = "https://github.com/vimwiki/vimwiki" },
-  { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
-  { src = "https://github.com/andweeb/presence.nvim" },
-  { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+  -- { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
+  -- { src = "https://github.com/andweeb/presence.nvim" },
+  -- { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
   { src = "https://github.com/MunifTanjim/nui.nvim" },
   { src = "https://github.com/ray-x/lsp_signature.nvim" },
   { src = "https://github.com/chentoast/marks.nvim" },
@@ -168,31 +147,6 @@ require("which-key").setup {
   preset = "helix",
 }
 
-require("zen-mode").setup {
-  window = {
-    backdrop = 0.80,
-    width = 80,
-    height = 0.95,
-    options = {
-      signcolumn = "no",      -- disable signcolumn
-      number = false,         -- disable number column
-      relativenumber = false, -- disable relative numbers
-      cursorline = true,      -- disable cursorline
-      cursorcolumn = false,   -- disable cursor column
-      foldcolumn = "0",       -- disable fold column
-      list = false,           -- disable whitespace characters
-    },
-  },
-  plugins = {
-    options = {
-      enabled = true,
-      ruler = false,   -- disables the ruler text in the cmd line area
-      showcmd = false, -- disables the command in the last line of the screen
-      laststatus = 0,  -- turn off the statusline in zen mode
-    },
-  },
-}
-
 MiniFiles = require("mini.files")
 
 local function open_external_or_fallback()
@@ -243,14 +197,6 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 
-require "multiple-cursors".setup {}
-vim.keymap.set({ "n", "i" }, "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>")
-vim.keymap.set({ "n", "x" }, "<Leader>l", "<Cmd>MultipleCursorsLock<CR>")
-
 vim.g.vimwiki_path = '~/vimwiki/'
 vim.g.vimwiki_key_mappings = {
   all_maps = 0,
@@ -265,66 +211,50 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
--- The setup config table shows all available config options with their default values:
-require("presence").setup {
-  -- General options
-  auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
-  neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
-  main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
-  client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
-  log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
-  debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
-  enable_line_number  = false,                      -- Displays the current line number instead of the current project
-  blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-  buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
-  file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
-  show_time           = true,                       -- Show the timer
+-- -- The setup config table shows all available config options with their default values:
+-- require("presence").setup {
+--   -- General options
+--   auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+--   neovim_image_text   = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+--   main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+--   client_id           = "793271441293967371",       -- Use your own Discord application client id (not recommended)
+--   log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+--   debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+--   enable_line_number  = false,                      -- Displays the current line number instead of the current project
+--   blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+--   buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+--   file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
+--   show_time           = true,                       -- Show the timer
+--
+--   -- Rich Presence text options
+--   editing_text        = "Editing %s",         -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+--   file_explorer_text  = "Browsing %s",        -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+--   git_commit_text     = "Committing changes", -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+--   plugin_manager_text = "Managing plugins",   -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+--   reading_text        = "Reading %s",         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+--   workspace_text      = "Working on %s",      -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+--   line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+-- }
 
-  -- Rich Presence text options
-  editing_text        = "Editing %s",         -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-  file_explorer_text  = "Browsing %s",        -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
-  git_commit_text     = "Committing changes", -- Format string rendered when committing changes in git (either string or function(filename: string): string)
-  plugin_manager_text = "Managing plugins",   -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
-  reading_text        = "Reading %s",         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
-  workspace_text      = "Working on %s",      -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
-  line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
-}
-
-require('neo-tree').setup {
-  window     = {
-    position          = "float",
-    width             = 40,
-    auto_expand_width = false,
-
-    mappings          = {
-      ["w"] = "noop"
-    }
-  },
-  filesystem = {
-    window = {
-      mappings = {
-        ["b"] = "noop",
-        ["/"] = { "fuzzy_finder", config = { keep_filter_on_submit = true } }
-      }
-    }
-  }
-}
-
--- vim.api.nvim_create_autocmd("WinEnter", {
---   callback = function()
---     local buf = vim.api.nvim_get_current_buf()
---     if vim.bo[buf].filetype == "neo-tree" then
---       vim.api.nvim_win_set_width(0, 30)
---     else
---       for _, win in ipairs(vim.api.nvim_list_wins()) do
---         local win_buf = vim.api.nvim_win_get_buf(win)
---         if vim.bo[win_buf].filetype == "neo-tree" then
---           pcall(vim.api.nvim_win_set_width, win, 10)
---         end
---       end
---     end
---   end,
--- })
+-- require('neo-tree').setup {
+--   window     = {
+--     position          = "right",
+--     width             = 30,
+--     auto_expand_width = false,
+--
+--     mappings          = {
+--       ["w"] = "noop"
+--     }
+--   },
+--   filesystem = {
+--     window = {
+--       mappings = {
+--         ["b"] = "noop",
+--         ["/"] = { "fuzzy_finder", config = { keep_filter_on_submit = true } }
+--       }
+--     }
+--   }
+-- }
 
 local sigConfig = {
   bind = true,
@@ -347,37 +277,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 require 'marks'.setup {
-  -- whether to map keybinds or not. default true
   default_mappings = true,
-  -- which builtin marks to show. default {}
   builtin_marks = { ".", "<", ">", "^", "a", "r", "s", "t" },
-  -- whether movements cycle back to the beginning/end of buffer. default true
   cyclic = true,
-  -- whether the shada file is updated after modifying uppercase marks. default false
   force_write_shada = false,
-  -- how often (in ms) to redraw signs/recompute mark positions.
-  -- higher values will have better performance but may cause visual lag,
-  -- while lower values may cause performance penalties. default 150.
   refresh_interval = 250,
-  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
-  -- marks, and bookmarks.
-  -- can be either a table with all/none of the keys, or a single number, in which case
-  -- the priority applies to all marks.
-  -- default 10.
   sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-  -- disables mark tracking for specific filetypes. default {}
   excluded_filetypes = {},
-  -- disables mark tracking for specific buftypes. default {}
   excluded_buftypes = {},
-  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
-  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
-  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
-  -- default virt_text is "".
   bookmark_0 = {
     sign = "⚑",
     virt_text = "hello world",
-    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
-    -- defaults to false.
     annotate = false,
   },
   mappings = {}

@@ -125,3 +125,12 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    local file_name = vim.fn.expand("%:t")
+    if file_name == "Makefile" then
+      vim.bo.ft = "make"
+    end
+  end,
+})

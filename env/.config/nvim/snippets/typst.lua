@@ -30,12 +30,5 @@ return {
     fmta([[$
   <>
 $]], { i(1) })
-  ),
-  s({ trig = "nmt", snippetType = "autosnippet" },
-    fmta(
-      [[#meth.eq(
-  $
-    <>
-  $
-) <>]], { i(1), i(2) }))
+  )
 }

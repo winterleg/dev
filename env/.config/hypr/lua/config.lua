@@ -1,8 +1,8 @@
 hl.config({
   input      = {
-    kb_layout     = "ca,ca",
-    kb_variant    = ",bepo",
-    kb_options    = "grp:alt_space_toggle",
+    kb_layout     = "ca",
+    -- kb_variant    = "",
+    -- kb_options    = "grp:alt_space_toggle",
 
     follow_mouse  = 1,
 
@@ -76,9 +76,6 @@ hl.config({
 
     blur             = {
       enabled       = true,
-      size          = 0,
-      noise         = 0,
-      brightness    = 1,
       input_methods = true,
       xray          = true
     },

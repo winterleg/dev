@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "fr", "cjk" }
 
-    vim.opt_local.textwidth = 80
+    vim.opt_local.textwidth = 72
 
     vim.opt_local.sidescrolloff = 0
 
@@ -146,11 +146,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.sidescrolloff = 0
 
-    local width = 2
+    local width = 8
     vim.opt_local.shiftwidth = width
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width
-    vim.opt_local.expandtab = true
+    vim.opt_local.expandtab = false
 
     vim.opt_local.textwidth = 72
 

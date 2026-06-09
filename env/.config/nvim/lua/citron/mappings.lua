@@ -225,7 +225,7 @@ local mappings = {
   { "n",               "<leader>pk",    fzf_firefox,                                          { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py",    fzf_pdf },
   { "n",               "<leader>k",     ":!make<CR>",                                         { desc = "Call make" } },
-  { "n",               "<leader>sk",    "<CMD>T make<CR>",                                    { desc = "Call make" } },
+  { "n",               "<leader>sk",    "<CMD>T<CR>",                                              { desc = "Call last T command" } },
   { "n",               "<leader>sa",    "ggVG" },
   { "n",               "<leader>tw",    toggleWhiteSpace },
   { "n",               "<leader>x",     "<CMD>!chmod +x %<CR>",                               { silent = true } },
@@ -251,8 +251,8 @@ local mappings = {
   { 'n',               '<leader><C-v>', ':vsplit | term<CR>' },
   { 'n',               '<leader><C-h>', ':split | term<CR>' },
   { 'n',               '<leader><C-t>', ':term<CR>' },
-  { 'n',               '<leader>a',     function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
-  { 'v',               'Q',     ":'<,'>UWU<CR>" },
+  -- { 'n',               '<leader>a',     function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
+  { 'v',               'Q',             ":'<,'>UWU<CR>" },
 
   { 'n', '<leader>de', function()
     local word = vim.fn.expand('<cword>')

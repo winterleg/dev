@@ -5,7 +5,8 @@ hl.workspace_rule { workspace = "4", monitor = "HDMI-A-1" }
 hl.workspace_rule { workspace = "5", monitor = "HDMI-A-1" }
 hl.workspace_rule { workspace = "10", monitor = "eDP-1", default = true }
 
-hl.workspace_rule { workspace = "10", layout = "dwindle" }
+hl.workspace_rule { workspace = "3", layout = "scrolling" }
+hl.workspace_rule { workspace = "10", layout = "scrolling" }
 
 hl.workspace_rule { workspace = "s[1]", gaps_out = 50, gaps_in = 0, border_size = 10 }
 
@@ -19,11 +20,6 @@ hl.window_rule { match = { class = "ADanceOfFireAndIce" }, workspace = "4" }
 hl.window_rule { match = { class = "steam_app.*" }, workspace = "4" }
 
 hl.window_rule { match = { class = "steam" }, workspace = "5 silent" }
-
-hl.window_rule { match = { class = "org.mozilla.Thunderbird" }, workspace = "3" }
-
-hl.window_rule { match = { class = "vesktop" }, workspace = "3" }
-hl.window_rule { match = { class = "Element" }, workspace = "3" }
 
 hl.window_rule { match = { title = "^Incrustation vidéo$" }, workspace = "10 silent" }
 hl.window_rule { match = { title = "^Picture-in-Picture$" }, workspace = "10 silent" }

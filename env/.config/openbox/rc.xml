@@ -28,7 +28,7 @@
 </focus>
 
 <placement>
-  <policy>Smart</policy>
+  <policy>UnderMouse</policy>
   <!-- 'Smart' or 'UnderMouse' -->
   <center>yes</center>
   <!-- whether to place windows in the center of the free area found or
@@ -37,7 +37,7 @@
   <!-- with Smart placement on a multi-monitor system, try to place new windows
        on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
        the active window is, 'Primary' - only on the primary monitor -->
-  <primaryMonitor>1</primaryMonitor>
+  <primaryMonitor>Mouse</primaryMonitor>
   <!-- The monitor where Openbox should place popup dialogs such as the
        focus cycling popup, or the desktop switch popup.  It can be an index
        from 1, specifying a particular monitor.  Or it can be one of the
@@ -133,7 +133,7 @@
     <name>3</name>
     <name>4</name>
   </names>
-  <popupTime>875</popupTime>
+  <popupTime>150</popupTime>
   <!-- The number of milliseconds to show the popup for when switching
        desktops.  Set this to 0 to disable the popup. -->
 </desktops>
@@ -253,12 +253,12 @@
 
   <keybind key="W-Return">
     <action name="Execute">
-      <command>st</command>
+      <command>ghostty +new-window -e nvim</command>
     </action>
   </keybind>
   <keybind key="W-S-Return">
     <action name="Execute">
-      <command>~/dotfiles/scripts/fzf-neovide</command>
+      <command>ghostty +new-window</command>
     </action>
   </keybind>
 
@@ -318,11 +318,12 @@
   <!-- Keybindings for running applications -->
   <keybind key="W-e">
     <action name="Execute">
-      <startupnotify>
-        <enabled>true</enabled>
-        <name>Konqueror</name>
-      </startupnotify>
       <command>dmenu_run -fn "Comic Code:size=12"</command>
+    </action>
+  </keybind>
+  <keybind key="W-r">
+    <action name="Execute">
+      <command>rofi -show drun</command>
     </action>
   </keybind>
   <keybind key="XF86AudioRaiseVolume">
