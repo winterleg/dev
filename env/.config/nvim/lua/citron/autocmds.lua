@@ -126,6 +126,17 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
+-- autocmd({ "BufRead", "BufNewFile", "BufWinEnter", "BufEnter" }, {
+--   group = citronGroup,
+--   callback = function()
+--     vim.opt.conceallevel = 2
+--     vim.opt.concealcursor = "nivc"
+--     vim.fn.matchadd("Conceal", "\\%u202f", 10, -1, {
+--       conceal = "⍽",
+--     })
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     local file_name = vim.fn.expand("%:t")

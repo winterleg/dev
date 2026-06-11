@@ -217,18 +217,19 @@ local mappings = {
   { "t",               "<C-q>",         [[<C-\><C-n>]] },
   { "n",               "<C-t>",         "<cmd>silent !tmux-goway<CR>" },
   { "n",               "<C-y>",         "<cmd>silent !tmux neww yazi-tmux<CR>" },
-  { "n",               "ç",             "<CMD>Oil<CR>",                                       { desc = "Open root directory" } },
-  { "n",               "<leader>ç",     "<CMD>Oil .<CR>",                                     { desc = "Open root directory" } },
+  { "n",               "ç",             "<CMD>Oil<CR>",                         { desc = "Open root directory" } },
+  { "n",               "<leader>ç",     "<CMD>Oil .<CR>",                       { desc = "Open root directory" } },
   { "n",               "<ESC>",         "<CMD>noh<CR>" },
-  { "n",               "<leader>pf",    ":FilesNoPDF<CR>",                                    { desc = "Open fzf (no PDFs)" } },
-  { "n",               "<leader>pr",    files_no_pdf_query,                                   { desc = "Open fzf (no PDFs) with query" } },
-  { "n",               "<leader>pk",    fzf_firefox,                                          { desc = "Open file in Firefox with skim" } },
+  { "n",               "<leader>pf",    ":FilesNoPDF<CR>",                      { desc = "Open fzf (no PDFs)" } },
+  { "n",               "<C-f>",         ":FilesNoPDF<CR>",                      { desc = "Open fzf (no PDFs)" } },
+  { "n",               "<leader>pr",    files_no_pdf_query,                     { desc = "Open fzf (no PDFs) with query" } },
+  { "n",               "<leader>pk",    fzf_firefox,                            { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py",    fzf_pdf },
-  { "n",               "<leader>k",     ":!make<CR>",                                         { desc = "Call make" } },
-  { "n",               "<leader>sk",    "<CMD>T<CR>",                                              { desc = "Call last T command" } },
+  { "n",               "<leader>k",     ":!make<CR>",                           { desc = "Call make" } },
+  { "n",               "<leader>sk",    "<CMD>T make<CR>",                      { desc = "Call last T command" } },
   { "n",               "<leader>sa",    "ggVG" },
   { "n",               "<leader>tw",    toggleWhiteSpace },
-  { "n",               "<leader>x",     "<CMD>!chmod +x %<CR>",                               { silent = true } },
+  { "n",               "<leader>x",     "<CMD>!chmod +x %<CR>",                 { silent = true } },
   { "n",               "<leader>pl",    "<CMD>lua MiniFiles.open()<CR>" },
   { "n",               "<leader>q",     tmux_telescope },
   { "n",               "<leader>gf",    "<C-w>gF" },
@@ -277,7 +278,9 @@ local mappings = {
     vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
   end, { desc = "Open PDF" } },
 
-  { "n", "<leader>cw", ":UpdateWordCount<CR>", {} }
+  { "n", "<leader>cw", ":UpdateWordCount<CR>", {} },
+
+  { "n", "<leader>pq", "<cmd>PasteImage<cr>",  { desc = "Paste image from system clipboard" } },
 }
 
 

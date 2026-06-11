@@ -4,23 +4,30 @@ local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
 
-_G.UseTransparency = not vim.g.neovide
+local isGhostty = os.getenv "TERM_PROGRAM" == "ghostty"
+_G.UseTransparency = isGhostty
 local ghostty_bg_file = vim.fn.expand("~/.config/ghostty/nvim-generated")
 local ghostty_theme_file = vim.fn.expand("~/.config/ghostty/auto/theme.ghostty")
 
-local function write_ghostty_bg(color, theme)
+local defaultDarkTransparency = 0.92
+local defaultLightTransparency = 0.92
+
+local function write_ghostty_bg(color, theme, transparency)
   if color == nil then return end
-  local hex = string.format("#%06x", color)
-  vim.fn.writefile({ "background = " .. hex }, ghostty_bg_file)
-  vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
 
   if theme == true then
     vim.fn.writefile({ "theme = Gruvbox Dark" }, ghostty_theme_file)
-    vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
   else
     vim.fn.writefile({ "theme = Rose Pine Dawn" }, ghostty_theme_file)
-    vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
   end
+
+  local hex = string.format("#%06x", color)
+  vim.fn.writefile(
+    { "background = " .. hex
+    , "background-opacity = " .. transparency
+    }, ghostty_bg_file)
+
+  vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
 end
 
 local function unset_curls()
@@ -92,7 +99,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -111,7 +118,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -130,7 +137,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -149,7 +156,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -168,7 +175,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -187,7 +194,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -207,7 +214,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -226,7 +233,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, dark)
+        write_ghostty_bg(normal.bg, dark, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -245,7 +252,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, dark)
+        write_ghostty_bg(normal.bg, dark, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -263,7 +270,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -281,7 +288,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -300,7 +307,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -319,7 +326,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -338,7 +345,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -357,7 +364,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -375,7 +382,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -393,7 +400,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, false)
+        write_ghostty_bg(normal.bg, false, defaultLightTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end
@@ -411,7 +418,7 @@ local colorsList = {
 
       if UseTransparency then
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        write_ghostty_bg(normal.bg, true)
+        write_ghostty_bg(normal.bg, true, defaultDarkTransparency)
         normal.bg = "NONE"
         vim.api.nvim_set_hl(0, "Normal", normal)
       end

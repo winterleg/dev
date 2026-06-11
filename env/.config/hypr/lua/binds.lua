@@ -4,6 +4,9 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
+-- local termCall = "ghostty +new-window"
+local termCall = "alacritty"
+
 ---@class Bind
 ---@field k table
 ---@field c function|HL.Dispatcher
@@ -36,8 +39,8 @@ local binds = {
   { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/tts-neovide" },
   { k = { MainMod, Key.control, Key.v },            c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
-  { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd "ghostty +new-window -e nvim" },
-  { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd "ghostty +new-window" },
+  { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd(termCall .. " -e nvim") },
+  { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd(termCall) },
   { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "firefox" },
   { k = { MainMod, Key.z },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
   { k = { MainMod, Key.x },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },

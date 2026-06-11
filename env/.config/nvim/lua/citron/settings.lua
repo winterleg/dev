@@ -73,7 +73,11 @@ vim.opt.listchars = {
   tab = "> ",
   trail = "*",
   space = "·",
+  nbsp = "⍽",
 }
+
+-- Highlight group for always-visible non-breaking spaces
+vim.cmd([[highlight default Nbsp guibg=#666666 guifg=#ffffff]])
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -132,11 +136,6 @@ end, { range = true })
 
 vim.api.nvim_create_user_command("T", function(opts)
   local cmd = opts.args
-  if cmd == "" then
-    cmd = _G.last_t_command or vim.o.shell
-  else
-    _G.last_t_command = cmd
-  end
 
   if opts.range > 0 then
     local content
