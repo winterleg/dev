@@ -30,7 +30,7 @@ local function write_ghostty_bg(color, theme, transparency)
   vim.fn.system({ "systemctl", "reload", "--user", "app-com.mitchellh.ghostty.service" })
 end
 
-local function unset_curls()
+local function unset_under()
   local groups = {
     "Delimiter",                --
     "DiagnosticUnderlineError", --
@@ -54,10 +54,12 @@ local function unset_curls()
     hl.undercurl = false
     vim.api.nvim_set_hl(0, group, hl)
   end
+
+  vim.cmd [[highlight typstMarkupHeading cterm=bold gui=bold]]
 end
 
 local function save_theme(name)
-  unset_curls()
+  unset_under()
 
   vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#EC5D2A" })
   vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = "#EC5D2A" })
@@ -66,11 +68,7 @@ local function save_theme(name)
   vim.fn.writefile({ name }, state_file)
 end
 
-local function load_theme()
-  vim.cmd("highlight clear")
-  if vim.fn.exists("syntax_on") == 1 then
-    vim.cmd("syntax reset")
-  end
+local function get_theme_from_file()
   if vim.fn.filereadable(state_file) == 1 then
     local lines = vim.fn.readfile(state_file)
     local name = lines[1]
@@ -435,12 +433,16 @@ for _, entry in ipairs(colorsList) do
   end
 end
 
-local name = load_theme()
+local name = get_theme_from_file()
 if name then
   if themes[name] then
+    vim.cmd("syntax reset")
+    unset_under()
     themes[name]()
   end
 end
+
+unset_under()
 
 local fs_watcher = nil
 
@@ -465,6 +467,8 @@ local function start_fs_watcher()
       end
       if themes[new_name] then
         current_name = nil
+
+        unset_under()
         themes[new_name]()
       end
     end)

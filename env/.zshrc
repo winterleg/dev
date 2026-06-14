@@ -25,6 +25,7 @@ plugins=(
     git
     fzf-tab
     battery
+    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
