@@ -34,6 +34,7 @@ window-decoration                = server
 adjust-cursor-thickness = 3
 
 keybind = ctrl+)=reset_font_size
+keybind = ctrl+]=goto_split:previous
 
 app-notifications = no-config-reload
 

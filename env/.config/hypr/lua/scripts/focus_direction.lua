@@ -1,4 +1,3 @@
-
 function Focus_fs(direction)
   local active = hl.get_active_window()
 
@@ -7,4 +6,3 @@ function Focus_fs(direction)
   end
   hl.dispatch(hl.dsp.focus { direction = direction })
 end
-

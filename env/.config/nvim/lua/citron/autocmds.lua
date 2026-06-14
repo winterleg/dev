@@ -109,8 +109,8 @@ autocmd('LspAttach', {
       end
     end, { desc = "Format the file" })
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>n", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "<leader>e", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "<leader>n", function() vim.diagnostic.jump { count = 1 } end, opts)
+    vim.keymap.set("n", "<leader>e", function() vim.diagnostic.jump { count = -1 } end, opts)
   end
 })
 

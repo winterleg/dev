@@ -4,8 +4,9 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
--- local termCall = "ghostty +new-window"
-local termCall = "alacritty"
+-- local nvimCall = "ghostty +new-window"
+local nvimCall = "ghostty +new-window -e nvim"
+local termCall = "ghostty +new-window"
 
 ---@class Bind
 ---@field k table
@@ -39,7 +40,7 @@ local binds = {
   { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/tts-neovide" },
   { k = { MainMod, Key.control, Key.v },            c = hl.dsp.exec_cmd "cliphist list | rofi -config ~/.config/rofi/config-copy.rasi -dmenu -p \"Clipboard\" | cliphist decode | wl-copy" },
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
-  { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd(termCall .. " -e nvim") },
+  { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd(nvimCall) },
   { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd(termCall) },
   { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "firefox" },
   { k = { MainMod, Key.z },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
@@ -47,7 +48,7 @@ local binds = {
   { k = { MainMod, Key.r },                         c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
   { k = { MainMod, Key.shift, Key.r },              c = hl.dsp.exec_cmd "rofi -show run" },
   { k = { MainMod, Key.y },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
-  { k = { MainMod, Key.shift, Key.f },              c = hl.dsp.exec_cmd "thunar" },
+  { k = { MainMod, Key.shift, Key.f },              c = hl.dsp.exec_cmd "pcmanfm" },
   { k = { MainMod, Key.k },                         c = hl.dsp.exec_cmd "ghostty +new-window -e rmpc" },
   { k = { MainMod, Key.s },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh simple" },
   { k = { Key.printscr },                           c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh screen" },

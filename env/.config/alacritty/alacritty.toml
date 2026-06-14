@@ -1,8 +1,8 @@
 [general]
 working_directory = "~"
 import = [
-  "~/.config/alacritty/gruvbox.toml",
-  "~/.config/alacritty/nvim-generated.toml"
+  "~/.config/alacritty/rosé-pine.toml",
+  # "~/.config/alacritty/nvim-generated.toml"
 ]
 
 [window]

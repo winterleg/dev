@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 # ---- taken and adapted from : https://github.com/JaKooLit/Hyprland-Dots
+#
+# (https://github.com/JaKooLit/Hyprland-Dots/blob/main/config/hypr/UserScripts/WallpaperSelect.sh)
 
 # Whether or not should update matugen/waybar to use the colors from the
 # wallpapers, only for images
@@ -14,12 +16,16 @@ TYPE="fade"
 DURATION=0.3
 AWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
-rofi_theme="$HOME/.config/rofi/config.rasi"
+rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
 
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
 scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
 monitor_height=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .height')
+
+icon_size=$(echo "scale=1; ($monitor_height * 5) / ($scale_factor * 200)" | bc)
+adjusted_icon_size=$(echo "$icon_size" | awk '{if ($1 < 15) $1 = 20; if ($1 > 25) $1 = 25; print $1}')
+rofi_override="element-icon{size:${adjusted_icon_size}%;}"
 
 kill_wallpaper() {
   pkill mpvpaper 2>/dev/null
@@ -34,7 +40,7 @@ mapfile -d '' PICS < <(find -L "${wallDIR}" -type f \( \
   -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.webm" \) -print0)
 
 # Rofi command
-rofi_command="rofi -show -dmenu -p Wallpapers -config $rofi_theme"
+rofi_command="rofi -i -show -dmenu -p Wallpapers -config $rofi_theme -theme-str $rofi_override"
 
 # Sorting Wallpapers
 menu() {
@@ -50,16 +56,16 @@ menu() {
         mkdir -p "$HOME/.cache/gif_preview"
         magick "$pic_path[0]" -resize 1920x1080 "$cache_gif_image"
       fi
-      printf "%s\n" "$pic_name"
+      printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_gif_image"
     elif [[ "$pic_name" =~ \.(mp4|mkv|mov|webm|MP4|MKV|MOV|WEBM)$ ]]; then
       cache_preview_image="$HOME/.cache/video_preview/${pic_name}.png"
       if [[ ! -f "$cache_preview_image" ]]; then
         mkdir -p "$HOME/.cache/video_preview"
         ffmpeg -v error -y -i "$pic_path" -ss 00:00:01.000 -vframes 1 "$cache_preview_image"
       fi
-      printf "%s\n" "$pic_name"
+      printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_preview_image"
     else
-      printf "%s\n" "$(echo "$pic_name" | cut -d. -f1)"
+      printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
     fi
   done
 }
@@ -78,7 +84,7 @@ apply_image_wallpaper() {
   awww img "$image_path" $AWWW_PARAMS
 
   if "$updateMatugen"; then
-    matugen image "$image_path" --source-color-index 0
+    matugen image "$image_path" --source-color-index 1
     pkill waybar
     ~/.config/waybar/waybar.sh
   fi

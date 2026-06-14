@@ -1,4 +1,4 @@
--- switch between master and scrolling as of now
+-- switch between dwindle and scrolling as of now
 function ToggleLayout()
   local current = hl.get_active_workspace()
 

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+extraFlags="$@"
+
+_local="$HOME"
+_extern="/run/media/fuyu147/VOLUME_NOIR/shared-data"
+
+dirs=(
+  "art"
+  "cours"
+  "math"
+  "notes"
+)
+
+for d in "${dirs[@]}"; do
+  rsync -av --delete "$_local/$d/" "$_extern/$d/"
+done

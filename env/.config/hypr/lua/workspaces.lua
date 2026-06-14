@@ -18,6 +18,7 @@ hl.window_rule { match = { class = "overwatch.exe" }, workspace = "4" }
 hl.window_rule { match = { class = "discovery.exe" }, workspace = "4" }
 hl.window_rule { match = { class = "ADanceOfFireAndIce" }, workspace = "4" }
 hl.window_rule { match = { class = "steam_app.*" }, workspace = "4" }
+hl.window_rule { match = { class = "dota2" }, workspace = "4" }
 
 hl.window_rule { match = { class = "steam" }, workspace = "5 silent" }
 
