@@ -6,6 +6,10 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
+vim.opt.virtualedit = { -- not sure about keeping this
+  "block",
+}
+
 vim.opt.winborder = "single"
 vim.opt.guicursor = {
   "a:block-Cursor",
@@ -173,6 +177,8 @@ if vim.g.neovide then
 
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_refresh_rate_idle = 10
+
+  vim.g.neovide_scroll_animation_far_lines = 0
 
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_cursor_short_animation_length = 0

@@ -7,7 +7,9 @@ alias calendar="cal -n 3"
 
 alias ls="eza --no-quotes -s type -a"
 
-alias t="tmux-goway"
+# alias t="tmux-goway"
+alias t="tmux"
+alias ta="tmux a"
 
 alias e="exit"
 alias q="exit"

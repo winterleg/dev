@@ -4,8 +4,7 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
--- local nvimCall = "ghostty +new-window"
-local nvimCall = "ghostty +new-window -e nvim"
+local nvimCall = "neovide"
 local termCall = "ghostty +new-window"
 
 ---@class Bind

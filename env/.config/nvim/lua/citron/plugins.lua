@@ -20,13 +20,15 @@ vim.pack.add {
   { src = "https://github.com/ionide/Ionide-vim" },
   -- { src = "https://github.com/nvzone/showkeys" },
   { src = "https://github.com/vimwiki/vimwiki" },
-  -- { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
+  { src = "https://github.com/sevenc-nanashi/neov-ime.nvim" },
   -- { src = "https://github.com/andweeb/presence.nvim" },
   -- { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
   { src = "https://github.com/MunifTanjim/nui.nvim" },
   { src = "https://github.com/ray-x/lsp_signature.nvim" },
   { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/HakonHarnes/img-clip.nvim" },
+  { src = "https://github.com/nvim-mini/mini.trailspace" },
+  -- { src = "https://github.com/gelguy/wilder.nvim" },
 }
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -198,19 +200,10 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 
-vim.g.vimwiki_path = '~/vimwiki/'
+vim.g.vimwiki_path = '~/notes/'
 vim.g.vimwiki_key_mappings = {
   all_maps = 0,
 }
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "vimwiki" },
-  callback = function()
-    vim.keymap.set("n", "<Enter>", ":silent | VimwikiFollowLink<CR>", {})
-    vim.keymap.set("n", "<leader>vz", ":silent | VimwikiBacklinks<CR>", {})
-    vim.keymap.set("n", "<leader>vi", ":silent | VimwikiIndex<CR>", {})
-  end
-})
 
 -- -- The setup config table shows all available config options with their default values:
 -- require("presence").setup {
@@ -353,13 +346,11 @@ require("img-clip").setup {
   custom = {}, ---@type table | fun(): table
 }
 
+require('mini.trailspace').setup()
 
--- require('nvim-treesitter').install { 'odin', 'c', 'cpp', 'lua' }
---
--- vim.treesitter.language.register('odin', { 'odin' })
---
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function()
---     vim.treesitter.start()
---   end,
--- })
+-- require "wilder".setup {
+--   next_key = '<C-n>',
+--   previous_key = '<C-p>',
+--   accept_key = '<C-y>',
+--   reject_key = '<C-e>',
+-- }

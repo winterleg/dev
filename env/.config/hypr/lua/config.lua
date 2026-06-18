@@ -1,3 +1,5 @@
+require "lua.scripts.layout"
+
 hl.config({
   input      = {
     kb_layout     = "ca",
@@ -29,12 +31,12 @@ hl.config({
   general    = {
     gaps_in       = 0,
     gaps_out      = 0,
-    border_size   = 1,
+    border_size   = 2,
     col           = {
       active_border   = "#62949d",
       inactive_border = "#0d0c13",
     },
-    layout        = "dwindle",
+    layout        = "manual",
     allow_tearing = true,
     snap          = {
       enabled      = true,
@@ -45,9 +47,10 @@ hl.config({
   },
 
   dwindle    = {
-    preserve_split = true,
-    smart_split    = true,
-    force_split    = 2
+    preserve_split        = true,
+    smart_split           = true,
+    use_active_for_splits = true,
+    force_split           = 2, -- cant get this crap to work with smart_split
   },
 
   scrolling  = {

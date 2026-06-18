@@ -216,7 +216,8 @@ end
 local mappings = {
   { "n",               "<Enter>",    "<nop>" },
   { "t",               "<C-q>",      [[<C-\><C-n>]] },
-  { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
+  -- { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
+  { "n",               "<C-t>",      fzf_chdir },
   { "n",               "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
   { "n",               "ç",          "<CMD>Oil<CR>",                         { desc = "Open root directory" } },
   { "n",               "<leader>ç",  "<CMD>Oil .<CR>",                       { desc = "Open root directory" } },
@@ -227,7 +228,7 @@ local mappings = {
   { "n",               "<leader>pk", fzf_firefox,                            { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py", fzf_pdf },
   { "n",               "<leader>k",  ":!make<CR>",                           { desc = "Call make" } },
-  { "n",               "<leader>sk", "<CMD>T make<CR>",                      { desc = "Call last T command" } },
+  { "n",               "<leader>sk", "<CMD>split | term make<CR>",           { desc = "Call last T command" } },
   { "n",               "<leader>sa", "ggVG" },
   { "n",               "<leader>tw", toggleWhiteSpace },
   { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                 { silent = true } },
@@ -250,8 +251,7 @@ local mappings = {
   { { 'n', 'v', 'x' }, 'k',          'gk' },
   { { 'n', 'v', 'x' }, 'R',          'gR' },
   { { 'n', 'v', 'x' }, '<leader>cz', ':center<CR>' },
-  { 'n',               '<C-k><C-v>', ':vsplit | term<CR>' },
-  { 'n',               '<C-k><C-h>', ':split | term<CR>' },
+  { 'n',               '<C-k><C-v>', ':split | term<CR>' },
   { 'n',               '<C-k><C-t>', ':term<CR>' },
   -- { 'n',               '<leader>a',     function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
   { 'v',               'Q',          ":'<,'>UWU<CR>" },
@@ -272,16 +272,20 @@ local mappings = {
     vim.cmd "startinsert"
   end, { desc = "Open In Less" } },
 
-  { "n", "<leader>cd", fzf_chdir,              { desc = "Change directory with skim" } },
+  { "n", "<leader>cd", fzf_chdir,                         { desc = "Change directory with skim" } },
 
   { "n", "<leader>y", function()
     local pdf = vim.fn.expand("%:p:r") .. ".pdf"
     vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
   end, { desc = "Open PDF" } },
 
-  { "n", "<leader>cw", ":UpdateWordCount<CR>", {} },
+  { "n", "<leader>cw", ":UpdateWordCount<CR>",            {} },
 
-  { "n", "<leader>pq", "<cmd>PasteImage<cr>",  { desc = "Paste image from system clipboard" } },
+  { "n", "<leader>pq", "<cmd>PasteImage<cr>",             { desc = "Paste image from system clipboard" } },
+  { "n", "<Enter>",    ":silent | VimwikiFollowLink<CR>", {} },
+  { "n", "<leader>zz", ":silent | VimwikiBacklinks<CR>",  {} },
+  { "n", "<leader>zi", ":VimwikiIndex<CR>",               {} },
+  { "n", "<leader>zt", ":VimwikiToggleListItem<CR>",      {} },
 }
 
 
@@ -289,7 +293,7 @@ for _, value in ipairs(mappings) do
   vim.keymap.set(value[1], value[2], value[3], value[4])
 end
 
-local isTMUX = os.getenv "TMUX"
-if vim.g.neovide or not isTMUX then
-  vim.keymap.set("n", "<C-t>", fzf_chdir)
-end
+-- local isTMUX = os.getenv "TMUX"
+-- if vim.g.neovide or not isTMUX then
+--   vim.keymap.set("n", "<C-t>", fzf_chdir)
+-- end

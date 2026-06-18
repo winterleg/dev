@@ -91,7 +91,7 @@ xkb_symbols "basic" {
     key <AB09>  {[  period,             ampersand                           ]};
     key <AB10>  {[  eacute,             Eacute                              ]};
 
-    key <SPCE>  {[  space,              space,              U202F           ]};
+    key <SPCE>  {[  space,              space,              space, U202F    ]};
 
     include "level3(ralt_switch)"
 };
