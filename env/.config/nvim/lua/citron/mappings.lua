@@ -194,12 +194,15 @@ end
 
 local function fzf_chdir()
   local currentDir = vim.fn.getcwd()
+  local sources = {
+    "fd . ~ --type d --follow --exclude '.*' --max-depth 2",
+    "fd . ~/.config --type d --follow --max-depth 2",
+  }
+  if vim.fn.isdirectory("/run/media/fuyu147/VOLUME_NOIR/shared-data/") == 1 then
+    table.insert(sources, "fd . /run/media/fuyu147/VOLUME_NOIR/shared-data/ --type d --follow --max-depth 3")
+  end
   vim.fn['fzf#run']({
-    source = table.concat({
-      "fd . ~ --type d --follow --exclude '.*' --max-depth 2",
-      "fd . ~/.config --type d --follow --max-depth 2",
-      "fd . /run/media/fuyu147/VOLUME_NOIR/shared-data/ --type d --follow --max-depth 3",
-    }, " ; "),
+    source = table.concat(sources, " ; "),
     sink = function(selected)
       if selected and selected ~= "" then
         vim.fn.chdir(selected)
@@ -219,19 +222,30 @@ local mappings = {
   -- { "n",               "<C-t>",      "<cmd>silent !tmux-goway<CR>" },
   { "n",               "<C-t>",      fzf_chdir },
   { "n",               "<C-y>",      "<cmd>silent !tmux neww yazi-tmux<CR>" },
-  { "n",               "ç",          "<CMD>Oil<CR>",                         { desc = "Open root directory" } },
-  { "n",               "<leader>ç",  "<CMD>Oil .<CR>",                       { desc = "Open root directory" } },
+  { "n",               "ç",          "<CMD>Oil<CR>",                                                     { desc = "Open root directory" } },
+  { "n",               "<leader>ç",  "<CMD>Oil .<CR>",                                                   { desc = "Open root directory" } },
   { "n",               "<ESC>",      "<CMD>noh<CR>" },
-  { "n",               "<leader>pf", ":FilesNoPDF<CR>",                      { desc = "Open fzf (no PDFs)" } },
-  { "n",               "<C-f>",      ":FilesNoPDF<CR>",                      { desc = "Open fzf (no PDFs)" } },
-  { "n",               "<leader>pr", files_no_pdf_query,                     { desc = "Open fzf (no PDFs) with query" } },
-  { "n",               "<leader>pk", fzf_firefox,                            { desc = "Open file in Firefox with skim" } },
+  { "n",               "<leader>pf", ":FilesNoPDF<CR>",                                                  { desc = "Open fzf (no PDFs)" } },
+  { "n",               "<C-f>",      ":FilesNoPDF<CR>",                                                  { desc = "Open fzf (no PDFs)" } },
+  { "n",               "<leader>pr", files_no_pdf_query,                                                 { desc = "Open fzf (no PDFs) with query" } },
+  { "n",               "<leader>pk", fzf_firefox,                                                        { desc = "Open file in Firefox with skim" } },
   { "n",               "<leader>py", fzf_pdf },
-  { "n",               "<leader>k",  ":!make<CR>",                           { desc = "Call make" } },
-  { "n",               "<leader>sk", "<CMD>split | term make<CR>",           { desc = "Call last T command" } },
+  { "n",               "<leader>k",  ":!make<CR>",                                                       { desc = "Call make" } },
+  { "n",               "<leader>sk", function()
+    vim.cmd('split | term make')
+    vim.cmd('startinsert')
+  end,                                                                                                   { desc = "Call last T command" } },
+  { 'n',               '<C-k><C-v>', function()
+    vim.cmd('split | term')
+    vim.cmd('startinsert')
+  end },
+  { 'n',               '<C-k><C-t>', function()
+    vim.cmd('term')
+    vim.cmd('startinsert')
+  end },
   { "n",               "<leader>sa", "ggVG" },
   { "n",               "<leader>tw", toggleWhiteSpace },
-  { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                 { silent = true } },
+  { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                                             { silent = true } },
   { "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" },
   { "n",               "<leader>q",  tmux_telescope },
   { "n",               "<leader>gf", "<C-w>gF" },
@@ -251,9 +265,6 @@ local mappings = {
   { { 'n', 'v', 'x' }, 'k',          'gk' },
   { { 'n', 'v', 'x' }, 'R',          'gR' },
   { { 'n', 'v', 'x' }, '<leader>cz', ':center<CR>' },
-  { 'n',               '<C-k><C-v>', ':split | term<CR>' },
-  { 'n',               '<C-k><C-t>', ':term<CR>' },
-  -- { 'n',               '<leader>a',     function() vim.cmd('Neotree ' .. vim.fn.getcwd()) end },
   { 'v',               'Q',          ":'<,'>UWU<CR>" },
 
   { 'n', '<leader>de', function()

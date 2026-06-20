@@ -7,17 +7,23 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "clock",
+        "custom/sep",
+        "battery"
     ],
     "modules-right": [
-        "tray"
+        "tray",
+        "custom/sep",
+        "cpu",
+        "custom/sep",
+        "memory"
     ],
     "hyprland/workspaces": {
         "format": "{name}",
         "all-outputs": true
     },
     "custom/sep": {
-        "format": "   "
+        "format": " "
     },
     "tray": {
         "show-passive-items": "true"

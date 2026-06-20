@@ -3,8 +3,8 @@ require "lua.scripts.layout"
 hl.config({
   input      = {
     kb_layout     = "ca",
-    kb_variant    = "",
-    kb_options    = "",
+    -- kb_variant    = ",colemakft",
+    -- kb_options    = ",grp:alt_space_toggle",
 
     follow_mouse  = 1,
 
@@ -24,7 +24,6 @@ hl.config({
     hide_on_key_press    = 1,
     hide_on_tablet       = 0,
     inactive_timeout     = 15,
-    zoom_rigid           = true,
     zoom_detached_camera = false
   },
 

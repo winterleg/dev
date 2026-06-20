@@ -4,7 +4,7 @@ FORCE_DISABLE_LAPTOP=false
 FORCE_DISABLE_MONITOR=true
 
 LAPTOP_CONFIG="laptopv3"
-MONITOR_CONFIG="monitorv5-top-trans"
+MONITOR_CONFIG="monitorv3"
 
 LAPTOPNAME="eDP-1"
 MONITORNAME="HDMI-A-1"
@@ -22,16 +22,16 @@ detect_compositor() {
 has_monitor() {
   local name="$1"
   case "$COMPOSITOR" in
-    hyprland)
-      hyprctl monitors -j 2>/dev/null | jq -e --arg name "$name" \
-        '.[] | select(.name == $name)' >/dev/null 2>&1
-      ;;
-    labwc)
-      wlr-randr 2>/dev/null | grep -q "^$name "
-      ;;
-    *)
-      return 1
-      ;;
+  hyprland)
+    hyprctl monitors -j 2>/dev/null | jq -e --arg name "$name" \
+      '.[] | select(.name == $name)' >/dev/null 2>&1
+    ;;
+  labwc)
+    wlr-randr 2>/dev/null | grep -q "^$name "
+    ;;
+  *)
+    return 1
+    ;;
   esac
 }
 

@@ -29,6 +29,7 @@ vim.pack.add {
   { src = "https://github.com/HakonHarnes/img-clip.nvim" },
   { src = "https://github.com/nvim-mini/mini.trailspace" },
   -- { src = "https://github.com/gelguy/wilder.nvim" },
+  { src = "https://github.com/romus204/tree-sitter-manager.nvim" }
 }
 
 vim.g["fsharp#lsp_auto_setup"] = 0
@@ -354,3 +355,5 @@ require('mini.trailspace').setup()
 --   accept_key = '<C-y>',
 --   reject_key = '<C-e>',
 -- }
+
+require("tree-sitter-manager").setup()

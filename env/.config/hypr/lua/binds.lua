@@ -5,7 +5,7 @@ require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
 local nvimCall = "neovide"
-local termCall = "ghostty +new-window"
+local termCall = "alacritty"
 
 ---@class Bind
 ---@field k table
