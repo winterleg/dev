@@ -59,33 +59,33 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 -- inspired by : https://swnakamura.github.io/posts/vim-japanese-input/
 --
 -- when InsertLeave, record the status of ime and switch to that when InsertEnter
-local last_ime = ""
-autocmd("InsertLeave", {
-  group = citronGroup,
-  pattern = "*",
-  callback = function()
-    local ok, result = pcall(function()
-      return vim.system({ "fcitx5-remote", "-n" }):wait()
-    end)
-
-    if ok and result.code == 0 and result.stdout then
-      last_ime = vim.trim(result.stdout)
-      -- print(last_ime)
-    end
-
-    vim.system({ "fcitx5-remote", "-c" })
-  end,
-})
-
-autocmd("InsertEnter", {
-  group = citronGroup,
-  pattern = "*",
-  callback = function()
-    if last_ime ~= "" then
-      vim.system({ "fcitx5-remote", "-s", last_ime })
-    end
-  end,
-})
+-- local last_ime = ""
+-- autocmd("InsertLeave", {
+--   group = citronGroup,
+--   pattern = "*",
+--   callback = function()
+--     local ok, result = pcall(function()
+--       return vim.system({ "fcitx5-remote", "-n" }):wait()
+--     end)
+--
+--     if ok and result.code == 0 and result.stdout then
+--       last_ime = vim.trim(result.stdout)
+--       -- print(last_ime)
+--     end
+--
+--     vim.system({ "fcitx5-remote", "-c" })
+--   end,
+-- })
+--
+-- autocmd("InsertEnter", {
+--   group = citronGroup,
+--   pattern = "*",
+--   callback = function()
+--     if last_ime ~= "" then
+--       vim.system({ "fcitx5-remote", "-s", last_ime })
+--     end
+--   end,
+-- })
 
 autocmd('LspAttach', {
   group = citronGroup,

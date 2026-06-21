@@ -41,7 +41,7 @@ local binds = {
   { k = { MainMod, Key.q },                         c = hl.dsp.exec_cmd "helium-browser" },
   { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd(nvimCall) },
   { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd(termCall) },
-  { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "firefox" },
+  { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "~/.local/bin/firefox" },
   { k = { MainMod, Key.z },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
   { k = { MainMod, Key.x },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
   { k = { MainMod, Key.r },                         c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
