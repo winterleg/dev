@@ -24,7 +24,6 @@ gtk-toolbar-style   = raised
 bell-features = no-title
 
 config-file = ?auto/theme.ghostty
-config-file = nvim-generated
 
 window-inherit-working-directory = true
 window-padding-balance           = true

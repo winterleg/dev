@@ -4,8 +4,8 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
-local nvimCall = "neovide"
 local termCall = "alacritty"
+local nvimCall = termCall .. " -e nvim"
 
 ---@class Bind
 ---@field k table
@@ -42,6 +42,7 @@ local binds = {
   { k = { MainMod, Key.return_ },                   c = hl.dsp.exec_cmd(nvimCall) },
   { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd(termCall) },
   { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "~/.local/bin/firefox" },
+  { k = { MainMod, Key.shift, Key.w },              c = hl.dsp.exec_cmd "~/.local/bin/thunderbird" },
   { k = { MainMod, Key.z },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
   { k = { MainMod, Key.x },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
   { k = { MainMod, Key.r },                         c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
