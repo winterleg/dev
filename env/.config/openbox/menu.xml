@@ -15,12 +15,12 @@
   </item>
   <item label="NVIM">
     <action name="Execute">
-      <command>ghostty +new-window -e nvim</command>
+      <command>alacritty -e nvim</command>
     </action>
   </item>
-  <item label="GHOSTTY">
+  <item label="ALACRITTY">
     <action name="Execute">
-      <command>ghostty +new-window</command>
+      <command>alacritty</command>
     </action>
   </item>
   <item label="STEAM">

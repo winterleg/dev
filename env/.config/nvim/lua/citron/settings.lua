@@ -1,10 +1,13 @@
 ---@diagnostic disable: undefined-global
 vim.opt.clipboard = "unnamedplus"
 vim.o.termguicolors = tr
+vim.opt.mouse = "a"
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
+
+-- vim.opt.cmdheight = 0
 
 vim.opt.virtualedit = { -- not sure about keeping this
   "block",
@@ -186,7 +189,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animate_command_line = false
   vim.g.neovide_cursor_vfx_mode = ""
 
-  vim.g.neovide_opacity = 0.9
+  vim.g.neovide_opacity = 0.90
   vim.g.neovide_normal_opacity = 1
 
   vim.g.neovide_scale_factor = 1.0
@@ -194,13 +197,21 @@ if vim.g.neovide then
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
   end
 
+  local key_factor = 1.05
+  local wheel_factor = 1.01
   vim.keymap.set("n", "<C-)>", function()
     vim.g.neovide_scale_factor = 1.0
   end)
   vim.keymap.set("n", "<C-=>", function()
-    change_scale_factor(1.05)
+    change_scale_factor(key_factor)
   end)
   vim.keymap.set("n", "<C-->", function()
-    change_scale_factor(1 / 1.05)
+    change_scale_factor(1 / key_factor)
+  end)
+  vim.keymap.set("n", "<M-ScrollWheelUp>", function()
+    change_scale_factor(wheel_factor)
+  end)
+  vim.keymap.set("n", "<M-ScrollWheelDown>", function()
+    change_scale_factor(1 / wheel_factor)
   end)
 end

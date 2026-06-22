@@ -257,7 +257,6 @@ local mappings = {
   { "n",               "<leader>i",  "<CMD>Gitsigns preview_hunk_inline<CR>" },
   { { "n", "v" },      "!",          ":!" },
   { { "n", "v" },      "<leader>w",  "<CMD>write<CR>" },
-  { { "n", "v" },      "<leader>3",  "/" },
   { { "n", "v", "x" }, "-",          "0" },
   { { "n", "v", "x" }, ";",          ":" },
   { { "n", "v", "x" }, ":",          ";" },
@@ -266,17 +265,6 @@ local mappings = {
   { { 'n', 'v', 'x' }, 'R',          'gR' },
   { { 'n', 'v', 'x' }, '<leader>cz', ':center<CR>' },
   { 'v',               'Q',          ":'<,'>UWU<CR>" },
-
-  { 'n', '<leader>de', function()
-    local word = vim.fn.expand('<cword>')
-    vim.cmd('botright split | enew | set buftype=nofile | 0r !dict ' .. word)
-    vim.bo.filetype = 'dict'
-  end, { desc = 'English dictionary lookup' } },
-
-  { "n", "<leader>df", function()
-    local w = vim.fn.expand("<cword>")
-    vim.cmd("botright split | enew | set buftype=nofile | 0r !sdcv " .. w .. " | pandoc -f html -t plain")
-  end },
 
   { "n", "<leader>u", function()
     vim.cmd("terminal less -N " .. vim.fn.expand("%"))

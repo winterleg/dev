@@ -11,6 +11,9 @@ if vim.fn.filereadable(file) == 1 then
 end
 
 return {
+  s({ trig = ";c", snippetType = "autosnippet" },
+    t("::")
+  ),
   s({ trig = ";t", snippetType = "autosnippet" },
     f(function() return os.date("%Y.%m.%d") end, {})
   ),

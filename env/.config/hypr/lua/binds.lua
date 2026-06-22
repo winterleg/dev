@@ -5,7 +5,7 @@ require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
 local termCall = "alacritty"
-local nvimCall = termCall .. " -e nvim"
+local nvimCall = "neovide"
 
 ---@class Bind
 ---@field k table
@@ -43,13 +43,14 @@ local binds = {
   { k = { MainMod, Key.shift, Key.return_ },        c = hl.dsp.exec_cmd(termCall) },
   { k = { MainMod, Key.w },                         c = hl.dsp.exec_cmd "~/.local/bin/firefox" },
   { k = { MainMod, Key.shift, Key.w },              c = hl.dsp.exec_cmd "~/.local/bin/thunderbird" },
+  { k = { MainMod, Key.shift, Key.v },              c = hl.dsp.exec_cmd "~/.local/bin/vesktop" },
   { k = { MainMod, Key.z },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-zathura" },
   { k = { MainMod, Key.x },                         c = hl.dsp.exec_cmd "~/dotfiles/scripts/fzf-imv" },
   { k = { MainMod, Key.r },                         c = hl.dsp.exec_cmd "rofi -show drun -no-fixed-num-lines" },
   { k = { MainMod, Key.shift, Key.r },              c = hl.dsp.exec_cmd "rofi -show run" },
   { k = { MainMod, Key.y },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/WallpaperSelect.sh" },
   { k = { MainMod, Key.shift, Key.f },              c = hl.dsp.exec_cmd "pcmanfm" },
-  { k = { MainMod, Key.k },                         c = hl.dsp.exec_cmd "ghostty +new-window -e rmpc" },
+  { k = { MainMod, Key.k },                         c = hl.dsp.exec_cmd(termCall .. " -e rmpc") },
   { k = { MainMod, Key.s },                         c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh simple" },
   { k = { Key.printscr },                           c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh screen" },
   { k = { MainMod, Key.shift, Key.s },              c = hl.dsp.exec_cmd "~/.config/hypr/scripts/hyprshot.sh" },
