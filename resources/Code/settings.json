@@ -1,15 +1,42 @@
 {
-    "C_Cpp.default.compilerPath": "/usr/bin/g++",
-    "keyboard.dispatch": "keyCode",
     "editor.mouseWheelZoom": true,
-    "editor.fontFamily": "\"Miracode\"",
-    "debug.inlineValues": "off",
-    "editor.inlayHints.enabled": "off",
-    "editor.codeLens": false,
-    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "'Comic Code'",
     "editor.formatOnSave": true,
+    "editor.renderWhitespace": "trailing",
+    "editor.cursorSurroundingLines": 10,
+    "editor.fontSize": 16,
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 72,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "on",
+        "strings": "on",
+    },
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingDelete": "never",
+    "editor.autoClosingQuotes": "always",
+    "workbench.editor.useModal": "off",
+    "chat.agent.enabled": false,
+    "chat.disableAIFeatures": true,
+    "editor.rulers": [
+        72,
+        80,
+        120,
+        180
+    ],
     "vim.leader": " ",
     "vim.useSystemClipboard": true,
+    "vim.handleKeys": {
+        "<C-b>": false,
+        "<C-f>": false,
+        "<C-p>": false,
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-t>": false,
+        "<C-o>": false,
+        "<C-s>": false,
+        "<C-Z>": false,
+    },
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
@@ -21,11 +48,29 @@
         },
         {
             "before": [
+                ":"
+            ],
+            "after": [
+                ";"
+            ]
+        },
+        {
+            "before": [
+                "-"
+            ],
+            "after": [
+                "0"
+            ]
+        },
+        {
+            "before": [
                 "<leader>",
-                "w"
+                "w",
             ],
             "commands": [
-                ":w"
+                {
+                    "command": "workbench.action.files.save",
+                }
             ]
         },
         {
@@ -49,45 +94,83 @@
             ]
         }
     ],
-    "git.openRepositoryInParentFolders": "never",
-    "editor.fontSize": 24,
-    "editor.wordWrap": "off",
+    "terminal.integrated.initialHint": false,
+    "tinymist.formatterPrintWidth": 72,
+    "tinymist.formatterProseWrap": true,
+    "window.dialogStyle": "native",
     "window.menuBarVisibility": "toggle",
-    "workbench.layoutControl.enabled": false,
-    "workbench.navigationControl.enabled": false,
-    "window.commandCenter": false,
     "window.titleBarStyle": "native",
-    "editor.rulers": [
-        80
-    ],
-    "vim.handleKeys": {
-        "<C-b>": false,
-        "<C-d>": true,
-        "<C-k>": false,
-        "<C-t>": false,
-        "<C-o>": false,
-        "<C-s>": false,
-        "<C-z>": false
-    },
+    "window.customTitleBarVisibility": "never",
+    "terminal.external.linuxExec": "foot",
+    "terminal.integrated.fontSize": 20,
     "dotnet.codeLens.enableReferencesCodeLens": false,
     "explorer.confirmDelete": false,
-    "workbench.secondarySideBar.defaultVisibility": "visible",
+    "explorer.confirmDragAndDrop": false,
     "FSharp.suggestGitignore": false,
-    "tinymist.exportPdf": "onSave",
-    "chat.agent.enabled": false,
-    "chat.commandCenter.enabled": false,
-    "inlineChat.accessibleDiffView": "off",
-    "inlineChat.enableV2": false,
-    "terminal.integrated.initialHint": false,
-    "redhat.telemetry.enabled": false,
-    "chat.agent.codeBlockProgress": false,
-    "chat.checkpoints.enabled": false,
-    "chat.disableAIFeatures": true,
-    "telemetry.feedback.enabled": false,
-    "geminicodeassist.displayInlineContextHint": false,
-    "workbench.colorTheme": "Dark Modern",
+    "haskell.formattingProvider": "fourmolu",
     "haskell.manageHLS": "GHCup",
-    "C_Cpp.default.cppStandard": "c++26",
+    "editor.tabSize": 2,
+    "ocaml.server.codelens.enable": false,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.browser.showInTitleBar": false,
+    "window.controlsStyle": "hidden",
+    "workbench.sideBar.location": "right",
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": false,
+    "tinymist.exportPdf": "onType",
+    "editor.lineNumbers": "on",
+    "rewrap.autoWrap.enabled": true,
+    "vim.textwidth": 72,
+    "FSharp.lineLens.enabled": "never",
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.lua",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "clangd.path": "clangd",
+    "clangd.arguments": [
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm"
+    ],
+    "clangd.semanticHighlighting": true,
+    "cmake.configureOnOpen": false,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.generator": "Ninja",
+    "files.associations": {
+        "*.h": "cpp",
+        "*.hpp": "cpp",
+        "*.cpp": "cpp",
+        "*.cc": "cpp",
+        "*.cxx": "cpp",
+        "*.c++": "cpp",
+        "*.C": "cpp",
+        "*.tpp": "cpp",
+        "*.ipp": "cpp"
+    },
+    "clang-format.executable": "clang-format",
+    "clang-format.style": "llvm",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true
+    },
+    "cSpell.language": "en,fr",
+    "FSharp.codeLenses.references.enabled": false,
+    "FSharp.codeLenses.signature.enabled": false,
     "extensions.ignoreRecommendations": true,
-    "security.workspace.trust.untrustedFiles": "open"
 }
