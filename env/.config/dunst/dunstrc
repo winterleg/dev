@@ -1,6 +1,7 @@
 [global]
     sort = update
-    monitor = 1
+    monitor = 0
+    follow = mouse
     width = (250, 500)
     height = (50, 500)
     notification_limit = 10
@@ -13,6 +14,7 @@
     separator_color = auto
     font = Comic Code 16
     corner_radius = 0
+    layer = overlay
 
 [urgency_low]
     background = "#191724"

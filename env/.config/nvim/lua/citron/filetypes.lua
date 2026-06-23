@@ -195,6 +195,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- keep tabs instead of spaces
     vim.opt_local.softtabstop = -1 -- -1 makes it follow shiftwidth or tabstop
     vim.opt_local.expandtab = false
+    vim.opt_local.textwidth = 0
   end
 })
 

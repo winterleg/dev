@@ -21,6 +21,7 @@ function UpdateMonitors()
       mode     = "2560x1600@60",
       position = "auto-left",
       scale    = "2",
+      -- disabled = true
     }
   else
     hl.monitor {
@@ -33,6 +34,6 @@ function UpdateMonitors()
   for _, value in ipairs(mons) do
     local name = value.name
     local scale = value.scale
-    hl.notification.create { text = "name,scale: " .. name .. "," .. scale, duration = 2000 }
+    hl.notification.create { text = "name,scale: " .. name .. "," .. scale, timeout = 2000 }
   end
 end

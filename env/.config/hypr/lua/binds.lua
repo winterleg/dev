@@ -4,8 +4,21 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
-local termCall = "alacritty"
-local nvimCall = "neovide"
+local mons = hl.get_monitors()
+
+local termCall
+if #mons >= 2 then
+  termCall = "alacritty"
+else
+  termCall = "foot"
+end
+
+local nvimCall
+if #mons >= 2 then
+  nvimCall = "switcherooctl launch -g 1 neovide"
+else
+  nvimCall = termCall .. " -e nvim"
+end
 
 ---@class Bind
 ---@field k table
