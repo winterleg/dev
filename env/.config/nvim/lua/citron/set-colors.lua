@@ -143,13 +143,14 @@ local colorsList = {
     end,
   },
   {
-    name = "Green Paper",
+    name = "Paper",
     enabled = true,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme mfd-paper]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#a5b2a2" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#002611" })
+      vim.api.nvim_set_hl(0, "@comment", { fg = "#002611" })
 
       fix_visual()
 
@@ -163,6 +164,8 @@ local colorsList = {
       vim.opt.background = "dark"
       vim.cmd [[colorscheme mfd-scarlet]]
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a100a" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#b94436" })
+      vim.api.nvim_set_hl(0, "@comment", { fg = "#b94436" })
 
       fix_visual()
 
@@ -382,4 +385,4 @@ local function pick_theme()
   }):find()
 end
 
-vim.keymap.set("n", "<leader>tt", pick_theme, { desc = "Pick theme" })
+vim.keymap.set("n", "<leader>kt", pick_theme, { desc = "Pick theme" })

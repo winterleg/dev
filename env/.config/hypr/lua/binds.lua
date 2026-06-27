@@ -4,21 +4,26 @@ require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
 
-local mons = hl.get_monitors()
+-- local handle = io.popen("switcherooctl list")
+-- local output
+-- if handle then
+--   output = handle:read("*a")
+--   handle:close()
+-- end
+--
+local fancy = false
 
 local termCall
-if #mons >= 2 then
-  termCall = "alacritty"
-else
-  termCall = "foot"
-end
-
 local nvimCall
-if #mons >= 2 then
+-- if output:lower():find("nvidia") then
+if fancy then
+  termCall = "alacritty"
   nvimCall = "switcherooctl launch -g 1 neovide"
 else
-  nvimCall = termCall .. " -e nvim"
+  termCall = "foot"
+  nvimCall = "foot sh -c 'tmux attach || tmux new-session -s main nvim'"
 end
+
 
 ---@class Bind
 ---@field k table
