@@ -3,7 +3,7 @@
   <theme>
     <name>gruvbox-material-dark</name>
     <cornerRadius>0</cornerRadius>
-    <font name="Courier Prime Code" size="14" />
+    <font name="Comic Code" size="14" />
   </theme>
 
   <keyboard>
@@ -56,10 +56,10 @@
       <action name="Execute" command="helium-browser" />
     </keybind>
     <keybind key="W-Return">
-      <action name="Execute" command="ghostty" />
+      <action name="Execute" command="neovide" />
     </keybind>
     <keybind key="W-S-Return">
-      <action name="Execute" command="~/dotfiles/scripts/fzf-neovide" />
+      <action name="Execute" command="foot" />
     </keybind>
     <keybind key="W-w">
       <action name="Execute" command="firefox" />

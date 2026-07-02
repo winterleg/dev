@@ -3,7 +3,7 @@
 extraFlags="$@"
 
 _local="$HOME"
-_extern="/run/media/fuyu147/VOLUME_NOIR/shared-data"
+_extern="/run/media/fuyu147/C87B-D012/shared-data"
 
 dirs=(
   "art"

@@ -3,6 +3,7 @@ require "lua.scripts.ws_exec"
 require "lua.scripts.focus_direction"
 require "lua.scripts.monitors"
 require "lua.scripts.layout"
+require "lua.scripts.floating"
 
 -- local handle = io.popen("switcherooctl list")
 -- local output
@@ -11,7 +12,7 @@ require "lua.scripts.layout"
 --   handle:close()
 -- end
 --
-local fancy = false
+local fancy = true
 
 local termCall
 local nvimCall
@@ -21,7 +22,8 @@ if fancy then
   nvimCall = "switcherooctl launch -g 1 neovide"
 else
   termCall = "foot"
-  nvimCall = "foot sh -c 'tmux attach || tmux new-session -s main nvim'"
+  -- nvimCall = "foot sh -c 'tmux attach || tmux new-session -s main nvim'"
+  nvimCall = "foot -e nvim"
 end
 
 
@@ -52,6 +54,7 @@ local binds = {
   { k = { MainMod, Key.f11 },                       c = hl.dsp.exec_cmd "pkill hyprsunset || hyprsunset -t 4000" },
   { k = { MainMod, Key.f12 },                       c = hl.dsp.exec_cmd "dunstctl history-pop" },
   { k = { MainMod, Key.g },                         c = function() ToggleLayout() end },
+  { k = { MainMod, Key.shift, Key.g },              c = function() FloatingToggle() end },
 
   -- app / scripts
   { k = { MainMod, Key.minus },                     c = hl.dsp.exec_cmd "~/dotfiles/scripts/tts-neovide" },

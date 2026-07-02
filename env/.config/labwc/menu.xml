@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu>
   <menu id="root-menu" label="Labwc">
-    <item label="Foot">
-      <action name="Execute" command="Foot" />
+    <item label="NEOVIDE">
+      <action name="Execute" command="neovide" />
     </item>
-    <item label="Firefox">
+    <item label="FOOT">
+      <action name="Execute" command="foot" />
+    </item>
+    <item label="FIREFOX">
       <action name="Execute" command="firefox" />
     </item>
-    <item label="Thunar">
+    <item label="THUNAR">
       <action name="Execute" command="thunar" />
     </item>
 
     <separator />
 
-      <item label="Thunderbird">
+      <item label="THUNDERBIRD">
         <action name="Execute" command="thunderbird" />
       </item>
-      <item label="Vesktop">
+      <item label="VESKTOP">
         <action name="Execute" command="vesktop" />
       </item>
-      <item label="Music">
+      <item label="MUSIC">
         <action name="Execute" command="alacritty -e rmpc" />
       </item>
 
     <separator />
 
-    <item label="Reconfigure">
+    <item label="RECONFIGURE">
       <action name="Reconfigure" />
     </item>
-    <item label="Exit">
+    <item label="EXIT">
       <action name="Exit" />
     </item>
   </menu>

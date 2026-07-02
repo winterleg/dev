@@ -22,8 +22,8 @@ vim.pack.add {
         invert_signs = false,
         invert_tabline = false,
         invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "hard",  -- can be "hard", "soft" or empty string
+        inverse = true,    -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
         palette_overrides = {},
         overrides = {},
         dim_inactive = false,
@@ -50,6 +50,9 @@ vim.pack.add {
   { src = "https://github.com/d00h/nvim-rusticated" },
   { src = "https://github.com/f4z3r/gruvbox-material.nvim" },
   { src = "https://github.com/saeeedhany/parchment.nvim" },
+  { src = "https://github.com/vossenwout/guts.nvim" },
+  { src = "https://github.com/chriskempson/base16-vim" },
+  { src = "https://github.com/gmr458/cold.nvim" },
 }
 
 require('vague').setup {

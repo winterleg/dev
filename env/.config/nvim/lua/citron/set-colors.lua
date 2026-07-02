@@ -80,6 +80,61 @@ local colorsList = {
     end,
   },
   {
+    name = "GUTS",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme guts]]
+
+      fix_visual()
+
+      save_theme "GUTS"
+    end,
+  },
+  {
+    name = "COLD LIGHT",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "light"
+      vim.cmd [[colorscheme cold]]
+
+      fix_visual()
+
+      local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+      local bg = normal.bg
+      local fg = normal.fg
+      if not bg or not fg then return end
+
+      if vim.o.background == "light" then
+        vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#d8d8d8", fg = fg })
+        vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#d8d8d8", fg = "#d8d8d8" })
+        vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#c8c8c8", fg = fg })
+        vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#c8c8c8", fg = "#c8c8c8" })
+        vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "#c8c8c8", fg = "#c8c8c8" })
+        vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bg, fg = fg })
+        vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = bg, fg = bg })
+        vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = bg, fg = bg })
+        vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "#d8d8d8", fg = fg })
+        vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = "#d8d8d8", fg = "#d8d8d8" })
+        vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#c8c8c8", fg = fg })
+      end
+
+      save_theme "COLD LIGHT"
+    end,
+  },
+  {
+    name = "COLD DARK",
+    enabled = true,
+    callback = function()
+      vim.opt.background = "dark"
+      vim.cmd [[colorscheme cold]]
+
+      fix_visual()
+
+      save_theme "COLD DARK"
+    end,
+  },
+  {
     name = "Pine",
     enabled = true,
     callback = function()
@@ -117,8 +172,8 @@ local colorsList = {
     end,
   },
   {
-    name = "KAWA",
-    enabled = false,
+    name = "DRAGON",
+    enabled = true,
     callback = function()
       vim.opt.background = "dark"
       vim.cmd [[colorscheme kanagawa-dragon]]
@@ -126,7 +181,7 @@ local colorsList = {
 
       fix_visual()
 
-      save_theme "KAWA"
+      save_theme "DRAGON"
     end
   },
   {
@@ -158,7 +213,7 @@ local colorsList = {
     end
   },
   {
-    name = "SCARLET",
+    name = "RED",
     enabled = true,
     callback = function()
       vim.opt.background = "dark"
@@ -169,7 +224,7 @@ local colorsList = {
 
       fix_visual()
 
-      save_theme "SCARLET"
+      save_theme "RED"
     end,
   },
   {
@@ -187,7 +242,7 @@ local colorsList = {
   },
   {
     name = "PARCHMENT",
-    enabled = false,
+    enabled = true,
     callback = function()
       vim.opt.background = "light"
       vim.cmd [[colorscheme parchment-manuscript]]
@@ -339,6 +394,7 @@ local function start_fs_watcher()
       if themes[new_name] then
         current_name = nil
 
+        vim.cmd("syntax reset")
         unset_under()
         themes[new_name]()
       end
@@ -376,6 +432,7 @@ local function pick_theme()
       local function run_selection()
         local entry = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
+        vim.cmd("syntax reset")
         themes[entry[1]]()
       end
       map("i", "<CR>", run_selection)

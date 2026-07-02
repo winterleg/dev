@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-yay -S \
+paru -S \
   fcitx5 \
   fcitx5-configtool \
   fcitx5-gtk \

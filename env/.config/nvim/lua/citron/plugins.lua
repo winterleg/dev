@@ -25,7 +25,7 @@ vim.pack.add {
   -- { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
   { src = "https://github.com/MunifTanjim/nui.nvim" },
   { src = "https://github.com/ray-x/lsp_signature.nvim" },
-  { src = "https://github.com/chentoast/marks.nvim" },
+  -- { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/HakonHarnes/img-clip.nvim" },
   { src = "https://github.com/nvim-mini/mini.trailspace" },
   -- { src = "https://github.com/gelguy/wilder.nvim" },
@@ -202,6 +202,7 @@ vim.api.nvim_create_autocmd("User", {
 
 
 vim.g.vimwiki_path = '~/notes/'
+vim.g.vimwiki_syntax = 'markdown'
 vim.g.vimwiki_key_mappings = {
   all_maps = 0,
 }
@@ -271,22 +272,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-require 'marks'.setup {
-  default_mappings = true,
-  builtin_marks = { ".", "<", ">", "^", "a", "r", "s", "t" },
-  cyclic = true,
-  force_write_shada = false,
-  refresh_interval = 250,
-  sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-  excluded_filetypes = {},
-  excluded_buftypes = {},
-  bookmark_0 = {
-    sign = "⚑",
-    virt_text = "hello world",
-    annotate = false,
-  },
-  mappings = {}
-}
+-- require 'marks'.setup {
+--   default_mappings = true,
+--   builtin_marks = { ".", "<", ">", "^", "a", "r", "s", "t" },
+--   cyclic = true,
+--   force_write_shada = false,
+--   refresh_interval = 250,
+--   sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
+--   excluded_filetypes = {},
+--   excluded_buftypes = {},
+--   bookmark_0 = {
+--     sign = "⚑",
+--     virt_text = "hello world",
+--     annotate = false,
+--   },
+--   mappings = {}
+-- }
 
 require("img-clip").setup {
   default = {
