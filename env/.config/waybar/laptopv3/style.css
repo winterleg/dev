@@ -2,9 +2,9 @@
 
 * {
     border: none;
-    font-family: "Courier Prime Code", "Noto Sans CJK JP";
-    font-size: 16pt;
-    background: @surface;
+    font-family: "Comic Code";
+    font-size: 12pt;
+    background: transparent; /* @surface; */
 }
 
 window#waybar {
@@ -45,8 +45,12 @@ tooltip * {
 }
 
 #custom-sep {
-    color: @outline_variant;
     margin: 0;
+}
+
+#workspaces * {
+    padding: 0px;
+    margin: 0px;
 }
 
 #workspaces button {

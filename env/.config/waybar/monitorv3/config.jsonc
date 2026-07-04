@@ -4,7 +4,8 @@
     "output": "HDMI-A-1",
     "exclusive": true,
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "wlr/taskbar"
     ],
     "modules-center": [
         "clock"
@@ -25,5 +26,9 @@
     "clock": {
         "tooltip": true,
         "format": "{:%H:%M}"
+    },
+    "wlr/taskbar": {
+        "all-outputs": false,
+        "bar-css-states": true
     }
 }

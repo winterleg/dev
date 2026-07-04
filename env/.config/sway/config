@@ -1,0 +1,246 @@
+set $mod Mod4
+floating_modifier $mod
+
+# Environment variables (set these in your shell or .profile)
+# export XCURSOR_SIZE=24
+# export XCURSOR_THEME=BreezeX-RosePine-Linux
+# export LIBVA_DRIVER_NAME=nvidia
+# export __GLX_VENDOR_LIBRARY_NAME=nvidia
+# export NVD_BACKEND=direct
+# export GBM_BACKEND=nvidia-drm
+# export ELECTRON_OZONE_PLATFORM_HINT=auto
+# export QT_QPA_PLATFORM=wayland
+# export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_STYLE_OVERRIDE=kvantum
+# export GDK_BACKEND=wayland,x11,*
+# export SDL_VIDEODRIVER=wayland
+# export CLUTTER_BACKEND=wayland
+# export XDG_SESSION_TYPE=wayland
+# export XDG_CURRENT_DESKTOP=Sway
+# export XDG_SESSION_DESKTOP=Sway
+
+exec ~/.config/waybar/waybar.sh
+
+exec blueman-applet
+exec ckb-next-daemon
+exec dunst
+exec fcitx5
+exec nm-applet
+exec awww-daemon
+exec udiskie --tray
+exec wl-paste --watch cliphist store --no-persist
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd --all
+exec systemctl --user import-environment QT_QPA_PLATFORMTHEME
+exec systemctl --user start hyprpolkitagent
+exec dbus-update-activation-environment --all
+exec gnome-keyring-daemon --start --components=secrets
+
+# Input settings
+input * {
+    xkb_layout ca
+}
+
+focus_follows_mouse yes
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+}
+
+input type:keyboard {
+    repeat_delay 250
+    repeat_rate 50
+}
+
+input type:touchpad {
+    natural_scroll enabled
+}
+
+seat * {
+    hide_cursor 15000
+}
+
+# Devices
+input "wacom-one-by-wacom-m-pen" map_to_output HDMI-A-1
+
+input "elan06fa:00-04f3:327e-touchpad" {
+    # enabled
+}
+
+# Look and feel
+gaps inner 0
+gaps outer 0
+
+default_border pixel 2
+client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
+client.focused_inactive   #1f1d2e #403d52 #e0def4 #eb6f92 #403d52
+client.focused_tab_title  #1f1d2e #403d52 #e0def4
+client.unfocused          #191724 #26233a #908caa #eb6f92 #26233a
+client.urgent             #191724 #eb6f92 #e0def4 #f6c177 #eb6f92
+
+# Layout: default tiling
+# smart_gaps on
+
+# WM
+bindsym $mod+c        kill
+bindsym $mod+F8       exit
+bindsym $mod+Shift+q  reload
+bindsym $mod+Escape   exec hyprlock
+bindsym $mod+v        floating toggle
+bindsym $mod+f        fullscreen
+bindsym $mod+Shift+p  move container to output right
+bindsym $mod+b        exec ~/.config/waybar/waybar.sh
+bindsym $mod+F12      exec dunstctl history-pop
+
+bindsym $mod+Shift+l  layout tabbed
+bindsym $mod+l        layout toggle split
+bindsym $mod+y        split horizontal
+bindsym $mod+u        split vertical
+
+# Apps/Scripts
+bindsym $mod+Ctrl+v       exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
+bindsym $mod+q            exec helium-browser
+bindsym $mod+Return       exec alacritty -e nvim
+bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+w            exec firefox
+bindsym $mod+r            exec rofi -show drun -no-fixed-num-lines
+bindsym $mod+Shift+r      exec rofi -show run
+bindsym $mod+semicolon    exec ~/.config/hypr/scripts/WallpaperSelect.sh
+bindsym $mod+Shift+f      exec pcmanfm
+bindsym $mod+s            exec ~/.config/hypr/scripts/hyprshot.sh "simple"
+bindsym Print             exec ~/.config/hypr/scripts/hyprshot.sh "screen"
+bindsym $mod+Shift+s      exec ~/.config/hypr/scripts/hyprshot.sh
+bindsym $mod+Shift+t      exec ~/.config/hypr/scripts/get-text.sh
+bindsym $mod+Shift+c      exec hyprpicker -a
+bindsym $mod+period       exec rofi -modi emoji -show emoji -no-fixed-num-lines
+
+# Workspaces
+bindsym $mod+slash          workspace 1
+bindsym $mod+parenleft      workspace 2
+bindsym $mod+bracketleft    workspace 3
+bindsym $mod+braceleft      workspace 4
+bindsym $mod+apostrophe     workspace 5
+bindsym $mod+dollar         workspace 6
+bindsym $mod+exclam         workspace 7
+bindsym $mod+braceright     workspace 8
+bindsym $mod+bracketright   workspace 9
+bindsym $mod+parenright     workspace 10
+
+bindsym $mod+Shift+slash        move container to workspace 1;  workspace 1
+bindsym $mod+Shift+parenleft    move container to workspace 2;  workspace 2
+bindsym $mod+Shift+bracketleft  move container to workspace 3;  workspace 3
+bindsym $mod+Shift+braceleft    move container to workspace 4;  workspace 4
+bindsym $mod+Shift+apostrophe   move container to workspace 5;  workspace 5
+bindsym $mod+Shift+dollar       move container to workspace 6;  workspace 6
+bindsym $mod+Shift+exclam       move container to workspace 7;  workspace 7
+bindsym $mod+Shift+braceright   move container to workspace 8;  workspace 8
+bindsym $mod+Shift+bracketright move container to workspace 9;  workspace 9
+bindsym $mod+Shift+parenright   move container to workspace 10; 0workspace 10
+
+bindsym --whole-window $mod+button4 workspace prev
+bindsym --whole-window $mod+button5 workspace next
+
+bindsym $mod+Left workspace prev
+bindsym $mod+Right workspace next
+
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Shift+Left move container to workspace prev
+bindsym $mod+Shift+Right move container to workspace next
+
+# Window
+bindsym $mod+h focus left
+bindsym $mod+i focus right
+bindsym $mod+e focus up
+bindsym $mod+n focus down
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
+
+bindsym $mod+Shift+k resize shrink height 20 px
+bindsym $mod+Shift+m resize grow height 20 px
+
+bindsym $mod+button1 move
+bindsym $mod+button3 resize
+
+# bindsym --whole-window $mod+Btn4 move left
+# bindsym --whole-window $mod+Btn5 move right
+
+# Sound and brightness
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh
+bindsym $mod+m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/volume-dunst.sh
+
+bindsym XF86MonBrightnessUp exec brightnessctl -e s 2%+
+bindsym XF86MonBrightnessDown exec brightnessctl -e s 2%-
+
+# Media control
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioMute exec playerctl play-pause
+bindsym $mod+Page_Up exec pavucontrol
+
+# Window rules
+for_window [class="steam_app_1551360"] floating enable
+
+for_window [class="org.pulseaudio.pavucontrol"] floating enable
+for_window [class="org.pulseaudio.pavucontrol"] move position center
+for_window [class="org.pulseaudio.pavucontrol"] resize set width 1000 px height 700 px
+
+for_window [title="Save.*"] floating enable
+for_window [title="Save.*"] move position center
+for_window [title="Save.*"] resize set width 1000 px height 700 px
+
+# No focus for empty
+# for_window [class="^$", title="^$"] norder none
+
+# Workspace assignments
+assign [class="firefox"] 1
+
+assign [title="Minecraft.*"] 4
+assign [class="cs2"] 4
+assign [class="worldofwarships64.exe"] 4
+assign [class="forzahorizon5.exe"] 4
+assign [class="overwatch.exe"] 4
+assign [class="discovery.exe"] 4
+
+assign [class="steam"] 5
+
+assign [class="org.mozilla.Thunderbird"] 5
+
+assign [class="spotify"] 5
+
+assign [class="discord"] 5
+assign [class="vesktop"] 5
+
+assign [title="Picture-in-Picture"] 10
+
+# Workspace settings
+workspace 1 output HDMI-A-1
+workspace 2 output HDMI-A-1
+workspace 3 output HDMI-A-1
+workspace 4 output HDMI-A-1
+workspace 5 output HDMI-A-1
+workspace 6 output HDMI-A-1
+workspace 7 output HDMI-A-1
+workspace 8 output HDMI-A-1
+workspace 9 output HDMI-A-1
+workspace 10 output eDP-1
+
+# for_window [workspace=1] gaps inner 0 outer 0
+
+# Special
+# assign [class="com.mitchellh.ghostty.scratch"] scratchpad
+# for_window [class="com.mitchellh.ghostty.scratch"] move scratchpad
+
+
+# Monitors
+output eDP-1 res 2560x1600@60Hz pos -1280 0 scale 2
+output HDMI-A-1 res 1920x1080@120Hz pos 0 0 scale 1

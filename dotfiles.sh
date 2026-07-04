@@ -16,6 +16,7 @@ confs=(
   qutebrowser
   rofi
   sioyek
+  sway
   tmux-goway
   vesktop/themes
   waybar

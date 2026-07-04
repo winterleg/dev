@@ -47,14 +47,14 @@ hl.config({
 
   dwindle    = {
     preserve_split        = true,
-    smart_split           = false,
+    smart_split           = true,
     force_split           = 2,
   },
 
   scrolling  = {
     fullscreen_on_one_column = true,
     direction                = "down",
-    column_width             = 0.95,
+    column_width             = 1,
     explicit_column_widths   = "0.95, 1",
     focus_fit_method         = 0
   },

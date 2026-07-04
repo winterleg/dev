@@ -53,7 +53,7 @@ local binds = {
   { k = { MainMod, Key.b },                         c = hl.dsp.exec_cmd "~/.config/waybar/waybar.sh" },
   { k = { MainMod, Key.f11 },                       c = hl.dsp.exec_cmd "pkill hyprsunset || hyprsunset -t 4000" },
   { k = { MainMod, Key.f12 },                       c = hl.dsp.exec_cmd "dunstctl history-pop" },
-  { k = { MainMod, Key.g },                         c = function() ToggleLayout() end },
+  -- { k = { MainMod, Key.g },                         c = function() ToggleLayout() end },
   { k = { MainMod, Key.shift, Key.g },              c = function() FloatingToggle() end },
 
   -- app / scripts

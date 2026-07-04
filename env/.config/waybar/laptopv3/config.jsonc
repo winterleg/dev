@@ -4,7 +4,7 @@
     "output": "eDP-1",
     "exclusive": true,
     "modules-left": [
-        "hyprland/workspaces"
+        "sway/workspaces"
     ],
     "modules-center": [
         "clock",
@@ -22,6 +22,10 @@
         "format": "{name}",
         "all-outputs": true
     },
+    "sway/workspaces": {
+        "format": "{name}",
+        "all-outputs": true
+    },
     "custom/sep": {
         "format": " "
     },
@@ -31,5 +35,5 @@
     "clock": {
         "tooltip": true,
         "format": "{:%H:%M}"
-    }
+    },
 }

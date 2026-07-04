@@ -123,7 +123,7 @@ sync_remote() {
     git add .
     git -C "$WORKSTATION" status
     if [ -z "$1" ]; then
-      git commit -m "chore: automated commit"
+      git commit -m "(自動化...)"
     else
       git commit -m "$1"
     fi
