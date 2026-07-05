@@ -1,0 +1,34 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "exclusive": true,
+    "modules-left": [
+        "hyprland/workspaces",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": false
+    },
+    "custom/sep": {
+        "format": "   "
+    },
+    "tray": {
+        "show-passive-items": "true"
+    },
+    "clock": {
+        "tooltip": true,
+        "format": "{:%H:%M}"
+    },
+    "wlr/taskbar": {
+        "all-outputs": false,
+        "bar-css-states": true
+    }
+}

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-FORCE_DISABLE_LAPTOP=true
+FORCE_MAIN_ONLY=true
+
+FORCE_DISABLE_LAPTOP=false
 FORCE_DISABLE_MONITOR=false
 
-LAPTOP_CONFIG="laptopv3"
-MONITOR_CONFIG="monitorv3"
+LAPTOP_CONFIG="sway-lap-v1"
+MONITOR_CONFIG="sway-mon-v1"
 
 LAPTOPNAME="eDP-1"
 MONITORNAME="HDMI-A-1"
@@ -61,8 +63,20 @@ monitor() {
 }
 
 start-bars() {
-  if $LAPTOP; then laptop; fi
-  if $MONITOR; then monitor; fi
+  if $FORCE_MAIN_ONLY; then
+    if $MONITOR; then
+      monitor
+    elif $LAPTOP; then
+      laptop
+    fi
+  else
+    if $LAPTOP; then
+      laptop
+    fi
+    if $MONITOR; then
+      monitor
+    fi
+  fi
 }
 
 pkill waybar || start-bars

@@ -129,6 +129,14 @@ local colorsList = {
       vim.opt.background = "dark"
       vim.cmd [[colorscheme cold]]
 
+      local hl = vim.api.nvim_get_hl(0, { name = "SpellCap" })
+      hl.fg = "#c8c8c8"
+      vim.api.nvim_set_hl(0, "SpellCap", hl)
+
+      hl = vim.api.nvim_get_hl(0, { name = "SpellBad" })
+      hl.fg = "#c8c8c8"
+      vim.api.nvim_set_hl(0, "SpellBad", hl)
+
       fix_visual()
 
       save_theme "COLD DARK"

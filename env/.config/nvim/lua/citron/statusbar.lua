@@ -124,3 +124,11 @@ vim.keymap.set("n", "<leader>ts", function()
     vim.o.laststatus = 0
   end
 end, { desc = "Toggle statusline" })
+
+vim.keymap.set("n", "<leader>tr", function()
+  if vim.o.cmdheight == 0 then
+    vim.o.cmdheight = 1
+  else
+    vim.o.cmdheight = 0
+  end
+end, { desc = "Toggle cmd line" })
