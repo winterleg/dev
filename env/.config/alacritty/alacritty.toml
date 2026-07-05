@@ -6,7 +6,7 @@ import = [
 ]
 
 [window]
-opacity = 1
+opacity = 0.9
 dynamic_padding = true
 
 
@@ -14,7 +14,7 @@ dynamic_padding = true
 cursor = "#EC5D2A"
 
 [font]
-normal = { family = "comic code" }
+normal = { family = "departure mono" }
 size = 20
 
 [keyboard]

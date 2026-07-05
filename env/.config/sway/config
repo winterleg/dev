@@ -83,6 +83,9 @@ client.urgent             #191724 #eb6f92 #e0def4 #f6c177 #eb6f92
 # Layout: default tiling
 # smart_gaps on
 
+gaps inner 2
+gaps outer 2
+
 # WM
 bindsym $mod+c        kill
 bindsym $mod+F8       exit
@@ -102,9 +105,10 @@ bindsym $mod+u        split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v       exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 bindsym $mod+q            exec helium-browser
-bindsym $mod+Return       exec alacritty -e nvim
-bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+Return       exec foot -e nvim
+bindsym $mod+Shift+Return exec foot
 bindsym $mod+w            exec firefox
+bindsym $mod+Shift+w      exec thunderbird
 bindsym $mod+r            exec rofi -show drun -no-fixed-num-lines
 bindsym $mod+Shift+r      exec rofi -show run
 bindsym $mod+semicolon    exec ~/.config/hypr/scripts/WallpaperSelect.sh
@@ -208,6 +212,8 @@ for_window [title="Save.*"] resize set width 1000 px height 700 px
 assign [class="firefox"] 1
 
 assign [title="Minecraft.*"] 4
+for_window [title="Minecraft.*"] border none
+
 assign [class="cs2"] 4
 assign [class="worldofwarships64.exe"] 4
 for_window [class="forzahorizon5.exe"] floating enable
@@ -239,6 +245,7 @@ workspace 9 output HDMI-A-1
 workspace 10 output eDP-1
 
 # for_window [workspace=1] gaps inner 0 outer 0
+for_window [workspace=4] default_border 0
 
 # Special
 # assign [class="com.mitchellh.ghostty.scratch"] scratchpad

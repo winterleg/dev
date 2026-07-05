@@ -67,9 +67,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "typst" },
   callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "fr", "cjk" }
-
     vim.opt_local.textwidth = 72
 
     vim.opt_local.sidescrolloff = 0
@@ -84,9 +81,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "txt" },
   callback = function(args)
-    vim.opt_local.spell         = true
-    vim.opt_local.spelllang     = { "en", "fr", "cjk" }
-
     vim.opt_local.sidescrolloff = 0
 
     vim.opt.wrap                = false
@@ -99,7 +93,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     local name                  = vim.api.nvim_buf_get_name(args.buf)
     local tw                    = tonumber(name:match("%.(%d+)%.%w+$"))
-    vim.opt_local.textwidth     = tw or 80
+    vim.opt_local.textwidth     = tw or 72
 
     vim.opt_local.autoindent    = false
     vim.opt_local.smartindent   = false
@@ -113,9 +107,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "vimwiki" },
   callback = function()
-    vim.opt_local.spell         = true
-    vim.opt_local.spelllang     = { "en", "fr" }
-
     vim.opt_local.sidescrolloff = 0
 
     vim.opt_local.wrap          = false
@@ -141,9 +132,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "mail", "gitcommit" },
   callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "fr", "cjk" }
-
     vim.opt_local.sidescrolloff = 0
 
     local width = 8
@@ -166,10 +154,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "md", "markdown", "html" },
   callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "fr", "cjk" }
 
-    vim.opt_local.textwidth = 80
+    vim.opt_local.textwidth = 72
 
     vim.opt_local.sidescrolloff = 0
 
@@ -202,11 +188,11 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "python" },
   callback = function()
-    local width = 8
+    local width = 2
     vim.opt_local.shiftwidth = width
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width
-    vim.opt_local.expandtab = true
+    vim.opt_local.expandtab = false
 
     vim.keymap.set("n", "<leader>h", ":w<CR>:!python3 %<CR>", { buffer = true, desc = "Run Python file" })
   end

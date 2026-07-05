@@ -281,10 +281,6 @@ local mappings = {
   { "n", "<leader>cw", ":UpdateWordCount<CR>",            {} },
 
   { "n", "<leader>pq", "<cmd>PasteImage<cr>",             { desc = "Paste image from system clipboard" } },
-  { "n", "<Enter>",    ":silent | VimwikiFollowLink<CR>", {} },
-  { "n", "<leader>zz", ":silent | VimwikiBacklinks<CR>",  {} },
-  { "n", "<leader>zi", ":VimwikiIndex<CR>",               {} },
-  { "n", "<leader>zt", ":VimwikiToggleListItem<CR>",      {} },
 }
 
 

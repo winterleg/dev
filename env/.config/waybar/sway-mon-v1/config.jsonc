@@ -4,7 +4,10 @@
     "output": "HDMI-A-1",
     "exclusive": true,
     "modules-left": [
-        "hyprland/workspaces",
+        "memory",
+        "custom/sep",
+        "cpu",
+        "custom/sep",
         "wlr/taskbar"
     ],
     "modules-center": [
@@ -18,7 +21,7 @@
         "all-outputs": false
     },
     "custom/sep": {
-        "format": "   "
+        "format": " "
     },
     "tray": {
         "show-passive-items": "true"

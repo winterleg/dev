@@ -4,7 +4,10 @@
     "output": "eDP-1",
     "exclusive": true,
     "modules-left": [
-        "hyprland/workspaces",
+        "memory",
+        "custom/sep",
+        "cpu",
+        "custom/sep",
         "wlr/taskbar"
     ],
     "modules-center": [

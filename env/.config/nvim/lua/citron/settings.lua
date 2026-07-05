@@ -89,8 +89,8 @@ vim.cmd([[highlight default Nbsp guibg=#666666 guifg=#ffffff]])
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.spell = false
-vim.opt.spelllang = nil
+vim.opt.spell = true
+vim.opt.spelllang = { "en", "fr", "cjk" }
 
 _G.isWriteCommit = false
 
@@ -176,7 +176,7 @@ end, {
 
 if vim.g.neovide then
   -- require('neov-ime').setup()
-  vim.o.guifont = "Comic Code,zen maru gothic:h20"
+  vim.o.guifont = "departure mono, flexi ibm vga true, Comic Code Light,zen maru gothic:h20"
 
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_refresh_rate_idle = 10
