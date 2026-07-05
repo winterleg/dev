@@ -17,6 +17,7 @@ confs=(
   rofi
   sioyek
   sway
+  swayr
   tmux-goway
   vesktop/themes
   waybar

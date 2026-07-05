@@ -70,10 +70,6 @@ input "elan06fa:00-04f3:327e-touchpad" {
     # enabled
 }
 
-# Look and feel
-gaps inner 0
-gaps outer 0
-
 default_border pixel 2
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
 client.focused_inactive   #1f1d2e #403d52 #e0def4 #eb6f92 #403d52
@@ -95,7 +91,7 @@ bindsym $mod+Shift+p  move container to output right
 bindsym $mod+b        exec ~/.config/waybar/waybar.sh
 bindsym $mod+F12      exec dunstctl history-pop
 
-bindsym $mod+Shift+l  layout tabbed
+bindsym $mod+j        layout tabbed
 bindsym $mod+l        layout toggle split
 bindsym $mod+y        split horizontal
 bindsym $mod+u        split vertical
@@ -117,7 +113,11 @@ bindsym $mod+Shift+t      exec ~/.config/hypr/scripts/get-text.sh
 bindsym $mod+Shift+c      exec hyprpicker -a
 bindsym $mod+period       exec rofi -modi emoji -show emoji -no-fixed-num-lines
 
-# Workspaces
+# Workspaces / windows
+bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab exec swayr switch-to-urgent-or-lru-window
+bindsym $mod+p exec swayr switch-window
+
 bindsym $mod+slash          workspace 1
 bindsym $mod+parenleft      workspace 2
 bindsym $mod+bracketleft    workspace 3
@@ -207,7 +207,8 @@ assign [class="firefox"] 1
 assign [title="Minecraft.*"] 4
 assign [class="cs2"] 4
 assign [class="worldofwarships64.exe"] 4
-assign [class="forzahorizon5.exe"] 4
+for_window [class="forzahorizon5.exe"] floating enable
+for_window [class="forzahorizon5.exe"] move position center
 assign [class="overwatch.exe"] 4
 assign [class="discovery.exe"] 4
 
