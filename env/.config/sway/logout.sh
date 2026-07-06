@@ -7,7 +7,8 @@ Shutdown"
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
 cleanup() {
-  pkill hyprsunset || true
+  # pkill hyprsunset || true
+  true
 }
 
 if [[ "$selection" == "Suspend" ]]; then
