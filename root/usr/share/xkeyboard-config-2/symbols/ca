@@ -92,6 +92,7 @@ xkb_symbols "basic" {
     key <AB10>  {[  eacute,             Eacute                              ]};
 
     key <SPCE>  {[  space,              space,              space, U202F    ]};
+    // key <CAPS>  {[  Escape,             Escape,             Escape, Escape  ]};
 
     include "level3(ralt_switch)"
 };

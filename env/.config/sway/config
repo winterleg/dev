@@ -1,48 +1,19 @@
 set $mod Mod4
 floating_modifier $mod
 
-# Environment variables (set these in your shell or .profile)
-# export XCURSOR_SIZE=24
-# export XCURSOR_THEME=BreezeX-RosePine-Linux
-# export LIBVA_DRIVER_NAME=nvidia
-# export __GLX_VENDOR_LIBRARY_NAME=nvidia
-# export NVD_BACKEND=direct
-# export GBM_BACKEND=nvidia-drm
-# export ELECTRON_OZONE_PLATFORM_HINT=auto
-# export QT_QPA_PLATFORM=wayland
-# export QT_QPA_PLATFORMTHEME=qt5ct
-# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-# export QT_AUTO_SCREEN_SCALE_FACTOR=1
-# export QT_STYLE_OVERRIDE=kvantum
-# export GDK_BACKEND=wayland,x11,*
-# export SDL_VIDEODRIVER=wayland
-# export CLUTTER_BACKEND=wayland
-# export XDG_SESSION_TYPE=wayland
-# export XDG_CURRENT_DESKTOP=Sway
-# export XDG_SESSION_DESKTOP=Sway
+output eDP-1 res 2560x1600@60Hz pos -1280 0 scale 2
+output HDMI-A-1 res 1920x1080@120Hz pos 0 0 scale 1
 
 font pango:Comic Code 12
 
 exec ~/.config/waybar/waybar.sh
 
-exec blueman-applet
-exec ckb-next-daemon
-exec dunst
-exec fcitx5
-exec nm-applet
-exec awww-daemon
-exec udiskie --tray
-exec wl-paste --watch cliphist store --no-persist
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec dbus-update-activation-environment --systemd --all
-exec systemctl --user import-environment QT_QPA_PLATFORMTHEME
-exec systemctl --user start hyprpolkitagent
-exec dbus-update-activation-environment --all
-exec gnome-keyring-daemon --start --components=secrets
+exec ~/.config/sway/startup
 
 # Input settings
 input * {
     xkb_layout ca
+    # xkb_options caps:escape
 }
 
 focus_follows_mouse yes
@@ -59,19 +30,16 @@ input type:keyboard {
 
 input type:touchpad {
   natural_scroll enabled
+  dwt enabled
 }
+
+bindsym $mod+Shift+semicolon input type:touchpad events toggle enabled disabled
 
 seat * {
   hide_cursor 15000
 }
 
-# Devices
 input "wacom-one-by-wacom-m-pen" map_to_output HDMI-A-1
-
-input "elan06fa:00-04f3:327e-touchpad" {
-  # disabled
-  dwt enabled
-}
 
 default_border pixel 2
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
@@ -81,44 +49,58 @@ client.unfocused          #191724 #26233a #908caa #191724 #191724
 client.urgent             #191724 #eb6f92 #e0def4 #f6c177 #eb6f92
 
 # Layout: default tiling
-# smart_gaps on
+smart_gaps off
 
-gaps inner 2
-gaps outer 2
+gaps inner 0
+gaps outer 0
+
+# # this is an attempt at replicates what i had with keyd, can't use
+# # caps for escape in games though, so i can't use this yet
+#
+# bindsym Mod1+h exec wtype -k Left
+# bindsym Mod1+n exec wtype -k Down
+# bindsym Mod1+e exec wtype -k Up
+# bindsym Mod1+i exec wtype -k Right
+#
+# bindsym Ctrl+Mod1+h exec wtype -M ctrl -k Left
+# bindsym Ctrl+Mod1+n exec wtype -M ctrl -k Down
+# bindsym Ctrl+Mod1+e exec wtype -M ctrl -k Up
+# bindsym Ctrl+Mod1+i exec wtype -M ctrl -k Right
 
 # WM
-bindsym $mod+c        kill
-bindsym $mod+F8       exit
-bindsym $mod+Shift+q  reload
-bindsym $mod+Escape   exec hyprlock
-bindsym $mod+v        floating toggle
-bindsym $mod+f        fullscreen
-bindsym $mod+Shift+p  move container to output right
-bindsym $mod+b        exec ~/.config/waybar/waybar.sh
-bindsym $mod+F12      exec dunstctl history-pop
+bindsym $mod+c              kill
+bindsym $mod+F8             exit
+bindsym $mod+Shift+q        reload
+bindsym $mod+Escape         exec hyprlock
+bindsym $mod+Shift+Escape   exec ~/.config/sway/logout.sh
+bindsym $mod+v              floating toggle
+bindsym $mod+f              fullscreen
+bindsym $mod+Shift+p        move container to output right
+bindsym $mod+b              exec ~/.config/waybar/waybar.sh
+bindsym $mod+F12            exec dunstctl history-pop
 
-bindsym $mod+j        layout tabbed
-bindsym $mod+l        layout toggle split
-bindsym $mod+y        split horizontal
-bindsym $mod+u        split vertical
+bindsym $mod+j              layout tabbed
+bindsym $mod+l              layout toggle split
+bindsym $mod+y              split horizontal
+bindsym $mod+u              split vertical
 
 # Apps/Scripts
-bindsym $mod+Ctrl+v       exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
-bindsym $mod+q            exec helium-browser
-bindsym $mod+Return       exec foot -e nvim
-bindsym $mod+Shift+Return exec foot
-bindsym $mod+w            exec firefox
-bindsym $mod+Shift+w      exec thunderbird
-bindsym $mod+r            exec rofi -show drun -no-fixed-num-lines
-bindsym $mod+Shift+r      exec rofi -show run
-bindsym $mod+semicolon    exec ~/.config/hypr/scripts/WallpaperSelect.sh
-bindsym $mod+Shift+f      exec pcmanfm
-bindsym $mod+s            exec ~/.config/hypr/scripts/hyprshot.sh "simple"
-bindsym Print             exec ~/.config/hypr/scripts/hyprshot.sh "screen"
-bindsym $mod+Shift+s      exec ~/.config/hypr/scripts/hyprshot.sh
-bindsym $mod+Shift+t      exec ~/.config/hypr/scripts/get-text.sh
-bindsym $mod+Shift+c      exec hyprpicker -a
-bindsym $mod+period       exec rofi -modi emoji -show emoji -no-fixed-num-lines
+bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
+bindsym $mod+q              exec helium-browser
+bindsym $mod+Return         exec foot -e nvim
+bindsym $mod+Shift+Return   exec foot
+bindsym $mod+w              exec firefox
+bindsym $mod+Shift+w        exec thunderbird
+bindsym $mod+r              exec rofi -show drun -no-fixed-num-lines
+bindsym $mod+Shift+r        exec rofi -show run
+bindsym $mod+semicolon      exec ~/.config/hypr/scripts/WallpaperSelect.sh
+bindsym $mod+Shift+f        exec pcmanfm
+bindsym $mod+s              exec ~/.config/hypr/scripts/hyprshot.sh "simple"
+bindsym Print               exec ~/.config/hypr/scripts/hyprshot.sh "screen"
+bindsym $mod+Shift+s        exec ~/.config/hypr/scripts/hyprshot.sh
+bindsym $mod+Shift+t        exec ~/.config/hypr/scripts/get-text.sh
+bindsym $mod+Shift+c        exec wl-color-picker clipboard
+bindsym $mod+period         exec rofi -modi emoji -show emoji -no-fixed-num-lines
 
 # Workspaces / windows
 bindsym $mod+Tab workspace back_and_forth
@@ -150,13 +132,13 @@ bindsym $mod+Shift+parenright   move container to workspace 10; 0workspace 10
 bindsym --whole-window $mod+button4 workspace prev
 bindsym --whole-window $mod+button5 workspace next
 
-bindsym $mod+Left workspace prev
-bindsym $mod+Right workspace next
+bindsym $mod+Left   workspace prev
+bindsym $mod+Right  workspace next
 
-bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Shift+Left move container to workspace prev
-bindsym $mod+Shift+Right move container to workspace next
+bindsym $mod+Ctrl+Left    workspace prev
+bindsym $mod+Ctrl+Right   workspace next
+bindsym $mod+Shift+Left   move container to workspace prev
+bindsym $mod+Shift+Right  move container to workspace next
 
 # Window
 bindsym $mod+h focus left
@@ -179,9 +161,9 @@ bindsym $mod+button3 resize
 # bindsym --whole-window $mod+Btn5 move right
 
 # Sound and brightness
-bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh
-bindsym $mod+m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/volume-dunst.sh
+bindsym XF86AudioRaiseVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/hypr/scripts/volume-dunst.sh
+bindsym XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/hypr/scripts/volume-dunst.sh
+bindsym $mod+m                exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/volume-dunst.sh
 
 bindsym XF86MonBrightnessUp exec brightnessctl -e s 2%+
 bindsym XF86MonBrightnessDown exec brightnessctl -e s 2%-
@@ -197,61 +179,45 @@ bindsym $mod+Page_Up exec pavucontrol
 # Window rules
 for_window [class="steam_app_1551360"] floating enable
 
-for_window [class="org.pulseaudio.pavucontrol"] floating enable
-for_window [class="org.pulseaudio.pavucontrol"] move position center
-for_window [class="org.pulseaudio.pavucontrol"] resize set width 1000 px height 700 px
+for_window [app_id="pavucontrol"] \
+    floating enable, \
+    resize set width 1000 px height 600 px, \
+    move position center
 
-for_window [title="Save.*"] floating enable
-for_window [title="Save.*"] move position center
-for_window [title="Save.*"] resize set width 1000 px height 700 px
-
-# No focus for empty
-# for_window [class="^$", title="^$"] norder none
-
-# Workspace assignments
-assign [class="firefox"] 1
+for_window [title="Save.*"] \
+  floating enable, \
+  move position center, \
+  resize set width 1000 px height 700 px
 
 assign [title="Minecraft.*"] 4
 for_window [title="Minecraft.*"] border none
 
-assign [class="cs2"] 4
-assign [class="worldofwarships64.exe"] 4
-for_window [class="forzahorizon5.exe"] floating enable
-for_window [class="forzahorizon5.exe"] move position center
-assign [class="overwatch.exe"] 4
-assign [class="discovery.exe"] 4
+assign [app_id="cs2"] 4
+assign [app_id="worldofwarships64.exe"] 4
+for_window [app_id="forzahorizon5.exe"] floating enable
+for_window [app_id="forzahorizon5.exe"] move position center
+assign [app_id="overwatch.exe"] 4
+assign [app_id="discovery.exe"] 4
 
-assign [class="steam"] 5
+assign [app_id="steam"] 5
 
-assign [class="org.mozilla.Thunderbird"] 5
+assign [app_id="org.mozilla.Thunderbird"] 5
 
-assign [class="spotify"] 5
+assign [app_id="spotify"] 5
 
-assign [class="discord"] 5
-assign [class="vesktop"] 5
+assign [app_id="discord"] 5
+assign [app_id="vesktop"] 5
 
 assign [title="Picture-in-Picture"] 10
 
 # Workspace settings
-workspace 1 output HDMI-A-1
-workspace 2 output HDMI-A-1
-workspace 3 output HDMI-A-1
-workspace 4 output HDMI-A-1
-workspace 5 output HDMI-A-1
-workspace 6 output HDMI-A-1
-workspace 7 output HDMI-A-1
-workspace 8 output HDMI-A-1
-workspace 9 output HDMI-A-1
-workspace 10 output eDP-1
-
-# for_window [workspace=1] gaps inner 0 outer 0
-for_window [workspace=4] default_border 0
-
-# Special
-# assign [class="com.mitchellh.ghostty.scratch"] scratchpad
-# for_window [class="com.mitchellh.ghostty.scratch"] move scratchpad
-
-
-# Monitors
-output eDP-1 res 2560x1600@60Hz pos -1280 0 scale 2
-output HDMI-A-1 res 1920x1080@120Hz pos 0 0 scale 1
+workspace 1   output HDMI-A-1
+workspace 2   output HDMI-A-1
+workspace 3   output HDMI-A-1
+workspace 4   output HDMI-A-1
+workspace 5   output HDMI-A-1
+workspace 6   output HDMI-A-1
+workspace 7   output HDMI-A-1
+workspace 8   output HDMI-A-1
+workspace 9   output HDMI-A-1
+workspace 10  output eDP-1

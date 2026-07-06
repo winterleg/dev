@@ -103,6 +103,7 @@ sync_files() {
   sudo cp $CP_FLAGS /etc/systemd/logind.conf $WORKSTATION/root/etc/systemd/logind.conf
   sudo cp $CP_FLAGS /etc/systemd/logind.conf $WORKSTATION/root/etc/systemd/logind.conf
   sudo cp $CP_FLAGS /etc/vconsole.conf $WORKSTATION/root/etc/
+  sudo cp $CP_FLAGS /etc/libinput/local-overrides.quirks $WORKSTATION/root/etc/libinput/
 
   git -C "$WORKSTATION" -c color.status=always status
 }

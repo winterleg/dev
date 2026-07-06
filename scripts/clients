@@ -1,13 +1,83 @@
 #!/usr/bin/env bash
+
 printf '\e[?7l'
 
-flags="${1#-}"                   # strip leading dash
-[ -z "$flags" ] && flags="cxwtp" # default: all including pid
+backend=auto
 
-active=$(hyprctl activewindow -j | jq -r .address)
+case "$1" in
+--sway)
+  backend=sway
+  shift
+  ;;
+--hypr)
+  backend=hypr
+  shift
+  ;;
+esac
 
-hyprctl clients -j |
-  jq -r '.[] | [.address, .class, (.xwayland|tostring), .workspace.id, .title, .pid] | @tsv' |
+flags="${1#-}"
+[ -z "$flags" ] && flags="cxwt"
+
+#    show_addr  = index(flags, "a")
+#    show_class = index(flags, "c")
+#    show_xway  = index(flags, "x")
+#    show_ws    = index(flags, "w")
+#    show_title = index(flags, "t")
+#    show_pid   = index(flags, "p")
+
+if [[ $backend == auto ]]; then
+  if [[ -n $SWAYSOCK ]]; then
+    backend=sway
+  elif [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then
+    backend=hypr
+  else
+    echo "Unable to determine compositor." >&2
+    exit 1
+  fi
+fi
+
+if [[ $backend == hypr ]]; then
+  active=$(hyprctl activewindow -j | jq -r .address)
+
+  data=$(
+    hyprctl clients -j |
+      jq -r '.[] |
+            [.address,
+             .class,
+             (.xwayland|tostring),
+             .workspace.id,
+             .title,
+             .pid] | @tsv'
+  )
+
+elif [[ $backend == sway ]]; then
+  active=$(swaymsg -t get_tree |
+    jq -r '.. | objects | select(.focused==true) | .id' |
+    head -n1)
+
+  data=$(
+  swaymsg -t get_tree |
+  jq -r '
+    def leaves:
+      recurse(.nodes[]?, .floating_nodes[]?)
+      | select(.type == "con" and (.nodes | length == 0) and (.floating_nodes | length == 0));
+
+    leaves
+    | select(.app_id != null or .window_properties != null)
+    | [
+        (.id|tostring),
+        (.app_id // .window_properties.class // ""),
+        (if .shell=="xwayland" then "true" else "false" end),
+        (.workspace.name // .workspace.num // ""),
+        (.name // ""),
+        (.pid // "")
+      ]
+    | @tsv
+  '
+)
+fi
+
+printf "%s\n" "$data" |
   sort -k4,4n -k2,2 |
   awk -F'\t' -v active="$active" -v flags="$flags" '
 BEGIN {
@@ -18,13 +88,12 @@ BEGIN {
     show_title = index(flags, "t")
     show_pid   = index(flags, "p")
 }
-NR==1 { max_class=0 }
 {
     if (length($2) > max_class) max_class = length($2)
-    data[NR]=$0
+    data[NR] = $0
 }
 END {
-    for (i=1; i<=NR; i++) {
+    for (i = 1; i <= NR; i++) {
         split(data[i], f, "\t")
         mark = (f[1] == active ? "*" : " ")
         line = mark
@@ -37,4 +106,5 @@ END {
         print line
     }
 }'
+
 printf '\e[?7h'

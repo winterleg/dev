@@ -164,14 +164,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width
     vim.opt_local.expandtab = true
-    vim.keymap.set("n", "<leader>f", function()
-      vim.cmd("write")
-
-      local file = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
-      vim.cmd("silent !npx prettier " .. file .. " --write")
-
-      vim.cmd("edit!")
-    end, { buffer = true, desc = "Format with Prettier" })
+    -- vim.keymap.set("n", "<leader>f", function()
+    --   vim.cmd("write")
+    --
+    --   local file = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
+    --   vim.cmd("silent !npx prettier " .. file .. " --write")
+    --
+    --   vim.cmd("edit!")
+    -- end, { buffer = true, desc = "Format with Prettier" })
   end
 })
 
