@@ -49,7 +49,7 @@
       "src": "https://github.com/gmr458/cold.nvim"
     },
     "fzf": {
-      "rev": "9e2856559d50637df482b8598fd7b35b2d746485",
+      "rev": "6765f464a60e39afc20775f54f7ba40896bf1b81",
       "src": "https://github.com/junegunn/fzf"
     },
     "fzf.vim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/projekt0n/github-nvim-theme"
     },
     "gitsigns.nvim": {
-      "rev": "2038c666bd9d8a0b7349a0b6ee00dc83104b9ecf",
+      "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruvbox": {
@@ -118,7 +118,7 @@
       "src": "https://github.com/kungfusheep/mfd.nvim"
     },
     "mini.nvim": {
-      "rev": "7c2caf0ae915d819f2f39467d6bb9313c2b3e90a",
+      "rev": "d74190c1528aaf12ba5f3a29d03524c6b81e18b3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.trailspace": {
@@ -146,11 +146,11 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-java": {
-      "rev": "f36a376dfebbbb4cf382008ea6e8b70d40049112",
+      "rev": "9e8b842ea9eff3ebf25fb7360908ed4d4f87c56a",
       "src": "https://github.com/nvim-java/nvim-java"
     },
     "nvim-lspconfig": {
-      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
+      "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-rusticated": {
@@ -203,7 +203,7 @@
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "ae305699da5e97b6cffdd5cc6f6045b1b0bd26ea",
+      "rev": "966c28dbc68fc99c82c51a64b6ec37f420aab880",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "treesitter-parser-registry": {

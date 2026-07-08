@@ -46,7 +46,7 @@ client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
 client.focused_inactive   #1f1d2e #403d52 #e0def4 #191724 #403d52
 client.focused_tab_title  #1f1d2e #403d52 #e0def4
 client.unfocused          #191724 #26233a #908caa #191724 #191724
-client.urgent             #191724 #eb6f92 #e0def4 #f6c177 #eb6f92
+client.urgent             #191724 #26233a #908caa #191724 #191724
 
 # Layout: default tiling
 smart_gaps off

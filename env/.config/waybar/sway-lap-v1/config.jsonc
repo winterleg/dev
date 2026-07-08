@@ -21,7 +21,7 @@
         "all-outputs": false
     },
     "custom/sep": {
-        "format": "   "
+        "format": " "
     },
     "tray": {
         "show-passive-items": "true"

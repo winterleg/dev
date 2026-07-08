@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FORCE_MAIN_ONLY=true
+FORCE_MAIN_ONLY=false
 
 FORCE_DISABLE_LAPTOP=false
 FORCE_DISABLE_MONITOR=false
