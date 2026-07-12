@@ -11,7 +11,7 @@ wl-paste --watch cliphist store --no-persist &
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway &
 dbus-update-activation-environment --systemd --all &
 systemctl --user import-environment QT_QPA_PLATFORMTHEME &
-systemctl --user start hyprpolkitagent &
+# systemctl --user start hyprpolkitagent &
 dbus-update-activation-environment --all &
 gnome-keyring-daemon --start --components=secrets &
 wlsunset -S 9:00 -s 21:00 &

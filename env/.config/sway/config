@@ -99,6 +99,7 @@ bindsym $mod+Shift+s        exec ~/.config/hypr/scripts/hyprshot.sh
 bindsym $mod+Shift+t        exec ~/.config/hypr/scripts/get-text.sh
 bindsym $mod+Shift+c        exec wl-color-picker clipboard
 bindsym $mod+period         exec rofi -modi emoji -show emoji -no-fixed-num-lines
+bindsym $mod+minus          exec ~/dotfiles/scripts/tts-neovide
 
 # Workspaces / windows
 bindsym $mod+Tab workspace back_and_forth
@@ -167,13 +168,13 @@ bindsym XF86MonBrightnessUp exec brightnessctl -e s 2%+
 bindsym XF86MonBrightnessDown exec brightnessctl -e s 2%-
 
 # Media control
-bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioMute exec playerctl play-pause
-bindsym $mod+Page_Up exec pavucontrol
-bindsym $mod+Page_Down exec bluetooth-manager
+bindsym XF86AudioPlay  exec playerctl play-pause
+bindsym XF86AudioPrev  exec playerctl previous
+bindsym XF86AudioMute  exec playerctl play-pause
+bindsym $mod+Page_Up   exec pavucontrol
+bindsym $mod+Page_Down exec blueman-manager
 
 # Window rules
 for_window [class="steam_app_1551360"] floating enable
