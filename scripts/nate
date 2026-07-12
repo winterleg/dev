@@ -101,9 +101,9 @@ sync_files() {
   sudo cp $CP_FLAGS /etc/sudoers $WORKSTATION/root/etc/sudoers
   sudo chown $USER:$USER $WORKSTATION/root/etc/sudoers
   sudo cp $CP_FLAGS /etc/systemd/logind.conf $WORKSTATION/root/etc/systemd/logind.conf
-  sudo cp $CP_FLAGS /etc/systemd/logind.conf $WORKSTATION/root/etc/systemd/logind.conf
   sudo cp $CP_FLAGS /etc/vconsole.conf $WORKSTATION/root/etc/
   sudo cp $CP_FLAGS /etc/libinput/local-overrides.quirks $WORKSTATION/root/etc/libinput/
+  sudo cp $CP_FLAGS /etc/modprobe.d/opentabletdriver.conf $WORKSTATION/root/etc/modprobe.d/opentabletdriver.conf
 
   git -C "$WORKSTATION" -c color.status=always status
 }

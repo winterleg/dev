@@ -7,6 +7,15 @@ return {
   s({ trig = "mt", snippetType = "autosnippet" },
     fmta("$<>$", { i(1) })
   ),
+  s({ trig = ";al", snippetType = "autosnippet" },
+    fmta("#align(left)[<>]", { i(1) })
+  ),
+  s({ trig = ";ac", snippetType = "autosnippet" },
+    fmta("#align(center)[<>]", { i(1) })
+  ),
+  s({ trig = ";ar", snippetType = "autosnippet" },
+    fmta("#align(right)[<>]", { i(1) })
+  ),
   s({ trig = ";d", snippetType = "autosnippet" },
     fmta("(<>)/(<>) <>", {
       i(1),

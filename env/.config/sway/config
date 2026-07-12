@@ -39,8 +39,6 @@ seat * {
   hide_cursor 15000
 }
 
-input "wacom-one-by-wacom-m-pen" map_to_output HDMI-A-1
-
 default_border pixel 2
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
 client.focused_inactive   #1f1d2e #403d52 #e0def4 #191724 #403d52
@@ -175,6 +173,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioMute exec playerctl play-pause
 bindsym $mod+Page_Up exec pavucontrol
+bindsym $mod+Page_Down exec bluetooth-manager
 
 # Window rules
 for_window [class="steam_app_1551360"] floating enable
