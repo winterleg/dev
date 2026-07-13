@@ -35,14 +35,15 @@ update_env_files() {
     if [[ -d "$SOURCE_PATH" ]]; then
       mkdir -p "$DEST_PATH"
       find "$SOURCE_PATH" \( -type f -o -type d \) ! -type l -print0 |
-        while IFS= read -r -d $'\0' item; do
+        while IFS= read -r -d '' item; do
+          [[ "$item" == "$SOURCE_PATH" ]] && continue
+
           RELATIVE_PATH="${item#$SOURCE_PATH/}"
           DEST_ITEM="$DEST_PATH/$RELATIVE_PATH"
 
-          log "\t\t\t$item"
           if [[ -d "$item" ]]; then
             mkdir -p "$DEST_ITEM"
-          elif [[ -f "$item" ]]; then
+          else
             cp "$item" "$DEST_ITEM"
           fi
         done
