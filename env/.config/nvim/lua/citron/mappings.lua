@@ -243,6 +243,9 @@ local mappings = {
     vim.cmd('term')
     vim.cmd('startinsert')
   end },
+  { 'n',               '<C-k><C-n>', function()
+    vim.cmd('enew')
+  end },
   { "n",               "<leader>sa", "ggVG" },
   { "n",               "<leader>tw", toggleWhiteSpace },
   { "n",               "<leader>x",  "<CMD>!chmod +x %<CR>",                                             { silent = true } },
