@@ -100,6 +100,7 @@ bindsym $mod+Shift+t        exec ~/.config/hypr/scripts/get-text.sh
 bindsym $mod+Shift+c        exec wl-color-picker clipboard
 bindsym $mod+period         exec rofi -modi emoji -show emoji -no-fixed-num-lines
 bindsym $mod+minus          exec ~/dotfiles/scripts/tts-neovide
+bindsym $mod+k              exec foot -e rmpc
 
 # Workspaces / windows
 bindsym $mod+Tab workspace back_and_forth
