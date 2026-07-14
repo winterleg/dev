@@ -7,7 +7,7 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25
 
--- vim.opt.cmdheight = 0
+vim.opt.cmdheight = 0
 
 vim.opt.virtualedit = { -- not sure about keeping this
   "block",
@@ -176,7 +176,7 @@ end, {
 
 if vim.g.neovide then
   -- require('neov-ime').setup()
-  vim.o.guifont = "departure mono, flexi ibm vga true, Comic Code Light,zen maru gothic:h20"
+  vim.o.guifont = "Comic Code,zen maru gothic:h22"
 
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_refresh_rate_idle = 10
