@@ -4,11 +4,11 @@
     "output": "eDP-1",
     "exclusive": true,
     "modules-left": [
+        "battery",
+        "custom/sep",
         "memory",
         "custom/sep",
-        "cpu",
-        "custom/sep",
-        "wlr/taskbar"
+        "cpu"
     ],
     "modules-center": [
         "clock"

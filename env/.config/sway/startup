@@ -15,5 +15,6 @@ systemctl --user import-environment QT_QPA_PLATFORMTHEME &
 dbus-update-activation-environment --all &
 gnome-keyring-daemon --start --components=secrets &
 wlsunset -S 9:00 -s 21:00 &
-systemctl --now --user enable swayrd
-systemctl --user enable --now opentabletdriver.service
+systemctl --now --user enable swayrd &
+systemctl --user enable --now opentabletdriver.service &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

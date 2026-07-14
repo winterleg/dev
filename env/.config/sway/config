@@ -70,7 +70,7 @@ bindsym $mod+c              kill
 bindsym $mod+F8             exit
 bindsym $mod+Shift+q        reload
 bindsym $mod+Escape         exec hyprlock
-bindsym $mod+Shift+Escape   exec ~/.config/sway/logout.sh
+bindsym $mod+F9             exec ~/.config/sway/logout.sh
 bindsym $mod+v              floating toggle
 bindsym $mod+f              fullscreen
 bindsym $mod+Shift+p        move container to output right

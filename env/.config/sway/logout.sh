@@ -7,8 +7,9 @@ Shutdown"
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
 cleanup() {
-  # pkill hyprsunset || true
-  true
+  if [[ "$XDG_SESSION_DESKTOP" == "hyprland" ]]; then
+    pkill hyprsunset || true
+  fi
 }
 
 if [[ "$selection" == "Suspend" ]]; then
