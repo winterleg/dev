@@ -41,6 +41,7 @@ update_env_files() {
           RELATIVE_PATH="${item#$SOURCE_PATH/}"
           DEST_ITEM="$DEST_PATH/$RELATIVE_PATH"
 
+          log "\t\t\t$item"
           if [[ -d "$item" ]]; then
             mkdir -p "$DEST_ITEM"
           else
