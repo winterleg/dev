@@ -18,3 +18,8 @@ wlsunset -S 9:00 -s 21:00 &
 systemctl --now --user enable swayrd &
 systemctl --user enable --now opentabletdriver.service &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+swayidle -w \
+  timeout 1800 'hyprlock' \
+  timeout 3600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' &
