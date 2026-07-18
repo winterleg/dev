@@ -1,0 +1,176 @@
+set $mod Mod4
+floating_modifier $mod
+
+exec_always --no-startup-id ~/.config/i3/xrandr.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id ~/.config/i3/startup
+
+font pango:Comic Code 12
+
+exec --no-startup-id setxkbmap ca
+
+focus_follows_mouse yes
+
+exec --no-startup-id setxkbmap -layout ca
+exec --no-startup-id xset r rate 250 50
+exec --no-startup-id unclutter --timeout 15 &
+
+default_border pixel 2
+client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
+client.focused_inactive   #1f1d2e #403d52 #e0def4 #191724 #403d52
+client.focused_tab_title  #1f1d2e #403d52 #e0def4
+client.unfocused          #191724 #26233a #908caa #191724 #191724
+client.urgent             #191724 #26233a #908caa #191724 #191724
+
+# WM
+bindsym $mod+c              kill
+bindsym $mod+F8             exit
+bindsym $mod+Shift+q        reload
+bindsym $mod+Escape         exec --no-startup-id i3lock -c 191724
+bindsym $mod+F9             exec --no-startup-id ~/.config/i3/logout.sh
+bindsym $mod+v              floating toggle
+bindsym $mod+f              fullscreen
+bindsym $mod+Shift+p        move container to output right
+bindsym $mod+F12            exec --no-startup-id dunstctl history-pop
+
+bindsym $mod+j              layout tabbed
+bindsym $mod+l              layout toggle split
+bindsym $mod+y              split horizontal
+bindsym $mod+u              split vertical
+
+# Apps/Scripts
+bindsym $mod+Ctrl+v         exec --no-startup-id xclip -selection clipboard -o | rofi -dmenu -p "Clipboard" | xclip -selection clipboard
+bindsym $mod+q              exec --no-startup-id helium-browser
+bindsym $mod+Return         exec --no-startup-id neovide
+bindsym $mod+Shift+Return   exec --no-startup-id alacritty
+bindsym $mod+w              exec --no-startup-id firefox
+bindsym $mod+Shift+w        exec --no-startup-id thunderbird
+bindsym $mod+r              exec --no-startup-id rofi -show drun -no-fixed-num-lines
+bindsym $mod+Shift+r        exec --no-startup-id rofi -show run
+bindsym $mod+semicolon      exec --no-startup-id ~/.config/i3/WallpaperSelect.sh
+bindsym $mod+Shift+f        exec --no-startup-id pcmanfm
+bindsym $mod+s              exec --no-startup-id spectacle -i
+bindsym Print               exec --no-startup-id spectacle -f
+bindsym $mod+Shift+s        exec --no-startup-id spectacle -i
+bindsym $mod+Shift+c        exec --no-startup-id xcolor
+bindsym $mod+period         exec --no-startup-id rofi -modi emoji -show emoji -no-fixed-num-lines
+bindsym $mod+minus          exec --no-startup-id ~/dotfiles/scripts/tts-neovide
+bindsym $mod+k              exec --no-startup-id alacritty -e rmpc
+
+# Workspaces / windows
+bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab exec --no-startup-id rofi -show window
+bindsym $mod+p exec --no-startup-id rofi -show window
+
+bindsym $mod+slash          workspace 1
+bindsym $mod+parenleft      workspace 2
+bindsym $mod+bracketleft    workspace 3
+bindsym $mod+braceleft      workspace 4
+bindsym $mod+apostrophe     workspace 5
+bindsym $mod+dollar         workspace 6
+bindsym $mod+exclam         workspace 7
+bindsym $mod+braceright     workspace 8
+bindsym $mod+bracketright   workspace 9
+bindsym $mod+parenright     workspace 10
+
+bindsym $mod+Shift+slash        move container to workspace 1;  workspace 1
+bindsym $mod+Shift+parenleft    move container to workspace 2;  workspace 2
+bindsym $mod+Shift+bracketleft  move container to workspace 3;  workspace 3
+bindsym $mod+Shift+braceleft    move container to workspace 4;  workspace 4
+bindsym $mod+Shift+apostrophe   move container to workspace 5;  workspace 5
+bindsym $mod+Shift+dollar       move container to workspace 6;  workspace 6
+bindsym $mod+Shift+exclam       move container to workspace 7;  workspace 7
+bindsym $mod+Shift+braceright   move container to workspace 8;  workspace 8
+bindsym $mod+Shift+bracketright move container to workspace 9;  workspace 9
+bindsym $mod+Shift+parenright   move container to workspace 10; workspace 10
+
+bindsym --whole-window $mod+button4 workspace prev
+bindsym --whole-window $mod+button5 workspace next
+
+bindsym $mod+Left   workspace prev
+bindsym $mod+Right  workspace next
+
+bindsym $mod+Ctrl+Left    workspace prev
+bindsym $mod+Ctrl+Right   workspace next
+bindsym $mod+Shift+Left   move container to workspace prev
+bindsym $mod+Shift+Right  move container to workspace next
+
+# Window
+bindsym $mod+h focus left
+bindsym $mod+i focus right
+bindsym $mod+e focus up
+bindsym $mod+n focus down
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
+
+bindsym $mod+Shift+k resize shrink height 20 px
+bindsym $mod+Shift+m resize grow height 20 px
+
+bindsym $mod+button1 move
+bindsym $mod+button3 resize
+
+# Sound and brightness
+bindsym XF86AudioRaiseVolume  exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/i3/volume-dunst.sh
+bindsym XF86AudioLowerVolume  exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/i3/volume-dunst.sh
+bindsym $mod+m                exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/i3/volume-dunst.sh
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -e s 2%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -e s 2%-
+
+# Media control
+bindsym XF86AudioNext  exec --no-startup-id playerctl next
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPlay  exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
+bindsym XF86AudioMute  exec --no-startup-id playerctl play-pause
+bindsym $mod+Page_Up   exec --no-startup-id pavucontrol
+bindsym $mod+Page_Down exec --no-startup-id blueman-manager
+
+# Window rules
+for_window [class="steam_app_1551360"] floating enable
+
+for_window [class="Pavucontrol"] \
+    floating enable, \
+    resize set width 1000 px height 600 px, \
+    move position center
+
+for_window [title="Save.*"] \
+  floating enable, \
+  move position center, \
+  resize set width 1000 px height 700 px
+
+assign [title="Minecraft.*"] 4
+for_window [title="Minecraft.*"] border none
+
+assign [class="cs2"] 4
+assign [class="worldofwarships64.exe"] 4
+for_window [class="forzahorizon5.exe"] floating enable
+for_window [class="forzahorizon5.exe"] move position center
+assign [class="overwatch.exe"] 4
+assign [class="discovery.exe"] 4
+
+assign [class="Steam"] 5
+
+assign [class="Thunderbird"] 5
+
+assign [class="Spotify"] 5
+
+assign [class="discord"] 5
+assign [class="Vesktop"] 5
+
+assign [title="Picture-in-Picture"] 10
+
+# Workspace settings
+workspace 1   output HDMI-0
+workspace 2   output HDMI-0
+workspace 3   output HDMI-0
+workspace 4   output HDMI-0
+workspace 5   output HDMI-0
+workspace 6   output HDMI-0
+workspace 7   output HDMI-0
+workspace 8   output HDMI-0
+workspace 9   output HDMI-0
+workspace 10  output DP-4

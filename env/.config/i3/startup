@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+blueman-applet &
+ckb-next-daemon &
+dunst &
+fcitx5 &
+nm-applet &
+udiskie --tray &
+xss-lock -- i3lock -c 191724 &
+gammastep -t 6000:4000 &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+gnome-keyring-daemon --start --components=secrets &
+systemctl --user enable --now opentabletdriver.service &
+nitrogen --restore &

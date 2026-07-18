@@ -7,6 +7,7 @@ confs=(
   foot
   ghostty
   hypr
+  i3
   kitty
   labwc
   matugen

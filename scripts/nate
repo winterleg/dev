@@ -164,6 +164,7 @@ case "$1" in
   sync_remote "$2"
   ;;
 "d")
+  sync_files
   sync_diff
   ;;
 *)

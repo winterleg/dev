@@ -176,7 +176,7 @@ end, {
 
 if vim.g.neovide then
   -- require('neov-ime').setup()
-  vim.o.guifont = "Comic Code,zen maru gothic:h22"
+  vim.o.guifont = "Comic Code,zen maru gothic:h23"
 
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_refresh_rate_idle = 10

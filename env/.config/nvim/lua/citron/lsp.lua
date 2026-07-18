@@ -32,6 +32,7 @@ vim.pack.add {
   { src = "https://github.com/hrsh7th/cmp-cmdline", },
   { src = "https://github.com/hrsh7th/nvim-cmp", },
   { src = 'https://github.com/mrcjkb/haskell-tools.nvim',         version = vim.version.range('^9') },
+  -- { src = "https://github.com/Olical/conjure" },
 }
 
 local cmp = require "cmp"
