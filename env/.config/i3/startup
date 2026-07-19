@@ -17,3 +17,9 @@ systemctl --user enable --now opentabletdriver.service &
 nitrogen --restore &
 xcompmgr &
 stalonetray &
+setxkbmap -layout ca &
+xset r rate 250 50 &
+xset s 540 600 &
+xset dpms 600 600 600 &
+unclutter --timeout 15 &
+setxkbmap ca &

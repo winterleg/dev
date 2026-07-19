@@ -5,15 +5,9 @@ exec --no-startup-id ~/.config/i3/startup
 
 font pango:Comic Code 12
 
-exec --no-startup-id setxkbmap ca
-
 focus_follows_mouse yes
 
 focus_on_window_activation none
-
-exec --no-startup-id setxkbmap -layout ca
-exec --no-startup-id xset r rate 250 50
-exec --no-startup-id unclutter --timeout 15 &
 
 default_border pixel 2
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
@@ -60,7 +54,6 @@ bindsym $mod+k              exec --no-startup-id alacritty -e rmpc
 
 # Workspaces / windows
 bindsym $mod+Tab workspace back_and_forth
-bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym $mod+p exec --no-startup-id rofi -show window
 
 bindsym $mod+slash          workspace 1
