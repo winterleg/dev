@@ -85,11 +85,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt.wrap                = false
 
-    local width                 = 2
+    local width                 = 8
     vim.opt_local.shiftwidth    = width
     vim.opt_local.tabstop       = width
     vim.opt_local.softtabstop   = width
-    vim.opt_local.expandtab     = true
+    vim.opt_local.expandtab     = false
 
     local name                  = vim.api.nvim_buf_get_name(args.buf)
     local tw                    = tonumber(name:match("%.(%d+)%.%w+$"))
@@ -111,11 +111,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.wrap          = false
 
-    local width                 = 2
+    local width                 = 8
     vim.opt_local.shiftwidth    = width
     vim.opt_local.tabstop       = width
     vim.opt_local.softtabstop   = width
-    vim.opt_local.expandtab     = true
+    vim.opt_local.expandtab     = false
 
     vim.opt_local.textwidth     = 72
 
@@ -159,19 +159,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.opt_local.sidescrolloff = 0
 
-    local width = 2
+    local width = 8
     vim.opt_local.shiftwidth = width
     vim.opt_local.tabstop = width
     vim.opt_local.softtabstop = width
-    vim.opt_local.expandtab = true
-    -- vim.keymap.set("n", "<leader>f", function()
-    --   vim.cmd("write")
-    --
-    --   local file = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
-    --   vim.cmd("silent !npx prettier " .. file .. " --write")
-    --
-    --   vim.cmd("edit!")
-    -- end, { buffer = true, desc = "Format with Prettier" })
+    vim.opt_local.expandtab = false
   end
 })
 

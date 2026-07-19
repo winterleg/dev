@@ -1,8 +1,6 @@
 set $mod Mod4
 floating_modifier $mod
 
-exec_always --no-startup-id ~/.config/i3/xrandr.sh
-exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id ~/.config/i3/startup
 
 font pango:Comic Code 12
@@ -10,6 +8,8 @@ font pango:Comic Code 12
 exec --no-startup-id setxkbmap ca
 
 focus_follows_mouse yes
+
+focus_on_window_activation none
 
 exec --no-startup-id setxkbmap -layout ca
 exec --no-startup-id xset r rate 250 50
@@ -34,6 +34,7 @@ bindsym $mod+Shift+p        move container to output right
 bindsym $mod+F12            exec --no-startup-id dunstctl history-pop
 
 bindsym $mod+j              layout tabbed
+bindsym $mod+Shift+j        layout stacking
 bindsym $mod+l              layout toggle split
 bindsym $mod+y              split horizontal
 bindsym $mod+u              split vertical
@@ -52,7 +53,7 @@ bindsym $mod+Shift+f        exec --no-startup-id pcmanfm
 bindsym $mod+s              exec --no-startup-id spectacle -i
 bindsym Print               exec --no-startup-id spectacle -f
 bindsym $mod+Shift+s        exec --no-startup-id spectacle -i
-bindsym $mod+Shift+c        exec --no-startup-id xcolor
+bindsym $mod+Shift+c        exec --no-startup-id xcolor | xclip -selection clipboard
 bindsym $mod+period         exec --no-startup-id rofi -modi emoji -show emoji -no-fixed-num-lines
 bindsym $mod+minus          exec --no-startup-id ~/dotfiles/scripts/tts-neovide
 bindsym $mod+k              exec --no-startup-id alacritty -e rmpc
@@ -144,22 +145,6 @@ for_window [title="Save.*"] \
 
 assign [title="Minecraft.*"] 4
 for_window [title="Minecraft.*"] border none
-
-assign [class="cs2"] 4
-assign [class="worldofwarships64.exe"] 4
-for_window [class="forzahorizon5.exe"] floating enable
-for_window [class="forzahorizon5.exe"] move position center
-assign [class="overwatch.exe"] 4
-assign [class="discovery.exe"] 4
-
-assign [class="Steam"] 5
-
-assign [class="Thunderbird"] 5
-
-assign [class="Spotify"] 5
-
-assign [class="discord"] 5
-assign [class="Vesktop"] 5
 
 assign [title="Picture-in-Picture"] 10
 

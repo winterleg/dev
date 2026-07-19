@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+~/.config/polybar/launch.sh &
+~/.config/i3/xrandr.sh &
+
 blueman-applet &
 ckb-next-daemon &
 dunst &
@@ -12,3 +15,5 @@ gammastep -t 6000:4000 &
 gnome-keyring-daemon --start --components=secrets &
 systemctl --user enable --now opentabletdriver.service &
 nitrogen --restore &
+xcompmgr &
+stalonetray &
