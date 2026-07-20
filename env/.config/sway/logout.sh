@@ -2,7 +2,8 @@
 
 options="Suspend & Lock
 Suspend
-Shutdown"
+Shutdown
+Reboot"
 
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
@@ -21,4 +22,6 @@ elif [[ "$selection" == "Suspend & Lock" ]]; then
   systemctl suspend
 elif [[ "$selection" == "Shutdown" ]]; then
   systemctl poweroff
+elif [[ "$selection" == "Reboot" ]]; then
+  systemctl reboot
 fi
