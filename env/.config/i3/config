@@ -36,8 +36,8 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec --no-startup-id xclip -selection clipboard -o | rofi -dmenu -p "Clipboard" | xclip -selection clipboard
 bindsym $mod+q              exec --no-startup-id helium-browser
-bindsym $mod+Return         exec --no-startup-id neovide
-bindsym $mod+Shift+Return   exec --no-startup-id alacritty
+bindsym $mod+Return         exec --no-startup-id kitty -e nvim # neovide
+bindsym $mod+Shift+Return   exec --no-startup-id kitty
 bindsym $mod+w              exec --no-startup-id firefox
 bindsym $mod+Shift+w        exec --no-startup-id thunderbird
 bindsym $mod+r              exec --no-startup-id rofi -show drun -no-fixed-num-lines

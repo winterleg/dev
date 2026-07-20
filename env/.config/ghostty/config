@@ -1,9 +1,9 @@
-background = #000000
+# background = #000000
 
 cursor-color = EC5D2A
 
 
-background-opacity = 0.02
+background-opacity = 0.9
 # background-opacity = 1
 background-blur    = false
 
