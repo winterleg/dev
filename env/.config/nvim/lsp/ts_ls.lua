@@ -1,3 +1,3 @@
 return {
-  cmd = "ts_ls"
+	cmd = "ts_ls"
 }

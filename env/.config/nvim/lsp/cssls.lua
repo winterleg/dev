@@ -1,5 +1,5 @@
 return {
-  cmd = { "cssls" },
-  filetypes = "css",
-  settings = {},
+	cmd = { "cssls" },
+	filetypes = "css",
+	settings = {},
 }

@@ -1,28 +1,29 @@
 ---@diagnostic disable: undefined-global
 
 return {
-	s({ trig = "=-", snippetType = "autosnippet" },
-		fmta("plus.minus <>", { i(1) })
+	s({ trig = ";list", snippetType = "autosnippet" },
+		fmta([[\begin{enumerate}
+	\item <>
+\end{enumerate}]], { i(1) })
+	),
+	s({ trig = ";i", snippetType = "autosnippet" },
+		fmta("\\item <>", { i(1) })
 	),
 	s({ trig = "mt", snippetType = "autosnippet" },
 		fmta("$<>$", { i(1) })
 	),
+	s({ trig = "mms", snippetType = "autosnippet" },
+		fmta([[\begin{align*}
+	<>
+\end{align*}]], { i(1) })
+	),
 	s({ trig = "mmt", snippetType = "autosnippet" },
-		fmta([[$
-  <>
-$]], { i(1) })
-	),
-	s({ trig = ";al", snippetType = "autosnippet" },
-		fmta("#align(left)[<>]", { i(1) })
-	),
-	s({ trig = ";ac", snippetType = "autosnippet" },
-		fmta("#align(center)[<>]", { i(1) })
-	),
-	s({ trig = ";ar", snippetType = "autosnippet" },
-		fmta("#align(right)[<>]", { i(1) })
+		fmta([[\begin{align}
+	<>
+\end{align}]], { i(1) })
 	),
 	s({ trig = ";d", snippetType = "autosnippet" },
-		fmta("(<>)/(<>) <>", {
+		fmta("\\frac{<>}{<>} <>", {
 			i(1),
 			i(2),
 			i(3)

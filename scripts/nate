@@ -80,6 +80,10 @@ sync_files() {
   cp $CP_FLAGS -r ~/art/mathy/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/mathy/.git
 
+  echo "Copying Simple Template Typst"
+  cp $CP_FLAGS -r ~/art/simple-template/ $WORKSTATION/simple-template/
+  rm -rf $WORKSTATION/typst-pkg/simple-template/.git
+
   echo "Copying book template"
   cp $CP_FLAGS -r ~/art/book_template_winter/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/book_template_winter/.git

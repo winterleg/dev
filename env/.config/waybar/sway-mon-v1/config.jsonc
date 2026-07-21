@@ -16,10 +16,6 @@
     "modules-right": [
         "tray"
     ],
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "all-outputs": false
-    },
     "custom/sep": {
         "format": " "
     },
@@ -28,10 +24,6 @@
     },
     "clock": {
         "tooltip": true,
-        "format": "{:%H:%M}"
-    },
-    "wlr/taskbar": {
-        "all-outputs": false,
-        "bar-css-states": true
+        "format": "{:%Y.%m.%d %H:%M}"
     }
 }

@@ -1,3 +1,3 @@
 return {
-  cmd = "lua-language-server"
+	cmd = "lua-language-server"
 }

@@ -1,5 +1,5 @@
 return {
-  cmd = { "julia-lsp" },
-  filetypes = { "julia" },
-  settings = {},
+	cmd = { "julia-lsp" },
+	filetypes = { "julia" },
+	settings = {},
 }
