@@ -1,0 +1,12 @@
+[package]
+name = "simple-template"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Rose."]
+license = "MIT"
+description = "Simple Template"
+repository = "winterleg.github.com"
+categories = ["Layout"]
+keywords = ["Collection"]
+exclude = ["*.pdf"]
+disciplines = ["Writing"]
