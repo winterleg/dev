@@ -290,8 +290,3 @@ local mappings = {
 for _, value in ipairs(mappings) do
 	vim.keymap.set(value[1], value[2], value[3], value[4])
 end
-
--- local isTMUX = os.getenv "TMUX"
--- if vim.g.neovide or not isTMUX then
---   vim.keymap.set("n", "<C-t>", fzf_chdir)
--- end

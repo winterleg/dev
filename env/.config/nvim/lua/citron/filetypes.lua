@@ -64,18 +64,44 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    if vim.bo[args.buf].filetype ~= "typst" then
+      return
+    end
+
+    vim.defer_fn(function()
+      if vim.api.nvim_buf_is_valid(args.buf) then
+        vim.bo[args.buf].formatexpr = ""
+      end
+    end, 0)
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "typst" },
 	callback = function()
-		vim.opt_local.textwidth     = 72
-
 		vim.opt_local.sidescrolloff = 0
+
+		vim.opt_local.wrap          = false
 
 		local width                 = 8
 		vim.opt_local.shiftwidth    = width
 		vim.opt_local.tabstop       = width
 		vim.opt_local.softtabstop   = width
 		vim.opt_local.expandtab     = false
+
+		vim.opt_local.textwidth     = 72
+
+		vim.opt_local.autoindent    = false
+		vim.opt_local.smartindent   = false
+		vim.opt_local.cindent       = false
+		vim.opt_local.indentexpr    = ""
+		vim.opt_local.indentkeys    = ""
+
+		vim.opt_local.formatexpr    = ""
+
+		vim.opt_local.formatoptions = "t"
 
 		vim.keymap.set("n", "<leader>h", function()
 			local file = vim.fn.expand("%:p")
@@ -86,10 +112,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "text", "txt", "tex" },
-	callback = function(args)
+	callback = function()
 		vim.opt_local.sidescrolloff = 0
 
-		vim.opt.wrap                = false
+		vim.opt_local.wrap          = false
 
 		local width                 = 8
 		vim.opt_local.shiftwidth    = width
@@ -97,15 +123,14 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop   = width
 		vim.opt_local.expandtab     = false
 
-		local name                  = vim.api.nvim_buf_get_name(args.buf)
-		local tw                    = tonumber(name:match("%.(%d+)%.%w+$"))
-		vim.opt_local.textwidth     = tw or 72
+		vim.opt_local.textwidth     = 72
 
 		vim.opt_local.autoindent    = false
 		vim.opt_local.smartindent   = false
 		vim.opt_local.cindent       = false
 		vim.opt_local.indentexpr    = ""
 		vim.opt_local.indentkeys    = ""
+
 		vim.opt_local.formatoptions = "t"
 	end,
 })

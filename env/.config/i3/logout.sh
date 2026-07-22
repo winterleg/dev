@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-options="Lock
+options="Lock & Suspend
 Suspend
 Shutdown"
 
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
-if [[ "$selection" == "Lock" ]]; then
+if [[ "$selection" == "Lock & Suspend" ]]; then
   i3lock -c 191724
+  systemctl suspend
 elif [[ "$selection" == "Suspend" ]]; then
-  i3lock -c 191724 &
   systemctl suspend
 elif [[ "$selection" == "Shutdown" ]]; then
   systemctl poweroff

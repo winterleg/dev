@@ -62,7 +62,7 @@ vim.opt.scrolloff = 30
 -- vim.opt.sidescrolloff = 0
 vim.opt.isfname:append("@-@")
 
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = "{,}"
@@ -73,7 +73,7 @@ vim.opt.updatetime = 50
 vim.opt.cursorline = true
 
 vim.opt.colorcolumn = { 72, 80, 120, 180 }
-vim.opt.textwidth = 80
+vim.opt.textwidth = 72
 
 vim.opt.list = false
 vim.opt.listchars = {
@@ -189,7 +189,7 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_animate_command_line = false
 	vim.g.neovide_cursor_vfx_mode = ""
 
-	local defaultOpacity = 0.90
+	local defaultOpacity = 0.86
 	vim.g.neovide_opacity = defaultOpacity
 	vim.g.neovide_normal_opacity = 1
 

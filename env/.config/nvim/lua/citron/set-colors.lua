@@ -69,6 +69,42 @@ end
 ---@type ColorEntry[]
 local colorsList = {
 	{
+		name = "zellner",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme zellner]]
+
+			fix_visual()
+
+			save_theme "zellner"
+		end,
+	},
+	{
+		name = "QUIET (LIGHT)",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "light"
+			vim.cmd [[colorscheme quiet]]
+
+			fix_visual()
+
+			save_theme "QUIET (LIGHT)"
+		end,
+	},
+	{
+		name = "QUIET (DARK)",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme quiet]]
+
+			fix_visual()
+
+			save_theme "QUIET (DARK)"
+		end,
+	},
+	{
 		name = "Vague",
 		enabled = true,
 		callback = function()

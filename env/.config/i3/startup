@@ -3,6 +3,7 @@
 # ~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
 
+i3bar &
 blueman-applet &
 ckb-next-daemon &
 dunst &
@@ -14,9 +15,10 @@ gammastep -t 6000:4000 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 gnome-keyring-daemon --start --components=secrets &
 systemctl --user enable --now opentabletdriver.service &
+systemctl enable --now auto-cpufreq.service &
 nitrogen --restore &
-xcompmgr &
-stalonetray &
+# xcompmgr &
+# stalonetray &
 setxkbmap -layout ca &
 xset r rate 250 50 &
 xset s 540 600 &

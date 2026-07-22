@@ -36,7 +36,8 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec --no-startup-id xclip -selection clipboard -o | rofi -dmenu -p "Clipboard" | xclip -selection clipboard
 bindsym $mod+q              exec --no-startup-id helium-browser
-bindsym $mod+Return         exec --no-startup-id kitty -e nvim # neovide
+bindsym $mod+Return         exec --no-startup-id kitty -e nvim
+bindsym $mod+Mod1+Return         exec --no-startup-id neovide
 bindsym $mod+Shift+Return   exec --no-startup-id kitty
 bindsym $mod+w              exec --no-startup-id firefox
 bindsym $mod+Shift+w        exec --no-startup-id thunderbird
@@ -140,6 +141,7 @@ assign [title="Minecraft.*"] 4
 for_window [title="Minecraft.*"] border none
 
 assign [title="Picture-in-Picture"] 10
+for_window [title="Picture-in-Picture"] floating disable
 
 # Workspace settings
 workspace 1   output HDMI-0
@@ -152,3 +154,24 @@ workspace 7   output HDMI-0
 workspace 8   output HDMI-0
 workspace 9   output HDMI-0
 workspace 10  output DP-4
+
+bar {
+    status_command i3status
+
+    position bottom
+    mode dock
+
+    tray_output primary
+
+    colors {
+        background #222222
+        statusline #ffffff
+        separator  #666666
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
+}

@@ -59,7 +59,7 @@ tooltip * {
     color: @secondary;
 }
 
-#workspaces button.active {
+#workspaces button.focused {
     color: @tertiary;
 }
 

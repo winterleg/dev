@@ -1,8 +1,8 @@
 set $mod Mod4
 floating_modifier $mod
 
-output eDP-1    res 2560x1600@60Hz  pos -1280 0 scale 2 allow_tearing yes
-output HDMI-A-1 res 1920x1080@120Hz pos 0     0 scale 1 allow_tearing yes
+output eDP-1    res 2560x1600@60Hz  pos -1600 0 scale 1.6 allow_tearing yes
+output HDMI-A-1 res 1920x1080@120Hz pos 0     0 scale 1   allow_tearing yes
 
 font pango:Comic Code 12
 
@@ -81,7 +81,8 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 bindsym $mod+q              exec helium-browser
-bindsym $mod+Return         exec foot --override=colors-dark.alpha=0 -e nvim
+bindsym $mod+Return         exec neovide
+bindsym $mod+Mod1+Return    exec foot -e nvim
 bindsym $mod+Shift+Return   exec foot
 bindsym $mod+w              exec firefox
 bindsym $mod+Shift+w        exec thunderbird

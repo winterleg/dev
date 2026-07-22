@@ -64,7 +64,7 @@ xkb_symbols "basic" {
     key <AD08>  {[  u,                  U                                   ]};
     key <AD09>  {[  y,                  Y                                   ]};
     key <AD10>  {[  semicolon,          colon                               ]};
-    key <AD11>  {[  dead_circumflex,    dead_diaresis                       ]};
+    key <AD11>  {[  dead_circumflex,    dead_diaeresis                       ]};
     key <AD12>  {[  ccedilla,           Ccedilla                            ]};
     key <BKSL>  {[  less,               greater                             ]};
 

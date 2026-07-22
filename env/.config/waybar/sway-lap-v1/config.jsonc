@@ -8,7 +8,9 @@
         "custom/sep",
         "memory",
         "custom/sep",
-        "cpu"
+        "cpu",
+        "custom/sep",
+        "sway/workspaces"
     ],
     "modules-center": [
         "clock"
@@ -16,6 +18,9 @@
     "modules-right": [
         "tray"
     ],
+    "sway/workspaces": {
+        "all-outputs": true
+    },
     "custom/sep": {
         "format": " "
     },
