@@ -3,7 +3,7 @@
 # ~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
 
-i3bar &
+# i3bar &
 blueman-applet &
 ckb-next-daemon &
 dunst &
