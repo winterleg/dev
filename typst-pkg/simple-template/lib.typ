@@ -11,6 +11,7 @@
 	show raw: it => block(fill: luma(90%), width: 100%, inset: 5pt, it)
 	show heading: set text(size: size + 2pt)
 	show heading.where(level: 1): it => {
+		v(2em)
 		pad(left: 12em, it)
 		v(1em)
 	}

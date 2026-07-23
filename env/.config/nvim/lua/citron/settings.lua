@@ -193,13 +193,7 @@ if vim.g.neovide then
 	vim.g.neovide_opacity = defaultOpacity
 	vim.g.neovide_normal_opacity = 1
 
-	vim.keymap.set("n", "<leader>tp", function()
-		if vim.g.neovide_opacity == defaultOpacity then
-			vim.g.neovide_opacity = 1
-		else
-			vim.g.neovide_opacity = defaultOpacity
-		end
-	end)
+	require("citron.sync-opacity")
 
 	vim.g.neovide_scale_factor = 1.0
 	local change_scale_factor = function(delta)

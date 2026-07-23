@@ -53,6 +53,7 @@ vim.pack.add {
 	{ src = "https://github.com/vossenwout/guts.nvim" },
 	{ src = "https://github.com/chriskempson/base16-vim" },
 	{ src = "https://github.com/gmr458/cold.nvim" },
+	{ src = "https://github.com/aktersnurra/no-clown-fiesta.nvim" },
 }
 
 require('vague').setup {

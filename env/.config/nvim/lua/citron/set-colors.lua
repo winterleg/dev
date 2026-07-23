@@ -1,5 +1,8 @@
 ---@diagnostic disable: undefined-global
 
+local cursorColorForDarkTheme = "#e0def4"
+local cursorColorForLightTheme =  "#EC5D2A" -- "#21202e"
+
 local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
 local current_name = nil
@@ -13,19 +16,19 @@ end
 
 local function unset_under()
 	local groups = {
-		"Delimiter",    --
+		"Delimiter",  --
 		"DiagnosticUnderlineError", --
 		"DiagnosticUnderlineHint", --
 		"DiagnosticUnderlineInfo", --
 		"DiagnosticUnderlineWarn", --
-		"Structure",    --
-		"Type",         --
-		"TypeDef",      --
-		"@lsp",         --
+		"Structure",  --
+		"Type",       --
+		"TypeDef",    --
+		"@lsp",       --
 		"@lsp.type.type", --
 		"@lsp.type.class", --
 		"@lsp.type.struct", --
-		"@type",        --
+		"@type",      --
 		"DiagnosticUnderlineInfo", --
 		"GruvboxBlueUnderline", --
 		"@type.builtin", --
@@ -43,8 +46,13 @@ end
 local function save_theme(name)
 	unset_under()
 
-	vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#EC5D2A" })
-	vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = "#EC5D2A" })
+	if vim.o.background == "dark" then
+		vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+		vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+	elseif vim.o.background == "light" then
+		vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+		vim.api.nvim_set_hl(0, "iCursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+	end
 
 	current_name = name
 	vim.fn.writefile({ name }, state_file)
@@ -78,6 +86,18 @@ local colorsList = {
 			fix_visual()
 
 			save_theme "zellner"
+		end,
+	},
+	{
+		name = "fiesta",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme no-clown-fiesta-dark]]
+
+			fix_visual()
+
+			save_theme "fiesta"
 		end,
 	},
 	{

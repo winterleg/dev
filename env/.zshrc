@@ -64,7 +64,7 @@ _tmux-goway() {
 }
 compdef _tmux-goway tmux-goway
 
-setxkbmap ca > /dev/null 2>&1
+# setxkbmap ca > /dev/null 2>&1
 
 [ -f "/home/fuyu147/.ghcup/env" ] && . "/home/fuyu147/.ghcup/env" # ghcup-env
 [[ ! -r '/home/fuyu147/.opam/opam-init/init.zsh' ]] || source '/home/fuyu147/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
