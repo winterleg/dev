@@ -2,7 +2,7 @@
 
 PKG_LIST="$HOME/.pkg-list"
 
-currentCount=$(cat $PKG_LIST | wc -l)
+currentCount=$(wc -l <"$PKG_LIST" 2>/dev/null || echo 0)
 
 case "$1" in
 i | install)
@@ -12,7 +12,14 @@ i | install)
 	echo "Fetching pkgs"
 	paru -Qqe >"$PKG_LIST"
 	newCount=$(cat $PKG_LIST | wc -l)
-	[[ "$currentCount" == "$newCount" ]] || echo "$currentCount pkgs previously fetched"
+
+	diff=$((newCount - currentCount))
+	if ((diff > 0)); then
+		echo "+$diff pkgs diff"
+	else
+		echo "$diff pkgs diff"
+	fi
+
 	echo "$newCount pkgs currently fetched"
 	;;
 esac

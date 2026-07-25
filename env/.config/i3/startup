@@ -16,7 +16,7 @@ gnome-keyring-daemon --start --components=secrets &
 systemctl --user enable --now opentabletdriver.service &
 systemctl enable --now auto-cpufreq.service &
 nitrogen --restore &
-fastcompmgr -m 1 -C -i 0.86 -e 1 &
+fastcompmgr -m 1 -C -i 0.86 -e 1 -D 0 &
 setxkbmap ca &
 setxkbmap -layout ca &
 xset r rate 250 50 &

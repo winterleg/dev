@@ -3,7 +3,9 @@
 	set page(
 		footer: context [
 			#if counter(page).final().first() > 1 {
-				align(right, counter(page).display("1"))
+				align(right,
+					[#counter(page).display("1")/#counter(page).final().first()]
+				)
 			}
 		],
 	)
