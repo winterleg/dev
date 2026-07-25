@@ -2,13 +2,17 @@
 
 PKG_LIST="$HOME/.pkg-list"
 
+currentCount=$(cat $PKG_LIST | wc -l)
+
 case "$1" in
-    i|install)
-        paru -Syu --needed $(<"$PKG_LIST")
-        ;;
-    *)
-        echo "Fetching pkgs"
-        paru -Qqe > "$PKG_LIST"
-	echo "$(cat $PKG_LIST| wc -l) pkgs fetched"
-        ;;
+i | install)
+	paru -Syu --needed $(<"$PKG_LIST")
+	;;
+*)
+	echo "Fetching pkgs"
+	paru -Qqe >"$PKG_LIST"
+	newCount=$(cat $PKG_LIST | wc -l)
+	[[ "$currentCount" == "$newCount" ]] || echo "$currentCount pkgs previously fetched"
+	echo "$newCount pkgs currently fetched"
+	;;
 esac

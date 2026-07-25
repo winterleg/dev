@@ -4,24 +4,23 @@
 ~/.config/i3/xrandr.sh &
 
 # i3bar &
+# fcitx5 &
 blueman-applet &
 ckb-next-daemon &
 dunst &
-fcitx5 &
 nm-applet &
 udiskie --tray &
 xss-lock -- i3lock -c 191724 &
-gammastep -t 6000:4000 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 gnome-keyring-daemon --start --components=secrets &
 systemctl --user enable --now opentabletdriver.service &
 systemctl enable --now auto-cpufreq.service &
 nitrogen --restore &
-# xcompmgr &
-# stalonetray &
+fastcompmgr -m 1 -C -i 0.86 -e 1 &
+setxkbmap ca &
 setxkbmap -layout ca &
 xset r rate 250 50 &
 xset s 540 600 &
 xset dpms 600 600 600 &
 unclutter --timeout 15 &
-setxkbmap ca &
+gammastep -m randr -l 46.3:-72.5

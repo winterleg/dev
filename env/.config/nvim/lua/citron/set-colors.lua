@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 
 local cursorColorForDarkTheme = "#e0def4"
-local cursorColorForLightTheme =  "#EC5D2A" -- "#21202e"
+local cursorColorForLightTheme = "#EC5D2A"  -- "#21202e"
 
 local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
@@ -229,6 +229,22 @@ local colorsList = {
 			fix_visual()
 
 			save_theme "Pine"
+		end,
+	},
+	{
+		name = "Spine", -- Pine but no background
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme rose-pine-main]]
+
+			fix_visual()
+
+			vim.api.nvim_set_hl(0, "Normal", {
+				bg = "NONE",
+			})
+
+			save_theme "Spine"
 		end,
 	},
 	{

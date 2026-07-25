@@ -8,7 +8,4 @@ map u scroll half-up
 
 set guioptions none
 
-set recolor                     "true"
-set recolor-keephue             "true"
-
 include t-rosepinedawn

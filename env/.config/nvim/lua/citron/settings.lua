@@ -1,4 +1,8 @@
 ---@diagnostic disable: undefined-global
+
+_G.pdfReader = "zathura"
+_G.webBrowser = "firefox"
+
 vim.opt.clipboard = "unnamedplus"
 vim.o.termguicolors = tr
 vim.opt.mouse = "a"
@@ -29,9 +33,6 @@ vim.opt.termguicolors = true
 vim.opt.switchbuf = 'usetab'
 
 vim.opt.nu = true
-
-_G.pdfReader = "zathura"
-_G.webBrowser = "firefox"
 
 local spaceNumber = 8
 vim.opt.tabstop = spaceNumber

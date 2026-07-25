@@ -278,6 +278,7 @@ local mappings = {
 
 	{ "n", "<leader>y", function()
 		local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+
 		vim.fn.jobstart({ pdfReader, pdf }, { detach = true })
 	end, { desc = "Open PDF" } },
 
