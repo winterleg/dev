@@ -5,5 +5,5 @@ paru -S \
   fcitx5-configtool \
   fcitx5-gtk \
   fcitx5-mozc \
-  fcitx5-qt \
-  fcitx5-chinese-addons
+  fcitx5-chinese-addons \
+  fcitx5-qt
