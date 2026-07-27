@@ -1,4 +1,5 @@
-alias vim="/usr/bin/vim"
+alias vim="nvim -u ~/.config/nvim/init-min.lua"
+alias vi="vim"
 alias rs="nvim"
 
 alias ff="fastfetch"

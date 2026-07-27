@@ -1,27 +1,5 @@
 ---@diagnostic disable: undefined-global
 
-vim.lsp.enable({
-	"bashls",
-	"lua_ls",
-	"clangd",
-	"ols",
-	"tinymist",
-	"vimtex",
-	"c3_lsp",
-	"ts_ls",
-	"cssls",
-	"zls",
-	"ionide",
-	"gopls",
-	"haskell-language-server",
-	"rust-analyzer",
-	"pyright",
-	"ocamllsp",
-	"clojure-lsp",
-	"csharp_ls",
-	"julials",
-})
-
 vim.pack.add {
 	{ src = "https://github.com/williamboman/mason-lspconfig.nvim", },
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp", },
@@ -57,6 +35,29 @@ cmp.setup({
 		{ name = 'path' },
 		{ name = 'supermaven' }
 	}, { { name = 'buffer' } })
+})
+
+
+vim.lsp.enable({
+	"bashls",
+	"lua_ls",
+	"clangd",
+	"ols",
+	"tinymist",
+	"vimtex",
+	"c3_lsp",
+	"ts_ls",
+	"cssls",
+	"zls",
+	"ionide",
+	"gopls",
+	"haskell-language-server",
+	"rust-analyzer",
+	"pyright",
+	"ocamllsp",
+	"clojure-lsp",
+	"csharp_ls",
+	"julials",
 })
 
 vim.diagnostic.config({

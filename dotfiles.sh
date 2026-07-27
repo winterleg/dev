@@ -12,6 +12,7 @@ confs=(
   labwc
   matugen
   nvim
+  nvim-simple
   openbox
   polybar
   qutebrowser

@@ -65,17 +65,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    if vim.bo[args.buf].filetype ~= "typst" then
-      return
-    end
+	callback = function(args)
+		if vim.bo[args.buf].filetype ~= "typst" then
+			return
+		end
 
-    vim.defer_fn(function()
-      if vim.api.nvim_buf_is_valid(args.buf) then
-        vim.bo[args.buf].formatexpr = ""
-      end
-    end, 0)
-  end,
+		vim.defer_fn(function()
+			if vim.api.nvim_buf_is_valid(args.buf) then
+				vim.bo[args.buf].formatexpr = ""
+			end
+		end, 0)
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
