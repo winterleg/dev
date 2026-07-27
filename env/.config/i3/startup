@@ -23,4 +23,5 @@ xset r rate 250 50 &
 xset s 540 600 &
 xset dpms 600 600 600 &
 unclutter --timeout 15 &
-gammastep -m randr -l 46.3:-72.5
+gammastep -m randr -l 46.3:-72.5 &
+greenclip daemon &
