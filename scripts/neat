@@ -1,25 +1,52 @@
 #!/usr/bin/env bash
 
-PKG_LIST="$HOME/.pkg-list"
-
-currentCount=$(wc -l <"$PKG_LIST" 2>/dev/null || echo 0)
+PKG_LIST="/home/fuyu147/.pkg-list"
 
 case "$1" in
-i | install)
-	paru -Syu --needed $(<"$PKG_LIST")
-	;;
-*)
-	echo "Fetching pkgs"
-	paru -Qqe >"$PKG_LIST"
-	newCount=$(cat $PKG_LIST | wc -l)
+    i|install)
+        paru -Syu --needed $(<"$PKG_LIST")
+        ;;
+    *)
+        echo "Fetching pkgs"
 
-	diff=$((newCount - currentCount))
-	if ((diff > 0)); then
-		echo "+$diff pkgs diff"
-	else
-		echo "$diff pkgs diff"
-	fi
+        tmp=$(mktemp)
 
-	echo "$newCount pkgs currently fetched"
-	;;
+        # Save previous package list
+        if [[ -f "$PKG_LIST" ]]; then
+            sort "$PKG_LIST" >"$tmp"
+        else
+            : >"$tmp"
+        fi
+
+        currentCount=$(wc -l <"$tmp")
+
+        # Fetch current packages (sorted)
+        paru -Qqe | sort >"$PKG_LIST"
+
+        newCount=$(wc -l <"$PKG_LIST")
+        diff=$((newCount - currentCount))
+
+        if (( diff > 0 )); then
+            echo "+$diff pkgs diff"
+        else
+            echo "$diff pkgs diff"
+        fi
+
+        added=$(comm -13 "$tmp" "$PKG_LIST")
+        removed=$(comm -23 "$tmp" "$PKG_LIST")
+
+        if [[ -n $added ]]; then
+            echo "Added:"
+            printf '%s\n' "$added"
+        fi
+
+        if [[ -n $removed ]]; then
+            echo "Removed:"
+            printf '%s\n' "$removed"
+        fi
+
+        echo "$newCount pkgs currently fetched"
+
+        rm -f "$tmp"
+        ;;
 esac
