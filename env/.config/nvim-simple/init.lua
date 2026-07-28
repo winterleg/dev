@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.pack.add {
 	{ src = "https://github.com/vague-theme/vague.nvim",                       opts = { transparent = false } },
 	{ src = "https://github.com/rose-pine/neovim",                             name = "rose-pine", },
+	{ src = "https://github.com/aktersnurra/no-clown-fiesta.nvim" },
 
 	{ src = "https://github.com/hrsh7th/nvim-cmp", },
 	{ src = "https://github.com/hrsh7th/cmp-buffer", },
@@ -457,13 +458,40 @@ end
 
 fixColors()
 
-vim.keymap.set("n", "<leader>kt", function()
-	if vim.o.background == "dark" then
-		dawn()
-	else
-		pine()
-	end
+local themes = {
+	{
+		background = "dark",
+		colorscheme = "rose-pine-main",
+	},
+	{
+		background = "light",
+		colorscheme = "rose-pine-dawn",
+	},
+	{
+		background = "dark",
+		colorscheme = "vague",
+	},
+}
+
+local current = defaultToDarkMode and 1 or 2
+
+local function apply_theme(i)
+	current = i
+	local theme = themes[current]
+
+	vim.o.background = theme.background
+	vim.cmd.colorscheme(theme.colorscheme)
 	fixColors()
+
+	print(theme.colorscheme)
+end
+
+vim.keymap.set("n", "<leader>kt", function()
+	apply_theme(current % #themes + 1)
+end)
+
+vim.keymap.set("n", "<leader>kT", function()
+	apply_theme((current - 2) % #themes + 1)
 end)
 
 
@@ -479,52 +507,52 @@ end)
 
 
 
-vim.opt.clipboard           = "unnamedplus"
-vim.o.termguicolors         = tr
-vim.opt.mouse               = "a"
+vim.opt.clipboard        = "unnamedplus"
+vim.o.termguicolors      = tr
+vim.opt.mouse            = "a"
 
-vim.g.netrw_browse_split    = 0
-vim.g.netrw_banner          = 1
-vim.g.netrw_winsize         = 25
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner       = 1
+vim.g.netrw_winsize      = 25
 
-vim.opt.cmdheight           = 0
-vim.opt.laststatus          = 0
+vim.opt.cmdheight        = 0
+vim.opt.laststatus       = 0
 
-vim.opt.winborder           = "single"
-vim.opt.guicursor           = {
+vim.opt.winborder        = "single"
+vim.opt.guicursor        = {
 	"a:block-Cursor",
 	"i:ver30-iCursor",
 	"r-cr:hor20-Cursor"
 }
 
-vim.opt.wildignorecase      = true
+vim.opt.wildignorecase   = true
 
-vim.opt.encoding            = "utf-8"
-vim.opt.fileencoding        = "utf-8"
-vim.opt.termguicolors       = true
+vim.opt.encoding         = "utf-8"
+vim.opt.fileencoding     = "utf-8"
+vim.opt.termguicolors    = true
 
-vim.opt.switchbuf           = 'usetab'
+vim.opt.switchbuf        = 'usetab'
 
-vim.opt.nu                  = true
+vim.opt.nu               = true
 
-vim.opt.tabstop             = 8
-vim.opt.shiftwidth          = 8
-vim.opt.smartindent         = true
-vim.opt.softtabstop         = 8
-vim.opt.expandtab           = false
+vim.opt.tabstop          = 8
+vim.opt.shiftwidth       = 8
+vim.opt.smartindent      = true
+vim.opt.softtabstop      = 8
+vim.opt.expandtab        = false
 
-vim.opt.wrap                = false
-vim.opt.showbreak           = "\\-"
+vim.opt.wrap             = false
+vim.opt.showbreak        = "\\-"
 
-vim.opt.swapfile            = false
-vim.opt.backup              = false
-vim.opt.undodir             = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile            = true
+vim.opt.swapfile         = false
+vim.opt.backup           = false
+vim.opt.undodir          = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile         = true
 
-vim.opt.hlsearch            = true
-vim.opt.incsearch           = true
+vim.opt.hlsearch         = true
+vim.opt.incsearch        = true
 
-vim.opt.scrolloff           = 30
+vim.opt.scrolloff        = 30
 -- vim.opt.sidescrolloff = 0
 vim.opt.isfname:append("@-@")
 
@@ -621,5 +649,55 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.softtabstop = 8
 		vim.opt.expandtab = false
 		vim.opt.smartindent = true
+	end,
+})
+
+
+
+
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typst" },
+	callback = function()
+		vim.opt_local.sidescrolloff = 0
+
+		vim.opt_local.wrap          = false
+
+		local width                 = 8
+		vim.opt_local.shiftwidth    = width
+		vim.opt_local.tabstop       = width
+		vim.opt_local.softtabstop   = width
+		vim.opt_local.expandtab     = false
+
+		vim.opt_local.textwidth     = 72
+
+		vim.opt_local.autoindent    = false
+		vim.opt_local.smartindent   = false
+		vim.opt_local.cindent       = false
+		vim.opt_local.indentexpr    = ""
+		vim.opt_local.indentkeys    = ""
+
+		vim.opt_local.formatexpr    = ""
+
+		vim.opt_local.formatoptions = "t"
+
+		vim.keymap.set("n", "<leader>h", function()
+			local file = vim.fn.expand("%:p")
+			vim.system({ "typst", "c", file })
+		end, { buffer = true, desc = "Compile Typst file" })
+	end
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		if vim.bo[args.buf].filetype ~= "typst" then
+			return
+		end
+
+		vim.defer_fn(function()
+			if vim.api.nvim_buf_is_valid(args.buf) then
+				vim.bo[args.buf].formatexpr = ""
+			end
+		end, 0)
 	end,
 })
