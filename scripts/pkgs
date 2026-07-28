@@ -37,12 +37,12 @@ case "$1" in
 
         if [[ -n $added ]]; then
             echo "Added:"
-            printf '%s\n' "$added"
+            printf '\t%s\n' "$added"
         fi
 
         if [[ -n $removed ]]; then
             echo "Removed:"
-            printf '%s\n' "$removed"
+            printf '\t%s\n' "$removed"
         fi
 
         echo "$newCount pkgs currently fetched"
