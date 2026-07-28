@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
-_G.pdfReader = "zathura"
+_G.pdfReader = "sioyek"
 _G.webBrowser = "firefox"
 
 vim.opt.clipboard = "unnamedplus"

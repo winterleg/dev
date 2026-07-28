@@ -2,7 +2,7 @@
 
 _G.pdfReader = "sioyek"
 
-local darkmode = false
+local defaultToDarkMode = true
 
 vim.api.nvim_create_autocmd('TextYankPost', {
 	group = vim.api.nvim_create_augroup('HighlightYank', {}),
@@ -407,51 +407,74 @@ local function dawn()
 	vim.cmd [[colorscheme rose-pine-dawn]]
 end
 
-if darkmode then
+local function fixColors()
+	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+	if normal.fg and normal.bg then
+		vim.api.nvim_set_hl(0, "Visual", { fg = normal.bg, bg = normal.fg })
+	end
+
+	local groups = {
+		"Delimiter",
+		"DiagnosticUnderlineError",
+		"DiagnosticUnderlineHint",
+		"DiagnosticUnderlineInfo",
+		"DiagnosticUnderlineWarn",
+		"Structure",
+		"Type",
+		"TypeDef",
+		"@lsp",
+		"@lsp.type.type",
+		"@lsp.type.class",
+		"@lsp.type.struct",
+		"@type",
+		"DiagnosticUnderlineInfo",
+		"GruvboxBlueUnderline",
+		"@type.builtin",
+	}
+	for _, group in ipairs(groups) do
+		local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
+		hl.underline = false
+		hl.undercurl = false
+		vim.api.nvim_set_hl(0, group, hl)
+	end
+
+	vim.cmd [[highlight typstMarkupHeading cterm=bold gui=bold]]
+
+	if vim.o.background == "dark" then
+		vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+		vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+	elseif vim.o.background == "light" then
+		vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+		vim.api.nvim_set_hl(0, "iCursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+	end
+end
+
+if defaultToDarkMode then
 	pine()
 else
 	dawn()
 end
 
-local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
-if normal.fg and normal.bg then
-	vim.api.nvim_set_hl(0, "Visual", { fg = normal.bg, bg = normal.fg })
-end
+fixColors()
 
-local groups = {
-	"Delimiter",
-	"DiagnosticUnderlineError",
-	"DiagnosticUnderlineHint",
-	"DiagnosticUnderlineInfo",
-	"DiagnosticUnderlineWarn",
-	"Structure",
-	"Type",
-	"TypeDef",
-	"@lsp",
-	"@lsp.type.type",
-	"@lsp.type.class",
-	"@lsp.type.struct",
-	"@type",
-	"DiagnosticUnderlineInfo",
-	"GruvboxBlueUnderline",
-	"@type.builtin",
-}
-for _, group in ipairs(groups) do
-	local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
-	hl.underline = false
-	hl.undercurl = false
-	vim.api.nvim_set_hl(0, group, hl)
-end
+vim.keymap.set("n", "<leader>kt", function()
+	if vim.o.background == "dark" then
+		dawn()
+	else
+		pine()
+	end
+	fixColors()
+end)
 
-vim.cmd [[highlight typstMarkupHeading cterm=bold gui=bold]]
 
-if vim.o.background == "dark" then
-	vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = cursorColorForDarkTheme })
-	vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = cursorColorForDarkTheme })
-elseif vim.o.background == "light" then
-	vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
-	vim.api.nvim_set_hl(0, "iCursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
-end
+
+
+
+
+
+
+
+
 
 
 
@@ -518,7 +541,7 @@ vim.opt.cursorline = true
 vim.opt.colorcolumn = { 72, 80, 120, 180 }
 vim.opt.textwidth = 72
 
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = {
 	tab = "> ",
 	trail = "*",
@@ -526,8 +549,17 @@ vim.opt.listchars = {
 	nbsp = "⍽",
 }
 
--- Highlight group for always-visible non-breaking spaces
-vim.cmd([[highlight default Nbsp guibg=#666666 guifg=#ffffff]])
+vim.api.nvim_create_autocmd("ModeChanged", {
+	callback = function()
+		local mode = vim.fn.mode()
+
+		if mode:match("[vV\22]") then
+			vim.opt.list = true
+		else
+			vim.opt.list = false
+		end
+	end,
+})
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

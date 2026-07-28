@@ -44,7 +44,7 @@ bindsym $mod+Ctrl+v		exec --no-startup-id \
 					| xclip -selection clipboard
 bindsym $mod+q			exec --no-startup-id helium-browser
 bindsym $mod+Return		exec --no-startup-id neovide
-bindsym $mod+Shift+Return	exec --no-startup-id kitty -e nvim -u ~/.config/nvim-simple/init.lua
+bindsym $mod+Shift+Return	exec --no-startup-id alacritty -e nvim -u ~/.config/nvim-simple/init.lua
 bindsym $mod+w			exec --no-startup-id firefox
 bindsym $mod+Shift+w		exec --no-startup-id thunderbird
 bindsym $mod+r			exec --no-startup-id rofi -show drun -no-fixed-num-lines

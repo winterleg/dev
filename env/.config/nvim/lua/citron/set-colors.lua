@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
-local cursorColorForDarkTheme = "#e0def4"
+local cursorColorForDarkTheme = "#EC5D2A" -- "#e0def4"
 local cursorColorForLightTheme = "#EC5D2A"  -- "#21202e"
 
 local state_file = vim.fn.stdpath("state") .. "/last_theme"

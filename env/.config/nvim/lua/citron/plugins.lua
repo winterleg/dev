@@ -24,7 +24,8 @@ vim.pack.add {
 	{ src = "https://github.com/ray-x/lsp_signature.nvim" },
 	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.trailspace" },
-	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" }
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
+	{ src = "https://github.com/folke/zen-mode.nvim" },
 }
 
 -- vim.g["fsharp#lsp_auto_setup"] = 0
@@ -289,3 +290,15 @@ require('mini.trailspace').setup()
 -- }
 
 require("tree-sitter-manager").setup()
+
+require "zen-mode".setup {
+  window = {
+    backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+    -- height and width can be:
+    -- * an absolute number of cells when > 1
+    -- * a percentage of the width / height of the editor when <= 1
+    -- * a function that returns the width or the height
+    width = 80, -- width of the Zen window
+    height = 1, -- height of the Zen window
+  },
+}
