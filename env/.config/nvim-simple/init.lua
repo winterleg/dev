@@ -253,11 +253,6 @@ require("oil").setup({
 	columns = {
 		"icon",
 	},
-	float = {
-		max_width = 0.3,
-		max_height = 0.6,
-		border = "rounded",
-	},
 })
 
 local telescope = require("telescope")
@@ -701,3 +696,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, 0)
 	end,
 })
+
+require "citron.findfile"
+
+
+vim.keymap.set("n", "<leader>tw", [[<CMD>%s/\s\+$//e<CR>]])
+
+
+

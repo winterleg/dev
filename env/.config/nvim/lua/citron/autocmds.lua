@@ -22,12 +22,12 @@ autocmd('TextYankPost', {
 	end,
 })
 
-	-- remove trailing whitespaces at the end of a line
-	autocmd({ "BufWritePre" }, {
-		group = citronGroup,
-		pattern = "*",
-		command = [[%s/\s\+$//e]],
-	})
+-- remove trailing whitespaces at the end of a line
+autocmd({ "BufWritePre" }, {
+	group = citronGroup,
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
+})
 
 vim.api.nvim_create_autocmd("BufReadCmd", {
 	pattern = { "*.mp3", "*.mp4", "*.mkv" },

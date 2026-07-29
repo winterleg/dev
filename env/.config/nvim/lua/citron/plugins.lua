@@ -26,6 +26,7 @@ vim.pack.add {
 	{ src = "https://github.com/nvim-mini/mini.trailspace" },
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/folke/zen-mode.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.extra" },
 }
 
 -- vim.g["fsharp#lsp_auto_setup"] = 0
@@ -302,3 +303,5 @@ require "zen-mode".setup {
     height = 1, -- height of the Zen window
   },
 }
+require('mini.extra').setup()
+
