@@ -3,7 +3,7 @@
 local cursorColorForDarkTheme = "#EC5D2A" -- "#e0def4"
 local cursorColorForLightTheme = "#EC5D2A"  -- "#21202e"
 
-local state_file = vim.fn.stdpath("state") .. "/last_theme"
+local state_file = vim.fn.expand("~/.simple_theme")
 
 local current_name = nil
 
@@ -77,18 +77,6 @@ end
 ---@type ColorEntry[]
 local colorsList = {
 	{
-		name = "Vague",
-		enabled = true,
-		callback = function()
-			vim.opt.background = "dark"
-			vim.cmd [[colorscheme vague]]
-
-			fix_visual()
-
-			save_theme "Vague"
-		end,
-	},
-	{
 		name = "BLUE",
 		enabled = true,
 		callback = function()
@@ -148,27 +136,16 @@ local colorsList = {
 		end,
 	},
 	{
-		name = "cat latte",
-		enabled = true,
-		callback = function()
-			vim.opt.background = "light"
-			vim.cmd [[colorscheme catppuccin-latte]]
-
-			fix_visual()
-
-			save_theme "cat latte"
-		end,
-	},
-	{
-		name = "cat mocha",
+		name = "GRAPHITE",
 		enabled = true,
 		callback = function()
 			vim.opt.background = "dark"
-			vim.cmd [[colorscheme catppuccin-mocha]]
+			vim.cmd [[colorscheme mfd-flir]]
+			vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
 
 			fix_visual()
 
-			save_theme "cat mocha"
+			save_theme "GRAPHITE"
 		end,
 	},
 	{
@@ -177,12 +154,13 @@ local colorsList = {
 		callback = function()
 			vim.opt.background = "dark"
 			vim.cmd [[colorscheme cendre]]
+			vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2e2e2e" })
 
 			fix_visual()
 
 			save_theme "CENDRE"
 		end,
-	},
+	}
 }
 
 local themes = {}

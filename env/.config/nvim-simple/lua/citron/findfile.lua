@@ -257,6 +257,7 @@ local find_file = function(local_opts, opts)
 			choose = "", -- to suppress overwrite <CR> warning
 			custom_choose = { char = "<CR>", func = custom_choose },
 			custom_tab_complete = { char = "<Tab>", func = custom_tab_complete },
+			toggle_preview = "", -- disabled in favor of custom_tab_complete
 		},
 	})
 	-- mandatory opts

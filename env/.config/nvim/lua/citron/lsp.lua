@@ -10,7 +10,6 @@ vim.pack.add {
 	{ src = "https://github.com/hrsh7th/cmp-cmdline", },
 	{ src = "https://github.com/hrsh7th/nvim-cmp", },
 	{ src = 'https://github.com/mrcjkb/haskell-tools.nvim',         version = vim.version.range('^9') },
-	-- { src = "https://github.com/Olical/conjure" },
 }
 
 local cmp = require "cmp"
@@ -33,7 +32,6 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'path' },
-		{ name = 'supermaven' }
 	}, { { name = 'buffer' } })
 })
 
@@ -45,19 +43,12 @@ vim.lsp.enable({
 	"ols",
 	"tinymist",
 	"vimtex",
-	"c3_lsp",
-	"ts_ls",
-	"cssls",
 	"zls",
 	"ionide",
 	"gopls",
 	"haskell-language-server",
 	"rust-analyzer",
-	"pyright",
-	"ocamllsp",
-	"clojure-lsp",
 	"csharp_ls",
-	"julials",
 })
 
 vim.diagnostic.config({
@@ -72,17 +63,3 @@ vim.diagnostic.config({
 	},
 	virtual_text = true
 })
-
-vim.pack.add({
-	{
-		src = 'https://github.com/JavaHello/spring-boot.nvim',
-		version = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
-	},
-	'https://github.com/MunifTanjim/nui.nvim',
-	'https://github.com/mfussenegger/nvim-dap',
-
-	'https://github.com/nvim-java/nvim-java',
-})
-
-require('java').setup()
-vim.lsp.enable('jdtls')

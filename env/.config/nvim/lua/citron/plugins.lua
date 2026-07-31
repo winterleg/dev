@@ -29,21 +29,6 @@ vim.pack.add {
 	{ src = "https://github.com/nvim-mini/mini.extra" },
 }
 
--- vim.g["fsharp#lsp_auto_setup"] = 0
--- vim.g["fsharp#lsp_codelens"] = 0
--- vim.lsp.config("ionide", {
--- 	on_attach = function(_, _)
--- 		vim.lsp.codelens.clear()
--- 	end,
--- 	settings = {
--- 		FSharp = {
--- 			lineLens = {
--- 				enabled = "never"
--- 			},
--- 		}
--- 	},
--- })
-
 require("mason").setup({})
 
 require("luasnip").setup({ enable_autosnippets = true })
@@ -63,8 +48,8 @@ require("oil").setup({
 		"icon",
 	},
 	float = {
-		max_width = 0.3,
-		max_height = 0.6,
+		max_width = 1,
+		max_height = 0.2,
 		border = "rounded",
 	},
 })
@@ -74,7 +59,7 @@ telescope.setup({
 	defaults = {
 		preview = { treesitter = false },
 		color_devicons = true,
-		sorting_strategy = "descending",
+		sorting_strategy = "ascending",
 		borderchars = {
 			"", -- top
 			"", -- right
@@ -94,7 +79,7 @@ telescope.setup({
 		layout_config = {
 			height = 100,
 			width = 300,
-			prompt_position = "bottom",
+			prompt_position = "top",
 			preview_cutoff = 40,
 		}
 	},
@@ -283,13 +268,6 @@ require("img-clip").setup {
 
 require('mini.trailspace').setup()
 
--- require "wilder".setup {
---   next_key = '<C-n>',
---   previous_key = '<C-p>',
---   accept_key = '<C-y>',
---   reject_key = '<C-e>',
--- }
-
 require("tree-sitter-manager").setup()
 
 require "zen-mode".setup {
@@ -303,5 +281,6 @@ require "zen-mode".setup {
     height = 1, -- height of the Zen window
   },
 }
+
 require('mini.extra').setup()
 

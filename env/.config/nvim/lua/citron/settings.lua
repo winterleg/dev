@@ -13,10 +13,6 @@ vim.g.netrw_winsize = 25
 
 vim.opt.cmdheight = 0
 
--- vim.opt.virtualedit = { -- not sure about keeping this
--- 	"block",
--- }
-
 vim.opt.winborder = "single"
 vim.opt.guicursor = {
 	"a:block-Cursor",
@@ -38,23 +34,16 @@ local spaceNumber = 8
 vim.opt.tabstop = spaceNumber
 vim.opt.shiftwidth = spaceNumber
 vim.opt.smartindent = true
-
-local useTabs = true
-if useTabs then
-	vim.opt.softtabstop = nil
-	vim.opt.expandtab = false
-else
-	vim.opt.softtabstop = spaceNumber
-	vim.opt.expandtab = true
-end
+vim.opt.softtabstop = nil
+vim.opt.expandtab = false
 
 vim.opt.wrap = false
 vim.opt.showbreak = "\\-"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undofile = true
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -68,8 +57,6 @@ vim.opt.signcolumn = "no"
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = "{,}"
 vim.opt.foldlevelstart = 99
-
-vim.opt.updatetime = 50
 
 vim.opt.cursorline = true
 
@@ -142,42 +129,9 @@ vim.api.nvim_create_user_command("UWU", function(opts)
 	vim.api.nvim_buf_set_lines(0, start_row, end_row, false, lines)
 end, { range = true })
 
-vim.api.nvim_create_user_command("T", function(opts)
-	local cmd = opts.args
-
-	if opts.range > 0 then
-		local content
-		local s = vim.fn.getpos("'<")
-		local e = vim.fn.getpos("'>")
-
-		-- Use yank to get the exact visual selection if the range matches the marks
-		if opts.line1 == s[2] and opts.line2 == e[2] then
-			local reg_save = vim.fn.getreg('z')
-			local regtype_save = vim.fn.getregtype('z')
-			vim.cmd('silent noautocmd normal! gv"zy')
-			content = vim.fn.getreg('z')
-			vim.fn.setreg('z', reg_save, regtype_save)
-		else
-			-- Fallback for non-visual ranges (like :%T or :10,20T)
-			content = table.concat(vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false), "\n")
-		end
-
-		if content then
-			-- Wrap in double quotes and escape internal double quotes for the shell pipe
-			-- local wrapped = '"' .. content:gsub('"', '\\"') .. '"'
-			cmd = string.format("%s %s", cmd, vim.fn.shellescape(content))
-		end
-	end
-	vim.cmd("term " .. cmd)
-	vim.cmd("startinsert")
-end, {
-	nargs = '?',
-	range = true
-})
-
 if vim.g.neovide then
 	-- require('neov-ime').setup()
-	vim.o.guifont = "Comic Code:h23"
+	vim.o.guifont = "courier prime code,Comic Code:h23"
 
 	vim.g.neovide_refresh_rate = 144
 	vim.g.neovide_refresh_rate_idle = 10

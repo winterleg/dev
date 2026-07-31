@@ -1,5 +1,9 @@
 ---@diagnostic disable: undefined-global
 
+local src = debug.getinfo(1, "S").source:sub(2)
+local config_dir = vim.fn.fnamemodify(src, ":h")
+vim.opt.runtimepath:prepend(config_dir)
+
 _G.pdfReader = "sioyek"
 
 local defaultToDarkMode = true
@@ -19,6 +23,8 @@ vim.pack.add {
 	{ src = "https://github.com/vague-theme/vague.nvim",                       opts = { transparent = false } },
 	{ src = "https://github.com/rose-pine/neovim",                             name = "rose-pine", },
 	{ src = "https://github.com/aktersnurra/no-clown-fiesta.nvim" },
+	{ src = "https://github.com/kungfusheep/mfd.nvim" },
+	{ src = "https://github.com/Aejkatappaja/cendre" },
 
 	{ src = "https://github.com/hrsh7th/nvim-cmp", },
 	{ src = "https://github.com/hrsh7th/cmp-buffer", },
@@ -40,12 +46,45 @@ vim.pack.add {
 	{ src = "https://github.com/vimwiki/vimwiki" },
 	{ src = "https://github.com/nvim-mini/mini.trailspace" },
 	{ src = "https://github.com/saadparwaiz1/cmp_luasnip", },
+	{ src = "https://github.com/mason-org/mason.nvim" },
 }
+
+require("mason").setup({})
 
 vim.lsp.enable {
-	"tinymist"
+	"tinymist",
+	"rust-analyzer",
+	"lua_ls"
 }
 
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup("citron", {}),
+	callback = function(e)
+		local opts = { buffer = e.buf }
+		vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+		vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+		vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+		vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+		vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
+		vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+		vim.keymap.set("n", "<leader>lz", function() vim.lsp.buf.references() end, opts)
+		vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
+		if vim.bo[e.buf].filetype ~= "typst" then
+			vim.keymap.set("n", "<leader>f", function()
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				for _, client in ipairs(clients) do
+					if client:supports_method("textDocument/formatting") then
+						vim.lsp.buf.format()
+						return
+					end
+				end
+			end, { buffer = e.buf, desc = "Format the file" })
+		end
+		vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+		vim.keymap.set("n", "<leader>n", function() vim.diagnostic.jump { count = 1 } end, opts)
+		vim.keymap.set("n", "<leader>e", function() vim.diagnostic.jump { count = -1 } end, opts)
+	end
+})
 
 local bufferline = require('bufferline')
 
@@ -106,6 +145,11 @@ require('rose-pine').setup({
 	}
 })
 
+require("cendre").setup({
+	background = "hard", -- "hard" | "medium" | "soft"
+	italic = true,
+})
+
 local cmp = require "cmp"
 cmp.setup({
 	experimental = {
@@ -126,12 +170,23 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'path' },
-		{ name = 'supermaven' }
 	}, { { name = 'buffer' } })
 })
 
----@diagnostic disable: undefined-global
----@diagnostic disable: undefined-field
+vim.diagnostic.config({
+	update_in_insert = true,
+	float = {
+		focusable = true,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = ""
+	},
+	virtual_text = true
+})
+
+
 vim.g.mapleader = " "
 
 vim.g.fzf_layout = { window = { width = 1, height = 0.7, yoffset = 1 } }
@@ -390,106 +445,111 @@ require('mini.trailspace').setup()
 
 
 
-local cursorColorForDarkTheme = "#e0def4"
-local cursorColorForLightTheme = "#EC5D2A" -- "#21202e"
+-- local cursorColorForDarkTheme = "#e0def4"
+-- local cursorColorForLightTheme = "#EC5D2A" -- "#21202e"
+--
+-- local function pine()
+-- 	vim.opt.background = "dark"
+-- 	vim.cmd [[colorscheme rose-pine-main]]
+-- end
+--
+-- local function dawn()
+-- 	vim.opt.background = "light"
+-- 	vim.cmd [[colorscheme rose-pine-dawn]]
+-- end
 
-local function pine()
-	vim.opt.background = "dark"
-	vim.cmd [[colorscheme rose-pine-main]]
-end
-
-local function dawn()
-	vim.opt.background = "light"
-	vim.cmd [[colorscheme rose-pine-dawn]]
-end
-
-local function fixColors()
-	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
-	if normal.fg and normal.bg then
-		vim.api.nvim_set_hl(0, "Visual", { fg = normal.bg, bg = normal.fg })
-	end
-
-	local groups = {
-		"Delimiter",
-		"DiagnosticUnderlineError",
-		"DiagnosticUnderlineHint",
-		"DiagnosticUnderlineInfo",
-		"DiagnosticUnderlineWarn",
-		"Structure",
-		"Type",
-		"TypeDef",
-		"@lsp",
-		"@lsp.type.type",
-		"@lsp.type.class",
-		"@lsp.type.struct",
-		"@type",
-		"DiagnosticUnderlineInfo",
-		"GruvboxBlueUnderline",
-		"@type.builtin",
-	}
-	for _, group in ipairs(groups) do
-		local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
-		hl.underline = false
-		hl.undercurl = false
-		vim.api.nvim_set_hl(0, group, hl)
-	end
-
-	vim.cmd [[highlight typstMarkupHeading cterm=bold gui=bold]]
-
-	if vim.o.background == "dark" then
-		vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = cursorColorForDarkTheme })
-		vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = cursorColorForDarkTheme })
-	elseif vim.o.background == "light" then
-		vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
-		vim.api.nvim_set_hl(0, "iCursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
-	end
-end
-
-if defaultToDarkMode then
-	pine()
-else
-	dawn()
-end
-
-fixColors()
-
-local themes = {
-	{
-		background = "dark",
-		colorscheme = "rose-pine-main",
-	},
-	{
-		background = "light",
-		colorscheme = "rose-pine-dawn",
-	},
-	{
-		background = "dark",
-		colorscheme = "vague",
-	},
-}
-
-local current = defaultToDarkMode and 1 or 2
-
-local function apply_theme(i)
-	current = i
-	local theme = themes[current]
-
-	vim.o.background = theme.background
-	vim.cmd.colorscheme(theme.colorscheme)
-	fixColors()
-
-	print(theme.colorscheme)
-end
-
-vim.keymap.set("n", "<leader>kt", function()
-	apply_theme(current % #themes + 1)
-end)
-
-vim.keymap.set("n", "<leader>kT", function()
-	apply_theme((current - 2) % #themes + 1)
-end)
+-- local function fixColors()
+-- 	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+-- 	if normal.fg and normal.bg then
+-- 		vim.api.nvim_set_hl(0, "Visual", { fg = normal.bg, bg = normal.fg })
+-- 	end
+--
+-- 	local groups = {
+-- 		"Delimiter",
+-- 		"DiagnosticUnderlineError",
+-- 		"DiagnosticUnderlineHint",
+-- 		"DiagnosticUnderlineInfo",
+-- 		"DiagnosticUnderlineWarn",
+-- 		"Structure",
+-- 		"Type",
+-- 		"TypeDef",
+-- 		"@lsp",
+-- 		"@lsp.type.type",
+-- 		"@lsp.type.class",
+-- 		"@lsp.type.struct",
+-- 		"@type",
+-- 		"DiagnosticUnderlineInfo",
+-- 		"GruvboxBlueUnderline",
+-- 		"@type.builtin",
+-- 	}
+-- 	for _, group in ipairs(groups) do
+-- 		local hl = vim.api.nvim_get_hl(0, { name = group, link = true })
+-- 		hl.underline = false
+-- 		hl.undercurl = false
+-- 		vim.api.nvim_set_hl(0, group, hl)
+-- 	end
+--
+-- 	vim.cmd [[highlight typstMarkupHeading cterm=bold gui=bold]]
+--
+-- 	if vim.o.background == "dark" then
+-- 		vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+-- 		vim.api.nvim_set_hl(0, "iCursor", { fg = "#000000", bg = cursorColorForDarkTheme })
+-- 	elseif vim.o.background == "light" then
+-- 		vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+-- 		vim.api.nvim_set_hl(0, "iCursor", { fg = "#FFFFFF", bg = cursorColorForLightTheme })
+-- 	end
+-- end
+--
+-- if defaultToDarkMode then
+-- 	pine()
+-- else
+-- 	dawn()
+-- end
+--
+-- fixColors()
+--
+-- local themes = {
+-- 	{
+-- 		background = "dark",
+-- 		colorscheme = "rose-pine-main",
+-- 	},
+-- 	{
+-- 		background = "light",
+-- 		colorscheme = "rose-pine-dawn",
+-- 	},
+-- 	{
+-- 		background = "dark",
+-- 		colorscheme = "vague",
+-- 	},
+-- 	{
+-- 		background = "dark",
+-- 		colorscheme = "mfd-scarlet"
+-- 	}
+-- }
+--
+-- local current = defaultToDarkMode and 1 or 2
+--
+-- local function apply_theme(i)
+-- 	current = i
+-- 	local theme = themes[current]
+--
+-- 	vim.o.background = theme.background
+-- 	vim.cmd.colorscheme(theme.colorscheme)
+-- 	fixColors()
+--
+-- 	print(theme.colorscheme)
+-- end
+--
+-- vim.keymap.set("n", "<leader>kt", function()
+-- 	apply_theme(current % #themes + 1)
+-- end)
+--
+-- vim.keymap.set("n", "<leader>kT", function()
+-- 	apply_theme((current - 2) % #themes + 1)
+-- end)
 
 
+require "citron.set-colors"
 
 
 
@@ -591,12 +651,14 @@ vim.opt.spell = true
 vim.opt.spelllang = { "en", "fr", "cjk" }
 
 if vim.g.neovide then
-	-- require('neov-ime').setup()
+	vim.g.neovide_confirm_quit = true
+
 	vim.o.guifont = "Comic Code:h23"
 
 	vim.g.neovide_refresh_rate = 144
 	vim.g.neovide_refresh_rate_idle = 10
 
+	vim.g.neovide_scroll_animation_length = 0
 	vim.g.neovide_scroll_animation_far_lines = 0
 
 	vim.g.neovide_cursor_animation_length = 0
