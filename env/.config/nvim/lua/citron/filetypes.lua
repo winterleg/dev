@@ -30,12 +30,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		local spaceNumber = 8
-		vim.opt.tabstop = spaceNumber
-		vim.opt.shiftwidth = spaceNumber
-		vim.opt.smartindent = true
-		vim.opt.softtabstop = nil
-		vim.opt.expandtab = false
+		vim.opt_local.tabstop     = 8
+		vim.opt_local.shiftwidth  = 8
+		vim.opt_local.smartindent = false
+		vim.opt_local.softtabstop = 0
+		vim.opt_local.expandtab   = false
 
 		vim.defer_fn(function()
 			if vim.api.nvim_buf_is_valid(args.buf) then
