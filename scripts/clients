@@ -6,13 +6,17 @@ backend=auto
 
 case "$1" in
 --sway)
-  backend=sway
-  shift
-  ;;
+	backend=sway
+	shift
+	;;
+--i3)
+	backend=i3
+	shift
+	;;
 --hypr)
-  backend=hypr
-  shift
-  ;;
+	backend=hypr
+	shift
+	;;
 esac
 
 flags="${1#-}"
@@ -26,38 +30,67 @@ flags="${1#-}"
 #    show_pid   = index(flags, "p")
 
 if [[ $backend == auto ]]; then
-  if [[ -n $SWAYSOCK ]]; then
-    backend=sway
-  elif [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then
-    backend=hypr
-  else
-    echo "Unable to determine compositor." >&2
-    exit 1
-  fi
+	if [[ -n $SWAYSOCK ]]; then
+		backend=sway
+	elif [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then
+		backend=hypr
+	elif [[ -n $I3SOCK ]] || [[ $DESKTOP_SESSION == i3* ]] || [[ $XDG_CURRENT_DESKTOP == i3* ]]; then
+		backend=i3
+	else
+		echo "Unable to determine compositor." >&2
+		exit 1
+	fi
 fi
 
 if [[ $backend == hypr ]]; then
-  active=$(hyprctl activewindow -j | jq -r .address)
+	active=$(hyprctl activewindow -j | jq -r .address)
 
-  data=$(
-    hyprctl clients -j |
-      jq -r '.[] |
+	data=$(
+		hyprctl clients -j |
+			jq -r '.[] |
             [.address,
              .class,
              (.xwayland|tostring),
              .workspace.id,
              .title,
              .pid] | @tsv'
-  )
+	)
+
+elif [[ $backend == i3 ]]; then
+	active=$(i3-msg -t get_tree |
+		jq -r '.. | objects | select(.type=="con" and .focused==true) | .id' |
+		head -n1)
+
+	data=$(
+		i3-msg -t get_tree |
+			jq -r '
+    .. | select(.type? == "workspace") | . as $ws
+    | (.nodes[], .floating_nodes[]?)
+    | ..
+    | select(.type? == "con"
+        and (.nodes | length == 0)
+        and (.floating_nodes | length == 0)
+        and (.window != null or .window_properties != null))
+    | [
+        (.id|tostring),
+        (.window_properties.class // ""),
+        "false",
+        ($ws.name // ""),
+        (.name // ""),
+        (.pid // "")
+      ]
+    | @tsv
+  '
+	)
 
 elif [[ $backend == sway ]]; then
-  active=$(swaymsg -t get_tree |
-    jq -r '.. | objects | select(.focused==true) | .id' |
-    head -n1)
+	active=$(swaymsg -t get_tree |
+		jq -r '.. | objects | select(.focused==true) | .id' |
+		head -n1)
 
-  data=$(
-  swaymsg -t get_tree |
-  jq -r '
+	data=$(
+		swaymsg -t get_tree |
+			jq -r '
     def leaves:
       recurse(.nodes[]?, .floating_nodes[]?)
       | select(.type == "con" and (.nodes | length == 0) and (.floating_nodes | length == 0));
@@ -74,16 +107,16 @@ elif [[ $backend == sway ]]; then
       ]
     | @tsv
   '
-)
+	)
 fi
 
 printf "%s\n" "$data" |
-  sort -k4,4n -k2,2 |
-  awk -F'\t' -v active="$active" -v flags="$flags" '
+	sort -k4,4n -k2,2 |
+	awk -F'\t' -v active="$active" -v flags="$flags" -v backend="$backend" '
 BEGIN {
     show_addr  = index(flags, "a")
     show_class = index(flags, "c")
-    show_xway  = index(flags, "x")
+    show_xway  = (backend == "i3" ? 0 : index(flags, "x"))
     show_ws    = index(flags, "w")
     show_title = index(flags, "t")
     show_pid   = index(flags, "p")

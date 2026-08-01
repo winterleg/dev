@@ -1,11 +1,15 @@
-map = zoom in
-map r recolor
-map c toggle_page_mode
-map d scroll half-down
-map u scroll half-up
-
 # c-n to toggle statusbar
 
-set guioptions none
+include			t-nvim-imported
 
-include t-rosepinedawn
+map	=		zoom in
+map 	r 		recolor
+map 	c 		toggle_page_mode
+map 	d 		scroll			half-down
+map 	u 		scroll 			half-up
+
+set	guioptions	none
+set 	guioptions 	"sh"
+
+set	recolor		"true"
+set 	recolor-keephue	"true"

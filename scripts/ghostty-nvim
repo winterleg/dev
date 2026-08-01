@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-dir="${1:-$PWD}"
-
-(cd "$dir" && nohup ghostty -e nvim >/dev/null 2>&1 &)

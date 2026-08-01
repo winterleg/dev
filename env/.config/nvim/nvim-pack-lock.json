@@ -101,6 +101,10 @@
       "rev": "9d1dd789761fb3aadf91cdfed0cebcb750424380",
       "src": "https://github.com/sevenc-nanashi/neov-ime.nvim"
     },
+    "no-clown-fiesta.nvim": {
+      "rev": "04b808e9769ded988089772ffcaf08d92d75d927",
+      "src": "https://github.com/aktersnurra/no-clown-fiesta.nvim"
+    },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"

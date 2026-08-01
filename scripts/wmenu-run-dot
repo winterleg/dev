@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-wmenu-run -b \
-  -n "#ebdbb2" \
-  -N "#282828" \
-  -s "#ebdbb2" \
-  -S "#504945"

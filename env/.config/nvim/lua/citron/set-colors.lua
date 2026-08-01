@@ -1,9 +1,21 @@
 ---@diagnostic disable: undefined-global
 
-local cursorColorForDarkTheme = "#EC5D2A" -- "#e0def4"
-local cursorColorForLightTheme = "#EC5D2A"  -- "#21202e"
+local cursorColorForDarkTheme = "#EC5D2A"  -- "#e0def4"
+local cursorColorForLightTheme = "#EC5D2A" -- "#21202e"
 
 local state_file = vim.fn.stdpath("state") .. "/last_theme"
+
+local zathuraThemeFile = "t-nvim-imported"
+
+local zathuraConfigDir = vim.fn.expand("~/.config/zathura")
+
+local themeToZathura = {
+	CENDRE = "t-cendre",
+	Pine = "t-rosepine",
+	["cat mocha"] = "t-rosepine",
+	["cat latte"] = "t-rosepinedawn",
+	Dawn = "t-rosepinedawn",
+}
 
 local current_name = nil
 
@@ -55,6 +67,12 @@ local function save_theme(name)
 	end
 
 	current_name = name
+
+	local link = zathuraConfigDir .. "/" .. zathuraThemeFile
+	local target = zathuraConfigDir .. "/" .. (themeToZathura[name] or "t-rosepine")
+	vim.fn.delete(link)
+	vim.fn.filecopy(target, link)
+
 	vim.fn.writefile({ name }, state_file)
 end
 
@@ -230,6 +248,11 @@ local function start_fs_watcher()
 				vim.cmd("syntax reset")
 				unset_under()
 				themes[new_name]()
+
+
+				local link = zathuraConfigDir .. "/" .. zathuraThemeFile
+				local target = zathuraConfigDir .. "/" .. (themeToZathura[name] or "t-rosepinedawn")
+				vim.fn.filecopy(target, link)
 			end
 		end)
 	end)

@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
-_G.pdfReader = "sioyek"
+_G.pdfReader = "zathura"
 _G.webBrowser = "firefox"
 
 vim.opt.clipboard = "unnamedplus"
@@ -131,14 +131,14 @@ end, { range = true })
 
 if vim.g.neovide then
 	-- require('neov-ime').setup()
-	vim.o.guifont = "iosevkaterm NFM, courier prime code, Comic Code:h23"
+	vim.o.guifont = "courier prime code, Comic Code:h23"
 
 	vim.g.neovide_refresh_rate = 144
 	vim.g.neovide_refresh_rate_idle = 10
 
-	vim.g.neovide_scroll_animation_far_lines = 0
-
 	vim.g.neovide_cursor_animation_length = 0
+	vim.g.neovide_scroll_animation_length = 0
+	vim.g.neovide_scroll_animation_far_lines = 0
 	vim.g.neovide_cursor_short_animation_length = 0
 	vim.g.neovide_cursor_animate_in_insert_mode = false
 	vim.g.neovide_cursor_animate_command_line = false
