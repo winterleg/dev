@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-# ~/.config/polybar/launch.sh &
+~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
 
-# i3bar &
-# fcitx5 &
 blueman-applet &
 ckb-next-daemon &
 dunst &
@@ -14,16 +12,19 @@ udiskie --tray &
 gnome-keyring-daemon --start --components=secrets &
 systemctl --user enable --now opentabletdriver.service &
 systemctl enable --now auto-cpufreq.service &
-nitrogen --restore &
 fastcompmgr -m 1 -C -i 0.86 -e 1 -D 0 &
 unclutter --timeout 15 &
 gammastep -m randr -l 46.3:-72.5 &
 greenclip daemon &
-
-
-setxkbmap ca &
-setxkbmap -layout ca &
-xset r rate 225 100 &
-xset s off &
 xautolock -time 5 -locker "i3lock -c 191724" &
-xset dpms 6000 6000 6000 &
+
+
+setxkbmap ca
+setxkbmap -layout ca
+xset r rate 225 100
+xset s off
+xset dpms 6000 6000 6000
+
+sleep 2
+
+nitrogen --restore

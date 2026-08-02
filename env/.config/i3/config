@@ -162,26 +162,26 @@ workspace 8   output HDMI-0
 workspace 9   output HDMI-0
 workspace 10  output DP-4
 
-bar {
-	status_command /home/fuyu147/.config/i3status/i3status_wrapper.py
-
-	position bottom
-	mode dock
-
-	tray_output primary
-	tray_padding 4
-
-	separator_symbol " │ "
-
-	colors {
-		background #191724
-		statusline #e0def4
-		separator  #26233a
-
-		focused_workspace  #31748f #31748f #e0def4
-		active_workspace   #1f1d2e #1f1d2e #e0def4
-		inactive_workspace #191724 #191724 #908caa
-		urgent_workspace   #26233a #eb6f92 #e0def4
-		binding_mode       #26233a #eb6f92 #e0def4
-	}
-}
+# bar {
+# 	status_command /home/fuyu147/.config/i3status/i3status_wrapper.py
+#
+# 	position bottom
+# 	mode dock
+#
+# 	tray_output primary
+# 	tray_padding 4
+#
+# 	separator_symbol " │ "
+#
+# 	colors {
+# 		background #191724
+# 		statusline #e0def4
+# 		separator  #26233a
+#
+# 		focused_workspace  #31748f #31748f #e0def4
+# 		active_workspace   #1f1d2e #1f1d2e #e0def4
+# 		inactive_workspace #191724 #191724 #908caa
+# 		urgent_workspace   #26233a #eb6f92 #e0def4
+# 		binding_mode       #26233a #eb6f92 #e0def4
+# 	}
+# }
