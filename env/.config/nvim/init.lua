@@ -8,7 +8,6 @@ require "citron.set-colors"
 require "citron.settings"
 require "citron.filetypes"
 require "citron.statusbar"
--- require "citron.findfile"
--- require "colors.bloodvoid"
+require "citron.findfile"
 
 

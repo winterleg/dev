@@ -4,7 +4,7 @@ import = [
 ]
 
 [window]
-opacity = 0
+opacity = 1
 dynamic_padding = true
 
 
@@ -12,8 +12,9 @@ dynamic_padding = true
 cursor = "#EC5D2A"
 
 [font]
-#normal = { family = "comic code" }
-normal = { family = "courier prime" }
+# normal = { family = "comic code" }
+# normal = { family = "courier prime" }
+normal = { family = "perfect dos vga 437 win" }
 size = 20
 
 [keyboard]

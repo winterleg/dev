@@ -233,6 +233,18 @@ local colorsList = {
 			save_theme "CENDRE"
 		end,
 	},
+	{
+		name = "DOS",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme modern-borland]]
+
+			fix_visual()
+
+			save_theme "DOS"
+		end,
+	},
 }
 
 local themes = {}

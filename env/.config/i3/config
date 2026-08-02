@@ -11,8 +11,8 @@ focus_on_window_activation	none
 
 default_border pixel 0
 
-gaps inner 10
-gaps outer 15
+gaps inner 2
+gaps outer 5
 
 client.focused			#191724 #31748f #e0def4 #eb6f92 #31748f
 client.focused_inactive		#1f1d2e #403d52 #e0def4 #191724 #403d52
@@ -43,7 +43,7 @@ bindsym $mod+Ctrl+v		exec --no-startup-id \
 					| rofi -dmenu -p "Clipboard" \
 					| xclip -selection clipboard
 bindsym $mod+q			exec --no-startup-id helium-browser
-bindsym $mod+Return		exec --no-startup-id alacritty -e nvim # neovide
+bindsym $mod+Return		exec --no-startup-id neovide
 bindsym $mod+Shift+Return	exec --no-startup-id kitty # alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
 bindsym $mod+w			exec --no-startup-id firefox
 bindsym $mod+Shift+w		exec --no-startup-id thunderbird

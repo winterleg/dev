@@ -1,8 +1,8 @@
 ---@diagnostic disable: undefined-global
 vim.pack.add {
-	{ src = "https://github.com/vague-theme/vague.nvim",  opts = { transparent = false } },
-	{ src = "https://github.com/catppuccin/nvim",         name = "catppuccin",                                           priority = 1000 },
-	{ src = "https://github.com/rose-pine/neovim",        name = "rose-pine", },
+	{ src = "https://github.com/vague-theme/vague.nvim", opts = { transparent = false } },
+	{ src = "https://github.com/catppuccin/nvim",        name = "catppuccin",           priority = 1000 },
+	{ src = "https://github.com/rose-pine/neovim",       name = "rose-pine", },
 	{ src = "https://github.com/Aejkatappaja/cendre" },
 	{
 		src = "https://github.com/ellisonleao/gruvbox.nvim",
@@ -29,7 +29,10 @@ vim.pack.add {
 	},
 	{ src = "https://github.com/kungfusheep/mfd.nvim" },
 	{ src = "https://github.com/projekt0n/github-nvim-theme" },
+	{ src = "https://github.com/letorbi/vim-colors-modern-borland" },
 }
+
+vim.g.BorlandStyle = "classic"
 
 require('vague').setup {
 	transparent = false, -- If true, background is not set

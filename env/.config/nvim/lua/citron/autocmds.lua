@@ -56,47 +56,47 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 	end,
 })
 
--- -- に触発された：https://swnakamura.github.io/posts/vim-japanese-input/
--- --
--- -- InsertLeave時に時間の除隊を記録し、InsertEnter時にその状態に切り替える
+-- に触発された：https://swnakamura.github.io/posts/vim-japanese-input/
 --
--- local function fcitx_running()
--- 	if vim.fn.executable("fcitx5-remote") == 0 then
--- 		return false
--- 	end
---
--- 	local ok, result = pcall(function()
--- 		return vim.system({ "fcitx5-remote" }):wait()
--- 	end)
---
--- 	return ok and result.code ~= 255
--- end
---
--- if fcitx_running() then
--- 	local last_ime = ""
---
--- 	autocmd("InsertLeave", {
--- 		group = citronGroup,
--- 		callback = function()
--- 			local result = vim.system({ "fcitx5-remote", "-n" }):wait()
---
--- 			if result.code == 0 and result.stdout then
--- 				last_ime = vim.trim(result.stdout)
--- 			end
---
--- 			vim.system({ "fcitx5-remote", "-c" })
--- 		end,
--- 	})
---
--- 	autocmd("InsertEnter", {
--- 		group = citronGroup,
--- 		callback = function()
--- 			if last_ime ~= "" then
--- 				vim.system({ "fcitx5-remote", "-s", last_ime })
--- 			end
--- 		end,
--- 	})
--- end
+-- InsertLeave時に時間の除隊を記録し、InsertEnter時にその状態に切り替える
+
+local function fcitx_running()
+	if vim.fn.executable("fcitx5-remote") == 0 then
+		return false
+	end
+
+	local ok, result = pcall(function()
+		return vim.system({ "fcitx5-remote" }):wait()
+	end)
+
+	return ok and result.code ~= 255
+end
+
+if fcitx_running() then
+	local last_ime = ""
+
+	autocmd("InsertLeave", {
+		group = citronGroup,
+		callback = function()
+			local result = vim.system({ "fcitx5-remote", "-n" }):wait()
+
+			if result.code == 0 and result.stdout then
+				last_ime = vim.trim(result.stdout)
+			end
+
+			vim.system({ "fcitx5-remote", "-c" })
+		end,
+	})
+
+	autocmd("InsertEnter", {
+		group = citronGroup,
+		callback = function()
+			if last_ime ~= "" then
+				vim.system({ "fcitx5-remote", "-s", last_ime })
+			end
+		end,
+	})
+end
 
 autocmd('LspAttach', {
 	group = citronGroup,

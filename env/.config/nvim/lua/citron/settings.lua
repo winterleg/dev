@@ -130,8 +130,8 @@ vim.api.nvim_create_user_command("UWU", function(opts)
 end, { range = true })
 
 if vim.g.neovide then
-	-- require('neov-ime').setup()
-	vim.o.guifont = "courier prime code, Comic Code:h23"
+	require('neov-ime').setup()
+	vim.o.guifont = "perfect dos vga 437 win, courier prime code, Comic Code:h23"
 
 	vim.g.neovide_refresh_rate = 144
 	vim.g.neovide_refresh_rate_idle = 10
