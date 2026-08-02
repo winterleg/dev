@@ -19,11 +19,28 @@ local themeToZathura = {
 
 local current_name = nil
 
+local saved_bg = nil
+local saved_fg = nil
+
 local function fix_visual()
 	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
 	if normal.fg and normal.bg then
 		vim.api.nvim_set_hl(0, "Visual", { fg = normal.bg, bg = normal.fg })
 	end
+end
+
+local function toggle_black_bg()
+	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+	if saved_bg == nil then
+		saved_bg = normal.bg
+		saved_fg = normal.fg
+		vim.api.nvim_set_hl(0, "Normal", { fg = normal.fg, bg = "#000000" })
+	else
+		vim.api.nvim_set_hl(0, "Normal", { fg = saved_fg, bg = saved_bg })
+		saved_bg = nil
+		saved_fg = nil
+	end
+	fix_visual()
 end
 
 local function unset_under()
@@ -56,6 +73,9 @@ local function unset_under()
 end
 
 local function save_theme(name)
+	saved_bg = nil
+	saved_fg = nil
+
 	unset_under()
 
 	if vim.o.background == "dark" then
@@ -148,6 +168,18 @@ local colorsList = {
 			fix_visual()
 
 			save_theme "Dawn"
+		end,
+	},
+	{
+		name = "SURTR",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme surtr]]
+
+			fix_visual()
+
+			save_theme "SURTR"
 		end,
 	},
 	{
@@ -299,3 +331,5 @@ local function pick_theme()
 end
 
 vim.keymap.set("n", "<leader>kt", pick_theme, { desc = "Pick theme" })
+
+vim.keymap.set("n", "<leader>kb", toggle_black_bg, { desc = "Toggle black background" })
