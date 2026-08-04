@@ -1,29 +1,24 @@
-set default-bg                  "#191724"
-set default-fg                  "#e0def4"
+# Cendre — one palette, three background depths. Hard depth.
+set default-bg            "#0f0c0a"
+set default-fg            "#e6d5c2"
 
-set statusbar-fg                "#e0def4"
-set statusbar-bg                "#555169"
+set statusbar-bg          "#171311"
+set statusbar-fg          "#e6d5c2"
 
-set inputbar-bg                 "#6e6a86"
-set inputbar-fg                 "#ebbcba"
+set inputbar-bg           "#171311"
+set inputbar-fg           "#e6d5c2"
 
-set notification-bg             "#e0def4"
-set notification-fg             "#555169"
+set notification-bg       "#171311"
+set notification-fg       "#e6d5c2"
 
-set notification-error-bg       "#f6c177"
-set notification-error-fg       "#555169"
+set index-bg              "#171311"
+set index-fg              "#e6d5c2"
 
-set notification-warning-bg     "#ebbcba"
-set notification-warning-fg     "#555169"
+set highlight-color       "#fcba81"
+set highlight-active-color "#ea9875"
 
-set highlight-color             "rgba(0xeb, 0xbc, 0xba, 0.5)"
-set highlight-active-color      "rgba(0xeb, 0x6f, 0x92, 0.5)"
+set recolor-darkcolor     "#e6d5c2"
+set recolor-lightcolor    "#171311"
 
-set completion-bg               "#6e6a86"
-set completion-fg               "#ebbcba"
-
-set completion-highlight-fg     "#26233a"
-set completion-highlight-bg     "#ebbcba"
-
-set recolor-lightcolor          "#191724"
-set recolor-darkcolor           "#e0def4"
+set selection-bg          "#2f1e17"
+set selection-fg          "#e6d5c2"

@@ -1,0 +1,312 @@
+/*
+ * @name        IRC
+ * @author      Kylie McClain
+ * @version     0.1
+ * @description it looks like IRC
+ * @website     https://somas.is
+ * @source      https://git.mutiny.red/somasis/discord-theme-irc
+ * @updateUrl   https://github.com/somasis/discord-theme-irc/raw/main/irc.css
+ */
+
+/* make more native-ish */
+:root {
+    /* Provide a better monospace fallback. */
+    --font-code: monospace;
+}
+
+.tooltip-14MtrL {
+    /* Allow tooltips to be a little longer to account for possible
+       system font size differences. */
+    max-width: 16rem;
+}
+
+.textArea-2CLwUE,
+.after_inlineCode-WydEur,
+.before_inlineCode-xn8Llh,
+.inlineCode-2auMQi,
+.markup-eYLPri pre,
+.markup-eYLPri code,
+.codeBlockText-311wOq,
+.codeLine-3a3dbd,
+.textContainer-36wgKK code {
+    /* Enlarge monospaced fonts to match the sans-serif.
+       Use monospace for the conversation view and text entry. */
+    font-family: var(--font-code) !important;
+    font-size: 1rem !important;
+}
+
+/* IRC styling */
+.chat-2ZfjoI .compact-2Nkcau,
+.form-3gdLxP,
+.title-31SJ6t div,
+.title-31SJ6t div > h3,
+.searchBar-3TnChZ button {
+    /* Monospace chat font. */
+    font-family: var(--font-code) !important;
+}
+
+.chat-2ZfjoI .compact-2Nkcau .markup-eYLPri code.inline {
+    /* Don't allow `code` elements to overstep the boundaries of a line. */
+    padding: 0.05rem 0.2rem;
+}
+
+.compact-2Nkcau .username-h_Y3Us::before,
+.compact-2Nkcau .compact-3bMNvi .anchor-1MIwyf:first-child::before {
+    /* IRC-style username display. */
+    content: "<";
+}
+
+.compact-2Nkcau .username-h_Y3Us::after,
+.compact-2Nkcau .compact-3bMNvi .anchor-1MIwyf:first-child::after {
+    content: ">";
+}
+
+/* align things more compactly */
+.compact-2Nkcau .attachButton-_ACFSu {
+    /* Ensure attach button is 1rem from sidebar.
+       We want to align all the text in the conversation view to its left edge. */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.compact-2Nkcau .repliedMessage-3Z6XBG {
+    /* Align message replies with <usernames>. */
+    padding-left: 0 !important;
+    margin-left: 0.55rem !important;
+    text-indent: 0 !important;
+}
+
+.compact-2Nkcau .contents-2MsGLg {
+    /* Align text-wrap with start of usernames.
+       FIXME: why on earth are these numbers so specific? */
+    margin-left: -4.4rem !important;
+    padding-left: 4.95rem !important;
+    text-indent: -4.6rem !important;
+}
+
+.compact-2Nkcau .container-2sjPya {
+    /* Align extras (attachments, buttons, embeds, images, etc.) with <usernames> . */
+    padding-left: 0.55rem;
+    font-size: 1rem;
+    padding-bottom: 0;
+}
+
+.compact-3bMNvi.container-x059i8 .iconContainer-2rPbqG {
+    /* Align join message icons with timestamps */
+    margin-left: 0;
+    margin-right: 0.5rem;
+    padding: 0;
+    padding-left: 1rem;
+    vertical-align: middle;
+}
+
+.blockedSystemMessage-3FmE9n.container-x059i8.compact-3bMNvi
+    .iconContainer-2rPbqG
+    > svg.blockedIcon-cd-3B7 {
+    /* Remove blocked message icon. */
+    display: none;
+}
+
+.blockedSystemMessage-3FmE9n.container-x059i8.compact-3bMNvi .content-vSHmMD {
+    /* Align blocked message text with messages. */
+    margin-left: 1.05rem;
+
+    /* Make less visible. */
+    opacity: 0.25;
+}
+
+.blockedSystemMessage-3FmE9n.container-x059i8.compact-3bMNvi .content-vSHmMD:hover,
+.blockedSystemMessage-3FmE9n.container-x059i8.compact-3bMNvi .content-vSHmMD:focus,
+.blockedSystemMessage-3FmE9n.container-x059i8.compact-3bMNvi .content-vSHmMD:active,
+.groupStart-3Mlgv1.expanded-3lghlw
+    .compact-2Nkcau
+    .blockedSystemMessage-3FmE9n
+    .container-x059i8
+    .content-vSHmMD {
+    opacity: 1 !important;
+}
+
+/* conversation view */
+.group-spacing-0 .groupStart-3Mlgv1 {
+    /* Remove un-customizable message spacing. */
+    margin-top: 0rem;
+}
+
+.compact-2Nkcau.wrapper-30-Nkg {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.edited-1v5nT8 {
+    font-size: 1rem !important;
+}
+
+.compact-2Nkcau .header-2jRmjb .timestamp-p1Df1m {
+    /* Make timestamp font same size as message text. */
+    font-size: 1rem !important;
+    width: 4rem;
+    /* margin: 0 !important; */
+    margin-right: 0.65rem !important;
+    text-align: right;
+}
+
+.compact-2Nkcau .header-2jRmjb .timestampVisibleOnHover-9PEuZS {
+    /* Always show timestamps. */
+    opacity: 1 !important;
+}
+
+.compact-2Nkcau .messageContent-2t3eCI .emoji.jumboable {
+    /* Jumbo emojis in compact mode */
+    width: 3rem;
+    height: 3rem;
+    min-height: 3rem;
+    vertical-align: text-top;
+}
+
+.divider-IqmEqJ {
+    /* Make unread divider full length of conversation view. */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.unreadPill-3nEWYM {
+    /* Minimal unread divider (remove "NEW"). */
+    display: none;
+}
+
+.markup-eYLPri code,
+.codeView-12LUIl {
+    line-height: 1.25;
+}
+
+.welcomeCTA-3GMMRK {
+    /* Make welcome messages flush with bottom of conversation view. */
+    margin-bottom: 0;
+}
+
+.systemMessage-1H1Z20 {
+    /* Fix system message appearance. */
+    min-height: 22px;
+}
+
+.container-x059i8 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.barBase-3xxDXu {
+    /* Make bar flush with text entry. */
+    left: 0px;
+    padding-left: 1rem;
+    padding-right: 0.75rem;
+}
+
+.barButtonBase-Sk2mdB {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* conversation text entry styling */
+.form-3gdLxP {
+    /* Make it blend into the conversation view, as though typing into a terminal. */
+    padding: 0;
+    background: var(--background-primary);
+    margin-top: -12px !important;
+}
+
+.scrollableContainer-15eg7h {
+    background: var(--background-primary);
+}
+
+.form-3gdLxP .inner-NQg18Y {
+    /* Vertically center-align text area contents. */
+    margin: 0;
+    margin-top: 4.5px;
+    margin-bottom: 4.5px;
+}
+
+.form-3gdLxP .channelTextArea-1FufC0 {
+    margin-bottom: 0;
+}
+
+.wrapper-2SplAX {
+    margin-bottom: 0;
+    height: 1.5rem;
+}
+
+/*.scrollerInner-2PPAp2 .messageListItem-ZZ7v6g + .messageListItem-ZZ7v6g:last-of-type {
+    margin-bottom: -12px;
+}
+*/
+.scroller-kQBbkU {
+    /* Adjust scroller padding appropriately. */
+    margin-bottom: 0;
+}
+
+.scrollerSpacer-3AqkT9 {
+    height: 0.75rem;
+}
+
+.typing-2J1mQU,
+.applicationCommandEducationPrompt-23S3d-,
+.applicationCommandEducation-2jAJ0B {
+    /* Compact typing indicator. */
+    margin-left: -0.125rem;
+    margin-bottom: -0.3rem;
+    font-size: 0.65rem;
+}
+
+.ellipsis-1e7x0D {
+    display: none !important;
+}
+
+.applicationCommandEducationArrow-2xKDmq {
+    /* Shrink the slash command tip text */
+    margin-left: 10px;
+    margin-bottom: -4px;
+}
+
+/* conversation view > message styling */
+.repliedMessage-3Z6XBG:before,
+.replyBadge-LMm_Ic {
+    /* Hide reply badges, and the connecting line, as we signify replies with colors and
+       the text style is unusual enough anyway to be obvious. */
+    display: none !important;
+}
+
+.message-2CShn3:hover {
+    /* Brighten messages on hover */
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.message-2CShn3.mentioned-Tre-dv:hover {
+    /* Color-code mention, brighten on hover. */
+    background-color: rgba(250, 166, 26, 0.1);
+}
+
+.message-2CShn3.hasReply-2Cr4KE {
+    /* Color-code reply, brighten on hover. */
+    background-color: rgba(114, 137, 218, 0.05);
+}
+
+.message-2CShn3.hasReply-2Cr4KE:hover {
+    background-color: rgba(114, 137, 218, 0.1);
+}
+
+.message-2CShn3.hasReply-2Cr4KE.mentioned-Tre-dv {
+    /* Color-code reply+mention, brighten on hover. */
+    background-color: rgba(250, 166, 26, 0.05);
+}
+
+.message-2CShn3.hasReply-2Cr4KE.mentioned-Tre-dv:hover {
+    background-color: rgba(250, 166, 26, 0.1);
+}
+
+.message-2CShn3.isSystemMessage-QNv9ZH {
+    /* Color-code reply, brighten on hover. */
+    background-color: rgba(214, 237, 118, 0.05);
+}
+
+.message-2CShn3.isSystemMessage-QNv9ZH:hover {
+    background-color: rgba(214, 237, 118, 0.1);
+}
