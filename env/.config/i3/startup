@@ -25,6 +25,6 @@ xset r rate 225 100
 xset s off
 xset dpms 6000 6000 6000
 
-sleep 2
+sleep 1
 
 nitrogen --restore

@@ -54,8 +54,7 @@ local mappings = {
 	{ "n", "<ESC>",      "<CMD>noh<CR>" },
 	{ "n", "<leader>pf", ":FilesNoPDF<CR>", { desc = "Open fzf (no PDFs)" } },
 	{ "n", "<C-f>",      ":FilesNoPDF<CR>", { desc = "Open fzf (no PDFs)" } },
-	{ "n", "<leader>sk",  ":term make<CR>",      { desc = "Call make" } },
-	{ "n", "<leader>k", function()
+	{ "n", "<leader>sk", function()
 		vim.cmd('split | term make')
 		vim.cmd('startinsert')
 	end, { desc = "Call make in split" } },

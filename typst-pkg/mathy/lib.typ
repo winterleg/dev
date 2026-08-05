@@ -2,6 +2,7 @@
 #let pfunc = $℘$
 
 #let num = [\#]
+#let dollar = [\$]
 #let s = h(1em)
 #let vec(body) = $arrow(body)$
 #let dream(body) = block(width: 100%, body)
