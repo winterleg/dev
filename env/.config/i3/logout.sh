@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 # After locking/suspend, xautolock locks after the set amount of time
 # if no inputs, which is not nice when watching a video or something.
 # Restarting it brings it back to default behaviour where it won't lock
@@ -23,6 +22,7 @@ Shutdown"
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
 if [[ "$selection" == "Lock & Screen Off" ]]; then
+	sudo tlp power-saver
 	i3lock -c 191724
 	xset dpms force off
 elif [[ "$selection" == "Lock & Suspend" ]]; then
