@@ -1,5 +1,6 @@
-set $mod Mod4
-floating_modifier $mod
+set $super Mod4
+set $alt Mod1
+floating_modifier $super
 
 exec --no-startup-id ~/.config/i3/startup
 
@@ -21,103 +22,104 @@ client.unfocused		#191724 #26233a #908caa #191724 #191724
 client.urgent			#191724 #26233a #908caa #191724 #191724
 
 # WM
-bindsym $mod+c			kill
-bindsym $mod+F8			exit
-bindsym $mod+Shift+q		reload
-bindsym $mod+Escape		exec --no-startup-id i3lock -c 191724
-bindsym $mod+F9			exec --no-startup-id ~/.config/i3/logout.sh
-bindsym $mod+v			floating toggle
-bindsym $mod+f			fullscreen
-bindsym $mod+Shift+p		move container to output right
-bindsym $mod+F12		exec --no-startup-id dunstctl history-pop
+bindsym $super+c			kill
+bindsym $super+F8			exit
+bindsym $super+Shift+q		reload
+bindsym $super+Escape		exec --no-startup-id i3lock -c 191724
+bindsym $super+F9			exec --no-startup-id ~/.config/i3/logout.sh
+bindsym $super+v			floating toggle
+bindsym $super+f			fullscreen
+bindsym $super+Shift+p		move container to output right
+bindsym $super+F12		exec --no-startup-id dunstctl history-pop
 
-bindsym $mod+j			layout tabbed
-bindsym $mod+Shift+j		layout stacking
-bindsym $mod+l			layout toggle split
-bindsym $mod+y			split horizontal
-bindsym $mod+u			split vertical
+bindsym $super+j			layout tabbed
+bindsym $super+Shift+j		layout stacking
+bindsym $super+l			layout toggle split
+bindsym $super+y			split horizontal
+bindsym $super+u			split vertical
 
 # Apps/Scripts
-bindsym $mod+Ctrl+v		exec --no-startup-id \
+bindsym $super+Ctrl+v		exec --no-startup-id \
 					greenclip print \
 					| rofi -dmenu -p "Clipboard" \
 					| xclip -selection clipboard
-bindsym $mod+q			exec --no-startup-id helium-browser
-bindsym $mod+Return		exec --no-startup-id neovide
-bindsym $mod+Shift+Return	exec --no-startup-id kitty # alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
-bindsym $mod+w			exec --no-startup-id firefox
-bindsym $mod+Shift+w		exec --no-startup-id thunderbird
-# bindsym $mod+r			exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
-bindsym $mod+r			exec --no-startup-id rofi -show drun -no-fixed-num-lines
-bindsym $mod+Shift+r		exec --no-startup-id dmenu_run
-bindsym $mod+semicolon		exec --no-startup-id ~/.config/i3/WallpaperSelect.sh
-bindsym $mod+Shift+f		exec --no-startup-id pcmanfm
-bindsym $mod+s			exec --no-startup-id spectacle -i
+bindsym $super+q			exec --no-startup-id helium-browser
+bindsym $super+Return		exec --no-startup-id neovide
+bindsym $super+Shift+Return	exec --no-startup-id kitty # alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
+bindsym $super+w			exec --no-startup-id firefox
+bindsym $super+Shift+w		exec --no-startup-id thunderbird
+# bindsym $super+r			exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
+bindsym $super+r			exec --no-startup-id rofi -show drun -no-fixed-num-lines
+bindsym $super+Shift+r		exec --no-startup-id dmenu_run
+bindsym $super+semicolon		exec --no-startup-id ~/.config/i3/WallpaperSelect.sh
+bindsym $super+Shift+f		exec --no-startup-id pcmanfm
+bindsym $super+s			exec --no-startup-id spectacle -i
 bindsym Print			exec --no-startup-id spectacle -f
-bindsym $mod+Shift+s		exec --no-startup-id spectacle -i
-bindsym $mod+Shift+c		exec --no-startup-id xcolor | xclip -selection clipboard
-bindsym $mod+period		exec --no-startup-id rofi -modi emoji -show emoji -no-fixed-num-lines
-bindsym $mod+minus		exec --no-startup-id ~/dotfiles/scripts/tts-neovide
-bindsym $mod+k			exec --no-startup-id alacritty -e rmpc
-bindsym $mod+b			exec --no-startup-id pkill polybar || ~/.config/polybar/launch.sh
+bindsym $super+Shift+s		exec --no-startup-id spectacle -i
+bindsym $super+Shift+c		exec --no-startup-id xcolor | xclip -selection clipboard
+bindsym $super+period		exec --no-startup-id rofi -modi emoji -show emoji -no-fixed-num-lines
+bindsym $super+minus		exec --no-startup-id ~/dotfiles/scripts/tts-neovide
+bindsym $super+k			exec --no-startup-id alacritty -e rmpc
+bindsym $super+b			exec --no-startup-id pkill polybar || ~/.config/polybar/launch.sh
 
-bindsym $mod+Tab		workspace back_and_forth
-bindsym $mod+p			exec --no-startup-id rofi -show window
+bindsym $super+Tab		workspace back_and_forth
+bindsym $super+p			exec --no-startup-id rofi -show window
+bindsym $alt+Tab		exec ~/.config/i3/i3-cycle-focus.py --switch
 
-bindsym $mod+slash		workspace 1
-bindsym $mod+parenleft		workspace 2
-bindsym $mod+bracketleft	workspace 3
-bindsym $mod+braceleft		workspace 4
-bindsym $mod+apostrophe		workspace 5
-bindsym $mod+dollar		workspace 6
-bindsym $mod+exclam		workspace 7
-bindsym $mod+braceright		workspace 8
-bindsym $mod+bracketright	workspace 9
-bindsym $mod+parenright		workspace 10
+bindsym $super+slash		workspace 1
+bindsym $super+parenleft		workspace 2
+bindsym $super+bracketleft	workspace 3
+bindsym $super+braceleft		workspace 4
+bindsym $super+apostrophe		workspace 5
+bindsym $super+dollar		workspace 6
+bindsym $super+exclam		workspace 7
+bindsym $super+braceright		workspace 8
+bindsym $super+bracketright	workspace 9
+bindsym $super+parenright		workspace 10
 
-bindsym $mod+Shift+slash	move container to workspace 1;  workspace 1
-bindsym $mod+Shift+parenleft	move container to workspace 2;  workspace 2
-bindsym $mod+Shift+bracketleft	move container to workspace 3;  workspace 3
-bindsym $mod+Shift+braceleft	move container to workspace 4;  workspace 4
-bindsym $mod+Shift+apostrophe	move container to workspace 5;  workspace 5
-bindsym $mod+Shift+dollar	move container to workspace 6;  workspace 6
-bindsym $mod+Shift+exclam	move container to workspace 7;  workspace 7
-bindsym $mod+Shift+braceright	move container to workspace 8;  workspace 8
-bindsym $mod+Shift+bracketright	move container to workspace 9;  workspace 9
-bindsym $mod+Shift+parenright	move container to workspace 10; workspace 10
+bindsym $super+Shift+slash	move container to workspace 1;  workspace 1
+bindsym $super+Shift+parenleft	move container to workspace 2;  workspace 2
+bindsym $super+Shift+bracketleft	move container to workspace 3;  workspace 3
+bindsym $super+Shift+braceleft	move container to workspace 4;  workspace 4
+bindsym $super+Shift+apostrophe	move container to workspace 5;  workspace 5
+bindsym $super+Shift+dollar	move container to workspace 6;  workspace 6
+bindsym $super+Shift+exclam	move container to workspace 7;  workspace 7
+bindsym $super+Shift+braceright	move container to workspace 8;  workspace 8
+bindsym $super+Shift+bracketright	move container to workspace 9;  workspace 9
+bindsym $super+Shift+parenright	move container to workspace 10; workspace 10
 
-bindsym --whole-window $mod+button4 workspace prev
-bindsym --whole-window $mod+button5 workspace next
+bindsym --whole-window $super+button4 workspace prev
+bindsym --whole-window $super+button5 workspace next
 
-bindsym $mod+Left   workspace prev
-bindsym $mod+Right  workspace next
+bindsym $super+Left   workspace prev
+bindsym $super+Right  workspace next
 
-bindsym $mod+Ctrl+Left    workspace prev
-bindsym $mod+Ctrl+Right   workspace next
-bindsym $mod+Shift+Left   move container to workspace prev
-bindsym $mod+Shift+Right  move container to workspace next
+bindsym $super+Ctrl+Left    workspace prev
+bindsym $super+Ctrl+Right   workspace next
+bindsym $super+Shift+Left   move container to workspace prev
+bindsym $super+Shift+Right  move container to workspace next
 
 # Window
-bindsym $mod+h focus left
-bindsym $mod+i focus right
-bindsym $mod+e focus up
-bindsym $mod+n focus down
+bindsym $super+h focus left
+bindsym $super+i focus right
+bindsym $super+e focus up
+bindsym $super+n focus down
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+n move down
-bindsym $mod+Shift+e move up
-bindsym $mod+Shift+i move right
+bindsym $super+Shift+h move left
+bindsym $super+Shift+n move down
+bindsym $super+Shift+e move up
+bindsym $super+Shift+i move right
 
-bindsym $mod+Shift+k resize shrink height 20 px
-bindsym $mod+Shift+m resize grow height 20 px
+bindsym $super+Shift+k resize shrink height 20 px
+bindsym $super+Shift+m resize grow height 20 px
 
-bindsym $mod+button1 move
-bindsym $mod+button3 resize
+bindsym $super+button1 move
+bindsym $super+button3 resize
 
 # Sound and brightness
 bindsym XF86AudioRaiseVolume  exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && ~/.config/i3/volume-dunst.sh
 bindsym XF86AudioLowerVolume  exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && ~/.config/i3/volume-dunst.sh
-bindsym $mod+m                exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/i3/volume-dunst.sh
+bindsym $super+m                exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/i3/volume-dunst.sh
 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -e s 2%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -e s 2%-
@@ -128,8 +130,8 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPlay  exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
 bindsym XF86AudioMute  exec --no-startup-id playerctl play-pause
-bindsym $mod+Page_Up   exec --no-startup-id pavucontrol
-bindsym $mod+Page_Down exec --no-startup-id blueman-manager
+bindsym $super+Page_Up   exec --no-startup-id pavucontrol
+bindsym $super+Page_Down exec --no-startup-id blueman-manager
 
 # Window rules
 for_window [class="steam_app_1551360"] floating enable

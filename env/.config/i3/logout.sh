@@ -1,23 +1,28 @@
 #!/usr/bin/env bash
 
+
+# After locking/suspend, xautolock locks after the set amount of time
+# if no inputs, which is not nice when watching a video or something.
+# Restarting it brings it back to default behaviour where it won't lock
+# when watching something.
 pkill xautolock
 
 (
 	while xset q | grep -q "Monitor is Off"; do
-		sleep 1
+		sleep 30
 	done
 
 	xautolock -time 5 -locker "i3lock -c 191724" &
 ) &
 
-options="Lock & DPMS
+options="Lock & Screen Off
 Lock & Suspend
 Suspend
 Shutdown"
 
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
-if [[ "$selection" == "Lock & DPMS" ]]; then
+if [[ "$selection" == "Lock & Screen Off" ]]; then
 	i3lock -c 191724
 	xset dpms force off
 elif [[ "$selection" == "Lock & Suspend" ]]; then

@@ -2,6 +2,7 @@
 
 ~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
+~/.config/i3/i3-cycle-focus.py --history 2 &
 
 blueman-applet &
 ckb-next-daemon &

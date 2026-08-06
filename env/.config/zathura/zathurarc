@@ -1,6 +1,6 @@
 # c-n to toggle statusbar
 
-include			t-nvim-imported
+include			t-cendre
 
 map	=		zoom in
 map 	r 		recolor
