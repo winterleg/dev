@@ -4,18 +4,27 @@
     "output": "HDMI-A-1",
     "exclusive": true,
     "modules-left": [
+        "sway/workspaces",
+        "custom/sep",
+        "custom/net_down",
+        "custom/sep",
+        "custom/net_up"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+        "custom/qbt_down",
+        "custom/sep",
+        "custom/qbt_up",
+        "custom/sep",
         "battery",
         "custom/sep",
         "memory",
         "custom/sep",
         "cpu",
         "custom/sep",
-        "sway/workspaces"
-    ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
+        "clock",
+        "custom/sep",
         "tray"
     ],
     "sway/workspaces": {
@@ -30,5 +39,29 @@
     "clock": {
         "tooltip": true,
         "format": "{:%Y.%m.%d %H:%M}"
+    },
+    "custom/net_down": {
+        "exec": "python3 /home/fuyu147/.config/i3status/net_speed.py --one down",
+        "interval": 2,
+        "format": "↓↓ {}",
+        "tooltip": false
+    },
+    "custom/net_up": {
+        "exec": "python3 /home/fuyu147/.config/i3status/net_speed.py --one up",
+        "interval": 2,
+        "format": "↑↑ {}",
+        "tooltip": false
+    },
+    "custom/qbt_down": {
+        "exec": "python3 /home/fuyu147/.config/i3status/qbt_upload.py --one down",
+        "interval": 2,
+        "format": "↓ {}",
+        "tooltip": false
+    },
+    "custom/qbt_up": {
+        "exec": "python3 /home/fuyu147/.config/i3status/qbt_upload.py --one up",
+        "interval": 2,
+        "format": "↑ {}",
+        "tooltip": false
     }
 }

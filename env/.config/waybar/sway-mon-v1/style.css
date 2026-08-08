@@ -2,7 +2,7 @@
 
 * {
     border: none;
-    font-family: "Courier Prime Code", "Noto Sans CJK JP";
+    font-family: "Courier Prime", "Comic Code", "Noto Sans CJK JP";
     font-size: 16pt;
     background: @surface;
 }
@@ -47,6 +47,16 @@ tooltip * {
 #custom-sep {
     color: @outline_variant;
     margin: 0;
+}
+
+#custom-net_down,
+#custom-qbt_down {
+    color: @primary;
+}
+
+#custom-net_up,
+#custom-qbt_up {
+    color: @tertiary;
 }
 
 #workspaces button {

@@ -21,7 +21,7 @@ input type:pointer {
 }
 
 input type:keyboard {
-  repeat_delay 250
+  repeat_delay 200
   repeat_rate 50
 }
 
@@ -36,7 +36,10 @@ seat * {
   hide_cursor 15000
 }
 
-default_border pixel 2
+default_border pixel none
+smart_gaps off
+gaps inner 10
+gaps outer 5
 hide_edge_borders --i3 none
 
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
@@ -44,13 +47,6 @@ client.focused_inactive   #1f1d2e #403d52 #e0def4 #191724 #403d52
 client.focused_tab_title  #1f1d2e #403d52 #e0def4
 client.unfocused          #191724 #26233a #908caa #191724 #191724
 client.urgent             #191724 #26233a #908caa #191724 #191724
-
-smart_gaps off
-
-workspace_layout tabbed
-
-gaps inner 0
-gaps outer 0
 
 # # this is an attempt at replicates what i had with keyd, can't use
 # # caps for escape in games though, so i can't use this yet
