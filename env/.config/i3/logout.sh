@@ -12,12 +12,14 @@ pkill xautolock
 	done
 
 	xautolock -time 5 -locker "i3lock -c 191724" &
+
+	sudo tlp power-saver
 ) &
 
 options="Lock & Screen Off
 Lock & Suspend
-Suspend
-Shutdown"
+Shutdown
+Reboot"
 
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
@@ -28,10 +30,8 @@ if [[ "$selection" == "Lock & Screen Off" ]]; then
 elif [[ "$selection" == "Lock & Suspend" ]]; then
 	i3lock -c 191724
 	systemctl suspend
-
-elif [[ "$selection" == "Suspend" ]]; then
-	systemctl suspend
-
 elif [[ "$selection" == "Shutdown" ]]; then
 	systemctl poweroff
+elif [[ "$selection" == "Reboot" ]]; then
+	systemctl reboot
 fi
