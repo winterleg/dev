@@ -1,10 +1,10 @@
-<sub>J'utilise Arch Linux en passant</sub>
+J'utilise Gentoo en passant
 
 ---
 
 # dev setup;
 
-![Capture d'écran de mon desktop actuel](assets/screenshot-2026-01-31_14-44-34.png)
+![Capture d'écran de mon desktop actuel](assets/Screenshot_20260829_185019.png)
 
 | Directoire | Informations                              |
 | :--------: | :---------------------------------------- |
