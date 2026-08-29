@@ -60,7 +60,7 @@ vim.opt.foldlevelstart = 99
 
 vim.opt.cursorline = true
 
-vim.opt.colorcolumn = { 72, 80, 120, 180 }
+vim.opt.colorcolumn = { "72", "80", "120", "180" }
 vim.opt.textwidth = 72
 
 vim.opt.list = false

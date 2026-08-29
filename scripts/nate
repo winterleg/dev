@@ -71,23 +71,20 @@ sync_files() {
   cp $CP_FLAGS ~/.config/rmpc/config.ron $WORKSTATION/resources/rmpc/
   cp $CP_FLAGS ~/.config/rmpc/themes/winlog.ron $WORKSTATION/resources/rmpc/themes/
 
-  echo "Copying ST config"
-  cp $CP_FLAGS ~/repos/st/config.h $WORKSTATION/resources/
-
   echo "Copying Katypst"
-  cp $CP_FLAGS -r ~/art/katypst/ $WORKSTATION/typst-pkg/
+  cp $CP_FLAGS -r ~/Desktop/homework/katypst/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/katypst/.git
 
   echo "Copying math Typst lib"
-  cp $CP_FLAGS -r ~/art/mathy/ $WORKSTATION/typst-pkg/
+  cp $CP_FLAGS -r ~/Desktop/homework/mathy/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/mathy/.git
 
   echo "Copying Simple Template Typst"
-  cp $CP_FLAGS -r ~/art/simple-template/ $WORKSTATION/typst-pkg/
+  cp $CP_FLAGS -r ~/Desktop/homework/simple-template/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/simple-template/.git
 
   echo "Copying book template"
-  cp $CP_FLAGS -r ~/art/book_template_winter/ $WORKSTATION/typst-pkg/
+  cp $CP_FLAGS -r ~/Desktop/homework/book_template_winter/ $WORKSTATION/typst-pkg/
   rm -rf $WORKSTATION/typst-pkg/book_template_winter/.git
 
   echo "Copying icons"
@@ -95,23 +92,10 @@ sync_files() {
   echo "Copying themes"
   rsync $RSYNC_FLAGS ~/.themes/ $WORKSTATION/resources/themes
 
-  echo "Copying root files"
-  sudo cp $CP_FLAGS /boot/loader/loader.conf $WORKSTATION/root/boot/loader/loader.conf
-
-  sudo cp $CP_FLAGS -r /usr/share/sddm/themes/ame $WORKSTATION/root/usr/share/sddm/themes/ame
-  sudo cp $CP_FLAGS /usr/share/kbd/keymaps/i386/colemak/colemak-ca-prog.map $WORKSTATION/root/usr/share/kbd/keymaps/i386/colemak/
-
-  sudo cp $CP_FLAGS /etc/mkinitcpio.conf $WORKSTATION/root/etc/mkinitcpio.conf
-  sudo cp $CP_FLAGS /etc/modprobe.d/nvidia.conf $WORKSTATION/root/etc/modprobe.d/nvidia.conf
-  sudo cp $CP_FLAGS /etc/pam.d/login $WORKSTATION/root/etc/pam.d/login
-  sudo cp $CP_FLAGS /etc/pam.d/sddm $WORKSTATION/root/etc/pam.d/sddm
-  sudo cp $CP_FLAGS /etc/sddm.conf $WORKSTATION/root/etc/sddm.conf
-  sudo cp $CP_FLAGS /etc/sudoers $WORKSTATION/root/etc/sudoers
-  sudo chown $USER:$USER $WORKSTATION/root/etc/sudoers
-  sudo cp $CP_FLAGS /etc/systemd/logind.conf $WORKSTATION/root/etc/systemd/logind.conf
-  sudo cp $CP_FLAGS /etc/vconsole.conf $WORKSTATION/root/etc/
-  sudo cp $CP_FLAGS /etc/libinput/local-overrides.quirks $WORKSTATION/root/etc/libinput/
-  sudo cp $CP_FLAGS /etc/modprobe.d/opentabletdriver.conf $WORKSTATION/root/etc/modprobe.d/opentabletdriver.conf
+  doas cp $CP_FLAGS /etc/modprobe.d/nvidia.conf $WORKSTATION/root/etc/modprobe.d/nvidia.conf
+  doas cp $CP_FLAGS /etc/pam.d/login $WORKSTATION/root/etc/pam.d/login
+  doas cp $CP_FLAGS /etc/doas.conf $WORKSTATION/root/etc/doas.conf
+  doas chown $USER:$USER $WORKSTATION/root/etc/doas.conf
 
   git -C "$WORKSTATION" -c color.status=always status
 }

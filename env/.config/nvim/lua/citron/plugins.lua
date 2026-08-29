@@ -13,7 +13,7 @@ vim.pack.add {
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
-	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",     build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install" },
+	-- { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",     build = "make" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim", },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
@@ -93,7 +93,7 @@ telescope.setup({
 		}
 	}
 })
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 telescope.load_extension("ui-select")
 telescope.load_extension("live_grep_args")
 

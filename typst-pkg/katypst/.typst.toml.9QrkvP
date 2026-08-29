@@ -1,0 +1,12 @@
+[package]
+name = "katypst"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Winter"]
+license = "MIT"
+description = "Collection stuff I use often"
+repository = "fuyu147.github.com"
+categories = ["Layout"]
+keywords = ["Collection"]
+exclude = ["*.pdf"]
+disciplines = ["Writing"]

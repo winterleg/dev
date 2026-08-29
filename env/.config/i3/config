@@ -4,7 +4,7 @@ floating_modifier $super
 
 exec --no-startup-id ~/.config/i3/startup
 
-font				pango:Comic Code 12
+font				pango:Yu Mincho 12
 
 focus_follows_mouse		yes
 
@@ -22,21 +22,21 @@ client.unfocused		#191724 #26233a #908caa #191724 #191724
 client.urgent			#191724 #26233a #908caa #191724 #191724
 
 # WM
-bindsym $super+c			kill
-bindsym $super+F8			exit
+bindsym $super+c		kill
+bindsym $super+F8		exit
 bindsym $super+Shift+q		reload
 bindsym $super+Escape		exec --no-startup-id i3lock -c 191724
-bindsym $super+F9			exec --no-startup-id ~/.config/i3/logout.sh
-bindsym $super+v			floating toggle
-bindsym $super+f			fullscreen
+bindsym $super+F9		exec --no-startup-id ~/.config/i3/logout.sh
+bindsym $super+v		floating toggle
+bindsym $super+f		fullscreen
 bindsym $super+Shift+p		move container to output right
 bindsym $super+F12		exec --no-startup-id dunstctl history-pop
 
-bindsym $super+j			layout tabbed
+bindsym $super+j		layout tabbed
 bindsym $super+Shift+j		layout stacking
-bindsym $super+l			layout toggle split
-bindsym $super+y			split horizontal
-bindsym $super+u			split vertical
+bindsym $super+l		layout toggle split
+bindsym $super+y		split horizontal
+bindsym $super+u		split vertical
 
 # Apps/Scripts
 bindsym $super+Ctrl+v		exec --no-startup-id \
@@ -44,16 +44,16 @@ bindsym $super+Ctrl+v		exec --no-startup-id \
 					| rofi -dmenu -p "Clipboard" \
 					| xclip -selection clipboard
 bindsym $super+q			exec --no-startup-id helium-browser
-bindsym $super+Return		exec --no-startup-id neovide
+bindsym $super+Return		exec --no-startup-id ~/.cargo/bin/neovide
 bindsym $super+Shift+Return	exec --no-startup-id kitty # alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
-bindsym $super+w			exec --no-startup-id firefox
+bindsym $super+w		exec --no-startup-id firefox-bin
 bindsym $super+Shift+w		exec --no-startup-id thunderbird
-# bindsym $super+r			exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
-bindsym $super+r			exec --no-startup-id rofi -show drun -no-fixed-num-lines
-bindsym $super+Shift+r		exec --no-startup-id dmenu_run
-bindsym $super+semicolon		exec --no-startup-id ~/.config/i3/WallpaperSelect.sh
+# bindsym $super+r		exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
+bindsym $super+r		exec --no-startup-id rofi -show drun -no-fixed-num-lines
+bindsym $super+Shift+r		exec --no-startup-id dmenu_run -m -1
+bindsym $super+semicolon	exec --no-startup-id ~/.config/i3/WallpaperSelect.sh
 bindsym $super+Shift+f		exec --no-startup-id pcmanfm
-bindsym $super+s			exec --no-startup-id spectacle -i
+bindsym $super+s		exec --no-startup-id spectacle -i
 bindsym Print			exec --no-startup-id spectacle -f
 bindsym $super+Shift+s		exec --no-startup-id spectacle -i
 bindsym $super+Shift+c		exec --no-startup-id xcolor | xclip -selection clipboard
@@ -63,30 +63,30 @@ bindsym $super+k			exec --no-startup-id alacritty -e rmpc
 bindsym $super+b			exec --no-startup-id pkill polybar || ~/.config/polybar/launch.sh
 
 bindsym $super+Tab		workspace back_and_forth
-bindsym $super+p			exec --no-startup-id rofi -show window
+bindsym $super+p		exec --no-startup-id rofi -show window
 bindsym $alt+Tab		exec ~/.config/i3/i3-cycle-focus.py --switch
 
 bindsym $super+slash		workspace 1
-bindsym $super+parenleft		workspace 2
+bindsym $super+parenleft	workspace 2
 bindsym $super+bracketleft	workspace 3
-bindsym $super+braceleft		workspace 4
-bindsym $super+apostrophe		workspace 5
+bindsym $super+braceleft	workspace 4
+bindsym $super+apostrophe	workspace 5
 bindsym $super+dollar		workspace 6
 bindsym $super+exclam		workspace 7
-bindsym $super+braceright		workspace 8
+bindsym $super+braceright	workspace 8
 bindsym $super+bracketright	workspace 9
-bindsym $super+parenright		workspace 10
+bindsym $super+parenright	workspace 10
 
-bindsym $super+Shift+slash	move container to workspace 1;  workspace 1
-bindsym $super+Shift+parenleft	move container to workspace 2;  workspace 2
+bindsym $super+Shift+slash		move container to workspace 1;  workspace 1
+bindsym $super+Shift+parenleft		move container to workspace 2;  workspace 2
 bindsym $super+Shift+bracketleft	move container to workspace 3;  workspace 3
-bindsym $super+Shift+braceleft	move container to workspace 4;  workspace 4
-bindsym $super+Shift+apostrophe	move container to workspace 5;  workspace 5
-bindsym $super+Shift+dollar	move container to workspace 6;  workspace 6
-bindsym $super+Shift+exclam	move container to workspace 7;  workspace 7
-bindsym $super+Shift+braceright	move container to workspace 8;  workspace 8
+bindsym $super+Shift+braceleft		move container to workspace 4;  workspace 4
+bindsym $super+Shift+apostrophe		move container to workspace 5;  workspace 5
+bindsym $super+Shift+dollar		move container to workspace 6;  workspace 6
+bindsym $super+Shift+exclam		move container to workspace 7;  workspace 7
+bindsym $super+Shift+braceright		move container to workspace 8;  workspace 8
 bindsym $super+Shift+bracketright	move container to workspace 9;  workspace 9
-bindsym $super+Shift+parenright	move container to workspace 10; workspace 10
+bindsym $super+Shift+parenright		move container to workspace 10; workspace 10
 
 bindsym --whole-window $super+button4 workspace prev
 bindsym --whole-window $super+button5 workspace next
@@ -153,16 +153,16 @@ assign [title="Picture-in-Picture"] 10
 for_window [title="Picture-in-Picture"] floating disable
 
 # Workspace settings
-workspace 1   output HDMI-0
-workspace 2   output HDMI-0
-workspace 3   output HDMI-0
-workspace 4   output HDMI-0
-workspace 5   output HDMI-0
-workspace 6   output HDMI-0
-workspace 7   output HDMI-0
-workspace 8   output HDMI-0
-workspace 9   output HDMI-0
-workspace 10  output DP-4
+workspace 1   output HDMI-1-0
+workspace 2   output HDMI-1-0
+workspace 3   output HDMI-1-0
+workspace 4   output HDMI-1-0
+workspace 5   output HDMI-1-0
+workspace 6   output HDMI-1-0
+workspace 7   output HDMI-1-0
+workspace 8   output HDMI-1-0
+workspace 9   output HDMI-1-0
+workspace 10  output eDP-1
 
 # bar {
 # 	status_command /home/fuyu147/.config/i3status/i3status_wrapper.py

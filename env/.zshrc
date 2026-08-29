@@ -10,9 +10,9 @@ export NPROCESSORS_CONF="12"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/dotfiles/scripts:$PATH"
+export PATH="$HOME/Desktop/dev/scripts:$PATH"
 
-export WORKSTATION="$HOME/dotfiles"
+export WORKSTATION="$HOME/Desktop/dev"
 
 
 # if [[ "$TERM" == "kmscon" ]]; then
@@ -71,3 +71,5 @@ export PATH
 [ -f "/home/fuyu147/.julia/juliaup/completions/zsh.zsh" ] && source "/home/fuyu147/.julia/juliaup/completions/zsh.zsh"
 
 # <<< juliaup initialize <<<
+
+export PATH=$PATH:/home/hiver/.spicetify

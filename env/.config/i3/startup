@@ -3,16 +3,24 @@
 ~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
 ~/.config/i3/i3-cycle-focus.py --history 2 &
+~/.config/i3/arrstack.sh &
+
+pipewire &
+wireplumber &
+pipewire-pulse &
 
 blueman-applet &
 ckb-next-daemon &
 dunst &
 nm-applet &
 udiskie --tray &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-gnome-keyring-daemon --start --components=secrets &
-systemctl --user enable --now opentabletdriver.service &
-systemctl enable --now auto-cpufreq.service &
+mpd --no-daemon &
+
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# gnome-keyring-daemon --start --components=secrets &
+# systemctl --user enable --now opentabletdriver.service &
+# systemctl enable --now auto-cpufreq.service &
+
 fastcompmgr -m 1 -C -i 0.86 -e 1 -D 0 &
 unclutter --timeout 15 &
 gammastep -m randr -l 46.3:-72.5 &

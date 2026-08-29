@@ -1,3 +1,10 @@
+alias mrg="doas emerge"
+
+world() {
+	doas emaint -a sync
+	doas emerge -avuDN @world
+}
+
 alias vim="nvim -u ~/.config/nvim/init-min.lua"
 alias vi="vim"
 alias rs="nvim"

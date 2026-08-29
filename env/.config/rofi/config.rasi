@@ -10,7 +10,7 @@ configuration {
 }
 
 * {
-    font: "ocr a std 20";
+    font: "courier prime 20";
 }
 
 element-text, element-icon, mode-switcher {
