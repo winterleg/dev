@@ -41,25 +41,25 @@
         "format": "{:%Y.%m.%d %H:%M}"
     },
     "custom/net_down": {
-        "exec": "python3 /home/fuyu147/.config/i3status/net_speed.py --one down",
+        "exec": "python3 ~/.config/polybar/scripts/net_speed.py --one down",
         "interval": 2,
         "format": "↓↓ {}",
         "tooltip": false
     },
     "custom/net_up": {
-        "exec": "python3 /home/fuyu147/.config/i3status/net_speed.py --one up",
+        "exec": "python3 ~/.config/polybar/scripts/net_speed.py --one up",
         "interval": 2,
         "format": "↑↑ {}",
         "tooltip": false
     },
     "custom/qbt_down": {
-        "exec": "python3 /home/fuyu147/.config/i3status/qbt_upload.py --one down",
+        "exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one down",
         "interval": 2,
         "format": "↓ {}",
         "tooltip": false
     },
     "custom/qbt_up": {
-        "exec": "python3 /home/fuyu147/.config/i3status/qbt_upload.py --one up",
+        "exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one up",
         "interval": 2,
         "format": "↑ {}",
         "tooltip": false

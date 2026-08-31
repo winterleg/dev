@@ -17,7 +17,7 @@ detect_compositor() {
   elif command -v labwc &>/dev/null && pgrep -x labwc &>/dev/null; then
     COMPOSITOR="labwc"
   elif command -v wlr-randr &>/dev/null; then
-    COMPOSITOR="labwc"
+    COMPOSITOR="sway"
   fi
 }
 
@@ -28,11 +28,8 @@ has_monitor() {
     hyprctl monitors -j 2>/dev/null | jq -e --arg name "$name" \
       '.[] | select(.name == $name)' >/dev/null 2>&1
     ;;
-  labwc)
-    wlr-randr 2>/dev/null | grep -q "^$name "
-    ;;
   *)
-    return 1
+    wlr-randr 2>/dev/null | grep -q "^$name "
     ;;
   esac
 }

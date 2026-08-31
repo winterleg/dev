@@ -1,8 +1,23 @@
+alias sudo="doas"
 alias mrg="doas emerge"
 
+vpn-gentoowire-nj-150() {
+case "$1" in
+"u"|"up")
+	doas install -m 600 Desktop/GentooWire-US-NJ-150.conf /etc/wireguard/protonvpn.conf
+	doas modprobe wireguard
+	doas wg-quick up /etc/wireguard/protonvpn.conf
+	;;
+"d"|"down")
+	doas wg-quick down /etc/wireguard/protonvpn.conf
+	doas modprobe -r wireguard
+	;;
+esac
+}
+
 world() {
-	doas emaint -a sync
 	doas emerge -avuDN @world
+	doas emerge --depclean
 }
 
 alias vim="nvim -u ~/.config/nvim/init-min.lua"
@@ -44,7 +59,7 @@ alias maple="~/maple2022/bin/xmaple"
 
 yt-mpv() {
   local tmp_dir=$(mktemp -d)
-  ~/repos/yt-dlp/yt-dlp.sh -f "bv[height>=720]+ba" -o "$tmp_dir/video.%(ext)s" "$1"
+  ~/Desktop/repos/yt-dlp/yt-dlp.sh -f "bv[height>=720]+ba" -o "$tmp_dir/video.%(ext)s" "$1"
   mpv "$tmp_dir/video".*
   rm -rf "$tmp_dir"
 }
@@ -62,11 +77,6 @@ psk() {
 open() {
   xdg-open $1 >/dev/null 2>&1 &
   disown
-}
-
-battery() {
-  upower -i /org/freedesktop/UPower/devices/battery_BAT0 |
-    awk '/state:/ { s=$2 } /percentage:/ { p=$2 } END { print p " (" s ")" }'
 }
 
 range() {

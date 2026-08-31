@@ -8,6 +8,7 @@ font pango:Comic Code 12
 
 exec ~/.config/waybar/waybar.sh
 exec ~/.config/sway/startup
+exec_always ~/Desktop/repos/sway-auto-op/target/release/sway-auto-op -o 0.8
 
 input * {
 	xkb_layout ca
@@ -80,14 +81,13 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 bindsym $mod+q              exec helium-browser
-bindsym $mod+Return         exec neovide
-bindsym $mod+Mod1+Return    exec foot -e nvim
+bindsym $mod+Return         exec ~/.cargo/bin/neovide
 bindsym $mod+Shift+Return   exec foot
-bindsym $mod+w              exec firefox
-bindsym $mod+Shift+w        exec thunderbird
+bindsym $mod+w              exec firefox-bin
+bindsym $mod+Shift+w        exec thunderbird-bin
 bindsym $mod+r              exec rofi -show drun -no-fixed-num-lines
 bindsym $mod+Shift+r        exec rofi -show run
-bindsym $mod+semicolon      exec ~/.config/hypr/scripts/WallpaperSelect.sh
+bindsym $mod+semicolon      exec ~/.config/sway/scripts/wselect.sh
 bindsym $mod+Shift+f        exec pcmanfm
 bindsym $mod+s              exec ~/.config/hypr/scripts/hyprshot.sh "simple"
 bindsym Print               exec ~/.config/hypr/scripts/hyprshot.sh "screen"

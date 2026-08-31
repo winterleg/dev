@@ -11,6 +11,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/Desktop/dev/scripts:$PATH"
+export PATH="$HOME/.cargo/bin/:$PATH"
 
 export WORKSTATION="$HOME/Desktop/dev"
 

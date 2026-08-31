@@ -7,14 +7,8 @@ Reboot"
 
 selection=$(echo "$options" | rofi -i -show -dmenu)
 
-cleanup() {
-	if [[ "$XDG_SESSION_DESKTOP" == "hyprland" ]]; then
-		pkill hyprsunset || true
-	fi
-}
-
 if [[ "$selection" == "Lock & Screen Off" ]]; then
-	sudo tlp power-saver
+	doas tlp power-saver
 	hyprlock &
 	locker=$!
 	swayidle \
@@ -26,13 +20,12 @@ if [[ "$selection" == "Lock & Screen Off" ]]; then
 	wait "$locker"
 	kill "$idler" 2>/dev/null
 	swaymsg "output * dpms on"
-	sudo tlp start
+	doas tlp start
 elif [[ "$selection" == "Suspend & Lock" ]]; then
 	hyprlock &
-	cleanup
-	systemctl suspend
+	loginctl suspend
 elif [[ "$selection" == "Shutdown" ]]; then
-	systemctl poweroff
+	loginctl poweroff
 elif [[ "$selection" == "Reboot" ]]; then
-	systemctl reboot
+	loginctl reboot
 fi

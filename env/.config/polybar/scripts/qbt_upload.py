@@ -6,6 +6,8 @@ Qt 6.11 segfaults in Http::Connection::acceptsGzipEncoding when parsing
 the headers urllib sends (e.g. 'Accept-Encoding: identity'), whereas curl
 requests work (qBittorrent issues #23524, #24038, #24855).
 
+Prints "--" when qBittorrent is unreachable or the request fails.
+
 Reads ~/.qb-admin for credentials:
   line 1: host:port (e.g. 127.0.0.1:32741)
   line 2: admin name
@@ -21,15 +23,19 @@ import tempfile
 import urllib.parse
 
 
+class QbError(Exception):
+    pass
+
+
 def load_credentials():
     path = os.path.expanduser("~/.qb-admin")
     try:
         with open(path, "r") as fh:
             lines = [ln.strip() for ln in fh if ln.strip()]
     except OSError as exc:
-        sys.exit(f"error: cannot read {path}: {exc}")
+        raise QbError(f"cannot read {path}: {exc}") from exc
     if len(lines) < 3:
-        sys.exit(f"error: {path} must have 3 lines: host:port / user / pass")
+        raise QbError(f"{path} must have 3 lines: host:port / user / pass")
     base = lines[0]
     if "://" not in base:
         base = "http://" + base
@@ -45,7 +51,7 @@ def request(base, path, post=None, cookie_jar=None, timeout=5):
     cmd.append(base + path)
     proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
-        sys.exit(f"error: curl: {proc.stderr.strip()} {proc.stdout.strip()}")
+        raise QbError(f"curl: {proc.stderr.strip() or proc.stdout.strip()}")
     body, _, code = proc.stdout.rpartition("\n")
     return body, code.strip()
 
@@ -60,12 +66,7 @@ def fmt_speed(bps):
         value /= 1024
 
 
-def main():
-    ap = argparse.ArgumentParser(description="qBittorrent transfer speed")
-    ap.add_argument("--one", choices=["up", "down"], default=None)
-    args = ap.parse_args()
-
-    base, user, password = load_credentials()
+def fetch(base, user, password):
     jar = os.path.join(tempfile.gettempdir(), "qbt_upload.cookies")
 
     # LocalHostAuth is often disabled, so try anonymous first. If that is
@@ -77,18 +78,30 @@ def main():
             post=urllib.parse.urlencode({"username": user, "password": password}),
             cookie_jar=jar)
         if code != "200":
-            sys.exit(f"error: qBittorrent login failed (HTTP {code})")
+            raise QbError(f"qBittorrent login failed (HTTP {code})")
         body, code = request(base, "/api/v2/transfer/info", cookie_jar=jar)
 
     if code != "200":
-        sys.exit(f"error: HTTP {code} from {base}")
+        raise QbError(f"HTTP {code} from {base}")
     try:
-        info = json.loads(body)
-    except ValueError:
-        sys.exit(f"error: invalid JSON from {base} (HTTP {code})")
+        return json.loads(body)
+    except ValueError as exc:
+        raise QbError(f"invalid JSON from {base} (HTTP {code})") from exc
 
-    rx = info.get("dl_info_speed", 0)
-    tx = info.get("up_info_speed", 0)
+
+def main():
+    ap = argparse.ArgumentParser(description="qBittorrent transfer speed")
+    ap.add_argument("--one", choices=["up", "down"], default=None)
+    args = ap.parse_args()
+
+    try:
+        base, user, password = load_credentials()
+        info = fetch(base, user, password)
+        rx = info.get("dl_info_speed", 0)
+        tx = info.get("up_info_speed", 0)
+    except (QbError, OSError):
+        print("--")
+        return
 
     if args.one == "down":
         print(fmt_speed(rx))

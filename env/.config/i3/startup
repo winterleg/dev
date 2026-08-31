@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-~/.config/polybar/launch.sh &
 ~/.config/i3/xrandr.sh &
 ~/.config/i3/i3-cycle-focus.py --history 2 &
 ~/.config/i3/arrstack.sh &
@@ -36,4 +35,5 @@ xset dpms 6000 6000 6000
 
 sleep 1
 
+~/.config/polybar/launch.sh &
 nitrogen --restore
