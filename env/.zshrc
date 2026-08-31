@@ -74,3 +74,12 @@ export PATH
 # <<< juliaup initialize <<<
 
 export PATH=$PATH:/home/hiver/.spicetify
+
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    eval "$(ssh-agent -s)" >/dev/null
+fi
+
+if ! ssh-add -l 2>/dev/null | grep -q "$(ssh-keygen -lf ~/id-cb-g 2>/dev/null | awk '{print $2}')"; then
+    ssh-add ~/id-cb-g
+fi
+
