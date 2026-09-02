@@ -20,7 +20,7 @@ world() {
 	doas emerge --depclean
 }
 
-alias vim="nvim -u ~/.config/nvim/init-min.lua"
+alias vim="vim"
 alias vi="vim"
 alias rs="nvim"
 

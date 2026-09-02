@@ -9,154 +9,157 @@ CP_FLAGS=""
 DOTFILES="$WORKSTATION/dotfiles.sh"
 
 log() {
-  if [ "$VERBOSE" == true ]; then
-    echo -e "$1"
-  fi
+	if [ "$VERBOSE" == true ]; then
+		echo -e "$1"
+	fi
 }
 
 update_env_files() {
-  source "$DOTFILES"
-
-  echo "Copying envs files"
-  rm -r "$WORKSTATION/env/"
-  mkdir -p "$WORKSTATION/env/"
-  for env_file in "${envs[@]}"; do
-    log "\t\t- $env_file"
-    cp "$HOME/$env_file" "$WORKSTATION/env/"
-  done
-
-  echo "Copying configs files"
-  rm -rf "$WORKSTATION/env/.config"
-  mkdir -p "$WORKSTATION/env/.config"
-  for config_item in "${confs[@]}"; do
-    SOURCE_PATH="$HOME/.config/$config_item"
-    DEST_PATH="$WORKSTATION/env/.config/$config_item"
-
-    log "\t\t- $config_item"
-
-    if [[ -d "$SOURCE_PATH" ]]; then
-      mkdir -p "$DEST_PATH"
-      find "$SOURCE_PATH" \( -type f -o -type d \) ! -type l -print0 |
-        while IFS= read -r -d '' item; do
-          [[ "$item" == "$SOURCE_PATH" ]] && continue
-
-          RELATIVE_PATH="${item#$SOURCE_PATH/}"
-          DEST_ITEM="$DEST_PATH/$RELATIVE_PATH"
-
-          log "\t\t\t$item"
-          if [[ -d "$item" ]]; then
-            mkdir -p "$DEST_ITEM"
-          else
-            cp "$item" "$DEST_ITEM"
-          fi
-        done
-    elif [[ -f "$SOURCE_PATH" && ! -L "$SOURCE_PATH" ]]; then
-      cp "$SOURCE_PATH" "$DEST_PATH"
-    elif [[ -L "$SOURCE_PATH" ]]; then
-      echo -e "\t\tSkipping top-level symlink: $config_item"
-    fi
-
-    rm -rf "$DEST_PATH/.git"
-  done
+	source "$DOTFILES"
+	
+	echo "Copying envs files"
+	rm -r "$WORKSTATION/env/"
+	mkdir -p "$WORKSTATION/env/"
+	for env_file in "${envs[@]}"; do
+		log "\t\t- $env_file"
+		cp "$HOME/$env_file" "$WORKSTATION/env/"
+	done
+	
+	echo "Copying configs files"
+	rm -rf "$WORKSTATION/env/.config"
+	mkdir -p "$WORKSTATION/env/.config"
+	for config_item in "${confs[@]}"; do
+		SOURCE_PATH="$HOME/.config/$config_item"
+		DEST_PATH="$WORKSTATION/env/.config/$config_item"
+		
+		log "\t\t- $config_item"
+		
+		if [[ -d "$SOURCE_PATH" ]]; then
+			mkdir -p "$DEST_PATH"
+			find "$SOURCE_PATH" \( -type f -o -type d \) ! -type l -print0 |
+			while IFS= read -r -d '' item; do
+				[[ "$item" == "$SOURCE_PATH" ]] && continue
+				
+				RELATIVE_PATH="${item#$SOURCE_PATH/}"
+				DEST_ITEM="$DEST_PATH/$RELATIVE_PATH"
+				
+				log "\t\t\t$item"
+				if [[ -d "$item" ]]; then
+				  mkdir -p "$DEST_ITEM"
+				else
+				  cp "$item" "$DEST_ITEM"
+				fi
+			done
+		elif [[ -f "$SOURCE_PATH" && ! -L "$SOURCE_PATH" ]]; then
+		  	cp "$SOURCE_PATH" "$DEST_PATH"
+		elif [[ -L "$SOURCE_PATH" ]]; then
+		  	echo -e "\t\tSkipping top-level symlink: $config_item"
+		fi
+		
+		rm -rf "$DEST_PATH/.git"
+	done
 }
 
 sync_files() {
-  update_env_files
+	update_env_files
+	
+	echo "Copying vscode user settings"
+	cp $CP_FLAGS ~/.config/Code/User/settings.json $WORKSTATION/resources/Code
+	cp $CP_FLAGS ~/.config/Code/User/keybindings.json $WORKSTATION/resources/Code
+	
+	echo "Copying rmpc settings"
+	cp $CP_FLAGS ~/.config/rmpc/config.ron $WORKSTATION/resources/rmpc/
+	cp $CP_FLAGS ~/.config/rmpc/themes/winlog.ron $WORKSTATION/resources/rmpc/themes/
+	
+	echo "Copying Katypst"
+	cp $CP_FLAGS -r ~/Desktop/homework/katypst/ $WORKSTATION/typst-pkg/
+	rm -rf $WORKSTATION/typst-pkg/katypst/.git
+	
+	echo "Copying math Typst lib"
+	cp $CP_FLAGS -r ~/Desktop/homework/mathy/ $WORKSTATION/typst-pkg/
+	rm -rf $WORKSTATION/typst-pkg/mathy/.git
+	
+	echo "Copying Simple Template Typst"
+	cp $CP_FLAGS -r ~/Desktop/homework/simple-template/ $WORKSTATION/typst-pkg/
+	rm -rf $WORKSTATION/typst-pkg/simple-template/.git
+	
+	echo "Copying book template"
+	cp $CP_FLAGS -r ~/Desktop/homework/book_template_winter/ $WORKSTATION/typst-pkg/
+	rm -rf $WORKSTATION/typst-pkg/book_template_winter/.git
 
-  echo "Copying vscode user settings"
-  cp $CP_FLAGS ~/.config/Code/User/settings.json $WORKSTATION/resources/Code
-  cp $CP_FLAGS ~/.config/Code/User/keybindings.json $WORKSTATION/resources/Code
-
-  echo "Copying rmpc settings"
-  cp $CP_FLAGS ~/.config/rmpc/config.ron $WORKSTATION/resources/rmpc/
-  cp $CP_FLAGS ~/.config/rmpc/themes/winlog.ron $WORKSTATION/resources/rmpc/themes/
-
-  echo "Copying Katypst"
-  cp $CP_FLAGS -r ~/Desktop/homework/katypst/ $WORKSTATION/typst-pkg/
-  rm -rf $WORKSTATION/typst-pkg/katypst/.git
-
-  echo "Copying math Typst lib"
-  cp $CP_FLAGS -r ~/Desktop/homework/mathy/ $WORKSTATION/typst-pkg/
-  rm -rf $WORKSTATION/typst-pkg/mathy/.git
-
-  echo "Copying Simple Template Typst"
-  cp $CP_FLAGS -r ~/Desktop/homework/simple-template/ $WORKSTATION/typst-pkg/
-  rm -rf $WORKSTATION/typst-pkg/simple-template/.git
-
-  echo "Copying book template"
-  cp $CP_FLAGS -r ~/Desktop/homework/book_template_winter/ $WORKSTATION/typst-pkg/
-  rm -rf $WORKSTATION/typst-pkg/book_template_winter/.git
-
-  echo "Copying icons"
-  rsync $RSYNC_FLAGS ~/.local/share/icons/ $WORKSTATION/resources/icons
-  echo "Copying themes"
-  rsync $RSYNC_FLAGS ~/.themes/ $WORKSTATION/resources/themes
-
-  doas cp $CP_FLAGS /etc/modprobe.d/nvidia.conf $WORKSTATION/root/etc/modprobe.d/nvidia.conf
-  doas cp $CP_FLAGS /etc/pam.d/login $WORKSTATION/root/etc/pam.d/login
-  doas cp $CP_FLAGS /etc/doas.conf $WORKSTATION/root/etc/doas.conf
-  doas chown $USER:$USER $WORKSTATION/root/etc/doas.conf
-
-  git -C "$WORKSTATION" -c color.status=always status
+	echo "Copying vimrc"
+	cp $CP_FLAGS ~/.vimrc $WORKSTATION/env/.vimrc
+	
+	echo "Copying icons"
+	rsync $RSYNC_FLAGS ~/.local/share/icons/ $WORKSTATION/resources/icons
+	echo "Copying themes"
+	rsync $RSYNC_FLAGS ~/.themes/ $WORKSTATION/resources/themes
+	
+	doas cp $CP_FLAGS /etc/modprobe.d/nvidia.conf $WORKSTATION/root/etc/modprobe.d/nvidia.conf
+	doas cp $CP_FLAGS /etc/pam.d/login $WORKSTATION/root/etc/pam.d/login
+	doas cp $CP_FLAGS /etc/doas.conf $WORKSTATION/root/etc/doas.conf
+	doas chown $USER:$USER $WORKSTATION/root/etc/doas.conf
+	
+	git -C "$WORKSTATION" -c color.status=always status
 }
 
 sync_remote() {
-  echo "Updating remote repo"
-  {
-    cd $WORKSTATION
-
-    git -C "$WORKSTATION" -c color.status=always status
-
-    status=$(git -C "$WORKSTATION" status --porcelain)
-
-    if [[ -z "$status" ]]; then
-      exit 0
-    fi
-
-    git add .
-    git -C "$WORKSTATION" status
-    if [ -z "$1" ]; then
-      git commit -m "$GIT_DEFAULT_MSG"
-    else
-      git commit -m "$1"
-    fi
-    git push
-  }
+	echo "Updating remote repo"
+	{
+		cd $WORKSTATION
+		
+		git -C "$WORKSTATION" -c color.status=always status
+		
+		status=$(git -C "$WORKSTATION" status --porcelain)
+		
+		if [[ -z "$status" ]]; then
+			exit 0
+		fi
+		
+		git add .
+		git -C "$WORKSTATION" status
+		if [ -z "$1" ]; then
+			git commit -m "$GIT_DEFAULT_MSG"
+		else
+			git commit -m "$1"
+		fi
+		git push
+	}
 }
 
 sync_diff() {
-  echo "Checking Diff"
-  sleep 0.5
-  {
-    cd $WORKSTATION
-    git diff
-  }
+	echo "Checking Diff"
+	sleep 0.5
+	{
+		cd $WORKSTATION
+		git diff
+	}
 }
 
 case "$1" in
 "-v" | "--verbose")
-  VERBOSE=true
-  shift
-  ;;
+	VERBOSE=true
+	shift
+	;;
 esac
 
 if [ "$VERBOSE" == true ]; then
-  CP_FLAGS="-v"
+	CP_FLAGS="-v"
 fi
 
 RSYNC_FLAGS="-a"
 if [ "$VERBOSE" == true ]; then
-  RSYNC_FLAGS="-av"
+	RSYNC_FLAGS="-av"
 fi
 
 case "$1" in
 "s" | "sync")
-  sync_remote "$2"
-  ;;
+	sync_remote "$2"
+	;;
 "d" | "diff")
-  sync_diff
-  ;;
+	sync_diff
+	;;
 *)
-  sync_files
-  ;;
+	sync_files
+	;;
 esac

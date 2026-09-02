@@ -8,7 +8,6 @@ font pango:Comic Code 12
 
 exec ~/.config/waybar/waybar.sh
 exec ~/.config/sway/startup
-exec_always ~/Desktop/repos/sway-auto-op/target/release/sway-auto-op -o 0.8
 
 input * {
 	xkb_layout ca
@@ -42,6 +41,7 @@ smart_gaps off
 gaps inner 10
 gaps outer 5
 hide_edge_borders --i3 none
+default_dim_inactive 0.12
 
 client.focused            #191724 #31748f #e0def4 #eb6f92 #31748f
 client.focused_inactive   #1f1d2e #403d52 #e0def4 #191724 #403d52
