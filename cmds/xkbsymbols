@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-doas cp \
+sudo cp \
   /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/ca \
   /usr/share/xkeyboard-config-2/symbols/ca
 
-doas cp \
+sudo cp \
   /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/fr \
   /usr/share/xkeyboard-config-2/symbols/fr
 
-doas cp \
+sudo cp \
   /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/us \
   /usr/share/xkeyboard-config-2/symbols/us
 
-doas cp \
+sudo cp \
   /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/ru \
   /usr/share/xkeyboard-config-2/symbols/ru

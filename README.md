@@ -1,4 +1,4 @@
-J'utilise Gentoo en passant
+J'utilise Arch Linux en passant
 
 ---
 
