@@ -81,7 +81,7 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 bindsym $mod+q              exec helium-browser
-bindsym $mod+Return         exec ~/.cargo/bin/neovide
+bindsym $mod+Return         exec foot -e nvim # ~/.cargo/bin/neovide
 bindsym $mod+Shift+Return   exec foot
 bindsym $mod+w              exec firefox-bin
 bindsym $mod+Shift+w        exec thunderbird-bin

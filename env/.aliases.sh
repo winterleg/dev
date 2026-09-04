@@ -15,10 +15,32 @@ case "$1" in
 esac
 }
 
+
 world() {
-	doas emerge -avuDN @world
+	local stamp="${XDG_CACHE_HOME:-$HOME/.cache}/world-sync"
+	local now last_run
+
+	now=$(date +%s)
+
+	mkdir -p "$(dirname "$stamp")"
+
+	if [ -f "$stamp" ]; then
+		last_run=$(cat "$stamp")
+	else
+		last_run=0
+	fi
+
+	if [ "$last_run" -gt 0 ] && [ $((now - last_run)) -lt 86400 ]; then
+		printf 'Already synced within the last 24 hours.\n'
+	else
+		doas emerge --sync || return
+		printf '%s\n' "$now" > "$stamp"
+	fi
+
+	doas emerge -avuDN @world &&
 	doas emerge --depclean
 }
+
 
 alias vim="vim"
 alias vi="vim"

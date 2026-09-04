@@ -25,7 +25,7 @@ local function fzf_chdir()
 	local currentDir = vim.fn.getcwd()
 	local sources = {
 		"fd . ~ --type d --follow --exclude '.*' --max-depth 2",
-		"fd . ~/Desktop/homework --type d --follow --exclude '.*' --max-depth 2",
+		"fd . ~/Desktop/ --type d --follow --exclude '.*' --max-depth 3",
 		"fd . ~/.config --type d --follow --max-depth 2",
 	}
 	if vim.fn.isdirectory("/run/media/fuyu147/VOLUME_NOIR/shared-data/") == 1 then

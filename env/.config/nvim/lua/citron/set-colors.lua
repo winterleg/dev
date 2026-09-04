@@ -5,18 +5,6 @@ local cursorColorForLightTheme = "#EC5D2A" -- "#21202e"
 
 local state_file = vim.fn.stdpath("state") .. "/last_theme"
 
--- local zathuraThemeFile = "t-nvim-imported"
---
--- local zathuraConfigDir = vim.fn.expand("~/.config/zathura")
---
--- local themeToZathura = {
--- 	CENDRE = "t-cendre",
--- 	Pine = "t-rosepine",
--- 	["cat mocha"] = "t-rosepine",
--- 	["cat latte"] = "t-rosepinedawn",
--- 	Dawn = "t-rosepinedawn",
--- }
-
 local current_name = nil
 
 local saved_bg = nil
@@ -88,11 +76,6 @@ local function save_theme(name)
 
 	current_name = name
 
-	-- local link = zathuraConfigDir .. "/" .. zathuraThemeFile
-	-- local target = zathuraConfigDir .. "/" .. (themeToZathura[name] or "t-rosepine")
-	-- vim.fn.delete(link)
-	-- vim.fn.filecopy(target, link)
-
 	vim.fn.writefile({ name }, state_file)
 end
 
@@ -114,6 +97,30 @@ end
 
 ---@type ColorEntry[]
 local colorsList = {
+	{
+		name = "miniwinter",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme miniwinter]]
+
+			fix_visual()
+
+			save_theme "miniwinter"
+		end,
+	},
+	{
+		name = "Luna",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme lunaperche]]
+
+			fix_visual()
+
+			save_theme "Luna"
+		end,
+	},
 	{
 		name = "Vague",
 		enabled = true,

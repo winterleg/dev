@@ -78,8 +78,8 @@ function! TermCw() abort
   call term_sendkeys(l:buf, "\<C-w>")
 endfunction
 nnoremap <leader>sk :split \| term make<CR>
-nnoremap <C-k><C-v> :vnew \| terminal ++curwin<CR>
-nnoremap <C-k><C-t> :term<CR>
+nnoremap <C-k><C-v> :split \| terminal ++curwin<CR>
+nnoremap <C-k><C-t> :term ++curwin<CR>
 nnoremap <leader>sa ggVG
 nnoremap <leader>gf <C-w>gF
 nnoremap <A-s> :m +1<CR>

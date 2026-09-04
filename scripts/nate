@@ -92,6 +92,7 @@ sync_files() {
 	
 	echo "Copying icons"
 	rsync $RSYNC_FLAGS ~/.local/share/icons/ $WORKSTATION/resources/icons
+
 	echo "Copying themes"
 	rsync $RSYNC_FLAGS ~/.themes/ $WORKSTATION/resources/themes
 	

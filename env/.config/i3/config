@@ -4,7 +4,7 @@ floating_modifier $super
 
 exec --no-startup-id ~/.config/i3/startup
 
-font				pango:Yu Mincho 12
+font				pango:Yu Mincho 8
 
 focus_follows_mouse		yes
 
@@ -44,8 +44,8 @@ bindsym $super+Ctrl+v		exec --no-startup-id \
 					| rofi -dmenu -p "Clipboard" \
 					| xclip -selection clipboard
 bindsym $super+q			exec --no-startup-id helium-browser
-bindsym $super+Return		exec --no-startup-id ~/.cargo/bin/neovide
-bindsym $super+Shift+Return	exec --no-startup-id kitty # alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
+bindsym $super+Return		exec --no-startup-id alacritty -e nvim #~/.cargo/bin/neovide
+bindsym $super+Shift+Return	exec --no-startup-id alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
 bindsym $super+w		exec --no-startup-id firefox-bin
 bindsym $super+Shift+w		exec --no-startup-id thunderbird
 # bindsym $super+r		exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
@@ -153,16 +153,16 @@ assign [title="Picture-in-Picture"] 10
 for_window [title="Picture-in-Picture"] floating disable
 
 # Workspace settings
-workspace 1   output HDMI-1-0
-workspace 2   output HDMI-1-0
-workspace 3   output HDMI-1-0
-workspace 4   output HDMI-1-0
-workspace 5   output HDMI-1-0
-workspace 6   output HDMI-1-0
-workspace 7   output HDMI-1-0
-workspace 8   output HDMI-1-0
-workspace 9   output HDMI-1-0
-workspace 10  output eDP-1
+workspace 1   output HDMI-0
+workspace 2   output HDMI-0
+workspace 3   output HDMI-0
+workspace 4   output HDMI-0
+workspace 5   output HDMI-0
+workspace 6   output HDMI-0
+workspace 7   output HDMI-0
+workspace 8   output HDMI-0
+workspace 9   output HDMI-0
+workspace 10  output DP-4
 
 # bar {
 # 	status_command /home/fuyu147/.config/i3status/i3status_wrapper.py
