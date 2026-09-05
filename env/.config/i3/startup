@@ -2,11 +2,11 @@
 
 ~/.config/i3/xrandr.sh &
 ~/.config/i3/i3-cycle-focus.py --history 2 &
-~/.config/i3/arrstack.sh &
+# ~/.config/i3/arrstack.sh &
 
-pipewire &
-wireplumber &
-pipewire-pulse &
+# pipewire &
+# wireplumber &
+# pipewire-pulse &
 
 blueman-applet &
 ckb-next-daemon &

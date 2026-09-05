@@ -23,9 +23,9 @@ if [[ "$selection" == "Lock & Screen Off" ]]; then
 	doas tlp start
 elif [[ "$selection" == "Suspend & Lock" ]]; then
 	hyprlock &
-	loginctl suspend
+	systemctl suspend
 elif [[ "$selection" == "Shutdown" ]]; then
-	loginctl poweroff
+	systemctl poweroff
 elif [[ "$selection" == "Reboot" ]]; then
-	loginctl reboot
+	systemctl reboot
 fi

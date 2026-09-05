@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 
-pipewire &
-wireplumber &
-pipewire-pulse &
+# pipewire &
+# wireplumber &
+# pipewire-pulse &
 mpd --no-daemon &
 
 blueman-applet &

@@ -27,6 +27,12 @@
         "custom/sep",
         "tray"
     ],
+    "cpu": {
+        "format": "CPU {usage}%"
+    },
+    "memory": {
+        "format": "RAM {percentage}%"
+    },
     "sway/workspaces": {
         "all-outputs": true
     },

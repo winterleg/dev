@@ -29,9 +29,9 @@ if [[ "$selection" == "Lock & Screen Off" ]]; then
 	xset dpms force off
 elif [[ "$selection" == "Lock & Suspend" ]]; then
 	i3lock -c 191724
-	loginctl suspend
+	systemctl suspend
 elif [[ "$selection" == "Shutdown" ]]; then
-	loginctl poweroff
+	systemctl poweroff
 elif [[ "$selection" == "Reboot" ]]; then
-	loginctl reboot
+	systemctl reboot
 fi

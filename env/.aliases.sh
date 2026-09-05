@@ -1,6 +1,3 @@
-alias sudo="doas"
-alias mrg="doas emerge"
-
 vpn-gentoowire-nj-150() {
 case "$1" in
 "u"|"up")
@@ -42,7 +39,6 @@ world() {
 }
 
 
-alias vim="vim"
 alias vi="vim"
 alias rs="nvim"
 

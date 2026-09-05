@@ -43,10 +43,10 @@ bindsym $super+Ctrl+v		exec --no-startup-id \
 					greenclip print \
 					| rofi -dmenu -p "Clipboard" \
 					| xclip -selection clipboard
-bindsym $super+q			exec --no-startup-id helium-browser
-bindsym $super+Return		exec --no-startup-id alacritty -e nvim #~/.cargo/bin/neovide
+bindsym $super+q		exec --no-startup-id helium-browser
+bindsym $super+Return		exec --no-startup-id neovide
 bindsym $super+Shift+Return	exec --no-startup-id alacritty # neovide -- -u ~/.config/nvim-simple/init.lua
-bindsym $super+w		exec --no-startup-id firefox-bin
+bindsym $super+w		exec --no-startup-id firefox
 bindsym $super+Shift+w		exec --no-startup-id thunderbird
 # bindsym $super+r		exec --no-startup-id dmenu_run -nb '#191724' -nf '#e0def4' -sb '#31748f' -sf '#191724' -fn 'Comic Code:size=12'
 bindsym $super+r		exec --no-startup-id rofi -show drun -no-fixed-num-lines
@@ -59,8 +59,8 @@ bindsym $super+Shift+s		exec --no-startup-id spectacle -i
 bindsym $super+Shift+c		exec --no-startup-id xcolor | xclip -selection clipboard
 bindsym $super+period		exec --no-startup-id rofi -modi emoji -show emoji -no-fixed-num-lines
 bindsym $super+minus		exec --no-startup-id ~/dotfiles/scripts/tts-neovide
-bindsym $super+k			exec --no-startup-id alacritty -e rmpc
-bindsym $super+b			exec --no-startup-id pkill polybar || ~/.config/polybar/launch.sh
+bindsym $super+k		exec --no-startup-id alacritty -e rmpc
+bindsym $super+b		exec --no-startup-id pkill polybar || ~/.config/polybar/launch.sh
 
 bindsym $super+Tab		workspace back_and_forth
 bindsym $super+p		exec --no-startup-id rofi -show window

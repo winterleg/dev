@@ -83,8 +83,8 @@ bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cl
 bindsym $mod+q              exec helium-browser
 bindsym $mod+Return         exec foot -e nvim # ~/.cargo/bin/neovide
 bindsym $mod+Shift+Return   exec foot
-bindsym $mod+w              exec firefox-bin
-bindsym $mod+Shift+w        exec thunderbird-bin
+bindsym $mod+w              exec firefox
+bindsym $mod+Shift+w        exec thunderbird
 bindsym $mod+r              exec rofi -show drun -no-fixed-num-lines
 bindsym $mod+Shift+r        exec rofi -show run
 bindsym $mod+semicolon      exec ~/.config/sway/scripts/wselect.sh
