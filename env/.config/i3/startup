@@ -32,6 +32,7 @@ setxkbmap -layout ca
 xset r rate 225 100
 xset s off
 xset dpms 6000 6000 6000
+xset m 0 0
 
 sleep 1
 

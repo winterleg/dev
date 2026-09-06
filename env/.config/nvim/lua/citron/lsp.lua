@@ -1,4 +1,8 @@
 ---@diagnostic disable: undefined-global
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local citronGroup = augroup("citron", {})
+
 
 vim.pack.add {
 	{ src = "https://github.com/williamboman/mason-lspconfig.nvim", },

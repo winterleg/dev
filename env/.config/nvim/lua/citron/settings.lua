@@ -131,7 +131,7 @@ end, { range = true })
 
 if vim.g.neovide then
 	require('neov-ime').setup()
-	vim.o.guifont = "courier prime:h18"
+	vim.o.guifont = "comic code Light:h18"
 
 	vim.g.neovide_refresh_rate = 144
 	vim.g.neovide_refresh_rate_idle = 10

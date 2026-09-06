@@ -75,3 +75,16 @@ export PATH
 
 export PATH=$PATH:/home/hiver/.spicetify
 
+
+
+# Start ssh-agent if one is not already running
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  eval "$(ssh-agent -s)" >/dev/null
+fi
+
+# Add keys that exist and are not already loaded
+for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
+  if [[ -f "$key" ]] && ! ssh-add -l 2>/dev/null | grep -q "$(ssh-keygen -lf "$key" | awk '{print $2}')"; then
+    ssh-add "$key" >/dev/null 2>&1
+  fi
+done

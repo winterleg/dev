@@ -1,6 +1,6 @@
 [general]
 import = [
-  # "~/.config/alacritty/rosé-pine.toml",
+  "~/.config/alacritty/rosé-pine.toml",
 ]
 
 [window]
