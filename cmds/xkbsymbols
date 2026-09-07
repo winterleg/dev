@@ -15,3 +15,11 @@ sudo cp \
 sudo cp \
   /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/ru \
   /usr/share/xkeyboard-config-2/symbols/ru
+
+sudo cp \
+  /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/de \
+  /usr/share/xkeyboard-config-2/symbols/de
+
+sudo cp \
+  /home/hiver/Desktop/dev/root/usr/share/xkeyboard-config-2/symbols/latin \
+  /usr/share/xkeyboard-config-2/symbols/latin

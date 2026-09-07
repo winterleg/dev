@@ -1,0 +1,57 @@
+{
+	"layer": "top",
+	"position": "right",
+	"output": "eDP-1",
+	"exclusive": true,
+	"modules-left": [
+		"sway/workspaces"
+	],
+	"modules-center": [
+	],
+	"modules-right": [
+		"battery",
+		"custom/sep",
+		"custom/swap",
+		"custom/sep",
+		"memory",
+		"custom/sep",
+		"cpu",
+		"custom/sep",
+		"clock",
+		"custom/sep",
+		"tray"
+	],
+	"battery": {
+		"format": "{}%",
+		"rotate": 270
+	},
+	"cpu": {
+		"format": "{usage}%",
+		"rotate": 270
+	},
+	"memory": {
+		"format": "{percentage}%",
+		"rotate": 270
+	},
+	"custom/swap": {
+		"interval": 5,
+		"exec": "free | awk '/Swap:/ { if ($2 == 0) print \"0%\"; else printf \"%.0f%%\", ($3/$2)*100 }'",
+		"format": "{}",
+		"return-type": "text",
+		"rotate": 270
+	},
+	"sway/workspaces": {
+		"all-outputs": true
+	},
+	"custom/sep": {
+		"format": "|",
+		"rotate": 270
+	},
+	"tray": {
+		"show-passive-items": "true"
+	},
+	"clock": {
+		"tooltip": true,
+		"format": "{:%y\n%m\n%d\n\n%H\n%M}"
+	},
+}

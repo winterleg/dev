@@ -11,7 +11,8 @@ exec ~/.config/waybar/waybar.sh
 exec ~/.config/sway/startup
 
 input * {
-	xkb_layout ca
+	xkb_layout ca,de
+	xkb_options grp:win_space_toggle
 }
 
 focus_follows_mouse yes
