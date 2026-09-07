@@ -19,6 +19,8 @@
         "custom/sep",
         "battery",
         "custom/sep",
+        "custom/swap",
+        "custom/sep",
         "memory",
         "custom/sep",
         "cpu",
@@ -32,6 +34,11 @@
     },
     "memory": {
         "format": "RAM {percentage}%"
+    },
+    "custom/swap": {
+        "interval": 5,
+        "exec": "free | awk '/Swap:/ { if ($2 == 0) print \"SWAP: 0%\"; else printf \"SWAP: %.0f%%\\n\", ($3/$2)*100 }'",
+        "return-type": "text"
     },
     "sway/workspaces": {
         "all-outputs": true

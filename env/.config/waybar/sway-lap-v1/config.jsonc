@@ -1,73 +1,86 @@
 {
-    "layer": "top",
-    "position": "bottom",
-    "output": "eDP-1",
-    "exclusive": true,
-    "modules-left": [
-        "sway/workspaces",
-        "custom/sep",
-        "custom/net_down",
-        "custom/sep",
-        "custom/net_up"
-    ],
-    "modules-center": [
-    ],
-    "modules-right": [
-        "custom/qbt_down",
-        "custom/sep",
-        "custom/qbt_up",
-        "custom/sep",
-        "battery",
-        "custom/sep",
-        "memory",
-        "custom/sep",
-        "cpu",
-        "custom/sep",
-        "clock",
-        "custom/sep",
-        "tray"
-    ],
-    "cpu": {
-        "format": "CPU {usage}%"
-    },
-    "memory": {
-        "format": "RAM {percentage}%"
-    },
-    "sway/workspaces": {
-        "all-outputs": true
-    },
-    "custom/sep": {
-        "format": " "
-    },
-    "tray": {
-        "show-passive-items": "true"
-    },
-    "clock": {
-        "tooltip": true,
-        "format": "{:%Y.%m.%d %H:%M}"
-    },
-    "custom/net_down": {
-        "exec": "python3 ~/.config/polybar/scripts/net_speed.py --one down",
-        "interval": 2,
-        "format": "↓↓ {}",
-        "tooltip": false
-    },
-    "custom/net_up": {
-        "exec": "python3 ~/.config/polybar/scripts/net_speed.py --one up",
-        "interval": 2,
-        "format": "↑↑ {}",
-        "tooltip": false
-    },
-    "custom/qbt_down": {
-        "exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one down",
-        "interval": 2,
-        "format": "↓ {}",
-        "tooltip": false
-    },
-    "custom/qbt_up": {
-        "exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one up",
-        "interval": 2,
-        "format": "↑ {}",
-        "tooltip": false
-    }
+	"layer": "top",
+	"position": "bottom",
+	"output": "eDP-1",
+	"exclusive": true,
+	"modules-left": [
+		"sway/workspaces",
+		"custom/sep",
+		"custom/net_down",
+		"custom/sep",
+		"custom/net_up"
+	],
+	"modules-center": [],
+	"modules-right": [
+		"custom/qbt_down",
+		"custom/sep",
+		"custom/qbt_up",
+		"custom/sep",
+		"battery",
+		"custom/sep",
+		"custom/swap",
+		"custom/sep",
+		"memory",
+		"custom/sep",
+		"cpu",
+		"custom/sep",
+		"custom/nvidia",
+		"custom/sep",
+		"clock",
+		"custom/sep",
+		"tray"
+	],
+	"cpu": {
+		"format": "C{usage}%"
+	},
+	"memory": {
+		"format": "R{percentage}%"
+	},
+	"custom/swap": {
+		"interval": 5,
+		"exec": "free | awk '/Swap:/ { if ($2 == 0) print \"S0%\"; else printf \"S%.0f%%\\n\", ($3/$2)*100 }'",
+		"return-type": "text"
+	},
+	"custom/nvidia": {
+		"interval": 5,
+		"exec": "echo \"N$(~/Desktop/dev/scripts/smicounts)\"",
+		"return-type": "text"
+	},
+	"sway/workspaces": {
+		"all-outputs": true
+	},
+	"custom/sep": {
+		"format": " "
+	},
+	"tray": {
+		"show-passive-items": "true"
+	},
+	"clock": {
+		"tooltip": true,
+		"format": "{:%Y.%m.%d %H:%M}"
+	},
+	"custom/net_down": {
+		"exec": "python3 ~/.config/polybar/scripts/net_speed.py --one down",
+		"interval": 2,
+		"format": "↓↓ {}",
+		"tooltip": false
+	},
+	"custom/net_up": {
+		"exec": "python3 ~/.config/polybar/scripts/net_speed.py --one up",
+		"interval": 2,
+		"format": "↑↑ {}",
+		"tooltip": false
+	},
+	"custom/qbt_down": {
+		"exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one down",
+		"interval": 2,
+		"format": "↓ {}",
+		"tooltip": false
+	},
+	"custom/qbt_up": {
+		"exec": "python3 ~/.config/polybar/scripts/qbt_upload.py --one up",
+		"interval": 2,
+		"format": "↑ {}",
+		"tooltip": false
+	}
 }

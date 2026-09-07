@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local citronGroup = augroup("citron", {})
+-- local citronGroup = augroup("citron", {})
 
 -- remove trailing whitespaces at the end of a line
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -9,6 +9,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		print("BufWritePre")
 		vim.cmd([[%s/\s\+$//e]])
+	end,
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = augroup('HighlightYank', {}),
+	pattern = '*',
+	callback = function()
+		vim.hl.on_yank({
+			higroup = 'IncSearch',
+			timeout = 120,
+		})
 	end,
 })
 

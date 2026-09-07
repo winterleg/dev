@@ -18,6 +18,9 @@ vim.pack.add {
 
 local cmp = require "cmp"
 cmp.setup({
+	completion = {
+		autocomplete = false,
+	},
 	experimental = {
 		ghost_text = false
 	},
@@ -27,6 +30,7 @@ cmp.setup({
 		end
 	},
 	mapping = cmp.mapping.preset.insert({
+		["<C-Space>"] = cmp.mapping.complete(),
 		['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
 		['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
 		['<Tab>'] = cmp.mapping.confirm({ select = true }),
@@ -53,6 +57,7 @@ vim.lsp.enable({
 	"haskell-language-server",
 	"rust-analyzer",
 	"csharp_ls",
+	"basedpyright",
 })
 
 vim.diagnostic.config({

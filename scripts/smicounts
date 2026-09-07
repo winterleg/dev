@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+count=$(
+    nvidia-smi |
+    awk '
+        /^\| *GPU +GI +CI +PID +Type/ {
+            in_processes = 1
+            next
+        }
+
+        in_processes && /^\|/ {
+            # Match rows whose fourth field is a numeric PID.
+            if ($0 ~ /^\|[[:space:]]*[0-9]+[[:space:]]+[^|]*[[:space:]]+[0-9]+[[:space:]]+/)
+                count++
+        }
+
+        END {
+            print count + 0
+        }
+    '
+)
+
+printf '%d\n' "$count"

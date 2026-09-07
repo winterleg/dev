@@ -1,7 +1,8 @@
 set $mod Mod4
 floating_modifier $mod
 
-output eDP-1    res 2560x1600@60Hz  pos -1600 0 scale 1.6 allow_tearing yes
+# output eDP-1    res 2560x1600@60Hz  pos -1600 0 scale 1.6 allow_tearing yes
+output eDP-1    res 2560x1600@60Hz  pos 1920  0 scale 1.6 allow_tearing yes
 output HDMI-A-1 res 1920x1080@120Hz pos 0     0 scale 1   allow_tearing yes
 
 font pango:Comic Code 12
@@ -81,7 +82,7 @@ bindsym $mod+u              split vertical
 # Apps/Scripts
 bindsym $mod+Ctrl+v         exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 bindsym $mod+q              exec helium-browser
-bindsym $mod+Return         exec foot -e nvim # ~/.cargo/bin/neovide
+bindsym $mod+Return         exec GLFW_IM_MODULE=fcitx alacritty -e nvim # ~/.cargo/bin/neovide
 bindsym $mod+Shift+Return   exec foot
 bindsym $mod+w              exec firefox
 bindsym $mod+Shift+w        exec thunderbird
@@ -89,10 +90,10 @@ bindsym $mod+r              exec rofi -show drun -no-fixed-num-lines
 bindsym $mod+Shift+r        exec rofi -show run
 bindsym $mod+semicolon      exec ~/.config/sway/scripts/wselect.sh
 bindsym $mod+Shift+f        exec pcmanfm
-bindsym $mod+s              exec ~/.config/hypr/scripts/hyprshot.sh "simple"
-bindsym Print               exec ~/.config/hypr/scripts/hyprshot.sh "screen"
-bindsym $mod+Shift+s        exec ~/.config/hypr/scripts/hyprshot.sh
-bindsym $mod+Shift+t        exec ~/.config/hypr/scripts/get-text.sh
+bindsym $mod+s              exec ~/.config/sway/scripts/shot.sh "simple"
+bindsym Print               exec ~/.config/sway/scripts/shot.sh "screen"
+bindsym $mod+Shift+s        exec ~/.config/sway/scripts/shot.sh
+bindsym $mod+Shift+t        exec ~/.config/sway/scripts/get-text.sh
 bindsym $mod+Shift+c        exec wl-color-picker clipboard
 bindsym $mod+period         exec rofi -modi emoji -show emoji -no-fixed-num-lines
 bindsym $mod+minus          exec ~/dotfiles/scripts/tts-neovide
