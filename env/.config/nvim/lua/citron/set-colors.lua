@@ -122,6 +122,18 @@ local colorsList = {
 		end,
 	},
 	{
+		name = "Paper",
+		enabled = true,
+		callback = function()
+			vim.opt.background = "dark"
+			vim.cmd [[colorscheme mfd-paper]]
+
+			fix_visual()
+
+			save_theme "Paper"
+		end,
+	},
+	{
 		name = "Vague",
 		enabled = true,
 		callback = function()

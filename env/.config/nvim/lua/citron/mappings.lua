@@ -72,6 +72,7 @@ local mappings = {
 	end },
 	{ "n",               "<leader>sa", "ggVG" },
 	{ "n",               "<leader>pl", "<CMD>lua MiniFiles.open()<CR>" },
+	{ "n",               "<leader>pu", "<CMD>lua require'fzf-lua'.lsp_document_symbols()<CR>" },
 	{ "n",               "<leader>gf", "<C-w>gF" },
 	{ "n",               "<A-s>",      ":m +1<CR>" },
 	{ "n",               "<A-r>",      ":m -2<CR>" },

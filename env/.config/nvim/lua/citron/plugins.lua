@@ -9,6 +9,7 @@ vim.pack.add {
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/junegunn/fzf",                                 lazy = false, },
+	{ src = "https://github.com/ibhagwan/fzf-lua",                             lazy = false, },
 	{ src = "https://github.com/junegunn/fzf.vim",                             lazy = false },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
@@ -271,16 +272,15 @@ require('mini.trailspace').setup()
 require("tree-sitter-manager").setup()
 
 require "zen-mode".setup {
-  window = {
-    backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-    -- height and width can be:
-    -- * an absolute number of cells when > 1
-    -- * a percentage of the width / height of the editor when <= 1
-    -- * a function that returns the width or the height
-    width = 80, -- width of the Zen window
-    height = 1, -- height of the Zen window
-  },
+	window = {
+		backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+		-- height and width can be:
+		-- * an absolute number of cells when > 1
+		-- * a percentage of the width / height of the editor when <= 1
+		-- * a function that returns the width or the height
+		width = 80, -- width of the Zen window
+		height = 1, -- height of the Zen window
+	},
 }
 
 require('mini.extra').setup()
-
