@@ -7,7 +7,6 @@ local autocmd = vim.api.nvim_create_autocmd
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
-		print("BufWritePre")
 		vim.cmd([[%s/\s\+$//e]])
 	end,
 })

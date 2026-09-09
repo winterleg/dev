@@ -38,7 +38,7 @@
 	},
 	"custom/swap": {
 		"interval": 5,
-		"exec": "free | awk '/Swap:/ { if ($2 == 0) print \"S0%\"; else printf \"S%.0f%%\\n\", ($3/$2)*100 }'",
+		"exec": "LC_ALL=C free | awk '/Swap:/ { if ($2 == 0) print \"S0%\"; else printf \"S%.0f%%\\n\", ($3/$2)*100 }'",
 		"return-type": "text"
 	},
 	"custom/nvidia": {

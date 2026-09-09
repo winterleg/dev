@@ -40,7 +40,8 @@ precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%F{cyan}[%f%F{red}%b%f%F{cyan}]%f'
 
 setopt PROMPT_SUBST
-PROMPT='[%~] %F{green}>%f '
+PROMPT='[%~]
+%F{green}>%f '
 
 # bindkey -s ^t "^utmux-goway\n"
 bindkey -s ^f "^uvfz\n"

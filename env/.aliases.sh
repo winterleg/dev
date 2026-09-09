@@ -1,3 +1,7 @@
+ed ()
+{
+	command ed -px\  "$@"
+}
 vpn-gentoowire-nj-150() {
 case "$1" in
 "u"|"up")
@@ -104,4 +108,16 @@ range() {
   IFS= read -r -d '' cwd <"$tmp"
   [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && cd -- "$cwd"
   rm -f -- "$tmp"
+}
+
+eday() {
+	currentDay=$(date +%Y-%m-%d)
+	export LANG=fr_CA.UTF-8
+	if [ -e "j - $currentDay" ]; then
+		echo "File [j - $currentDay] exists"
+	else
+		touch "j - $currentDay"
+		echo "Hiver, $currentDay" > "j - $currentDay"
+	fi
+	ed "j - $currentDay"
 }

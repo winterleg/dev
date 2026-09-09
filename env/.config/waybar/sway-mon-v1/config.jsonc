@@ -37,7 +37,7 @@
     },
     "custom/swap": {
         "interval": 5,
-        "exec": "free | awk '/Swap:/ { if ($2 == 0) print \"SWAP: 0%\"; else printf \"SWAP: %.0f%%\\n\", ($3/$2)*100 }'",
+        "exec": "LC_ALL=C free | awk '/Swap:/ { if ($2 == 0) print \"SWAP: 0%\"; else printf \"SWAP: %.0f%%\\n\", ($3/$2)*100 }'",
         "return-type": "text"
     },
     "sway/workspaces": {

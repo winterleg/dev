@@ -35,7 +35,7 @@
 	},
 	"custom/swap": {
 		"interval": 5,
-		"exec": "free | awk '/Swap:/ { if ($2 == 0) print \"0%\"; else printf \"%.0f%%\", ($3/$2)*100 }'",
+		"exec": "LC_ALL=C free | awk '/Swap:/ { if ($2 == 0) print \"0%\"; else printf \"%.0f%%\", ($3/$2)*100 }'",
 		"format": "{}",
 		"return-type": "text",
 		"rotate": 90
